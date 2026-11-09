@@ -1,0 +1,16 @@
+
+> beijing-food-map@1.0.0 test:live
+> playwright test --config playwright.live.config.cjs
+
+[WebServer] (node:63566) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:63573) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -  1 tests/live.spec.cjs:10:43 › 真实高德地图：王府井
+  -  2 tests/live.spec.cjs:10:43 › 真实高德地图：东坝
+  -  3 tests/live.spec.cjs:10:43 › 真实高德地图：大钟寺
+
+  3 skipped

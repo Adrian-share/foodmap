@@ -1,0 +1,37 @@
+[
+  {
+    "file": "TASK.md",
+    "sha256": "9397649971657598ab98fe97d82059c8bd114a59cf532cb5b9c38fb4b0d6baca",
+    "matches_original": true
+  },
+  {
+    "file": "MCP-ATDD.md",
+    "sha256": "98c3d36d2304a75f0fd58d99946aca5292590b8a5f2e1dce10bb79eaa6e0db02",
+    "matches_original": true
+  },
+  {
+    "file": "samples.js",
+    "sha256": "959798da9bc10bd6eeca1f10829b860ce83cf36e661fe84c63c37e2d102ea780",
+    "matches_original": true
+  },
+  {
+    "file": "index.html",
+    "sha256": "15aa39df1187e4cc1cc39528c98883206dd03de7512b918a3a7a39e1d9124891",
+    "matches_original": true
+  },
+  {
+    "file": "prototype.js",
+    "sha256": "4e3d52108cacc5b5342e0635392527aedde406ff2a4ec3596f50c921804a3c49",
+    "matches_original": true
+  },
+  {
+    "file": "amap-server.cjs",
+    "sha256": "16c6992aeb5aa3fae2f8e28653212930e1ffa0bba63289aa38f875673a5d8e39",
+    "matches_original": true
+  },
+  {
+    "file": "acceptance.test.cjs",
+    "sha256": "f619fe24b62c7d83e43b270337f69b7d172771c121a69d88bd6a9b6a689a9212",
+    "matches_original": true
+  }
+]

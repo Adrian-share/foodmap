@@ -1,0 +1,402 @@
+
+> beijing-food-map@1.0.0 test:page
+> playwright test
+
+[WebServer] (node:62216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 9 tests using 1 worker
+
+(node:62219) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/page.spec.cjs:64:43 › 王府井：同屏四个图钉、编号排序、分店地址距离与出处 (4.0s)
+(node:62328) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/page.spec.cjs:64:43 › 东坝：同屏四个图钉、编号排序、分店地址距离与出处 (3.9s)
+(node:62351) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 tests/page.spec.cjs:64:43 › 大钟寺：同屏四个图钉、编号排序、分店地址距离与出处 (3.8s)
+(node:62384) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  4 tests/page.spec.cjs:70:1 › 望府井纠错与切换起点清除旧图钉及详情 (3.9s)
+(node:62403) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  5 tests/page.spec.cjs:79:1 › 旧请求晚返回时只保留最新起点 (3.9s)
+(node:62444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  6 tests/page.spec.cjs:100:1 › 歧义地点先选择再绘图，地址可区分 (3.7s)
+(node:62480) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  7 tests/page.spec.cjs:113:1 › 无结果、接口失败清空旧结果，可重新搜索 (3.7s)
+(node:62502) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  8 tests/page.spec.cjs:129:1 › 高德脚本失败明确提示并可重试连接 (3.7s)
+(node:62533) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  9 tests/page.spec.cjs:144:1 › 缺少凭据明确展示离线状态，未知起点不残留 (3.6s)
+
+
+  1) tests/page.spec.cjs:64:43 › 王府井：同屏四个图钉、编号排序、分店地址距离与出处 ─────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('#map')
+    Expected: visible
+    Received: hidden
+    Timeout:  3000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('#map') with timeout 3000ms
+      - waiting for locator('#map')
+        9 × locator resolved to <div id="map" hidden="" aria-label="百度地图"></div>
+          - unexpected value "hidden"
+
+
+      24 |   });
+      25 |   await page.goto('/');
+    > 26 |   await expect(page.locator('#map')).toBeVisible();
+         |                                      ^
+      27 |   await expect(page.locator('#results > li')).toHaveCount(3);
+      28 | }
+      29 | async function search(page, query) {
+        at setup (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:26:38)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:65:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-王府井：同屏四个图钉、编号排序、分店地址距离与出处/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-王府井：同屏四个图钉、编号排序、分店地址距离与出处/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-王府井：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-王府井：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/page.spec.cjs:64:43 › 东坝：同屏四个图钉、编号排序、分店地址距离与出处 ──────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('#map')
+    Expected: visible
+    Received: hidden
+    Timeout:  3000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('#map') with timeout 3000ms
+      - waiting for locator('#map')
+        10 × locator resolved to <div id="map" hidden="" aria-label="百度地图"></div>
+           - unexpected value "hidden"
+
+
+      24 |   });
+      25 |   await page.goto('/');
+    > 26 |   await expect(page.locator('#map')).toBeVisible();
+         |                                      ^
+      27 |   await expect(page.locator('#results > li')).toHaveCount(3);
+      28 | }
+      29 | async function search(page, query) {
+        at setup (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:26:38)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:65:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-东坝：同屏四个图钉、编号排序、分店地址距离与出处/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-东坝：同屏四个图钉、编号排序、分店地址距离与出处/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-东坝：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-东坝：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/page.spec.cjs:64:43 › 大钟寺：同屏四个图钉、编号排序、分店地址距离与出处 ─────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('#map')
+    Expected: visible
+    Received: hidden
+    Timeout:  3000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('#map') with timeout 3000ms
+      - waiting for locator('#map')
+        10 × locator resolved to <div id="map" hidden="" aria-label="百度地图"></div>
+           - unexpected value "hidden"
+
+
+      24 |   });
+      25 |   await page.goto('/');
+    > 26 |   await expect(page.locator('#map')).toBeVisible();
+         |                                      ^
+      27 |   await expect(page.locator('#results > li')).toHaveCount(3);
+      28 | }
+      29 | async function search(page, query) {
+        at setup (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:26:38)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:65:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-大钟寺：同屏四个图钉、编号排序、分店地址距离与出处/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-大钟寺：同屏四个图钉、编号排序、分店地址距离与出处/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-大钟寺：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-大钟寺：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) tests/page.spec.cjs:70:1 › 望府井纠错与切换起点清除旧图钉及详情 ─────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('#map')
+    Expected: visible
+    Received: hidden
+    Timeout:  3000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('#map') with timeout 3000ms
+      - waiting for locator('#map')
+        10 × locator resolved to <div id="map" hidden="" aria-label="百度地图"></div>
+           - unexpected value "hidden"
+
+
+      24 |   });
+      25 |   await page.goto('/');
+    > 26 |   await expect(page.locator('#map')).toBeVisible();
+         |                                      ^
+      27 |   await expect(page.locator('#results > li')).toHaveCount(3);
+      28 | }
+      29 | async function search(page, query) {
+        at setup (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:26:38)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:71:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-望府井纠错与切换起点清除旧图钉及详情/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-望府井纠错与切换起点清除旧图钉及详情/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-望府井纠错与切换起点清除旧图钉及详情/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-望府井纠错与切换起点清除旧图钉及详情/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) tests/page.spec.cjs:79:1 › 旧请求晚返回时只保留最新起点 ─────────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('#map')
+    Expected: visible
+    Received: hidden
+    Timeout:  3000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('#map') with timeout 3000ms
+      - waiting for locator('#map')
+        10 × locator resolved to <div id="map" hidden="" aria-label="百度地图"></div>
+           - unexpected value "hidden"
+
+
+      24 |   });
+      25 |   await page.goto('/');
+    > 26 |   await expect(page.locator('#map')).toBeVisible();
+         |                                      ^
+      27 |   await expect(page.locator('#results > li')).toHaveCount(3);
+      28 | }
+      29 | async function search(page, query) {
+        at setup (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:26:38)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:80:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-旧请求晚返回时只保留最新起点/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-旧请求晚返回时只保留最新起点/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-旧请求晚返回时只保留最新起点/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-旧请求晚返回时只保留最新起点/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) tests/page.spec.cjs:100:1 › 歧义地点先选择再绘图，地址可区分 ──────────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('#map')
+    Expected: visible
+    Received: hidden
+    Timeout:  3000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('#map') with timeout 3000ms
+      - waiting for locator('#map')
+        10 × locator resolved to <div id="map" hidden="" aria-label="百度地图"></div>
+           - unexpected value "hidden"
+
+
+      24 |   });
+      25 |   await page.goto('/');
+    > 26 |   await expect(page.locator('#map')).toBeVisible();
+         |                                      ^
+      27 |   await expect(page.locator('#results > li')).toHaveCount(3);
+      28 | }
+      29 | async function search(page, query) {
+        at setup (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:26:38)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:101:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-歧义地点先选择再绘图，地址可区分/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-歧义地点先选择再绘图，地址可区分/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-歧义地点先选择再绘图，地址可区分/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-歧义地点先选择再绘图，地址可区分/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) tests/page.spec.cjs:113:1 › 无结果、接口失败清空旧结果，可重新搜索 ───────────────────────────────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('#map')
+    Expected: visible
+    Received: hidden
+    Timeout:  3000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('#map') with timeout 3000ms
+      - waiting for locator('#map')
+        10 × locator resolved to <div id="map" hidden="" aria-label="百度地图"></div>
+           - unexpected value "hidden"
+
+
+      24 |   });
+      25 |   await page.goto('/');
+    > 26 |   await expect(page.locator('#map')).toBeVisible();
+         |                                      ^
+      27 |   await expect(page.locator('#results > li')).toHaveCount(3);
+      28 | }
+      29 | async function search(page, query) {
+        at setup (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:26:38)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:114:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-无结果、接口失败清空旧结果，可重新搜索/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-无结果、接口失败清空旧结果，可重新搜索/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-无结果、接口失败清空旧结果，可重新搜索/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-无结果、接口失败清空旧结果，可重新搜索/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) tests/page.spec.cjs:129:1 › 高德脚本失败明确提示并可重试连接 ──────────────────────────────────────────────────
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#map-status')
+    Expected substring: "失败"
+    Timeout: 3000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" locator('#map-status') with timeout 3000ms
+      - waiting for locator('#map-status')
+
+
+      134 |   await page.route('https://webapi.amap.com/maps?**', route => route.abort());
+      135 |   await page.goto('/');
+    > 136 |   await expect(page.locator('#map-status')).toContainText('失败');
+          |                                             ^
+      137 |   await page.unroute('https://webapi.amap.com/maps?**');
+      138 |   await page.route('https://webapi.amap.com/maps?**', route => route.fulfill({
+      139 |     contentType: 'text/javascript', body: readFileSync(join(__dirname, 'mock-sdk.js'), 'utf8')
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:136:45
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-高德脚本失败明确提示并可重试连接/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-高德脚本失败明确提示并可重试连接/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-高德脚本失败明确提示并可重试连接/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-高德脚本失败明确提示并可重试连接/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) tests/page.spec.cjs:144:1 › 缺少凭据明确展示离线状态，未知起点不残留 ──────────────────────────────────────────────
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#map-status')
+    Expected substring: "待验证"
+    Timeout: 3000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" locator('#map-status') with timeout 3000ms
+      - waiting for locator('#map-status')
+
+
+      144 | test('缺少凭据明确展示离线状态，未知起点不残留', async ({page}) => {
+      145 |   await page.goto('/');
+    > 146 |   await expect(page.locator('#map-status')).toContainText('待验证');
+          |                                             ^
+      147 |   await expect(page.locator('#results > li')).toHaveCount(3);
+      148 |   await search(page, '未知位置');
+      149 |   await expect(page.locator('#results > li')).toHaveCount(0);
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/page.spec.cjs:146:45
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-缺少凭据明确展示离线状态，未知起点不残留/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-缺少凭据明确展示离线状态，未知起点不残留/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-缺少凭据明确展示离线状态，未知起点不残留/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-缺少凭据明确展示离线状态，未知起点不残留/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9 failed
+    tests/page.spec.cjs:64:43 › 王府井：同屏四个图钉、编号排序、分店地址距离与出处 ──────────────────────────────────────────
+    tests/page.spec.cjs:64:43 › 东坝：同屏四个图钉、编号排序、分店地址距离与出处 ───────────────────────────────────────────
+    tests/page.spec.cjs:64:43 › 大钟寺：同屏四个图钉、编号排序、分店地址距离与出处 ──────────────────────────────────────────
+    tests/page.spec.cjs:70:1 › 望府井纠错与切换起点清除旧图钉及详情 ──────────────────────────────────────────────────
+    tests/page.spec.cjs:79:1 › 旧请求晚返回时只保留最新起点 ──────────────────────────────────────────────────────
+    tests/page.spec.cjs:100:1 › 歧义地点先选择再绘图，地址可区分 ───────────────────────────────────────────────────
+    tests/page.spec.cjs:113:1 › 无结果、接口失败清空旧结果，可重新搜索 ────────────────────────────────────────────────
+    tests/page.spec.cjs:129:1 › 高德脚本失败明确提示并可重试连接 ───────────────────────────────────────────────────
+    tests/page.spec.cjs:144:1 › 缺少凭据明确展示离线状态，未知起点不残留 ───────────────────────────────────────────────
