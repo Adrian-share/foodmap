@@ -1,0 +1,42 @@
+
+Running 3 tests using 1 worker
+
+  ✘  1 tests/live.spec.cjs:10:43 › 真实高德地图：王府井 (25.2s)
+Testing stopped early after 1 maximum allowed failures.
+
+
+  1) tests/live.spec.cjs:10:43 › 真实高德地图：王府井 ────────────────────────────────────────────────────────
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#map .shop-info')
+    Expected substring: "西城区 · 大栅栏 · 前门西大街2号楼"
+    Received string:    "富春居（北京璞瑄酒店店） · 1.72 km东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层探店记录相关 B 站视频"
+    Timeout: 15000ms
+
+    Call log:
+      - Expect "toContainText" locator('#map .shop-info') with timeout 15000ms
+      - waiting for locator('#map .shop-info')
+        33 × locator resolved to <div class="shop-info">…</div>
+           - unexpected value "富春居（北京璞瑄酒店店） · 1.72 km东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层探店记录相关 B 站视频"
+
+
+      42 |     await expect(item).toContainText(ranked[i].km.toFixed(2) + ' km');
+      43 |     await page.locator(`#map [data-marker-index="${i + 1}"]`).click();
+    > 44 |     await expect(page.locator('#map .shop-info')).toContainText(ranked[i].address);
+         |                                                   ^
+      45 |     await expect(item).toHaveAttribute('aria-current', 'true');
+      46 |   }
+      47 |   // 关闭详情后重新适配视野，截图同时保留四个图钉及列表。
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/live.spec.cjs:44:51
+
+    Error Context: test-results/live/live-真实高德地图：王府井/error-context.md
+
+  1 failed
+    tests/live.spec.cjs:10:43 › 真实高德地图：王府井 ─────────────────────────────────────────────────────────
+  2 did not run
+  1 error was not a part of any test, see above for details
+[WebServer] (node:78519) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:78521) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

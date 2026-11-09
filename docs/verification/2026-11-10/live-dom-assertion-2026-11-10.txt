@@ -1,0 +1,113 @@
+
+Running 3 tests using 1 worker
+
+  ✘  1 tests/live.spec.cjs:10:43 › 真实高德地图：王府井 (25.7s)
+  ✘  2 tests/live.spec.cjs:10:43 › 真实高德地图：东坝 (29.4s)
+  ✘  3 tests/live.spec.cjs:10:43 › 真实高德地图：大钟寺 (25.8s)
+
+
+  1) tests/live.spec.cjs:10:43 › 真实高德地图：王府井 ────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#map .shop-info')
+    Expected: 0
+    Received: 1
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#map .shop-info') with timeout 15000ms
+      - waiting for locator('#map .shop-info')
+        33 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      54 |     // 真实信息窗可能遮挡邻近图钉，使用页面提供的控件关闭后检查下一家。
+      55 |     await page.getByRole('button', {name: '显示全部图钉'}).click();
+    > 56 |     await expect(page.locator('#map .shop-info')).toHaveCount(0);
+         |                                                   ^
+      57 |   }
+      58 |   // 关闭详情后重新适配视野，截图同时保留四个图钉及列表。
+      59 |   await page.getByRole('button', {name: '显示全部图钉'}).click();
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/live.spec.cjs:56:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/live/live-真实高德地图：王府井/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/live/live-真实高德地图：王府井/error-context.md
+
+  2) tests/live.spec.cjs:10:43 › 真实高德地图：东坝 ─────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#map .shop-info')
+    Expected: 0
+    Received: 1
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#map .shop-info') with timeout 15000ms
+      - waiting for locator('#map .shop-info')
+        33 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      54 |     // 真实信息窗可能遮挡邻近图钉，使用页面提供的控件关闭后检查下一家。
+      55 |     await page.getByRole('button', {name: '显示全部图钉'}).click();
+    > 56 |     await expect(page.locator('#map .shop-info')).toHaveCount(0);
+         |                                                   ^
+      57 |   }
+      58 |   // 关闭详情后重新适配视野，截图同时保留四个图钉及列表。
+      59 |   await page.getByRole('button', {name: '显示全部图钉'}).click();
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/live.spec.cjs:56:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/live/live-真实高德地图：东坝/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/live/live-真实高德地图：东坝/error-context.md
+
+  3) tests/live.spec.cjs:10:43 › 真实高德地图：大钟寺 ────────────────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#map .shop-info')
+    Expected: 0
+    Received: 1
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#map .shop-info') with timeout 15000ms
+      - waiting for locator('#map .shop-info')
+        32 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+      54 |     // 真实信息窗可能遮挡邻近图钉，使用页面提供的控件关闭后检查下一家。
+      55 |     await page.getByRole('button', {name: '显示全部图钉'}).click();
+    > 56 |     await expect(page.locator('#map .shop-info')).toHaveCount(0);
+         |                                                   ^
+      57 |   }
+      58 |   // 关闭详情后重新适配视野，截图同时保留四个图钉及列表。
+      59 |   await page.getByRole('button', {name: '显示全部图钉'}).click();
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-4-8505a1050331/workdir/beijing-food-map/tests/live.spec.cjs:56:51
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/live/live-真实高德地图：大钟寺/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/live/live-真实高德地图：大钟寺/error-context.md
+
+  3 failed
+    tests/live.spec.cjs:10:43 › 真实高德地图：王府井 ─────────────────────────────────────────────────────────
+    tests/live.spec.cjs:10:43 › 真实高德地图：东坝 ──────────────────────────────────────────────────────────
+    tests/live.spec.cjs:10:43 › 真实高德地图：大钟寺 ─────────────────────────────────────────────────────────
+[WebServer] (node:79484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:79486) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:79632) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:79761) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

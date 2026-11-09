@@ -1,0 +1,12 @@
+
+Running 3 tests using 1 worker
+
+  ✓  1 tests/live.spec.cjs:10:43 › 真实高德地图：王府井 (12.2s)
+  ✓  2 tests/live.spec.cjs:10:43 › 真实高德地图：东坝 (18.0s)
+  ✓  3 tests/live.spec.cjs:10:43 › 真实高德地图：大钟寺 (13.9s)
+
+  3 passed (47.7s)
+[WebServer] (node:79952) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+(node:79954) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
