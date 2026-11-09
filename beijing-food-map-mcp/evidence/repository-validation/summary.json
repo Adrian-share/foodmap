@@ -1,0 +1,17 @@
+{
+  "issue": "FACT-5",
+  "verified_at": "2026-11-09T16:31:04.545496+00:00",
+  "node": "v22.16.0",
+  "npm": "10.9.2",
+  "commands": [
+    "npm ci",
+    "npm test"
+  ],
+  "tests": {
+    "total": 28,
+    "passed": 28,
+    "failed": 0
+  },
+  "accepted_files_preserved": 82,
+  "codex_sessions": "Prior accepted real-session evidence preserved unchanged; no model rerun needed for archive import."
+}

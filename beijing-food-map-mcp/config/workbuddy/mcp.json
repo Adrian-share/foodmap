@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "beijing-food-map": {
+      "type": "streamableHttp",
+      "url": "http://127.0.0.1:8767/mcp",
+      "timeout": 30000
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+.env
+.env.*
+!.env.example
+.codex/
+.agent_context/
+.multica/
+**/chrome-profile/
+**/empty-session-*/

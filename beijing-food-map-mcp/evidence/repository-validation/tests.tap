@@ -1,0 +1,182 @@
+
+> beijing-food-map-mcp@1.0.0 test
+> node --test acceptance.test.cjs mcp.acceptance.test.cjs image.acceptance.test.cjs
+
+TAP version 13
+# Subtest: 样本有十个不同的门店，均有地址、坐标和来源
+ok 1 - 样本有十个不同的门店，均有地址、坐标和来源
+  ---
+  duration_ms: 9.57425
+  type: 'test'
+  ...
+# Subtest: 王府井定位到地铁站并选出最近三家
+ok 2 - 王府井定位到地铁站并选出最近三家
+  ---
+  duration_ms: 2.685834
+  type: 'test'
+  ...
+# Subtest: 东坝定位到地铁站并选出最近三家
+ok 3 - 东坝定位到地铁站并选出最近三家
+  ---
+  duration_ms: 4.058833
+  type: 'test'
+  ...
+# Subtest: 大钟寺定位到地铁站并选出最近三家
+ok 4 - 大钟寺定位到地铁站并选出最近三家
+  ---
+  duration_ms: 0.732084
+  type: 'test'
+  ...
+# Subtest: 识别王府井的口述误写，未知地点不回退到旧结果
+ok 5 - 识别王府井的口述误写，未知地点不回退到旧结果
+  ---
+  duration_ms: 12.967334
+  type: 'test'
+  ...
+# Subtest: 提交三个地名，离线页面均显示起点、三个图钉和三条结果
+ok 6 - 提交三个地名，离线页面均显示起点、三个图钉和三条结果
+  ---
+  duration_ms: 18.433125
+  type: 'test'
+  ...
+# Subtest: 高德静态底图请求包含一个起点和三个依序编号的门店
+ok 7 - 高德静态底图请求包含一个起点和三个依序编号的门店
+  ---
+  duration_ms: 17.544708
+  type: 'test'
+  ...
+# Subtest: 十家原始门店各有一张来自其原视频的真实封面，记录哈希及出处
+ok 8 - 十家原始门店各有一张来自其原视频的真实封面，记录哈希及出处
+  ---
+  duration_ms: 12.77675
+  type: 'test'
+  ...
+# Subtest: 王府井通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+ok 9 - 王府井通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 765.462166
+  type: 'test'
+  ...
+# Subtest: 东坝通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+ok 10 - 东坝通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 221.038333
+  type: 'test'
+  ...
+# Subtest: 大钟寺通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+ok 11 - 大钟寺通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 147.096208
+  type: 'test'
+  ...
+# Subtest: 缺位置及未知位置不返回图片或图文推荐
+ok 12 - 缺位置及未知位置不返回图片或图文推荐
+  ---
+  duration_ms: 166.398375
+  type: 'test'
+  ...
+# Subtest: 图片路径只允许已登记资产，保持只读及跨源边界
+ok 13 - 图片路径只允许已登记资产，保持只读及跨源边界
+  ---
+  duration_ms: 66.292917
+  type: 'test'
+  ...
+# Subtest: 真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema
+ok 14 - 真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema
+  ---
+  duration_ms: 855.448875
+  type: 'test'
+  ...
+# Subtest: 王府井返回正确样本起点、最近三家、米制直线距离及完整出处
+ok 15 - 王府井返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 239.901042
+  type: 'test'
+  ...
+# Subtest: 东坝返回正确样本起点、最近三家、米制直线距离及完整出处
+ok 16 - 东坝返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 166.177375
+  type: 'test'
+  ...
+# Subtest: 大钟寺返回正确样本起点、最近三家、米制直线距离及完整出处
+ok 17 - 大钟寺返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 132.855416
+  type: 'test'
+  ...
+# Subtest: 望府井别名及北京前缀、地铁站后缀复用正确起点
+ok 18 - 望府井别名及北京前缀、地铁站后缀复用正确起点
+  ---
+  duration_ms: 137.22025
+  type: 'test'
+  ...
+# Subtest: 缺位置 ""：needs_location，无结果、无地点解析
+ok 19 - 缺位置 ""：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 77.082791
+  type: 'test'
+  ...
+# Subtest: 缺位置 "  "：needs_location，无结果、无地点解析
+ok 20 - 缺位置 "  "：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 39.605042
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我附近"：needs_location，无结果、无地点解析
+ok 21 - 缺位置 "我附近"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 49.424416
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我附近有什么？"：needs_location，无结果、无地点解析
+ok 22 - 缺位置 "我附近有什么？"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 47.823792
+  type: 'test'
+  ...
+# Subtest: 缺位置 "附近"：needs_location，无结果、无地点解析
+ok 23 - 缺位置 "附近"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 85.280875
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我在这里"：needs_location，无结果、无地点解析
+ok 24 - 缺位置 "我在这里"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 46.798041
+  type: 'test'
+  ...
+# Subtest: 缺位置 "当前位置"：needs_location，无结果、无地点解析
+ok 25 - 缺位置 "当前位置"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 34.843917
+  type: 'test'
+  ...
+# Subtest: 未知地点不复用同客户端上次起点，缺位置后补东坝才解析
+ok 26 - 未知地点不复用同客户端上次起点，缺位置后补东坝才解析
+  ---
+  duration_ms: 103.900375
+  type: 'test'
+  ...
+# Subtest: 非字符串参数拒绝；并发不同地点互不串用
+ok 27 - 非字符串参数拒绝；并发不同地点互不串用
+  ---
+  duration_ms: 91.782666
+  type: 'test'
+  ...
+# Subtest: HTTP 路径、非法 JSON、方法及跨源请求边界
+ok 28 - HTTP 路径、非法 JSON、方法及跨源请求边界
+  ---
+  duration_ms: 38.475458
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3375.392792

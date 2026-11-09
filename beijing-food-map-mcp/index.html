@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>北京探店地图验收</title>
+<style>
+  :root{font:16px/1.5 system-ui,sans-serif;color:#102624;background:#f4f7f3}
+  body{max-width:1050px;margin:auto;padding:24px}
+  h1{margin:0 0 6px;font-size:clamp(26px,5vw,38px)}
+  p{margin:5px 0 12px}
+  form,.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+  input,button{font:inherit;border:1px solid #a8bab1;border-radius:8px;background:#fff;color:inherit;padding:8px 12px}
+  button{cursor:pointer} button[type=submit]{background:#0f6758;color:white;border-color:#0f6758}
+  .layout{display:grid;grid-template-columns:3fr 2fr;gap:18px}
+  #map,#preview{width:100%;height:400px;background:#e8f1e9;border-radius:12px;overflow:hidden}
+  #map[hidden],#preview[hidden]{display:none}
+  ol{margin:0;padding-left:28px} li{padding:8px 0;border-bottom:1px solid #d8e2db}
+  li p{font-size:.88em;margin:3px 0} a{color:#075f71;margin-right:10px}
+  details{margin-top:20px} svg{width:100%;height:100%} .amap-image{display:block;width:100%;height:100%;object-fit:contain}
+  @media(max-width:700px){body{padding:14px}.layout{grid-template-columns:1fr}#map,#preview{height:330px}}
+</style>
+<header>
+  <h1>北京探店地图验收</h1>
+  <p>输入地点，从十家样本门店中找最近三家。距离采用直线距离。</p>
+</header>
+<form id="search">
+  <label for="query">起点</label>
+  <input id="query" required placeholder="例如 王府井" autocomplete="off">
+  <button type="submit">查最近三家</button>
+</form>
+<div class="chips" aria-label="预设起点">
+  <button type="button" data-origin="王府井">王府井</button>
+  <button type="button" data-origin="东坝">东坝</button>
+  <button type="button" data-origin="大钟寺">大钟寺</button>
+</div>
+<p id="status" role="status"></p>
+<div id="candidates" class="chips"></div>
+<main class="layout">
+  <div id="preview" aria-label="样本位置示意图"></div>
+  <div id="map" hidden aria-label="百度地图"></div>
+  <ol id="results" aria-label="最近三家门店"></ol>
+</main>
+<details>
+  <summary>百度地图实时验收</summary>
+  <form id="connect">
+    <label for="ak">浏览器端 AK</label>
+    <input id="ak" type="password" required autocomplete="off" spellcheck="false">
+    <button type="submit">连接百度地图</button>
+  </form>
+  <p>使用允许本机页面来源的浏览器端密钥。密钥仅用于本页请求百度 SDK，页面刷新后需重新输入。</p>
+</details>
+<script src="samples.js"></script>
+<script src="prototype.js"></script>
+</html>

@@ -1,0 +1,936 @@
+{
+  "exchanges": [
+    {
+      "method": "POST",
+      "request": {
+        "method": "initialize",
+        "params": {
+          "protocolVersion": "2025-11-25",
+          "capabilities": {},
+          "clientInfo": {
+            "name": "protocol-evidence",
+            "version": "1.0.0"
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 0
+      },
+      "status": 200,
+      "response": {
+        "result": {
+          "protocolVersion": "2025-11-25",
+          "capabilities": {
+            "tools": {
+              "listChanged": true
+            }
+          },
+          "serverInfo": {
+            "name": "beijing-food-map",
+            "version": "1.0.0"
+          },
+          "instructions": "你是北京探店助手。用户没有明确提供位置（例如只问“我附近有什么？”）时，先追问酒店、地铁站或地标，等用户补充后才调用 find_nearby_food。禁止猜位置、用默认起点、IP、设备定位或跨会话记忆。用户补充位置后再查询。成功时告诉用户解析后的起点、样本坐标来源、最近三家完整分店名、直线距离、每家探店出处和 B 站视频链接，并说明排名仅限十家固定样本。needs_location 或 location_not_found 时不推荐门店。"
+        },
+        "jsonrpc": "2.0",
+        "id": 0
+      }
+    },
+    {
+      "method": "POST",
+      "request": {
+        "jsonrpc": "2.0",
+        "method": "notifications/initialized"
+      },
+      "status": 202,
+      "response": null
+    },
+    {
+      "method": "GET",
+      "status": 405,
+      "response": {
+        "error": "请使用 Streamable HTTP POST /mcp"
+      }
+    },
+    {
+      "method": "POST",
+      "request": {
+        "method": "tools/list",
+        "jsonrpc": "2.0",
+        "id": 1
+      },
+      "status": 200,
+      "response": {
+        "result": {
+          "tools": [
+            {
+              "name": "find_nearby_food",
+              "title": "北京附近探店",
+              "description": "按用户明确提供的北京地点，从十家固定探店样本中返回最近三家。支持王府井、东坝、大钟寺及望府井别名。没有明确位置必须先追问位置，用户补充后再调用，禁止猜测或默认起点。返回样本 GCJ-02 起点、米制直线距离、完整分店地址、探店来源和视频。",
+              "inputSchema": {
+                "type": "object",
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "properties": {
+                  "location": {
+                    "type": "string",
+                    "maxLength": 80,
+                    "description": "用户明确提供的地点名；无地点先追问，不能默认或猜测。"
+                  }
+                },
+                "required": [
+                  "location"
+                ]
+              },
+              "annotations": {
+                "readOnlyHint": true,
+                "destructiveHint": false,
+                "idempotentHint": true,
+                "openWorldHint": false
+              },
+              "outputSchema": {
+                "$schema": "https://json-schema.org/draft/2020-12/schema",
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "ok",
+                      "needs_location",
+                      "location_not_found"
+                    ]
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "origin": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "lng": {
+                        "type": "number"
+                      },
+                      "lat": {
+                        "type": "number"
+                      },
+                      "source": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "coordinate_source": {
+                        "type": "string",
+                        "const": "sample_fixture"
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "lng",
+                      "lat",
+                      "source",
+                      "coordinate_source"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "coordinate_system": {
+                    "type": "string",
+                    "const": "GCJ-02"
+                  },
+                  "distance_type": {
+                    "type": "string",
+                    "const": "straight_line"
+                  },
+                  "sample_count": {
+                    "type": "number",
+                    "const": 10
+                  },
+                  "scope": {
+                    "type": "string"
+                  },
+                  "results": {
+                    "maxItems": 3,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "address": {
+                          "type": "string"
+                        },
+                        "lng": {
+                          "type": "number"
+                        },
+                        "lat": {
+                          "type": "number"
+                        },
+                        "source": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "video": {
+                          "type": "string",
+                          "format": "uri"
+                        },
+                        "meters": {
+                          "type": "number",
+                          "minimum": 0
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "address",
+                        "lng",
+                        "lat",
+                        "source",
+                        "video",
+                        "meters"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "status",
+                  "message",
+                  "coordinate_system",
+                  "distance_type",
+                  "sample_count",
+                  "scope",
+                  "results"
+                ],
+                "additionalProperties": false
+              }
+            }
+          ]
+        },
+        "jsonrpc": "2.0",
+        "id": 1
+      }
+    },
+    {
+      "method": "POST",
+      "request": {
+        "method": "tools/call",
+        "params": {
+          "name": "find_nearby_food",
+          "arguments": {
+            "location": "王府井"
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 2
+      },
+      "status": 200,
+      "response": {
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"coordinate_system\":\"GCJ-02\",\"distance_type\":\"straight_line\",\"sample_count\":10,\"scope\":\"排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。\",\"results\":[{\"name\":\"富春居（北京璞瑄酒店店）\",\"address\":\"东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层\",\"lng\":116.410001,\"lat\":39.923532,\"source\":\"https://tanwei.org/nearby/poi/2fe17929-0c75-575d-9364-9ebd5aa55b87\",\"video\":\"https://www.bilibili.com/video/BV1144y1G7Fo/\",\"meters\":1724.6128727144674},{\"name\":\"泰丰楼\",\"address\":\"西城区 · 大栅栏 · 前门西大街2号楼\",\"lng\":116.391816,\"lat\":39.899823,\"source\":\"https://tanwei.org/nearby/poi/6e490356-c4fc-5253-a35f-5fd5a2084d6b\",\"video\":\"https://www.bilibili.com/video/BV1CB4y147BG/\",\"meters\":1918.4093711252954},{\"name\":\"北京宜宾招待所·餐厅\",\"address\":\"西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)\",\"lng\":116.379692,\"lat\":39.901244,\"source\":\"https://tanwei.org/nearby/poi/dee9d940-a171-5010-a6c2-5145857abd91\",\"video\":\"https://www.bilibili.com/video/BV1wT1WYxEjC/\",\"meters\":2823.1637692697195}],\"status\":\"ok\",\"message\":\"起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。\",\"origin\":{\"name\":\"王府井地铁站\",\"lng\":116.411571,\"lat\":39.908069,\"source\":\"https://ditu.amap.com/place/BV10006496\",\"coordinate_source\":\"sample_fixture\"}}"
+            }
+          ],
+          "structuredContent": {
+            "coordinate_system": "GCJ-02",
+            "distance_type": "straight_line",
+            "sample_count": 10,
+            "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+            "results": [
+              {
+                "name": "富春居（北京璞瑄酒店店）",
+                "address": "东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层",
+                "lng": 116.410001,
+                "lat": 39.923532,
+                "source": "https://tanwei.org/nearby/poi/2fe17929-0c75-575d-9364-9ebd5aa55b87",
+                "video": "https://www.bilibili.com/video/BV1144y1G7Fo/",
+                "meters": 1724.6128727144674
+              },
+              {
+                "name": "泰丰楼",
+                "address": "西城区 · 大栅栏 · 前门西大街2号楼",
+                "lng": 116.391816,
+                "lat": 39.899823,
+                "source": "https://tanwei.org/nearby/poi/6e490356-c4fc-5253-a35f-5fd5a2084d6b",
+                "video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+                "meters": 1918.4093711252954
+              },
+              {
+                "name": "北京宜宾招待所·餐厅",
+                "address": "西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)",
+                "lng": 116.379692,
+                "lat": 39.901244,
+                "source": "https://tanwei.org/nearby/poi/dee9d940-a171-5010-a6c2-5145857abd91",
+                "video": "https://www.bilibili.com/video/BV1wT1WYxEjC/",
+                "meters": 2823.1637692697195
+              }
+            ],
+            "status": "ok",
+            "message": "起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。",
+            "origin": {
+              "name": "王府井地铁站",
+              "lng": 116.411571,
+              "lat": 39.908069,
+              "source": "https://ditu.amap.com/place/BV10006496",
+              "coordinate_source": "sample_fixture"
+            }
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 2
+      }
+    },
+    {
+      "method": "POST",
+      "request": {
+        "method": "tools/call",
+        "params": {
+          "name": "find_nearby_food",
+          "arguments": {
+            "location": "东坝"
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 3
+      },
+      "status": 200,
+      "response": {
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"coordinate_system\":\"GCJ-02\",\"distance_type\":\"straight_line\",\"sample_count\":10,\"scope\":\"排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。\",\"results\":[{\"name\":\"寂川（西大望路店）\",\"address\":\"朝阳区 · 大望路 · 西大望路甲2号航空大厦F1层\",\"lng\":116.478297,\"lat\":39.915326,\"source\":\"https://tanwei.org/nearby/poi/3b2babea-c3df-519b-b75a-d79e38fdb215\",\"video\":\"https://www.bilibili.com/video/BV1ma411v7V1/\",\"meters\":8114.673742756054},{\"name\":\"潇湘阁（三里屯SOHO店）\",\"address\":\"朝阳区 · 三里屯 · 北京城区三里屯SOHO1号商场B1-117/下沉广场赛百味路口往里走30米\",\"lng\":116.452883,\"lat\":39.933123,\"source\":\"https://tanwei.org/nearby/poi/ca7d347b-2d77-5697-9b9f-3206d9c86a05\",\"video\":\"https://www.bilibili.com/video/BV1Lh4y1d7U5/\",\"meters\":8813.968076108411},{\"name\":\"老吉堂·吉来（正大中心店）\",\"address\":\"朝阳区 · 大望路 · 金和东路20号院1号楼正大中心3层302b\",\"lng\":116.468365,\"lat\":39.912794,\"source\":\"https://tanwei.org/nearby/poi/223dbb83-1fba-5e97-9b9c-e0c3eee7ab26\",\"video\":\"https://www.bilibili.com/video/BV1D64y1K7uj/\",\"meters\":8929.685497238459}],\"status\":\"ok\",\"message\":\"起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。\",\"origin\":{\"name\":\"东坝地铁站\",\"lng\":116.547126,\"lat\":39.965732,\"source\":\"https://ditu.amap.com/place/BV09269671\",\"coordinate_source\":\"sample_fixture\"}}"
+            }
+          ],
+          "structuredContent": {
+            "coordinate_system": "GCJ-02",
+            "distance_type": "straight_line",
+            "sample_count": 10,
+            "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+            "results": [
+              {
+                "name": "寂川（西大望路店）",
+                "address": "朝阳区 · 大望路 · 西大望路甲2号航空大厦F1层",
+                "lng": 116.478297,
+                "lat": 39.915326,
+                "source": "https://tanwei.org/nearby/poi/3b2babea-c3df-519b-b75a-d79e38fdb215",
+                "video": "https://www.bilibili.com/video/BV1ma411v7V1/",
+                "meters": 8114.673742756054
+              },
+              {
+                "name": "潇湘阁（三里屯SOHO店）",
+                "address": "朝阳区 · 三里屯 · 北京城区三里屯SOHO1号商场B1-117/下沉广场赛百味路口往里走30米",
+                "lng": 116.452883,
+                "lat": 39.933123,
+                "source": "https://tanwei.org/nearby/poi/ca7d347b-2d77-5697-9b9f-3206d9c86a05",
+                "video": "https://www.bilibili.com/video/BV1Lh4y1d7U5/",
+                "meters": 8813.968076108411
+              },
+              {
+                "name": "老吉堂·吉来（正大中心店）",
+                "address": "朝阳区 · 大望路 · 金和东路20号院1号楼正大中心3层302b",
+                "lng": 116.468365,
+                "lat": 39.912794,
+                "source": "https://tanwei.org/nearby/poi/223dbb83-1fba-5e97-9b9c-e0c3eee7ab26",
+                "video": "https://www.bilibili.com/video/BV1D64y1K7uj/",
+                "meters": 8929.685497238459
+              }
+            ],
+            "status": "ok",
+            "message": "起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。",
+            "origin": {
+              "name": "东坝地铁站",
+              "lng": 116.547126,
+              "lat": 39.965732,
+              "source": "https://ditu.amap.com/place/BV09269671",
+              "coordinate_source": "sample_fixture"
+            }
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 3
+      }
+    },
+    {
+      "method": "POST",
+      "request": {
+        "method": "tools/call",
+        "params": {
+          "name": "find_nearby_food",
+          "arguments": {
+            "location": "大钟寺"
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 4
+      },
+      "status": 200,
+      "response": {
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"coordinate_system\":\"GCJ-02\",\"distance_type\":\"straight_line\",\"sample_count\":10,\"scope\":\"排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。\",\"results\":[{\"name\":\"洪福亮酒家（南草厂街店）\",\"address\":\"西城区 · 官园 · 北京城区南草厂街91号\",\"lng\":116.363946,\"lat\":39.936263,\"source\":\"https://tanwei.org/nearby/poi/813b0459-44a7-5bfa-a3a4-f79ad8ec6c78\",\"video\":\"https://www.bilibili.com/video/BV1LY4y1k7LX/\",\"meters\":3736.0809700745353},{\"name\":\"砂锅居（西四店）\",\"address\":\"西城区 · 西四 · 北京城区西四南大街60号(西四地铁站D西南口步行340米)\",\"lng\":116.373779,\"lat\":39.920459,\"source\":\"https://tanwei.org/nearby/poi/19f5c885-3479-5f51-a00f-8e380f359df0\",\"video\":\"https://www.bilibili.com/video/BV1ka411n7Nd/\",\"meters\":5683.178550501599},{\"name\":\"同和居（月坛店）\",\"address\":\"西城区 · 月坛 · 月坛南街甲71号\",\"lng\":116.34003,\"lat\":39.914177,\"source\":\"https://tanwei.org/nearby/poi/99d4510f-963a-5f9c-8306-38862d706524\",\"video\":\"https://www.bilibili.com/video/BV1Dg411j73k/\",\"meters\":5846.752713774166}],\"status\":\"ok\",\"message\":\"起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。\",\"origin\":{\"name\":\"大钟寺地铁站\",\"lng\":116.345139,\"lat\":39.966612,\"source\":\"https://ditu.amap.com/place/BV10001016\",\"coordinate_source\":\"sample_fixture\"}}"
+            }
+          ],
+          "structuredContent": {
+            "coordinate_system": "GCJ-02",
+            "distance_type": "straight_line",
+            "sample_count": 10,
+            "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+            "results": [
+              {
+                "name": "洪福亮酒家（南草厂街店）",
+                "address": "西城区 · 官园 · 北京城区南草厂街91号",
+                "lng": 116.363946,
+                "lat": 39.936263,
+                "source": "https://tanwei.org/nearby/poi/813b0459-44a7-5bfa-a3a4-f79ad8ec6c78",
+                "video": "https://www.bilibili.com/video/BV1LY4y1k7LX/",
+                "meters": 3736.0809700745353
+              },
+              {
+                "name": "砂锅居（西四店）",
+                "address": "西城区 · 西四 · 北京城区西四南大街60号(西四地铁站D西南口步行340米)",
+                "lng": 116.373779,
+                "lat": 39.920459,
+                "source": "https://tanwei.org/nearby/poi/19f5c885-3479-5f51-a00f-8e380f359df0",
+                "video": "https://www.bilibili.com/video/BV1ka411n7Nd/",
+                "meters": 5683.178550501599
+              },
+              {
+                "name": "同和居（月坛店）",
+                "address": "西城区 · 月坛 · 月坛南街甲71号",
+                "lng": 116.34003,
+                "lat": 39.914177,
+                "source": "https://tanwei.org/nearby/poi/99d4510f-963a-5f9c-8306-38862d706524",
+                "video": "https://www.bilibili.com/video/BV1Dg411j73k/",
+                "meters": 5846.752713774166
+              }
+            ],
+            "status": "ok",
+            "message": "起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。",
+            "origin": {
+              "name": "大钟寺地铁站",
+              "lng": 116.345139,
+              "lat": 39.966612,
+              "source": "https://ditu.amap.com/place/BV10001016",
+              "coordinate_source": "sample_fixture"
+            }
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 4
+      }
+    },
+    {
+      "method": "POST",
+      "request": {
+        "method": "tools/call",
+        "params": {
+          "name": "find_nearby_food",
+          "arguments": {
+            "location": "望府井"
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 5
+      },
+      "status": 200,
+      "response": {
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"coordinate_system\":\"GCJ-02\",\"distance_type\":\"straight_line\",\"sample_count\":10,\"scope\":\"排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。\",\"results\":[{\"name\":\"富春居（北京璞瑄酒店店）\",\"address\":\"东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层\",\"lng\":116.410001,\"lat\":39.923532,\"source\":\"https://tanwei.org/nearby/poi/2fe17929-0c75-575d-9364-9ebd5aa55b87\",\"video\":\"https://www.bilibili.com/video/BV1144y1G7Fo/\",\"meters\":1724.6128727144674},{\"name\":\"泰丰楼\",\"address\":\"西城区 · 大栅栏 · 前门西大街2号楼\",\"lng\":116.391816,\"lat\":39.899823,\"source\":\"https://tanwei.org/nearby/poi/6e490356-c4fc-5253-a35f-5fd5a2084d6b\",\"video\":\"https://www.bilibili.com/video/BV1CB4y147BG/\",\"meters\":1918.4093711252954},{\"name\":\"北京宜宾招待所·餐厅\",\"address\":\"西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)\",\"lng\":116.379692,\"lat\":39.901244,\"source\":\"https://tanwei.org/nearby/poi/dee9d940-a171-5010-a6c2-5145857abd91\",\"video\":\"https://www.bilibili.com/video/BV1wT1WYxEjC/\",\"meters\":2823.1637692697195}],\"status\":\"ok\",\"message\":\"起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。\",\"origin\":{\"name\":\"王府井地铁站\",\"lng\":116.411571,\"lat\":39.908069,\"source\":\"https://ditu.amap.com/place/BV10006496\",\"coordinate_source\":\"sample_fixture\"}}"
+            }
+          ],
+          "structuredContent": {
+            "coordinate_system": "GCJ-02",
+            "distance_type": "straight_line",
+            "sample_count": 10,
+            "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+            "results": [
+              {
+                "name": "富春居（北京璞瑄酒店店）",
+                "address": "东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层",
+                "lng": 116.410001,
+                "lat": 39.923532,
+                "source": "https://tanwei.org/nearby/poi/2fe17929-0c75-575d-9364-9ebd5aa55b87",
+                "video": "https://www.bilibili.com/video/BV1144y1G7Fo/",
+                "meters": 1724.6128727144674
+              },
+              {
+                "name": "泰丰楼",
+                "address": "西城区 · 大栅栏 · 前门西大街2号楼",
+                "lng": 116.391816,
+                "lat": 39.899823,
+                "source": "https://tanwei.org/nearby/poi/6e490356-c4fc-5253-a35f-5fd5a2084d6b",
+                "video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+                "meters": 1918.4093711252954
+              },
+              {
+                "name": "北京宜宾招待所·餐厅",
+                "address": "西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)",
+                "lng": 116.379692,
+                "lat": 39.901244,
+                "source": "https://tanwei.org/nearby/poi/dee9d940-a171-5010-a6c2-5145857abd91",
+                "video": "https://www.bilibili.com/video/BV1wT1WYxEjC/",
+                "meters": 2823.1637692697195
+              }
+            ],
+            "status": "ok",
+            "message": "起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。",
+            "origin": {
+              "name": "王府井地铁站",
+              "lng": 116.411571,
+              "lat": 39.908069,
+              "source": "https://ditu.amap.com/place/BV10006496",
+              "coordinate_source": "sample_fixture"
+            }
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 5
+      }
+    },
+    {
+      "method": "POST",
+      "request": {
+        "method": "tools/call",
+        "params": {
+          "name": "find_nearby_food",
+          "arguments": {
+            "location": ""
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 6
+      },
+      "status": 200,
+      "response": {
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"coordinate_system\":\"GCJ-02\",\"distance_type\":\"straight_line\",\"sample_count\":10,\"scope\":\"排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。\",\"results\":[],\"status\":\"needs_location\",\"message\":\"请提供你所在的酒店、地铁站或地标名称，再查询附近探店餐厅。\"}"
+            }
+          ],
+          "structuredContent": {
+            "coordinate_system": "GCJ-02",
+            "distance_type": "straight_line",
+            "sample_count": 10,
+            "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+            "results": [],
+            "status": "needs_location",
+            "message": "请提供你所在的酒店、地铁站或地标名称，再查询附近探店餐厅。"
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 6
+      }
+    },
+    {
+      "method": "POST",
+      "request": {
+        "method": "tools/call",
+        "params": {
+          "name": "find_nearby_food",
+          "arguments": {
+            "location": "我附近"
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 7
+      },
+      "status": 200,
+      "response": {
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"coordinate_system\":\"GCJ-02\",\"distance_type\":\"straight_line\",\"sample_count\":10,\"scope\":\"排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。\",\"results\":[],\"status\":\"needs_location\",\"message\":\"请提供你所在的酒店、地铁站或地标名称，再查询附近探店餐厅。\"}"
+            }
+          ],
+          "structuredContent": {
+            "coordinate_system": "GCJ-02",
+            "distance_type": "straight_line",
+            "sample_count": 10,
+            "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+            "results": [],
+            "status": "needs_location",
+            "message": "请提供你所在的酒店、地铁站或地标名称，再查询附近探店餐厅。"
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 7
+      }
+    },
+    {
+      "method": "POST",
+      "request": {
+        "method": "tools/call",
+        "params": {
+          "name": "find_nearby_food",
+          "arguments": {
+            "location": "未知地点"
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 8
+      },
+      "status": 200,
+      "response": {
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"coordinate_system\":\"GCJ-02\",\"distance_type\":\"straight_line\",\"sample_count\":10,\"scope\":\"排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。\",\"results\":[],\"status\":\"location_not_found\",\"message\":\"无法确认起点。本轮仅支持北京王府井、东坝、大钟寺的固定地铁站样本，请明确选择地点。\"}"
+            }
+          ],
+          "structuredContent": {
+            "coordinate_system": "GCJ-02",
+            "distance_type": "straight_line",
+            "sample_count": 10,
+            "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+            "results": [],
+            "status": "location_not_found",
+            "message": "无法确认起点。本轮仅支持北京王府井、东坝、大钟寺的固定地铁站样本，请明确选择地点。"
+          }
+        },
+        "jsonrpc": "2.0",
+        "id": 8
+      }
+    }
+  ],
+  "audit": [
+    {
+      "event": "rpc",
+      "method": "initialize"
+    },
+    {
+      "event": "rpc",
+      "method": "notifications/initialized"
+    },
+    {
+      "event": "rpc",
+      "method": "tools/list"
+    },
+    {
+      "event": "rpc",
+      "method": "tools/call",
+      "tool": "find_nearby_food",
+      "arguments": {
+        "location": "王府井"
+      }
+    },
+    {
+      "event": "location_resolve",
+      "location": "王府井",
+      "source": "sample_fixture"
+    },
+    {
+      "event": "tool_result",
+      "tool": "find_nearby_food",
+      "location": "王府井",
+      "result": {
+        "coordinate_system": "GCJ-02",
+        "distance_type": "straight_line",
+        "sample_count": 10,
+        "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+        "results": [
+          {
+            "name": "富春居（北京璞瑄酒店店）",
+            "address": "东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层",
+            "lng": 116.410001,
+            "lat": 39.923532,
+            "source": "https://tanwei.org/nearby/poi/2fe17929-0c75-575d-9364-9ebd5aa55b87",
+            "video": "https://www.bilibili.com/video/BV1144y1G7Fo/",
+            "meters": 1724.6128727144674
+          },
+          {
+            "name": "泰丰楼",
+            "address": "西城区 · 大栅栏 · 前门西大街2号楼",
+            "lng": 116.391816,
+            "lat": 39.899823,
+            "source": "https://tanwei.org/nearby/poi/6e490356-c4fc-5253-a35f-5fd5a2084d6b",
+            "video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+            "meters": 1918.4093711252954
+          },
+          {
+            "name": "北京宜宾招待所·餐厅",
+            "address": "西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)",
+            "lng": 116.379692,
+            "lat": 39.901244,
+            "source": "https://tanwei.org/nearby/poi/dee9d940-a171-5010-a6c2-5145857abd91",
+            "video": "https://www.bilibili.com/video/BV1wT1WYxEjC/",
+            "meters": 2823.1637692697195
+          }
+        ],
+        "status": "ok",
+        "message": "起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。",
+        "origin": {
+          "name": "王府井地铁站",
+          "lng": 116.411571,
+          "lat": 39.908069,
+          "source": "https://ditu.amap.com/place/BV10006496",
+          "coordinate_source": "sample_fixture"
+        }
+      }
+    },
+    {
+      "event": "rpc",
+      "method": "tools/call",
+      "tool": "find_nearby_food",
+      "arguments": {
+        "location": "东坝"
+      }
+    },
+    {
+      "event": "location_resolve",
+      "location": "东坝",
+      "source": "sample_fixture"
+    },
+    {
+      "event": "tool_result",
+      "tool": "find_nearby_food",
+      "location": "东坝",
+      "result": {
+        "coordinate_system": "GCJ-02",
+        "distance_type": "straight_line",
+        "sample_count": 10,
+        "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+        "results": [
+          {
+            "name": "寂川（西大望路店）",
+            "address": "朝阳区 · 大望路 · 西大望路甲2号航空大厦F1层",
+            "lng": 116.478297,
+            "lat": 39.915326,
+            "source": "https://tanwei.org/nearby/poi/3b2babea-c3df-519b-b75a-d79e38fdb215",
+            "video": "https://www.bilibili.com/video/BV1ma411v7V1/",
+            "meters": 8114.673742756054
+          },
+          {
+            "name": "潇湘阁（三里屯SOHO店）",
+            "address": "朝阳区 · 三里屯 · 北京城区三里屯SOHO1号商场B1-117/下沉广场赛百味路口往里走30米",
+            "lng": 116.452883,
+            "lat": 39.933123,
+            "source": "https://tanwei.org/nearby/poi/ca7d347b-2d77-5697-9b9f-3206d9c86a05",
+            "video": "https://www.bilibili.com/video/BV1Lh4y1d7U5/",
+            "meters": 8813.968076108411
+          },
+          {
+            "name": "老吉堂·吉来（正大中心店）",
+            "address": "朝阳区 · 大望路 · 金和东路20号院1号楼正大中心3层302b",
+            "lng": 116.468365,
+            "lat": 39.912794,
+            "source": "https://tanwei.org/nearby/poi/223dbb83-1fba-5e97-9b9c-e0c3eee7ab26",
+            "video": "https://www.bilibili.com/video/BV1D64y1K7uj/",
+            "meters": 8929.685497238459
+          }
+        ],
+        "status": "ok",
+        "message": "起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。",
+        "origin": {
+          "name": "东坝地铁站",
+          "lng": 116.547126,
+          "lat": 39.965732,
+          "source": "https://ditu.amap.com/place/BV09269671",
+          "coordinate_source": "sample_fixture"
+        }
+      }
+    },
+    {
+      "event": "rpc",
+      "method": "tools/call",
+      "tool": "find_nearby_food",
+      "arguments": {
+        "location": "大钟寺"
+      }
+    },
+    {
+      "event": "location_resolve",
+      "location": "大钟寺",
+      "source": "sample_fixture"
+    },
+    {
+      "event": "tool_result",
+      "tool": "find_nearby_food",
+      "location": "大钟寺",
+      "result": {
+        "coordinate_system": "GCJ-02",
+        "distance_type": "straight_line",
+        "sample_count": 10,
+        "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+        "results": [
+          {
+            "name": "洪福亮酒家（南草厂街店）",
+            "address": "西城区 · 官园 · 北京城区南草厂街91号",
+            "lng": 116.363946,
+            "lat": 39.936263,
+            "source": "https://tanwei.org/nearby/poi/813b0459-44a7-5bfa-a3a4-f79ad8ec6c78",
+            "video": "https://www.bilibili.com/video/BV1LY4y1k7LX/",
+            "meters": 3736.0809700745353
+          },
+          {
+            "name": "砂锅居（西四店）",
+            "address": "西城区 · 西四 · 北京城区西四南大街60号(西四地铁站D西南口步行340米)",
+            "lng": 116.373779,
+            "lat": 39.920459,
+            "source": "https://tanwei.org/nearby/poi/19f5c885-3479-5f51-a00f-8e380f359df0",
+            "video": "https://www.bilibili.com/video/BV1ka411n7Nd/",
+            "meters": 5683.178550501599
+          },
+          {
+            "name": "同和居（月坛店）",
+            "address": "西城区 · 月坛 · 月坛南街甲71号",
+            "lng": 116.34003,
+            "lat": 39.914177,
+            "source": "https://tanwei.org/nearby/poi/99d4510f-963a-5f9c-8306-38862d706524",
+            "video": "https://www.bilibili.com/video/BV1Dg411j73k/",
+            "meters": 5846.752713774166
+          }
+        ],
+        "status": "ok",
+        "message": "起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。",
+        "origin": {
+          "name": "大钟寺地铁站",
+          "lng": 116.345139,
+          "lat": 39.966612,
+          "source": "https://ditu.amap.com/place/BV10001016",
+          "coordinate_source": "sample_fixture"
+        }
+      }
+    },
+    {
+      "event": "rpc",
+      "method": "tools/call",
+      "tool": "find_nearby_food",
+      "arguments": {
+        "location": "望府井"
+      }
+    },
+    {
+      "event": "location_resolve",
+      "location": "望府井",
+      "source": "sample_fixture"
+    },
+    {
+      "event": "tool_result",
+      "tool": "find_nearby_food",
+      "location": "望府井",
+      "result": {
+        "coordinate_system": "GCJ-02",
+        "distance_type": "straight_line",
+        "sample_count": 10,
+        "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+        "results": [
+          {
+            "name": "富春居（北京璞瑄酒店店）",
+            "address": "东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层",
+            "lng": 116.410001,
+            "lat": 39.923532,
+            "source": "https://tanwei.org/nearby/poi/2fe17929-0c75-575d-9364-9ebd5aa55b87",
+            "video": "https://www.bilibili.com/video/BV1144y1G7Fo/",
+            "meters": 1724.6128727144674
+          },
+          {
+            "name": "泰丰楼",
+            "address": "西城区 · 大栅栏 · 前门西大街2号楼",
+            "lng": 116.391816,
+            "lat": 39.899823,
+            "source": "https://tanwei.org/nearby/poi/6e490356-c4fc-5253-a35f-5fd5a2084d6b",
+            "video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+            "meters": 1918.4093711252954
+          },
+          {
+            "name": "北京宜宾招待所·餐厅",
+            "address": "西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)",
+            "lng": 116.379692,
+            "lat": 39.901244,
+            "source": "https://tanwei.org/nearby/poi/dee9d940-a171-5010-a6c2-5145857abd91",
+            "video": "https://www.bilibili.com/video/BV1wT1WYxEjC/",
+            "meters": 2823.1637692697195
+          }
+        ],
+        "status": "ok",
+        "message": "起点为固定样本坐标，非实时定位；以下为十家样本中的最近三家，按直线距离升序排列。",
+        "origin": {
+          "name": "王府井地铁站",
+          "lng": 116.411571,
+          "lat": 39.908069,
+          "source": "https://ditu.amap.com/place/BV10006496",
+          "coordinate_source": "sample_fixture"
+        }
+      }
+    },
+    {
+      "event": "rpc",
+      "method": "tools/call",
+      "tool": "find_nearby_food",
+      "arguments": {
+        "location": ""
+      }
+    },
+    {
+      "event": "tool_result",
+      "tool": "find_nearby_food",
+      "location": "",
+      "result": {
+        "coordinate_system": "GCJ-02",
+        "distance_type": "straight_line",
+        "sample_count": 10,
+        "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+        "results": [],
+        "status": "needs_location",
+        "message": "请提供你所在的酒店、地铁站或地标名称，再查询附近探店餐厅。"
+      }
+    },
+    {
+      "event": "rpc",
+      "method": "tools/call",
+      "tool": "find_nearby_food",
+      "arguments": {
+        "location": "我附近"
+      }
+    },
+    {
+      "event": "tool_result",
+      "tool": "find_nearby_food",
+      "location": "我附近",
+      "result": {
+        "coordinate_system": "GCJ-02",
+        "distance_type": "straight_line",
+        "sample_count": 10,
+        "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+        "results": [],
+        "status": "needs_location",
+        "message": "请提供你所在的酒店、地铁站或地标名称，再查询附近探店餐厅。"
+      }
+    },
+    {
+      "event": "rpc",
+      "method": "tools/call",
+      "tool": "find_nearby_food",
+      "arguments": {
+        "location": "未知地点"
+      }
+    },
+    {
+      "event": "location_resolve",
+      "location": "未知地点",
+      "source": "sample_fixture"
+    },
+    {
+      "event": "tool_result",
+      "tool": "find_nearby_food",
+      "location": "未知地点",
+      "result": {
+        "coordinate_system": "GCJ-02",
+        "distance_type": "straight_line",
+        "sample_count": 10,
+        "scope": "排名仅限 samples.js 中的10家北京固定样本，距离为直线距离。",
+        "results": [],
+        "status": "location_not_found",
+        "message": "无法确认起点。本轮仅支持北京王府井、东坝、大钟寺的固定地铁站样本，请明确选择地点。"
+      }
+    }
+  ]
+}

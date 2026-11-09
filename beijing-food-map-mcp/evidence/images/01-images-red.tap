@@ -1,0 +1,132 @@
+TAP version 13
+# Subtest: 十家原始门店各有一张来自其原视频的真实封面，记录哈希及出处
+not ok 1 - 十家原始门店各有一张来自其原视频的真实封面，记录哈希及出处
+  ---
+  duration_ms: 3.205625
+  type: 'test'
+  location: '<PROJECT>/image.acceptance.test.cjs:22:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module './assets/images/manifest.json'
+    Require stack:
+    - <PROJECT>/image.acceptance.test.cjs
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    Function._load (node:internal/modules/cjs/loader:1211:37)
+    TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    Module.require (node:internal/modules/cjs/loader:1487:12)
+    require (node:internal/modules/helpers:135:16)
+    TestContext.<anonymous> (<PROJECT>/image.acceptance.test.cjs:23:20)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+  ...
+# Subtest: 王府井通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+not ok 2 - 王府井通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 481.798125
+  type: 'test'
+  location: '<PROJECT>/image.acceptance.test.cjs:41:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 3
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 3
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (<PROJECT>/image.acceptance.test.cjs:46:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 东坝通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+not ok 3 - 东坝通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 153.915083
+  type: 'test'
+  location: '<PROJECT>/image.acceptance.test.cjs:41:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 3
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 3
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (<PROJECT>/image.acceptance.test.cjs:46:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 大钟寺通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+not ok 4 - 大钟寺通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 119.74175
+  type: 'test'
+  location: '<PROJECT>/image.acceptance.test.cjs:41:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 3
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 3
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (<PROJECT>/image.acceptance.test.cjs:46:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 缺位置及未知位置不返回图片或图文推荐
+ok 5 - 缺位置及未知位置不返回图片或图文推荐
+  ---
+  duration_ms: 147.826084
+  type: 'test'
+  ...
+# Subtest: 图片路径只允许已登记资产，保持只读及跨源边界
+not ok 6 - 图片路径只允许已登记资产，保持只读及跨源边界
+  ---
+  duration_ms: 49.556667
+  type: 'test'
+  location: '<PROJECT>/image.acceptance.test.cjs:81:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    404 !== 405
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 405
+  actual: 404
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (<PROJECT>/image.acceptance.test.cjs:85:10)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 1
+# fail 5
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2062.577041

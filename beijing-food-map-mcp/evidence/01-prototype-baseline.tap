@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: 样本有十个不同的门店，均有地址、坐标和来源
+ok 1 - 样本有十个不同的门店，均有地址、坐标和来源
+  ---
+  duration_ms: 7.90725
+  type: 'test'
+  ...
+# Subtest: 王府井定位到地铁站并选出最近三家
+ok 2 - 王府井定位到地铁站并选出最近三家
+  ---
+  duration_ms: 2.350083
+  type: 'test'
+  ...
+# Subtest: 东坝定位到地铁站并选出最近三家
+ok 3 - 东坝定位到地铁站并选出最近三家
+  ---
+  duration_ms: 2.984083
+  type: 'test'
+  ...
+# Subtest: 大钟寺定位到地铁站并选出最近三家
+ok 4 - 大钟寺定位到地铁站并选出最近三家
+  ---
+  duration_ms: 0.640833
+  type: 'test'
+  ...
+# Subtest: 识别王府井的口述误写，未知地点不回退到旧结果
+ok 5 - 识别王府井的口述误写，未知地点不回退到旧结果
+  ---
+  duration_ms: 10.459042
+  type: 'test'
+  ...
+# Subtest: 提交三个地名，离线页面均显示起点、三个图钉和三条结果
+ok 6 - 提交三个地名，离线页面均显示起点、三个图钉和三条结果
+  ---
+  duration_ms: 14.95125
+  type: 'test'
+  ...
+# Subtest: 高德静态底图请求包含一个起点和三个依序编号的门店
+ok 7 - 高德静态底图请求包含一个起点和三个依序编号的门店
+  ---
+  duration_ms: 11.807375
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 524.099917
