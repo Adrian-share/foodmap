@@ -25,7 +25,8 @@ function createHandler(options = {}) {
     const url = new URL(path, host);
     url.search = new URLSearchParams(params);
     url.searchParams.set('key', key);
-    const response = await request(url, {signal: AbortSignal.timeout(10000), redirect: 'error'});
+    // Workers does not implement redirect: 'error'; manual + !ok rejects redirects on both runtimes.
+    const response = await request(url, {signal: AbortSignal.timeout(10000), redirect: 'manual'});
     if (!response.ok) throw Error('高德服务暂不可用');
     return response;
   }

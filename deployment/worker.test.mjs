@@ -39,3 +39,16 @@ test('上游 HTTP 错误和异常在托管环境返回 502，不泄露密钥', a
     assert.ok(!(await response.text()).includes('test-secret'));
   }
 });
+
+test('使用 Worker 支持的重定向策略，并拒绝把凭据请求跟随到其他地址', async () => {
+  let calls = 0;
+  const handle = handler.createHandler({serviceKey: 'test-secret', request: async (url, init) => {
+    calls++;
+    if (init.redirect === 'error') throw new TypeError('Workers 不支持该模式');
+    assert.equal(init.redirect, 'manual');
+    return new Response('', {status: 302, headers: {Location: 'https://other.example/'}});
+  }});
+  const response = await handle(new Request('https://foodmap.example/api/amap/search?q=东坝'));
+  assert.equal(response.status, 502);
+  assert.equal(calls, 1);
+});

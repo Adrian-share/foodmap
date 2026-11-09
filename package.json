@@ -11,7 +11,8 @@
     "verify:deployment": "node scripts/verify-deployment.mjs"
   },
   "devDependencies": {
-    "esbuild": "0.28.2"
+    "esbuild": "0.28.2",
+    "undici": "7.30.2"
   },
   "type": "module"
 }

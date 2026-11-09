@@ -20,16 +20,8 @@
 
 1. 在任务分支修改代码，确认业务版本来源和待发布范围。
 2. 根目录运行 `npm test`；在 `beijing-food-map/` 运行 `npm run test:page`。浏览器首次使用时安装 Playwright Chromium，或设 `PLAYWRIGHT_CHANNEL=chrome` 使用已有 Chrome。
-3. 根目录运行 `npm run build:hosted`，生成 `dist/server/index.js` 和部署元信息。构建输出不含密钥，`/healthz.release` 是参与构建的源码内容摘要，用于核对上线版本。
-4. 获取该 Site 的 source repository write credential，通过 Sites 技能的 `site-workflow.mjs` 完成源码提交、推送和打包。凭据仅经隐藏 stdin 传给助手，不存入仓库；打包文件放在源码目录之外。推荐输入结构：
-
-   ```json
-   {
-     "credential": "使用工具实际返回的凭据对象，不是字符串",
-     "commands": [["npm", "test"], ["npm", "run", "build:hosted"]],
-     "archivePath": "源码目录以外的绝对打包路径"
-   }
-   ```
+3. 根目录运行 `npm run build:hosted`，生成 `dist/server/index.js` 和部署元信息。构建输出不含密钥，`/healthz.release` 是参与构建的源码内容摘要，用于核对上线版本。服务请求使用 `redirect: manual` 并拒绝上游重定向；Workers 不支持 Node Fetch 可用的 `redirect: error`。[运行时差异](https://developers.cloudflare.com/workers/runtime-apis/request/)
+4. 获取该 Site 的 source repository write credential，通过 Sites 技能的 `site-workflow.mjs` 完成源码提交、推送和打包。凭据仅经隐藏 stdin 传给助手，不存入仓库；打包文件放在源码目录之外。输入的 `credential` 使用工具返回的完整对象，`source` 使用打开源码时的完整结果；`commands` 依次为 `["npm", "test"]` 与 `["npm", "run", "build:hosted"]`，`archivePath` 为源码目录以外的绝对打包路径。helper 的安装位置由当前 Sites 技能提供。
 
 5. 把 helper 返回的 `project_id`、`commit_sha`、`archive` 原样交给 `save_site_version`，再使用返回的版本 ID 调用 `deploy_site_version`。必须推送与打包一致的源码，不可用旧归档搭配新提交。环境变量变更后也必须重新部署使其生效。
 6. 部署若尚未完成，继续查询同一个 deployment ID；成功后记录平台返回的实际 URL、版本 ID、源码提交和发布结果。失败时保留旧版本，修复后发布；不要仅凭 URL 格式或保存成功就宣称上线。
@@ -45,6 +37,8 @@ FOODMAP_DEPLOYMENT_URL=https://shareworld-foodmap.yzxpg95.chatgpt.site \
 ```
 
 每次浏览器验收必须有 3 条实际执行并通过的用例；跳过不能视为通过。截图和起点/排序 JSON 写在 `beijing-food-map/test-results/`，属于本次测试输出，不提交为历史基线。若实际网络限制导致底图失败，应如实记录，不能用离线示意图代替真实地图验收。
+
+网络验收分别记录浏览器、命令行和实际出口。验收脚本尊重 `HTTPS_PROXY`，只在结果中标注是否使用代理，不输出代理凭据；可用 `FOODMAP_NO_PROXY=1` 比较直连。本次环境出现过直连命令行被平台 WAF 返回 403、配置代理后健康接口 200 的差异，因此不得声称所有网络都能直连，也不能通过关闭 TLS 校验或伪造成功来消除失败。面向实际用户发布前应在目标网络再次打开完整页面。
 
 ## 回退与后续演进
 

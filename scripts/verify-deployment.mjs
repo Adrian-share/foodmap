@@ -1,16 +1,20 @@
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
+import {fetch, ProxyAgent} from 'undici';
 const {origins} = createRequire(import.meta.url)('../beijing-food-map/samples.js');
 
 const base = new URL(process.argv[2] || process.env.FOODMAP_DEPLOYMENT_URL || '');
 assert.equal(base.protocol, 'https:', '部署验收必须验证 HTTPS');
 const checks = [];
+const proxy = process.env.FOODMAP_NO_PROXY === '1' ? '' : process.env.HTTPS_PROXY || process.env.https_proxy;
+const dispatcher = proxy ? new ProxyAgent(proxy) : undefined;
 async function get(path, status = 200, options = {}) {
-  const response = await fetch(new URL(path, base), {...options, signal: AbortSignal.timeout(25000), redirect: 'error'});
+  const response = await fetch(new URL(path, base), {...options, dispatcher, signal: AbortSignal.timeout(25000), redirect: 'error'});
   assert.equal(response.status, status, path);
   checks.push({path, status: response.status});
   return response;
 }
+async function verify() {
 const health = await (await get('/healthz')).json();
 assert.equal(health.status, 'ok');
 assert.equal(health.application, 'beijing-food-map');
@@ -33,4 +37,6 @@ await Promise.all(['王府井', '东坝', '大钟寺'].map(async name => {
 }));
 await Promise.all(['/.env', '/.openai/hosting.json', '/amap-handler.cjs', '/missing'].map(path => get(path, 404)));
 await get('/api/amap/search', 405, {method: 'POST'});
-console.log(JSON.stringify({url: base.origin, release: health.release, result: 'passed', checks}, null, 2));
+console.log(JSON.stringify({url: base.origin, release: health.release, transport: proxy ? 'configured-proxy' : 'direct', result: 'passed', checks}, null, 2));
+}
+try { await verify(); } finally { await dispatcher?.close(); }
