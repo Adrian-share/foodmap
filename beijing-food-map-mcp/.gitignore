@@ -1,0 +1,6 @@
+node_modules/
+.env
+.codex/
+evidence/codex-workdir/
+evidence/**/empty-session-*/
+evidence/**/chrome-profile/

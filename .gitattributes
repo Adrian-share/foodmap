@@ -1,0 +1,2 @@
+# Preserve original protocol/test output and Markdown hard line breaks byte for byte.
+beijing-food-map-mcp/evidence/** -whitespace

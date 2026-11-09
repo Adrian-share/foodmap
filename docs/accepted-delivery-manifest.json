@@ -1,0 +1,419 @@
+{
+  "issue": "FACT-5",
+  "accepted_artifact": "FACT-5-beijing-food-map-mcp-images.zip",
+  "artifact_sha256": "090d72697cd5e5fbaff75f939f3036f96b81ae7b5b9d5e3034a3824109c40e38",
+  "files": [
+    {
+      "path": "beijing-food-map-mcp/.gitignore",
+      "sha256": "71ba91d0f36b6f8b0afdac0ec3ef9edc52448ae363850b00f69fa4f43c93d3d7",
+      "bytes": 108
+    },
+    {
+      "path": "beijing-food-map-mcp/IMAGE-VALIDATION.md",
+      "sha256": "11597da5c610998f0d15558ee65279c9b87d25ded8d8e598a535749625356d7e",
+      "bytes": 5354
+    },
+    {
+      "path": "beijing-food-map-mcp/MCP-ATDD.md",
+      "sha256": "98c3d36d2304a75f0fd58d99946aca5292590b8a5f2e1dce10bb79eaa6e0db02",
+      "bytes": 3477
+    },
+    {
+      "path": "beijing-food-map-mcp/README.md",
+      "sha256": "92c97e0f5642c958390933e67a83092d11db3300ad6dddc402d394bdeabfcc1c",
+      "bytes": 9849
+    },
+    {
+      "path": "beijing-food-map-mcp/TASK.md",
+      "sha256": "9397649971657598ab98fe97d82059c8bd114a59cf532cb5b9c38fb4b0d6baca",
+      "bytes": 2854
+    },
+    {
+      "path": "beijing-food-map-mcp/VALIDATION.md",
+      "sha256": "63747798e4e4d2684c50972f6bd30c7ff3802c1adeb12f53149bded576b8d94a",
+      "bytes": 5565
+    },
+    {
+      "path": "beijing-food-map-mcp/acceptance.test.cjs",
+      "sha256": "f619fe24b62c7d83e43b270337f69b7d172771c121a69d88bd6a9b6a689a9212",
+      "bytes": 3808
+    },
+    {
+      "path": "beijing-food-map-mcp/amap-server.cjs",
+      "sha256": "16c6992aeb5aa3fae2f8e28653212930e1ffa0bba63289aa38f875673a5d8e39",
+      "bytes": 4126
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/BV1144y1G7Fo.jpg",
+      "sha256": "c173697e3c991a1a0c7e990ba6125e73adfa78505572adc00f15969d9edb6290",
+      "bytes": 34765
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/BV1CB4y147BG.jpg",
+      "sha256": "fde17eb5f69eed78306550753eaab02a0be59f9eace18376b66c4e80896c3d61",
+      "bytes": 41216
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/BV1D64y1K7uj.jpg",
+      "sha256": "53661486392c6b862028d89209c86c1f528455bbf90004fc87b1f42b6e8a561d",
+      "bytes": 65847
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/BV1Dg411j73k.jpg",
+      "sha256": "405bd5b8bf24a37172653e6f3393683142a591d6b032839052b94557358ff91c",
+      "bytes": 44090
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/BV1LY4y1k7LX.jpg",
+      "sha256": "f6644ceebf9e3d246c1d28e8667e7e286d6c30ba1cd470c54e508761af5a372e",
+      "bytes": 34878
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/BV1Lh4y1d7U5.jpg",
+      "sha256": "7656a6432da1b3c336bdd4176508640b4380da681635c0e433ad17df86258835",
+      "bytes": 49982
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/BV1aj411A7Bg.jpg",
+      "sha256": "4ae3e49b96f30b3fabf2c42722e0e9d453a874945de11c8e8091bbde8e780f02",
+      "bytes": 39056
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/BV1ka411n7Nd.jpg",
+      "sha256": "64a18f9c973dfa6ca4b7516d0e1512c1fd1ee4ef87f7da75dc4914305bba2ca0",
+      "bytes": 42674
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/BV1ma411v7V1.jpg",
+      "sha256": "542add49d29fac831060903365d846711d27db77aec3b0223f549799bc0b6677",
+      "bytes": 52130
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/BV1wT1WYxEjC.jpg",
+      "sha256": "291348cec8d62d5c6b5724ce6a5b67c5e347b6c5efd7b69540db3836b41c4996",
+      "bytes": 36383
+    },
+    {
+      "path": "beijing-food-map-mcp/assets/images/manifest.json",
+      "sha256": "f61e83d6e7499d302292c1a302fab8e0f7570c4f0f0203050d660cf770df0e69",
+      "bytes": 9895
+    },
+    {
+      "path": "beijing-food-map-mcp/config/codex.config.toml.example",
+      "sha256": "26573e571df326801582b2585ab87fa4a12d45037093eef369858b1b92bd56d6",
+      "bytes": 128
+    },
+    {
+      "path": "beijing-food-map-mcp/config/workbuddy/mcp.json",
+      "sha256": "74453c02186d8fb43d90f5bbfc3568f9cac3e6222acec16bc71a36cb2eb26007",
+      "bytes": 155
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/01-prototype-baseline.tap",
+      "sha256": "b0aacb0afda7f026f3980bcd5111299988f6365227510b81d869eca6f884a32c",
+      "bytes": 1457
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/02-mcp-red.tap",
+      "sha256": "b22e35fae62df70da3808db4e59316ae3eb78827e5ce0a58fa7f8da3514383aa",
+      "bytes": 16402
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/03-mcp-intermediate.tap",
+      "sha256": "546d8ab8331f3da0d0d79b3c6485c36ae1450e7f298b8f1420ce596cd2f368a7",
+      "bytes": 3823
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/04-all-green.tap",
+      "sha256": "c3a49b0767df28deed2f5c7b747773d1dd2e2d0fc0c0b07f732ffade4fbffba8",
+      "bytes": 4759
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/05-protocol-exchanges.json",
+      "sha256": "c9e56cbaadcaab34df1f3a647e642fd99b59fc0c7cbd694dc0f23fbf4c19511e",
+      "bytes": 39616
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-01.json",
+      "sha256": "9df4f819807a92ebd7b1099aad199fb17f3d498346237923c6756b0ab1ff987d",
+      "bytes": 10442
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-01.jsonl",
+      "sha256": "f9ea73a57f94a624e68d9d27dc2264cddafed3ad49cb2fec475a3aea22b722ac",
+      "bytes": 5014
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-01.stderr.log",
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+      "bytes": 39
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-02.json",
+      "sha256": "18eaf83f7ca6b3e5a98a73c5b6f1d6d968c1084b330a1e5cf43a4d222277c8ac",
+      "bytes": 10764
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-02.jsonl",
+      "sha256": "afec2e2c69d466c9623bc90a2be28968d8823ce3bb191186e7d15a2f0f89eba0",
+      "bytes": 5254
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-02.stderr.log",
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+      "bytes": 39
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-03.json",
+      "sha256": "791e0b62b38170420d0753d1d973c3a400cad8696244e4b0116d1008548932c8",
+      "bytes": 10548
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-03.jsonl",
+      "sha256": "9203751acc47562753f88b900a26923d158b103ed1add9586e9178503726dfbc",
+      "bytes": 5123
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-03.stderr.log",
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+      "bytes": 39
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-04-turn1.json",
+      "sha256": "1d8a64941b36f0a15783dfed09f356a2471fde6a1cea4ea6a2b1a62a1d575bf4",
+      "bytes": 2475
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-04-turn1.jsonl",
+      "sha256": "b5218e54b0b1d6ce7d11c8c39753c9352c273ea79f5ef9173fa8269e4aadd0ce",
+      "bytes": 605
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-04-turn1.stderr.log",
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+      "bytes": 39
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-04-turn2.json",
+      "sha256": "724d65531cd06cb30d39be341a49cae6dd133b904391293698654a7ad00d3b23",
+      "bytes": 10611
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-04-turn2.jsonl",
+      "sha256": "c5c84463551f7ab3c26aefe96fdc9373521899e2d76b9cfdf2a933e096bef30a",
+      "bytes": 5230
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/MCP-04-turn2.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/audit.jsonl",
+      "sha256": "dadef1552b745cb79a1ac3414b149e3e8926274fa1cede1001b0b270b8f67a3f",
+      "bytes": 8316
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/conversations.md",
+      "sha256": "61c4750be63fc4140e337e961b2e899f24b84cdff019c941f245435cab0fce7a",
+      "bytes": 14377
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex/summary.json",
+      "sha256": "edd2a7fb6a2a26cd8ed7a6f9d3a5d25783502654cae911fe4f40af990ab814ff",
+      "bytes": 844
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-01.json",
+      "sha256": "0bce47035066a8260115979c3cf363c7ba1499ce0cfd1ea86b8795d4c0b06260",
+      "bytes": 170864
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-01.jsonl",
+      "sha256": "1b5a13099bddada78d62a609637af7b499d0716c59ac8ab5048944606b216b93",
+      "bytes": 161631
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-01.stderr.log",
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+      "bytes": 39
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-02.json",
+      "sha256": "df3058a65171d429a606c05bdc2e07b703448d483f652f1642bc5ccc0cdb3e4e",
+      "bytes": 245434
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-02.jsonl",
+      "sha256": "1dd0fb448b0bf47a86a0e5d8b9f4859aa40307851ddde01c2b140eed2fcbbd95",
+      "bytes": 236053
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-02.stderr.log",
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+      "bytes": 39
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-03.json",
+      "sha256": "217469ca02308d4e09d5e20f7fe953ff47d9df31cc88eaa27ffdceba15b2e953",
+      "bytes": 183236
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-03.jsonl",
+      "sha256": "322226f4a720689e71ad5155cb37c40fa4780a3541d63e94dddba7a37acc7968",
+      "bytes": 173976
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-03.stderr.log",
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+      "bytes": 39
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-04-turn1.json",
+      "sha256": "8bb2392218289ad5aaf76e2cffe95ed73a130bc9221d99410cda6e0cfb2e1b81",
+      "bytes": 2474
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-04-turn1.jsonl",
+      "sha256": "a5a5a3f89d427509945e9eee51709ee17a2d92a2d742af3c4fe4664919db135d",
+      "bytes": 597
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-04-turn1.stderr.log",
+      "sha256": "1aa26269eb1cc57f86b235a03cda53c004edb5b1e9fc99d4da4f00843293d721",
+      "bytes": 39
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-04-turn2.json",
+      "sha256": "308d9d1c4fc83c4916ea6f406991d7aaabb16391e480ea68974ba1ba7359ebc2",
+      "bytes": 245300
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-04-turn2.jsonl",
+      "sha256": "b25b505de434017c08207200ccf37baae5ec8500ad6cbd2dd3d97a064105340f",
+      "bytes": 236055
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/MCP-04-turn2.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/audit.jsonl",
+      "sha256": "5b17349fd78f27d6d18599efa6c3995fd4aac6a5cdc4087b2d940a2b046456b1",
+      "bytes": 18222
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/conversations.md",
+      "sha256": "30b45006263b6263fdf20abf91c8be99eae5aeb4653882eb22cc458c2bb6a1b6",
+      "bytes": 26664
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/codex-images/summary.json",
+      "sha256": "2fcc475a98231bfb6377872a2d4e9d7a2091a4720c9673f56390c8f23979644e",
+      "bytes": 999
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/images/01-images-red.tap",
+      "sha256": "55310222e438cc822b0e6e59572fad26a84802c76b588b01167927375ab73eee",
+      "bytes": 4706
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/images/02-images-green.tap",
+      "sha256": "6ba2e8b8d377a1cdbefc316edf4936040dd4a15bc26facc4c9ba1c6199089f9f",
+      "bytes": 6198
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/images/03-protocol-exchanges.json",
+      "sha256": "131f788205a08c35ddd002eab18a2eb64b481e26e0342d59d78848a54e6f0e16",
+      "bytes": 768770
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/images/images-preview.html",
+      "sha256": "1ef195df163b1940f812b9aeafb7708a19a791875f2fade2947a776838840c84",
+      "bytes": 544157
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/images/images-preview.png",
+      "sha256": "6638b61c2aa031ecf30eb122100a2d34c35c742e6eb80dbc90db8867512a6a74",
+      "bytes": 1496882
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/images/preview-data.json",
+      "sha256": "bf5fdafa2622076cded7963c4bee9c53cc36b055eea5c1a312834bcf65713304",
+      "bytes": 13720
+    },
+    {
+      "path": "beijing-food-map-mcp/evidence/input-integrity.json",
+      "sha256": "40e1b2f1596aa49d3675f2a2a440b9a45cc8bb78b2b372d3642859ae9f5cc419",
+      "bytes": 1039
+    },
+    {
+      "path": "beijing-food-map-mcp/image.acceptance.test.cjs",
+      "sha256": "37c396a66d0179ab6e425d81fd9fed5ecaf52a97dcd9d1d349b1c9e852e39b34",
+      "bytes": 4439
+    },
+    {
+      "path": "beijing-food-map-mcp/images.cjs",
+      "sha256": "be1e49babf3ca227f02b4091408d197b411573fd3f7d5b46a45a8d03b189b831",
+      "bytes": 2221
+    },
+    {
+      "path": "beijing-food-map-mcp/index.html",
+      "sha256": "15aa39df1187e4cc1cc39528c98883206dd03de7512b918a3a7a39e1d9124891",
+      "bytes": 2644
+    },
+    {
+      "path": "beijing-food-map-mcp/mcp-server.cjs",
+      "sha256": "2541064ccf3761000c68261a7bc76ca7d066e00c95e647a0d22c7df782cc53ae",
+      "bytes": 7675
+    },
+    {
+      "path": "beijing-food-map-mcp/mcp.acceptance.test.cjs",
+      "sha256": "537e3d5e8e8646c6a1834d1d7d7e29c36538f8420deee7795d87d6bf9e7c9a2f",
+      "bytes": 6318
+    },
+    {
+      "path": "beijing-food-map-mcp/package-lock.json",
+      "sha256": "a676ec58a0d06d329cf78ca7d8a486c8b6fd53c18971f92640eadb47cbbbd5ef",
+      "bytes": 7482
+    },
+    {
+      "path": "beijing-food-map-mcp/package.json",
+      "sha256": "784d8284f4d43929740263d9526d3f79de18d47226749dc093f51dbc84df4876",
+      "bytes": 763
+    },
+    {
+      "path": "beijing-food-map-mcp/prototype.js",
+      "sha256": "4e3d52108cacc5b5342e0635392527aedde406ff2a4ec3596f50c921804a3c49",
+      "bytes": 10345
+    },
+    {
+      "path": "beijing-food-map-mcp/samples.js",
+      "sha256": "959798da9bc10bd6eeca1f10829b860ce83cf36e661fe84c63c37e2d102ea780",
+      "bytes": 4687
+    },
+    {
+      "path": "beijing-food-map-mcp/scripts/codex-acceptance.cjs",
+      "sha256": "42cf96697dce6fed4f701260b64e7277d8813ce0e061de0da2ff53e8594b2cdd",
+      "bytes": 9449
+    },
+    {
+      "path": "beijing-food-map-mcp/scripts/preview-images.cjs",
+      "sha256": "0d4477f8b59551c0d3cafebec39e392dd710ece5b5992298a02cb7cff4b7ceea",
+      "bytes": 4574
+    },
+    {
+      "path": "beijing-food-map-mcp/scripts/protocol-evidence.cjs",
+      "sha256": "31beb6b0a5f6fe083ed9952a3e3d4411e6929467f4633b7e03149d58b5159dca",
+      "bytes": 1778
+    },
+    {
+      "path": "beijing-food-map-mcp/scripts/refresh-images.py",
+      "sha256": "2a489ec0fe3aa5712d4eb2ab127e069ccc479ba432ad50e0b0246e886438e442",
+      "bytes": 2861
+    }
+  ],
+  "archive_bytes": 4165142,
+  "verification": "All 82 extracted files match the accepted delivery archive byte for byte."
+}

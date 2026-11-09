@@ -1,0 +1,35 @@
+{
+  "started": "2026-11-09T15:16:23.442Z",
+  "client": "codex-cli 0.164.0",
+  "cases": [
+    {
+      "id": "MCP-04",
+      "status": "passed",
+      "thread": "01a1c0e1-c95e-7d60-800b-4328a8355249",
+      "first_turn_location_resolutions": 0,
+      "first_turn_tool_calls": 0,
+      "second_turn_tool_calls": 1
+    },
+    {
+      "id": "MCP-01",
+      "status": "passed",
+      "thread": "01a1c0e2-7a9d-7523-9ede-09c1a7117870",
+      "tool_calls": 1
+    },
+    {
+      "id": "MCP-02",
+      "status": "passed",
+      "thread": "01a1c0e2-e797-7fc0-8118-bef4c361c4e4",
+      "tool_calls": 1
+    },
+    {
+      "id": "MCP-03",
+      "status": "passed",
+      "thread": "01a1c0e3-62d2-7db2-8d76-5ab0feefd4af",
+      "tool_calls": 1
+    }
+  ],
+  "url": "http://127.0.0.1:60370/mcp",
+  "status": "passed",
+  "completed": "2026-11-09T15:18:44.736Z"
+}

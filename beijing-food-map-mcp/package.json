@@ -1,0 +1,23 @@
+{
+  "name": "beijing-food-map-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "只读北京附近探店 MCP，十家固定样本，Streamable HTTP",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node mcp-server.cjs",
+    "test": "node --test acceptance.test.cjs mcp.acceptance.test.cjs image.acceptance.test.cjs",
+    "test:mcp": "node --test mcp.acceptance.test.cjs",
+    "test:codex": "node scripts/codex-acceptance.cjs",
+    "test:images": "node --test image.acceptance.test.cjs",
+    "images:refresh": "python3 scripts/refresh-images.py"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/client": "2.4.0",
+    "@modelcontextprotocol/node": "2.1.2",
+    "@modelcontextprotocol/server": "2.4.0",
+    "zod": "4.6.7"
+  }
+}
