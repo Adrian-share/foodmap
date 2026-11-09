@@ -1,0 +1,17 @@
+{
+  "name": "foodmap-deployment",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build:hosted": "node scripts/build-hosted.mjs",
+    "test": "node --test beijing-food-map/acceptance.test.cjs beijing-food-map/server.test.cjs deployment/worker.test.mjs",
+    "verify:deployment": "node scripts/verify-deployment.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
+  "type": "module"
+}
