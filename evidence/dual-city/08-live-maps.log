@@ -1,0 +1,9 @@
+
+Running 4 tests using 1 worker
+
+  ✓  1 tests/live.spec.cjs:12:43 › 真实高德地图：豫园 (16.4s)
+  ✓  2 tests/live.spec.cjs:12:43 › 真实高德地图：王府井 (14.1s)
+  ✓  3 tests/live.spec.cjs:12:43 › 真实高德地图：东坝 (19.1s)
+  ✓  4 tests/live.spec.cjs:12:43 › 真实高德地图：大钟寺 (18.5s)
+
+  4 passed (1.2m)

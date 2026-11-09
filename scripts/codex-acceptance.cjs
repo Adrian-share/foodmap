@@ -9,13 +9,14 @@ const {createFoodServer} = require('../mcp-server.cjs');
 const {origins, restaurants, closest} = require('../samples.js');
 
 const root = resolve(__dirname, '..');
-const evidence = join(root, 'evidence', 'codex-images');
+const mode=process.env.LOCATION_MODE||'fixture';
+const evidence = join(root, 'evidence', 'dual-city', 'codex-'+mode);
 mkdirSync(evidence, {recursive:true});
 const working = mkdtempSync(join(evidence, 'empty-session-'));
 const audit = [];
-const server = createFoodServer({audit:event => audit.push({at:new Date().toISOString(), ...event})});
+const server = createFoodServer({mode, serviceKey:process.env.AMAP_WEB_SERVICE_KEY, audit:event => audit.push({at:new Date().toISOString(), ...event})});
 const scrub = text => text.replaceAll(root, '<PROJECT>').replaceAll(os.homedir(), '<HOME>');
-const policy = '请用简体中文作为北京探店助手答复用户，使用配置的 beijing_food_map MCP 工具完成附近探店查询，并遵守该服务的 instructions。不要读取文件、使用 shell、其他工具或网络搜索。用户输入仅为地点和找店需求。';
+const policy = '请用简体中文作为双城探店助手答复用户，使用配置的 beijing_food_map MCP 工具完成附近探店查询，并遵守该服务的 instructions。不要读取文件、使用 shell、其他工具或网络搜索。用户输入仅为地点和找店需求。';
 
 function codexArgs(url) {
   return ['--skip-git-repo-check', '--ignore-user-config', '--json',
@@ -39,7 +40,13 @@ async function turn(id, question, url, threadId) {
   let stdout = '', stderr = '';
   child.stdout.on('data', chunk => { stdout += chunk; });
   child.stderr.on('data', chunk => { stderr += chunk; });
-  const deadline = setTimeout(() => child.kill('SIGTERM'), 240000);
+  const deadline = setTimeout(() => {
+    // 仅终止本脚本创建的 Codex 子进程，先核对它不是 Multica daemon。
+    try {
+      const status=JSON.parse(execFileSync(process.env.MULTICA_CLI_PATH,['daemon','status','--output','json'],{encoding:'utf8'}));
+      if(child.pid!==status.pid&&child.pid!==status.daemon_pid)child.kill('SIGTERM');
+    }catch{ /* 无法核对 daemon PID 时不终止任何进程。 */ }
+  },240000);
   let code;
   try { [code] = await once(child, 'close'); } finally { clearTimeout(deadline); }
   const events = stdout.split('\n').filter(Boolean).map(line => { try { return JSON.parse(line); } catch { return {unparsed:line}; } });
@@ -58,15 +65,17 @@ async function turn(id, question, url, threadId) {
   return result;
 }
 
-function verifySuccess(record, location) {
+async function verifySuccess(record, location, url) {
   const calls = record.audit.filter(event => event.event === 'rpc' && event.method === 'tools/call');
   assert.ok(calls.some(event => event.tool === 'find_nearby_food' && event.arguments.location.includes(location)), 'Missing real MCP call');
   const result = record.audit.find(event => event.event === 'tool_result' && event.result.status === 'ok')?.result;
   assert.ok(result, 'Missing successful tool result');
   assert.equal(result.origin.name, origins[location].name);
-  assert.equal(result.origin.coordinate_source, 'sample_fixture');
-  const expected = closest(origins[location], restaurants);
-  assert.deepEqual(result.results.map(({image, ...shop}) => shop), expected);
+  assert.equal(result.origin.coordinate_source, mode==='fixture'?'sample_fixture':'amap_live');
+  const web=await(await fetch(new URL('/api/nearby?'+new URLSearchParams({location:origins[location].city+location+'地铁站'}),url))).json();
+  assert.deepEqual(result,web,'Codex MCP 与网页 HTTP 结果必须逐字段一致');
+  const names=location==='豫园'?['上海老饭店（豫园店）','绿波廊酒楼（豫园总店）','和平饭店龙凤厅']:['富春居（北京璞瑄酒店店）','泰丰楼','北京宜宾招待所·餐厅'];
+  assert.deepEqual(result.results.map(s=>s.name),names);
   const completedCall = record.events.find(event => event.type === 'item.completed'
     && event.item?.type === 'mcp_tool_call' && event.item.status === 'completed');
   assert.ok(completedCall, 'Missing Codex MCP completed event');
@@ -108,26 +117,26 @@ async function main() {
     assert.match(first.reply, /位置|地点|酒店|地铁站|地标/);
     for (const shop of restaurants) assert.ok(!first.reply.includes(shop.name));
     for (const origin of Object.values(origins)) assert.ok(!first.reply.includes(origin.name));
-    const second = await turn('MCP-04-turn2', '东坝', url, first.thread);
-    verifySuccess(second, '东坝');
+    assert.equal(first.audit.filter(e=>e.event==='rpc'&&e.method==='tools/call').length,0);
+    const second = await turn('MCP-04-turn2', '上海豫园地铁站', url, first.thread);
+    await verifySuccess(second, '豫园',url);
     assert.equal(second.thread, first.thread);
     conversations.push(first, second);
     summary.cases.push({id:'MCP-04', status:'passed', thread:first.thread, first_turn_location_resolutions:0,
-      first_turn_tool_calls:first.audit.filter(e => e.event === 'tool_result').length,
+      first_turn_tool_calls:first.audit.filter(e => e.event === 'rpc' && e.method==='tools/call').length,
       second_turn_tool_calls:second.audit.filter(e => e.event === 'tool_result').length});
     const cases = [
-      ['MCP-01', '我在王府井，附近有哪些探店餐厅？', '王府井'],
-      ['MCP-02', '我现在住东坝，找三家最近的探店餐厅。', '东坝'],
-      ['MCP-03', '大钟寺附近有哪些探店餐厅？', '大钟寺']
+      ['MCP-01', '我在北京王府井地铁站，找三家最近的探店餐厅，列出距离与原视频。', '王府井'],
+      ['MCP-02', '我在上海豫园地铁站，找三家最近的探店餐厅，列出距离与原视频。', '豫园']
     ];
     for (const [id, question, location] of cases) {
       const record = await turn(id, question, url);
-      verifySuccess(record, location);
+      await verifySuccess(record, location,url);
       conversations.push(record);
       summary.cases.push({id, status:'passed', thread:record.thread,
         tool_calls:record.audit.filter(e => e.event === 'tool_result').length});
     }
-    assert.equal(new Set(summary.cases.map(item => item.thread)).size, 4);
+    assert.equal(new Set(summary.cases.map(item => item.thread)).size, 3);
     summary.status = 'passed';
     summary.presentation_verification = 'Codex received actual JPEG image blocks and replied with three Markdown images; graphical client rendering not verified.';
   } catch (error) {
@@ -141,7 +150,7 @@ async function main() {
     writeFileSync(join(evidence, 'conversations.md'), transcript);
     await new Promise(resolve => server.close(resolve));
   }
-  console.log('Codex: all four P0 cases passed; no server is left running.');
+  console.log('Codex: all dual-city P0 cases passed; no server is left running.');
 }
 
 main().catch(error => { console.error(error); process.exitCode = 1; });

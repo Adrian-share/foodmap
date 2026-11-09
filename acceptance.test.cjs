@@ -42,49 +42,7 @@ test('识别王府井的口述误写，未知地点不回退到旧结果', () =>
   assert.equal(resolveFixture('未知位置'), undefined);
 });
 
-test('提交三个地名，离线页面均显示起点、三个图钉和三条结果', () => {
-  const vm = require('node:vm');
-  const {readFileSync} = require('node:fs');
-  const {join} = require('node:path');
-
-  class Element {
-    constructor(tag = '') {
-      this.tag = tag;
-      this.children = [];
-      this.listeners = {};
-      this.namespaceURI = 'http://www.w3.org/2000/svg';
-    }
-    addEventListener(event, listener) { this.listeners[event] = listener; }
-    replaceChildren(...items) { this.children = items; }
-    append(...items) { this.children.push(...items); }
-    setAttribute() {}
-  }
-
-  const ids = ['query', 'status', 'results', 'candidates', 'preview', 'map', 'search', 'map-status', 'retry-search', 'retry-map', 'fit-map'];
-  const elements = Object.fromEntries(ids.map(id => [id, new Element()]));
-  const document = {
-    getElementById: id => elements[id],
-    querySelectorAll: () => [],
-    createElement: tag => new Element(tag),
-    createElementNS: (_, tag) => new Element(tag)
-  };
-  const context = vm.createContext({document});
-  for (const script of ['samples.js', 'prototype.js']) {
-    vm.runInContext(readFileSync(join(__dirname, script), 'utf8'), context);
-  }
-
-  for (const input of ['望府井', '东坝', '大钟寺']) {
-    elements.query.value = input;
-    elements.search.listeners.submit({preventDefault() {}});
-    assert.equal(elements.results.children.length, 3);
-    const [svg] = elements.preview.children;
-    assert.equal(svg.children.filter(node => node.tag === 'circle').length, 4);
-  }
-  elements.query.value = '未知位置';
-  elements.search.listeners.submit({preventDefault() {}});
-  assert.equal(elements.results.children.length, 0);
-  assert.equal(elements.preview.children.length, 0);
-});
+// 原同步 VM 页面用例由 tests/page.spec.cjs 与双城浏览器端到端用例覆盖。
 
 test('高德静态底图请求包含一个起点和三个依序编号的门店', () => {
   const {mapParameters} = require('./amap-server.cjs');

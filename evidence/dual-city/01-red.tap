@@ -1,0 +1,216 @@
+TAP version 13
+# Subtest: 北京王府井地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+not ok 1 - 北京王府井地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+  ---
+  duration_ms: 10.594625
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:12:59'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module './nearby.cjs'
+    Require stack:
+    - /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    Function._load (node:internal/modules/cjs/loader:1211:37)
+    TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    Module.require (node:internal/modules/cjs/loader:1487:12)
+    require (node:internal/modules/helpers:135:16)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:13:33)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+  ...
+# Subtest: 上海豫园地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+not ok 2 - 上海豫园地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+  ---
+  duration_ms: 5.114666
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:12:59'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module './nearby.cjs'
+    Require stack:
+    - /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    Function._load (node:internal/modules/cjs/loader:1211:37)
+    TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    Module.require (node:internal/modules/cjs/loader:1487:12)
+    require (node:internal/modules/helpers:135:16)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:13:33)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+  ...
+# Subtest: 无位置 "我附近有什么？"：先追问，零解析
+not ok 3 - 无位置 "我附近有什么？"：先追问，零解析
+  ---
+  duration_ms: 3.212917
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:29:47'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module './nearby.cjs'
+    Require stack:
+    - /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    Function._load (node:internal/modules/cjs/loader:1211:37)
+    TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    Module.require (node:internal/modules/cjs/loader:1487:12)
+    require (node:internal/modules/helpers:135:16)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:31:31)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+  ...
+# Subtest: 无位置 ""：先追问，零解析
+not ok 4 - 无位置 ""：先追问，零解析
+  ---
+  duration_ms: 0.642583
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:29:47'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module './nearby.cjs'
+    Require stack:
+    - /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    Function._load (node:internal/modules/cjs/loader:1211:37)
+    TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    Module.require (node:internal/modules/cjs/loader:1487:12)
+    require (node:internal/modules/helpers:135:16)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:31:31)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+  ...
+# Subtest: 无位置 "我在这里"：先追问，零解析
+not ok 5 - 无位置 "我在这里"：先追问，零解析
+  ---
+  duration_ms: 1.675166
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:29:47'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module './nearby.cjs'
+    Require stack:
+    - /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    Function._load (node:internal/modules/cjs/loader:1211:37)
+    TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    Module.require (node:internal/modules/cjs/loader:1487:12)
+    require (node:internal/modules/helpers:135:16)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:31:31)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+  ...
+# Subtest: 城市冲突、未知位置不沿用上一地点
+not ok 6 - 城市冲突、未知位置不沿用上一地点
+  ---
+  duration_ms: 3.984208
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:38:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module './nearby.cjs'
+    Require stack:
+    - /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    Function._load (node:internal/modules/cjs/loader:1211:37)
+    TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    Module.require (node:internal/modules/cjs/loader:1487:12)
+    require (node:internal/modules/helpers:135:16)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:39:31)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+  ...
+# Subtest: 待核对上海门店退出正式收录排名，固定样本明确标记
+not ok 7 - 待核对上海门店退出正式收录排名，固定样本明确标记
+  ---
+  duration_ms: 3.772125
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:45:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module './nearby.cjs'
+    Require stack:
+    - /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    Function._load (node:internal/modules/cjs/loader:1211:37)
+    TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    Module.require (node:internal/modules/cjs/loader:1487:12)
+    require (node:internal/modules/helpers:135:16)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:46:31)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+  ...
+# Subtest: 实时地名解析限制上海、排除外地和非车站，歧义先选再查询
+not ok 8 - 实时地名解析限制上海、排除外地和非车站，歧义先选再查询
+  ---
+  duration_ms: 2.34825
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:53:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Cannot find module './nearby.cjs'
+    Require stack:
+    - /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs
+  code: 'MODULE_NOT_FOUND'
+  stack: |-
+    Function._resolveFilename (node:internal/modules/cjs/loader:1401:15)
+    defaultResolveImpl (node:internal/modules/cjs/loader:1057:19)
+    resolveForCJSWithHooks (node:internal/modules/cjs/loader:1062:22)
+    Function._load (node:internal/modules/cjs/loader:1211:37)
+    TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    Module.require (node:internal/modules/cjs/loader:1487:12)
+    require (node:internal/modules/helpers:135:16)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:54:31)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+  ...
+# Subtest: 网页 HTTP 与真实 MCP 协议共用同一版本结果；并发双城不串数据
+not ok 9 - 网页 HTTP 与真实 MCP 协议共用同一版本结果；并发双城不串数据
+  ---
+  duration_ms: 986.671625
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/dual-city.acceptance.test.cjs:69:1'
+  failureType: 'testCodeFailure'
+  error: 'Error POSTing to endpoint: {"error":"只支持读取"}'
+  code: 'CLIENT_HTTP_NOT_IMPLEMENTED'
+  name: 'SdkHttpError'
+  stack: |-
+    StreamableHTTPClientTransport._send (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/node_modules/@modelcontextprotocol/client/dist/index.cjs:1778:11)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 0
+# fail 9
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1521.383959

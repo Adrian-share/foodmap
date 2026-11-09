@@ -1,19 +1,27 @@
 {
-  "name": "beijing-food-map",
+  "name": "dual-city-food-map",
   "version": "1.0.0",
   "private": true,
-  "description": "北京十家探店门店的高德交互式地图",
+  "description": "北京与上海共用门店、地点解析及直线距离排序的高德地图和 MCP",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
     "start": "node amap-server.cjs",
-    "test": "node --test acceptance.test.cjs server.test.cjs",
+    "test": "node --test acceptance.test.cjs server.test.cjs mcp.acceptance.test.cjs image.acceptance.test.cjs dual-city.acceptance.test.cjs",
     "test:page": "playwright test",
     "test:all": "npm test && npm run test:page",
-    "test:live": "playwright test --config playwright.live.config.cjs"
+    "test:live": "playwright test --config playwright.live.config.cjs",
+    "test:codex": "node scripts/codex-acceptance.cjs",
+    "sources:verify": "node scripts/verify-sources.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/client": "2.4.0",
+    "@modelcontextprotocol/node": "2.1.2",
+    "@modelcontextprotocol/server": "2.4.0",
+    "zod": "4.6.7"
   }
 }

@@ -1,6 +1,5 @@
 (() => {
   'use strict';
-  const {restaurants, normalize, resolveFixture, closest} = samples;
   const byId = id => document.getElementById(id);
   const query = byId('query'), status = byId('status'), list = byId('results');
   const candidates = byId('candidates'), preview = byId('preview'), mapElement = byId('map');
@@ -24,6 +23,11 @@
     const address = document.createElement('p');
     address.textContent = shop.address;
     container.append(title, address, link('探店记录', shop.source));
+    const evidence=document.createElement('p');
+    evidence.textContent='原视频作者：'+(shop.visits||[]).map(v=>v.creator).join('、');
+    if(shop.verification==='pending')evidence.textContent+=' · 分店和营业状态待核实 · '+shop.coordinate_note;
+    if((shop.visits||[]).some(v=>v.source_scope==='inherited_beijing_outside_requested_creators'))evidence.textContent+=' · 沿用北京基线，作者不在指定三位内';
+    container.append(evidence);
     if (shop.video) container.append(link('相关 B 站视频', shop.video));
   }
   function selectShop(index) {
@@ -52,6 +56,15 @@
       address.textContent = shop.address;
       item.append(title, address, link('探店记录', shop.source));
       if (shop.video) item.append(link('相关 B 站视频', shop.video));
+      const evidence=document.createElement('p');
+      evidence.textContent=(shop.visits||[]).map(v=>v.creator).join('、');
+      if(shop.verification==='pending')evidence.textContent+=' · 分店与营业状态待核实';
+      if((shop.visits||[]).some(v=>v.source_scope==='inherited_beijing_outside_requested_creators'))evidence.textContent+=' · 沿用北京基线，作者不在指定三位内';
+      item.append(evidence);
+      if(shop.image){
+        const photo=document.createElement('img');photo.src=shop.image.url;photo.alt=shop.image.alt;
+        photo.width=192;photo.height=108;photo.loading='lazy';item.append(photo);
+      }
       list.append(item);
     });
   }
@@ -127,55 +140,38 @@
     fit();
     fitMap.hidden = false;
   }
-  function render(origin, version) {
+  function render(data, version) {
     if (version !== searchVersion) return;
     clear();
-    const shops = closest(origin, restaurants);
+    const {origin, results: shops} = data;
     current = {origin, shops};
     showList(shops);
     if (map) showMap();
     else showSketch(origin, shops);
-    status.textContent = (config.searchEnabled ? '高德地点检索 · ' : '离线固定样本 · ')
-      + origin.name + (origin.address ? ' · ' + origin.address : '')
-      + ' · 十家样本中直线距离最近的三家';
+    status.textContent = data.message + ' · ' + data.scope;
+    list.dataset.version=data.data_version;
   }
-  function validOrigin(item) {
-    return item && typeof item.name === 'string' && Number.isFinite(item.lng) && Number.isFinite(item.lat)
-      && item.lng >= 115.4 && item.lng <= 117.6 && item.lat >= 39.4 && item.lat <= 41.1;
-  }
-  async function search(input = query.value) {
-    lastInput = input;
-    const version = ++searchVersion;
-    const name = normalize(input);
+  async function search(input = query.value, originId) {
+    lastInput=input;
+    const version=++searchVersion;
     clear();
-    if (!name) {status.textContent = '请输入地点名称。'; return;}
-    if (!config.searchEnabled) {
-      const origin = resolveFixture(name);
-      if (origin) render(origin, version);
-      else status.textContent = '离线样本仅支持王府井、东坝和大钟寺，当前地点未找到。';
-      return;
-    }
-    status.textContent = '正在高德地图搜索地点…';
+    if(!input.trim()){status.textContent='请提供所在城市、酒店、地铁站或地标名称。';return;}
+    status.textContent='正在查找起点与附近门店…';
     try {
-      const response = await fetch('/api/amap/search?' + new URLSearchParams({q: name}), {signal: AbortSignal.timeout(12000)});
-      const result = await response.json();
-      if (version !== searchVersion) return;
-      if (!response.ok || !Array.isArray(result.matches) || !result.matches.every(validOrigin)) throw Error('搜索失败');
-      const matches = result.matches;
-      if (matches.length === 1) {render(matches[0], version); return;}
-      status.textContent = matches.length ? '请选择准确的起点。' : '未找到可定位的地点，请更换关键词。';
-      matches.forEach(poi => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.textContent = poi.name + (poi.address ? ' · ' + poi.address : '');
-        button.addEventListener('click', () => render(poi, version));
-        candidates.append(button);
-      });
-    } catch {
-      if (version !== searchVersion) return;
-      clear();
-      status.textContent = '高德地点检索失败，请重试搜索。';
-      retrySearch.hidden = false;
+      const response=await fetch('/api/nearby?'+new URLSearchParams({location:input,...(originId?{origin_id:originId}:{})}),{signal:AbortSignal.timeout(12000)});
+      const data=await response.json();
+      if(version!==searchVersion)return;
+      if(!response.ok)throw Error('查询失败');
+      if(data.status==='ok'){render(data,version);return;}
+      status.textContent=data.message;
+      for(const poi of data.candidates||[]) {
+        const button=document.createElement('button');button.type='button';
+        button.textContent=[poi.city,poi.district,poi.name,poi.address].filter(Boolean).join(' · ');
+        button.addEventListener('click',()=>search(input,poi.id));candidates.append(button);
+      }
+    }catch{
+      if(version!==searchVersion)return;
+      clear();status.textContent='地点检索失败，请重试搜索。';retrySearch.hidden=false;
     }
   }
   function loadSDK(key) {

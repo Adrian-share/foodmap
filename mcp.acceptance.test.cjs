@@ -30,13 +30,13 @@ async function call(client, location) {
 
 test('真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema', async t => {
   const {client, events} = await connect(t);
-  assert.equal(client.getServerVersion().name, 'beijing-food-map');
+  assert.equal(client.getServerVersion().name, 'dual-city-food-map');
   assert.match(client.getInstructions(), /位置/);
   const {tools} = await client.listTools();
   assert.deepEqual(tools.map(tool => tool.name), ['find_nearby_food']);
   assert.equal(tools[0].annotations.readOnlyHint, true);
   assert.equal(tools[0].annotations.destructiveHint, false);
-  assert.equal(tools[0].annotations.openWorldHint, false);
+  assert.equal(tools[0].annotations.openWorldHint, true);
   assert.ok(tools[0].outputSchema);
   assert.equal(tools[0].inputSchema.properties.location.type, 'string');
   assert.ok(events.some(e => e.method === 'initialize'));
@@ -98,7 +98,7 @@ test('未知地点不复用同客户端上次起点，缺位置后补东坝才�
   const {client, events} = await connect(t);
   await call(client, '王府井');
   const unknown = await call(client, '一个不存在的地点xyz');
-  assert.equal(unknown.status, 'location_not_found');
+  assert.equal(unknown.status, 'needs_location');
   assert.deepEqual(unknown.results, []);
   assert.equal(unknown.origin, undefined);
   const count = events.filter(e => e.event === 'location_resolve').length;
@@ -112,7 +112,7 @@ test('非字符串参数拒绝；并发不同地点互不串用', async t => {
   const invalid = await client.callTool({name:'find_nearby_food', arguments:{location:42}});
   assert.equal(invalid.isError, true);
   const data = await Promise.all(Object.keys(cases).map(location => call(client, location)));
-  assert.deepEqual(data.map(item => item.origin.name), Object.values(origins).map(o => o.name));
+  assert.deepEqual(data.map(item => item.origin.name), Object.keys(cases).map(key => origins[key].name));
 });
 
 test('HTTP 路径、非法 JSON、方法及跨源请求边界', async t => {

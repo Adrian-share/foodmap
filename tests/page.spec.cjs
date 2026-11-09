@@ -1,13 +1,22 @@
 const {test, expect} = require('@playwright/test');
 const {readFileSync} = require('node:fs');
 const {join} = require('node:path');
-const {origins, restaurants, resolveFixture} = require('../samples.js');
+const {origins, restaurants, resolveFixture, closest} = require('../samples.js');
 const expected = {
   王府井: {names: ['富春居（北京璞瑄酒店店）', '泰丰楼', '北京宜宾招待所·餐厅'], km: [1.72, 1.92, 2.82]},
   东坝: {names: ['寂川（西大望路店）', '潇湘阁（三里屯SOHO店）', '老吉堂·吉来（正大中心店）'], km: [8.11, 8.81, 8.93]},
   大钟寺: {names: ['洪福亮酒家（南草厂街店）', '砂锅居（西四店）', '同和居（月坛店）'], km: [3.74, 5.68, 5.85]}
 };
-const json = (route, value, status = 200) => route.fulfill({status, json: value});
+const json = (route, value, status = 200) => {
+  if(value.matches){
+    const matches=value.matches.map((m,i)=>({...m,id:String(i)}));
+    const selected=new URL(route.request().url()).searchParams.get('origin_id');
+    const origin=selected?matches.find(m=>m.id===selected):matches.length===1?matches[0]:undefined;
+    value=origin?{status:'ok',origin,results:closest(origin,restaurants),data_version:'mock',message:origin.name,scope:'固定样本'}:
+      {status:matches.length?'ambiguous':'location_not_found',message:matches.length?'请选择准确的起点。':'未找到可定位的地点。',results:[],candidates:matches};
+  }
+  return route.fulfill({status,json:value});
+};
 
 async function setup(page) {
   await page.route('https://webapi.amap.com/maps?**', route => route.fulfill({
@@ -17,8 +26,8 @@ async function setup(page) {
     jsKey: 'fixture-public-key', serviceHost: '/_AMapService', searchEnabled: true, mapEnabled: true
   }));
   await page.route('**/api/amap/status', route => json(route, {enabled: true}));
-  await page.route('**/api/amap/search?**', route => {
-    const input = new URL(route.request().url()).searchParams.get('q');
+  await page.route('**/api/nearby?**', route => {
+    const input = new URL(route.request().url()).searchParams.get('location');
     const origin = resolveFixture(input);
     return json(route, {matches: origin ? [origin] : []});
   });
@@ -82,8 +91,8 @@ test('旧请求晚返回时只保留最新起点', async ({page}) => {
   const held = new Promise(resolve => { release = resolve; });
   let arrived;
   const started = new Promise(resolve => { arrived = resolve; });
-  await page.route('**/api/amap/search?**', async route => {
-    const input = new URL(route.request().url()).searchParams.get('q');
+  await page.route('**/api/nearby?**', async route => {
+    const input = new URL(route.request().url()).searchParams.get('location');
     if (input === '王府井') { arrived(); await held; }
     await json(route, {matches: [origins[input]]});
   });
@@ -91,7 +100,7 @@ test('旧请求晚返回时只保留最新起点', async ({page}) => {
   await started;
   await search(page, '东坝');
   await verify(page, '东坝');
-  const late = page.waitForResponse(response => response.url().includes('q=%E7%8E%8B'));
+  const late = page.waitForResponse(response => response.url().includes('location=%E7%8E%8B'));
   release();
   await late;
   await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
@@ -99,14 +108,14 @@ test('旧请求晚返回时只保留最新起点', async ({page}) => {
 });
 test('歧义地点先选择再绘图，地址可区分', async ({page}) => {
   await setup(page);
-  await page.route('**/api/amap/search?**', route => json(route, {matches: [
+  await page.route('**/api/nearby?**', route => json(route, {matches: [
     {...origins.王府井, name: '同名地点', address: '东城区 王府井大街'},
     {...origins.大钟寺, name: '同名地点', address: '海淀区 大钟寺路'}
   ]}));
   await search(page, '同名地点');
   await expect(page.locator('#results > li')).toHaveCount(0);
   await expect(page.locator('#map .map-pin')).toHaveCount(0);
-  await page.getByRole('button', {name: '同名地点 · 海淀区 大钟寺路'}).click();
+  await page.getByRole('button', {name: /同名地点.*海淀区 大钟寺路/}).click();
   await expect(page.locator('#results > li').first()).toContainText('洪福亮酒家');
   await expect(page.locator('#map .map-pin')).toHaveCount(4);
 });
@@ -116,13 +125,13 @@ test('无结果、接口失败清空旧结果，可重新搜索', async ({page})
   await expect(page.locator('#status')).toContainText('未找到');
   await expect(page.locator('#map .map-pin')).toHaveCount(0);
   await expect(page.locator('#results > li')).toHaveCount(0);
-  await page.route('**/api/amap/search?**', route => json(route, {error: '失败'}, 502));
+  await page.route('**/api/nearby?**', route => json(route, {error: '失败'}, 502));
   await search(page, '东坝');
   await expect(page.locator('#status')).toContainText('失败');
   await expect(page.locator('#map .map-pin')).toHaveCount(0);
   await expect(page.locator('#results > li')).toHaveCount(0);
-  await page.unroute('**/api/amap/search?**');
-  await page.route('**/api/amap/search?**', route => json(route, {matches: [origins.大钟寺]}));
+  await page.unroute('**/api/nearby?**');
+  await page.route('**/api/nearby?**', route => json(route, {matches: [origins.大钟寺]}));
   await page.getByRole('button', {name: '重试搜索'}).click();
   await verify(page, '大钟寺');
 });
@@ -130,7 +139,7 @@ test('高德脚本失败明确提示并可重试连接', async ({page}) => {
   await page.route('**/api/amap/config', route => json(route, {
     jsKey: 'fixture-public-key', serviceHost: '/_AMapService', searchEnabled: true, mapEnabled: true
   }));
-  await page.route('**/api/amap/search?**', route => json(route, {matches: [origins.王府井]}));
+  await page.route('**/api/nearby?**', route => json(route, {matches: [origins.王府井]}));
   await page.route('https://webapi.amap.com/maps?**', route => route.abort());
   await page.goto('/');
   await expect(page.locator('#map-status')).toContainText('失败');

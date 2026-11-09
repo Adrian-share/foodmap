@@ -2,7 +2,8 @@ const {readFileSync} = require('node:fs');
 const {join} = require('node:path');
 const {createHash} = require('node:crypto');
 const manifest = require('./assets/images/manifest.json');
-const {restaurants} = require('./samples.js');
+const catalog = require('./data/catalog.json');
+const restaurants = catalog.shops.map(s => ({...s,video:catalog.visits.find(v=>v.shop_id===s.id)?.video}));
 
 // Bundled, verified assets keep tool queries offline and independent of CDN hotlink rules.
 const images = new Map(manifest.map(image => {
@@ -17,12 +18,9 @@ const images = new Map(manifest.map(image => {
   }
   return [image.restaurant, {...image, bytes}];
 }));
-if (images.size !== restaurants.length || !restaurants.every(shop => images.has(shop.name))) {
-  throw new Error('每家样本门店必须恰有一张来源明确的图片');
-}
-
 function withImage(shop, baseUrl) {
   const image = images.get(shop.name);
+  if (!image) return shop;
   return {...shop, image:{
     url:new URL('/images/' + image.file, baseUrl).href,
     original_url:image.original_url, source:image.source, alt:image.alt,
@@ -36,13 +34,14 @@ function imageForPath(path) {
 }
 
 function caption(shop) {
+  if(!shop.image)return `### ${shop.name}\n\n直线距离：${(shop.meters/1000).toFixed(2)} km\n\n${shop.address}\n\n[分店出处](${shop.source}) · [原视频](${shop.video})\n\n核对状态：${shop.verification}；${shop.coordinate_note}\n`;
   return `### ${shop.name}\n\n直线距离：${(shop.meters / 1000).toFixed(2)} km\n\n` +
     `![${shop.image.alt}](${shop.image.url})\n\n图片：原探店视频封面 · [图片出处](${shop.image.source})\n\n` +
     `[探店出处](${shop.source}) · [B站视频](${shop.video})\n`;
 }
 
 function imageContent(shops) {
-  return shops.flatMap(shop => [{type:'text', text:caption(shop)},
+  return shops.filter(shop=>shop.image).flatMap(shop => [{type:'text', text:caption(shop)},
     {type:'image', data:images.get(shop.name).bytes.toString('base64'), mimeType:'image/jpeg'}]);
 }
 

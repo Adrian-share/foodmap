@@ -21,8 +21,8 @@ async function connect(t) {
 
 test('十家原始门店各有一张来自其原视频的真实封面，记录哈希及出处', () => {
   const manifest = require('./assets/images/manifest.json');
-  assert.equal(manifest.length, 10);
-  assert.equal(new Set(manifest.map(item => item.file)).size, 10);
+  assert.equal(manifest.length, 13);
+  assert.equal(new Set(manifest.map(item => item.file)).size, 13);
   for (const shop of restaurants) {
     const image = manifest.find(item => item.restaurant === shop.name);
     assert.ok(image, shop.name);

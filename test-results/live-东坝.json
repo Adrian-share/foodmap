@@ -1,16 +1,23 @@
 {
   "origin": {
+    "id": "BV09269671",
     "name": "东坝地铁站",
-    "address": "朝阳区 · 3号线",
     "lng": 116.547126,
     "lat": 39.965732,
-    "type": "150500"
+    "city": "北京",
+    "district": "朝阳区",
+    "address": "北京 · 朝阳区 · 3号线",
+    "source": "https://ditu.amap.com/place/BV09269671",
+    "coordinate_source": "amap_live"
   },
   "fixture": {
     "name": "东坝地铁站",
     "lng": 116.547126,
     "lat": 39.965732,
-    "source": "https://ditu.amap.com/place/BV09269671"
+    "source": "https://ditu.amap.com/place/BV09269671",
+    "id": "东坝",
+    "city": "北京",
+    "district": "朝阳区"
   },
   "ranked": [
     {
@@ -19,7 +26,10 @@
       "lng": 116.478297,
       "lat": 39.915326,
       "source": "https://tanwei.org/nearby/poi/3b2babea-c3df-519b-b75a-d79e38fdb215",
-      "video": "https://www.bilibili.com/video/BV1ma411v7V1/",
+      "id": "beijing-7",
+      "city": "北京",
+      "verification": "verified",
+      "coordinate_note": "沿用 FACT-4/5 已验收北京样本",
       "km": 8.114673742871675
     },
     {
@@ -28,7 +38,10 @@
       "lng": 116.452883,
       "lat": 39.933123,
       "source": "https://tanwei.org/nearby/poi/ca7d347b-2d77-5697-9b9f-3206d9c86a05",
-      "video": "https://www.bilibili.com/video/BV1Lh4y1d7U5/",
+      "id": "beijing-3",
+      "city": "北京",
+      "verification": "verified",
+      "coordinate_note": "沿用 FACT-4/5 已验收北京样本",
       "km": 8.813968075518405
     },
     {
@@ -37,7 +50,10 @@
       "lng": 116.468365,
       "lat": 39.912794,
       "source": "https://tanwei.org/nearby/poi/223dbb83-1fba-5e97-9b9c-e0c3eee7ab26",
-      "video": "https://www.bilibili.com/video/BV1D64y1K7uj/",
+      "id": "beijing-4",
+      "city": "北京",
+      "verification": "verified",
+      "coordinate_note": "沿用 FACT-4/5 已验收北京样本",
       "km": 8.929685497642858
     }
   ]

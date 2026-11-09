@@ -1,0 +1,9 @@
+
+> dual-city-food-map@1.0.0 test:codex
+> node scripts/codex-acceptance.cjs
+
+MCP-04-turn1: Codex finished; 0 MCP result(s)
+MCP-04-turn2: Codex finished; 1 MCP result(s)
+MCP-01: Codex finished; 1 MCP result(s)
+MCP-02: Codex finished; 1 MCP result(s)
+Codex: all dual-city P0 cases passed; no server is left running.

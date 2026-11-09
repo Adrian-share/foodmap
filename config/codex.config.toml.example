@@ -1,4 +1,4 @@
-[mcp_servers.beijing_food_map]
+[mcp_servers.dual_city_food_map]
 url = "http://127.0.0.1:8767/mcp"
 required = true
 startup_timeout_sec = 20

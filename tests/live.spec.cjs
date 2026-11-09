@@ -1,7 +1,9 @@
 const {test, expect} = require('@playwright/test');
 const {writeFileSync} = require('node:fs');
-const {origins, restaurants} = require('../samples.js');
+const {origins} = require('../samples.js');
+const catalog = require('../data/catalog.json');
 const expected = {
+  豫园: ['上海老饭店（豫园店）', '绿波廊酒楼（豫园总店）', '和平饭店龙凤厅'],
   王府井: ['富春居（北京璞瑄酒店店）', '泰丰楼', '北京宜宾招待所·餐厅'],
   东坝: ['寂川（西大望路店）', '潇湘阁（三里屯SOHO店）', '老吉堂·吉来（正大中心店）'],
   大钟寺: ['洪福亮酒家（南草厂街店）', '砂锅居（西四店）', '同和居（月坛店）']
@@ -11,12 +13,16 @@ for (const name of Object.keys(expected)) test(`真实高德地图：${name}`, a
   test.skip(credentials.some(key => !process.env[key]), '缺少高德凭据，真实地图验收待验证；不生成替代截图');
   await page.goto('/');
   await expect(page.locator('#map')).toHaveAttribute('data-ready', 'true');
-  await page.getByLabel('起点', {exact: true}).fill(name);
-  const searchResponse = page.waitForResponse(response => response.url().includes('/api/amap/search?'));
+  await page.getByLabel('起点', {exact: true}).fill(origins[name].city+name+'地铁站');
+  const searchResponse = page.waitForResponse(response => response.url().includes('/api/nearby?'));
   await page.getByRole('button', {name: '查最近三家', exact: true}).click();
   const result = await (await searchResponse).json();
-  expect(result.matches).toHaveLength(1);
-  const origin = result.matches[0];
+  expect(result.status).toBe('ok');
+  const origin = result.origin;
+  expect(origin.city).toBe(origins[name].city);
+  expect(origin.district).toBe(origins[name].district);
+  expect(origin.coordinate_source).toBe('amap_live');
+  const restaurants = catalog.shops.filter(s=>s.city===origin.city && Number.isFinite(s.lng));
   await expect(page.locator('#status')).toContainText(name + '地铁站');
   await expect(page.locator('#map .map-pin')).toHaveCount(4);
   await expect(page.locator('#map [data-marker-index="0"]')).toHaveAttribute('aria-label', '起点 · ' + origin.name);
@@ -50,6 +56,7 @@ for (const name of Object.keys(expected)) test(`真实高德地图：${name}`, a
     await expect(info).toContainText(ranked[i].address);
     await expect(info).toContainText(ranked[i].km.toFixed(2) + ' km');
     await expect(info.getByRole('link', {name: '探店记录'})).toHaveAttribute('href', ranked[i].source);
+    await expect(info.getByRole('link', {name:'相关 B 站视频'})).toHaveAttribute('href',result.results[i].video);
     if (i === 0) await page.screenshot({path: `test-results/live-${name}-detail.png`, fullPage: true});
     // 真实信息窗可能遮挡邻近图钉，使用页面提供的控件关闭后检查下一家。
     await page.getByRole('button', {name: '显示全部图钉'}).click();

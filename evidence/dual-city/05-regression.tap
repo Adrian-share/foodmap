@@ -1,0 +1,454 @@
+
+> dual-city-food-map@1.0.0 test
+> node --test acceptance.test.cjs server.test.cjs mcp.acceptance.test.cjs image.acceptance.test.cjs dual-city.acceptance.test.cjs
+
+TAP version 13
+# Subtest: 三个固定起点的距离与验收基准误差不超过 0.05 km
+ok 1 - 三个固定起点的距离与验收基准误差不超过 0.05 km
+  ---
+  duration_ms: 5.680709
+  type: 'test'
+  ...
+# Subtest: 样本有十个不同的门店，均有地址、坐标和来源
+ok 2 - 样本有十个不同的门店，均有地址、坐标和来源
+  ---
+  duration_ms: 3.333125
+  type: 'test'
+  ...
+# Subtest: 王府井定位到地铁站并选出最近三家
+ok 3 - 王府井定位到地铁站并选出最近三家
+  ---
+  duration_ms: 12.026625
+  type: 'test'
+  ...
+# Subtest: 东坝定位到地铁站并选出最近三家
+ok 4 - 东坝定位到地铁站并选出最近三家
+  ---
+  duration_ms: 4.952417
+  type: 'test'
+  ...
+# Subtest: 大钟寺定位到地铁站并选出最近三家
+ok 5 - 大钟寺定位到地铁站并选出最近三家
+  ---
+  duration_ms: 2.154458
+  type: 'test'
+  ...
+# Subtest: 识别王府井的口述误写，未知地点不回退到旧结果
+ok 6 - 识别王府井的口述误写，未知地点不回退到旧结果
+  ---
+  duration_ms: 0.938291
+  type: 'test'
+  ...
+# Subtest: 提交三个地名，离线页面均显示起点、三个图钉和三条结果
+not ok 7 - 提交三个地名，离线页面均显示起点、三个图钉和三条结果
+  ---
+  duration_ms: 7.008459
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/acceptance.test.cjs:45:1'
+  failureType: 'testCodeFailure'
+  error: 'require is not defined'
+  code: 'ERR_TEST_FAILURE'
+  name: 'ReferenceError'
+  stack: |-
+    evalmachine.<anonymous>:7:17
+    Script.runInContext (node:vm:149:12)
+    Object.runInContext (node:vm:301:6)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/acceptance.test.cjs:73:8)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 高德静态底图请求包含一个起点和三个依序编号的门店
+ok 8 - 高德静态底图请求包含一个起点和三个依序编号的门店
+  ---
+  duration_ms: 10.222833
+  type: 'test'
+  ...
+# Subtest: 北京王府井地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+ok 9 - 北京王府井地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+  ---
+  duration_ms: 37.88175
+  type: 'test'
+  ...
+# Subtest: 上海豫园地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+ok 10 - 上海豫园地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+  ---
+  duration_ms: 6.808
+  type: 'test'
+  ...
+# Subtest: 无位置 "我附近有什么？"：先追问，零解析
+ok 11 - 无位置 "我附近有什么？"：先追问，零解析
+  ---
+  duration_ms: 4.125208
+  type: 'test'
+  ...
+# Subtest: 无位置 ""：先追问，零解析
+ok 12 - 无位置 ""：先追问，零解析
+  ---
+  duration_ms: 1.318
+  type: 'test'
+  ...
+# Subtest: 无位置 "我在这里"：先追问，零解析
+ok 13 - 无位置 "我在这里"：先追问，零解析
+  ---
+  duration_ms: 3.173625
+  type: 'test'
+  ...
+# Subtest: 城市冲突、未知位置不沿用上一地点
+ok 14 - 城市冲突、未知位置不沿用上一地点
+  ---
+  duration_ms: 4.396291
+  type: 'test'
+  ...
+# Subtest: 待核对上海门店退出正式收录排名，固定样本明确标记
+ok 15 - 待核对上海门店退出正式收录排名，固定样本明确标记
+  ---
+  duration_ms: 5.907667
+  type: 'test'
+  ...
+# Subtest: 实时地名解析限制上海、排除外地和非车站，歧义先选再查询
+ok 16 - 实时地名解析限制上海、排除外地和非车站，歧义先选再查询
+  ---
+  duration_ms: 102.314417
+  type: 'test'
+  ...
+# Subtest: 网页 HTTP 与真实 MCP 协议共用同一版本结果；并发双城不串数据
+ok 17 - 网页 HTTP 与真实 MCP 协议共用同一版本结果；并发双城不串数据
+  ---
+  duration_ms: 1296.52475
+  type: 'test'
+  ...
+# Subtest: 十家原始门店各有一张来自其原视频的真实封面，记录哈希及出处
+ok 18 - 十家原始门店各有一张来自其原视频的真实封面，记录哈希及出处
+  ---
+  duration_ms: 13.584666
+  type: 'test'
+  ...
+# Subtest: 王府井通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+ok 19 - 王府井通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 636.60875
+  type: 'test'
+  ...
+# Subtest: 东坝通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+ok 20 - 东坝通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 201.363083
+  type: 'test'
+  ...
+# Subtest: 大钟寺通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+ok 21 - 大钟寺通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 110.683125
+  type: 'test'
+  ...
+# Subtest: 豫园通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+not ok 22 - 豫园通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 113.29125
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/image.acceptance.test.cjs:41:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 3
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 3
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/image.acceptance.test.cjs:46:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 缺位置及未知位置不返回图片或图文推荐
+ok 23 - 缺位置及未知位置不返回图片或图文推荐
+  ---
+  duration_ms: 116.821292
+  type: 'test'
+  ...
+# Subtest: 图片路径只允许已登记资产，保持只读及跨源边界
+ok 24 - 图片路径只允许已登记资产，保持只读及跨源边界
+  ---
+  duration_ms: 52.672333
+  type: 'test'
+  ...
+# Subtest: 真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema
+not ok 25 - 真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema
+  ---
+  duration_ms: 671.014
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:31:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'dual-city-food-map'
+    - 'beijing-food-map'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'beijing-food-map'
+  actual: 'dual-city-food-map'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:33:10)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: 王府井返回正确样本起点、最近三家、米制直线距离及完整出处
+not ok 26 - 王府井返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 267.146792
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:52:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /10.*样本/. Input:
+    
+    '排名仅限当前城市的固定验收样本；上海候选未完成分店和营业状态核对，和平饭店采用酒店点位。'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '排名仅限当前城市的固定验收样本；上海候选未完成分店和营业状态核对，和平饭店采用酒店点位。'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:64:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 东坝返回正确样本起点、最近三家、米制直线距离及完整出处
+not ok 27 - 东坝返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 161.795875
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:52:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /10.*样本/. Input:
+    
+    '排名仅限当前城市的固定验收样本；上海候选未完成分店和营业状态核对，和平饭店采用酒店点位。'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '排名仅限当前城市的固定验收样本；上海候选未完成分店和营业状态核对，和平饭店采用酒店点位。'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:64:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 大钟寺返回正确样本起点、最近三家、米制直线距离及完整出处
+not ok 28 - 大钟寺返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 116.668375
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:52:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /10.*样本/. Input:
+    
+    '排名仅限当前城市的固定验收样本；上海候选未完成分店和营业状态核对，和平饭店采用酒店点位。'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '排名仅限当前城市的固定验收样本；上海候选未完成分店和营业状态核对，和平饭店采用酒店点位。'
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:64:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 望府井别名及北京前缀、地铁站后缀复用正确起点
+ok 29 - 望府井别名及北京前缀、地铁站后缀复用正确起点
+  ---
+  duration_ms: 131.964125
+  type: 'test'
+  ...
+# Subtest: 缺位置 ""：needs_location，无结果、无地点解析
+ok 30 - 缺位置 ""：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 51.9545
+  type: 'test'
+  ...
+# Subtest: 缺位置 "  "：needs_location，无结果、无地点解析
+ok 31 - 缺位置 "  "：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 51.005959
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我附近"：needs_location，无结果、无地点解析
+ok 32 - 缺位置 "我附近"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 43.532084
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我附近有什么？"：needs_location，无结果、无地点解析
+ok 33 - 缺位置 "我附近有什么？"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 43.935375
+  type: 'test'
+  ...
+# Subtest: 缺位置 "附近"：needs_location，无结果、无地点解析
+ok 34 - 缺位置 "附近"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 82.978041
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我在这里"：needs_location，无结果、无地点解析
+ok 35 - 缺位置 "我在这里"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 42.948375
+  type: 'test'
+  ...
+# Subtest: 缺位置 "当前位置"：needs_location，无结果、无地点解析
+ok 36 - 缺位置 "当前位置"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 37.044417
+  type: 'test'
+  ...
+# Subtest: 未知地点不复用同客户端上次起点，缺位置后补东坝才解析
+not ok 37 - 未知地点不复用同客户端上次起点，缺位置后补东坝才解析
+  ---
+  duration_ms: 77.435708
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:97:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'needs_location'
+    - 'location_not_found'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'location_not_found'
+  actual: 'needs_location'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:101:10)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 非字符串参数拒绝；并发不同地点互不串用
+not ok 38 - 非字符串参数拒绝；并发不同地点互不串用
+  ---
+  duration_ms: 103.799041
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:110:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        '王府井地铁站',
+        '东坝地铁站',
+        '大钟寺地铁站',
+    -   '豫园地铁站'
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0: '王府井地铁站'
+    1: '东坝地铁站'
+    2: '大钟寺地铁站'
+    3: '豫园地铁站'
+  actual:
+    0: '王府井地铁站'
+    1: '东坝地铁站'
+    2: '大钟寺地铁站'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/mcp.acceptance.test.cjs:115:10)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: HTTP 路径、非法 JSON、方法及跨源请求边界
+ok 39 - HTTP 路径、非法 JSON、方法及跨源请求边界
+  ---
+  duration_ms: 40.730375
+  type: 'test'
+  ...
+# Subtest: 公开配置只返回 JS key，不暴露安全密钥或 Web 服务 key
+ok 40 - 公开配置只返回 JS key，不暴露安全密钥或 Web 服务 key
+  ---
+  duration_ms: 775.408125
+  type: 'test'
+  ...
+# Subtest: 无凭据配置和状态接口可访问，搜索返回明确 503，未知地址 404
+ok 41 - 无凭据配置和状态接口可访问，搜索返回明确 503，未知地址 404
+  ---
+  duration_ms: 73.985542
+  type: 'test'
+  ...
+# Subtest: 只有 JS key 而无安全密钥时不尝试加载地图
+ok 42 - 只有 JS key 而无安全密钥时不尝试加载地图
+  ---
+  duration_ms: 25.633875
+  type: 'test'
+  ...
+# Subtest: 望府井归一化为王府井地铁站，只接受北京范围的正确站点
+ok 43 - 望府井归一化为王府井地铁站，只接受北京范围的正确站点
+  ---
+  duration_ms: 35.095125
+  type: 'test'
+  ...
+# Subtest: 同名同类型站点不任意取第一个，保留所有候选供页面选择
+ok 44 - 同名同类型站点不任意取第一个，保留所有候选供页面选择
+  ---
+  duration_ms: 33.203916
+  type: 'test'
+  ...
+# Subtest: 空输入、长输入和超出北京的静态图坐标拒绝请求
+ok 45 - 空输入、长输入和超出北京的静态图坐标拒绝请求
+  ---
+  duration_ms: 73.931208
+  type: 'test'
+  ...
+# Subtest: 上游鉴权错误和网络错误返回通用错误，不泄露密钥
+ok 46 - 上游鉴权错误和网络错误返回通用错误，不泄露密钥
+  ---
+  duration_ms: 51.146666
+  type: 'test'
+  ...
+# Subtest: SDK 代理把安全密钥加到服务端 URL，覆盖用户传来的密钥
+ok 47 - SDK 代理把安全密钥加到服务端 URL，覆盖用户传来的密钥
+  ---
+  duration_ms: 50.201917
+  type: 'test'
+  ...
+# Subtest: 地图样式代理使用 webapi 域名，其他代理不接受任意目标
+ok 48 - 地图样式代理使用 webapi 域名，其他代理不接受任意目标
+  ---
+  duration_ms: 31.34625
+  type: 'test'
+  ...
+1..48
+# tests 48
+# suites 0
+# pass 40
+# fail 8
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3057.975833
