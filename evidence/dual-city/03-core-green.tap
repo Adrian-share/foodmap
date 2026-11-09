@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: 北京王府井地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+ok 1 - 北京王府井地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+  ---
+  duration_ms: 37.542042
+  type: 'test'
+  ...
+# Subtest: 上海豫园地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+ok 2 - 上海豫园地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+  ---
+  duration_ms: 7.1705
+  type: 'test'
+  ...
+# Subtest: 无位置 "我附近有什么？"：先追问，零解析
+ok 3 - 无位置 "我附近有什么？"：先追问，零解析
+  ---
+  duration_ms: 3.268375
+  type: 'test'
+  ...
+# Subtest: 无位置 ""：先追问，零解析
+ok 4 - 无位置 ""：先追问，零解析
+  ---
+  duration_ms: 1.331042
+  type: 'test'
+  ...
+# Subtest: 无位置 "我在这里"：先追问，零解析
+ok 5 - 无位置 "我在这里"：先追问，零解析
+  ---
+  duration_ms: 2.32525
+  type: 'test'
+  ...
+# Subtest: 城市冲突、未知位置不沿用上一地点
+ok 6 - 城市冲突、未知位置不沿用上一地点
+  ---
+  duration_ms: 4.88175
+  type: 'test'
+  ...
+# Subtest: 待核对上海门店退出正式收录排名，固定样本明确标记
+ok 7 - 待核对上海门店退出正式收录排名，固定样本明确标记
+  ---
+  duration_ms: 4.620958
+  type: 'test'
+  ...
+# Subtest: 实时地名解析限制上海、排除外地和非车站，歧义先选再查询
+ok 8 - 实时地名解析限制上海、排除外地和非车站，歧义先选再查询
+  ---
+  duration_ms: 87.705958
+  type: 'test'
+  ...
+# Subtest: 网页 HTTP 与真实 MCP 协议共用同一版本结果；并发双城不串数据
+ok 9 - 网页 HTTP 与真实 MCP 协议共用同一版本结果；并发双城不串数据
+  ---
+  duration_ms: 1168.935417
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1806.98475

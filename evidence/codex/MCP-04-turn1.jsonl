@@ -1,0 +1,5 @@
+{"type":"thread.started","thread_id":"01a1c0e1-c95e-7d60-800b-4328a8355249"}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_0","type":"agent_message","text":"我先查看附近探店服务，确认能否获取你的位置。\n"}}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"你在北京哪个位置？告诉我附近的酒店、地铁站或地标，我帮你查附近的探店美食。"}}
+{"type":"turn.completed","usage":{"input_tokens":22281,"cached_input_tokens":17920,"cache_write_input_tokens":0,"output_tokens":87,"reasoning_output_tokens":0}}

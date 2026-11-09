@@ -1,0 +1,63 @@
+{
+  "origin": {
+    "id": "BV10030419",
+    "name": "豫园地铁站",
+    "lng": 121.487426,
+    "lat": 31.228005,
+    "city": "上海",
+    "district": "黄浦区",
+    "address": "上海 · 黄浦区 · 10号线;14号线",
+    "source": "https://ditu.amap.com/place/BV10030419",
+    "coordinate_source": "amap_live"
+  },
+  "fixture": {
+    "id": "BV10030419",
+    "name": "豫园地铁站",
+    "city": "上海",
+    "district": "黄浦区",
+    "lng": 121.487426,
+    "lat": 31.228005,
+    "source": "https://ditu.amap.com/place/BV10030419"
+  },
+  "ranked": [
+    {
+      "id": "shanghai-laofandian",
+      "name": "上海老饭店（豫园店）",
+      "address": "黄浦区 · 福佑路242号",
+      "lng": 121.490675,
+      "lat": 31.227625,
+      "city": "上海",
+      "source": "https://ditu.amap.com/place/B001549946",
+      "verification": "pending",
+      "fixture_eligible": true,
+      "coordinate_note": "附件固定点位，分店与营业状态待核对",
+      "km": 0.31180483710653256
+    },
+    {
+      "id": "shanghai-lvbolang",
+      "name": "绿波廊酒楼（豫园总店）",
+      "address": "黄浦区 · 豫园路115号",
+      "lng": 121.491868,
+      "lat": 31.226432,
+      "city": "上海",
+      "source": "https://ditu.amap.com/place/B00155I5DD",
+      "verification": "pending",
+      "fixture_eligible": true,
+      "coordinate_note": "附件固定点位，分店与营业状态待核对",
+      "km": 0.45715090990029406
+    },
+    {
+      "id": "shanghai-dragon-phoenix",
+      "name": "和平饭店龙凤厅",
+      "address": "黄浦区 · 南京东路20号和平饭店8楼",
+      "lng": 121.489233,
+      "lat": 31.239098,
+      "city": "上海",
+      "source": "https://ditu.amap.com/place/B00154DRA8",
+      "verification": "pending",
+      "fixture_eligible": true,
+      "coordinate_note": "酒店点位作为固定样本，餐厅与营业状态待核对",
+      "km": 1.2453929384683406
+    }
+  ]
+}

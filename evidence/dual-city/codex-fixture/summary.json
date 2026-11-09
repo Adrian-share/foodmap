@@ -1,0 +1,30 @@
+{
+  "started": "2026-11-09T16:40:10.048Z",
+  "client": "codex-cli 0.164.0",
+  "cases": [
+    {
+      "id": "MCP-04",
+      "status": "passed",
+      "thread": "01a1c12e-7f75-7400-9a04-d8cb04a224e1",
+      "first_turn_location_resolutions": 0,
+      "first_turn_tool_calls": 0,
+      "second_turn_tool_calls": 1
+    },
+    {
+      "id": "MCP-01",
+      "status": "passed",
+      "thread": "01a1c12f-652d-7f00-91c5-8002a9f7d9ee",
+      "tool_calls": 1
+    },
+    {
+      "id": "MCP-02",
+      "status": "passed",
+      "thread": "01a1c130-0662-7df1-8229-2874046890f5",
+      "tool_calls": 1
+    }
+  ],
+  "url": "http://127.0.0.1:50848/mcp",
+  "status": "passed",
+  "presentation_verification": "Codex received actual JPEG image blocks and replied with three Markdown images; graphical client rendering not verified.",
+  "completed": "2026-11-09T16:42:22.591Z"
+}

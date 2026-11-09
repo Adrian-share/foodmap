@@ -1,0 +1,8 @@
+
+Running 3 tests using 1 worker
+
+  ✓  1 tests/dual-city.spec.cjs:11:40 › 北京王府井地铁站：网页显示共享结果、图钉与原视频 (2.2s)
+  ✓  2 tests/dual-city.spec.cjs:11:40 › 上海豫园地铁站：网页显示共享结果、图钉与原视频 (2.2s)
+  ✓  3 tests/dual-city.spec.cjs:26:1 › 北京切上海：旧图钉、列表、详情同步清除 (1.2s)
+
+  3 passed (10.0s)

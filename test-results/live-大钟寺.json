@@ -1,0 +1,60 @@
+{
+  "origin": {
+    "id": "BV10001016",
+    "name": "大钟寺地铁站",
+    "lng": 116.345139,
+    "lat": 39.966612,
+    "city": "北京",
+    "district": "海淀区",
+    "address": "北京 · 海淀区 · 12号线;13号线",
+    "source": "https://ditu.amap.com/place/BV10001016",
+    "coordinate_source": "amap_live"
+  },
+  "fixture": {
+    "name": "大钟寺地铁站",
+    "lng": 116.345139,
+    "lat": 39.966612,
+    "source": "https://ditu.amap.com/place/BV10001016",
+    "id": "大钟寺",
+    "city": "北京",
+    "district": "海淀区"
+  },
+  "ranked": [
+    {
+      "name": "洪福亮酒家（南草厂街店）",
+      "address": "西城区 · 官园 · 北京城区南草厂街91号",
+      "lng": 116.363946,
+      "lat": 39.936263,
+      "source": "https://tanwei.org/nearby/poi/813b0459-44a7-5bfa-a3a4-f79ad8ec6c78",
+      "id": "beijing-10",
+      "city": "北京",
+      "verification": "verified",
+      "coordinate_note": "沿用 FACT-4/5 已验收北京样本",
+      "km": 3.736080968957354
+    },
+    {
+      "name": "砂锅居（西四店）",
+      "address": "西城区 · 西四 · 北京城区西四南大街60号(西四地铁站D西南口步行340米)",
+      "lng": 116.373779,
+      "lat": 39.920459,
+      "source": "https://tanwei.org/nearby/poi/19f5c885-3479-5f51-a00f-8e380f359df0",
+      "id": "beijing-9",
+      "city": "北京",
+      "verification": "verified",
+      "coordinate_note": "沿用 FACT-4/5 已验收北京样本",
+      "km": 5.683178550451296
+    },
+    {
+      "name": "同和居（月坛店）",
+      "address": "西城区 · 月坛 · 月坛南街甲71号",
+      "lng": 116.34003,
+      "lat": 39.914177,
+      "source": "https://tanwei.org/nearby/poi/99d4510f-963a-5f9c-8306-38862d706524",
+      "id": "beijing-6",
+      "city": "北京",
+      "verification": "verified",
+      "coordinate_note": "沿用 FACT-4/5 已验收北京样本",
+      "km": 5.846752713596153
+    }
+  ]
+}

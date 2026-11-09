@@ -1,0 +1,16 @@
+[
+  {
+    "task": "fact-4-8505a1050331",
+    "artifact": "beijing-food-map-verified.zip",
+    "local_exists": true,
+    "sha256": "5812984a54f49dfdb955c397de9ffd2727820079a45e65edb110d0a04a433c63",
+    "matches_downloaded_attachment": true
+  },
+  {
+    "task": "fact-5-ddd7505603a8",
+    "artifact": "FACT-5-beijing-food-map-mcp-images.zip",
+    "local_exists": true,
+    "sha256": "090d72697cd5e5fbaff75f939f3036f96b81ae7b5b9d5e3034a3824109c40e38",
+    "matches_downloaded_attachment": true
+  }
+]

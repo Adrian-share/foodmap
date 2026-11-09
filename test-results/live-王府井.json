@@ -1,0 +1,60 @@
+{
+  "origin": {
+    "id": "BV10006496",
+    "name": "王府井地铁站",
+    "lng": 116.411571,
+    "lat": 39.908069,
+    "city": "北京",
+    "district": "东城区",
+    "address": "北京 · 东城区 · 1号线/八通线;8号线",
+    "source": "https://ditu.amap.com/place/BV10006496",
+    "coordinate_source": "amap_live"
+  },
+  "fixture": {
+    "name": "王府井地铁站",
+    "lng": 116.411571,
+    "lat": 39.908069,
+    "source": "https://ditu.amap.com/place/BV10006496",
+    "id": "王府井",
+    "city": "北京",
+    "district": "东城区"
+  },
+  "ranked": [
+    {
+      "name": "富春居（北京璞瑄酒店店）",
+      "address": "东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层",
+      "lng": 116.410001,
+      "lat": 39.923532,
+      "source": "https://tanwei.org/nearby/poi/2fe17929-0c75-575d-9364-9ebd5aa55b87",
+      "id": "beijing-5",
+      "city": "北京",
+      "verification": "verified",
+      "coordinate_note": "沿用 FACT-4/5 已验收北京样本",
+      "km": 1.7246128719436273
+    },
+    {
+      "name": "泰丰楼",
+      "address": "西城区 · 大栅栏 · 前门西大街2号楼",
+      "lng": 116.391816,
+      "lat": 39.899823,
+      "source": "https://tanwei.org/nearby/poi/6e490356-c4fc-5253-a35f-5fd5a2084d6b",
+      "id": "beijing-1",
+      "city": "北京",
+      "verification": "verified",
+      "coordinate_note": "沿用 FACT-4/5 已验收北京样本",
+      "km": 1.9184093718806494
+    },
+    {
+      "name": "北京宜宾招待所·餐厅",
+      "address": "西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)",
+      "lng": 116.379692,
+      "lat": 39.901244,
+      "source": "https://tanwei.org/nearby/poi/dee9d940-a171-5010-a6c2-5145857abd91",
+      "id": "beijing-2",
+      "city": "北京",
+      "verification": "verified",
+      "coordinate_note": "沿用 FACT-4/5 已验收北京样本",
+      "km": 2.8231637683141475
+    }
+  ]
+}

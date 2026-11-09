@@ -1,0 +1,102 @@
+
+Running 3 tests using 1 worker
+
+  ✘  1 tests/dual-city.spec.cjs:11:40 › 北京王府井地铁站：网页显示共享结果、图钉与原视频 (15.6s)
+  ✘  2 tests/dual-city.spec.cjs:11:40 › 上海豫园地铁站：网页显示共享结果、图钉与原视频 (15.3s)
+  ✘  3 tests/dual-city.spec.cjs:26:1 › 北京切上海：旧图钉、列表、详情同步清除 (15.5s)
+
+
+  1) tests/dual-city.spec.cjs:11:40 › 北京王府井地铁站：网页显示共享结果、图钉与原视频 ─────────────────────────────────────
+
+    Test timeout of 15000ms exceeded.
+
+    Error: page.waitForResponse: Test timeout of 15000ms exceeded.
+
+      11 | for(const [location,names,km] of cases)test(`${location}：网页显示共享结果、图钉与原视频`,async({page})=>{
+      12 |   await setup(page);await page.locator('#query').fill(location);
+    > 13 |   const response=page.waitForResponse(r=>r.url().includes('/api/nearby?'));
+         |                       ^
+      14 |   await page.getByRole('button',{name:'查最近三家',exact:true}).click();
+      15 |   const data=await(await response).json();expect(data.status).toBe('ok');
+      16 |   await expect(page.locator('#map .map-pin')).toHaveCount(4);
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/tests/dual-city.spec.cjs:13:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/dual-city-北京王府井地铁站：网页显示共享结果、图钉与原视频/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/dual-city-北京王府井地铁站：网页显示共享结果、图钉与原视频/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/dual-city-北京王府井地铁站：网页显示共享结果、图钉与原视频/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/dual-city-北京王府井地铁站：网页显示共享结果、图钉与原视频/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/dual-city.spec.cjs:11:40 › 上海豫园地铁站：网页显示共享结果、图钉与原视频 ──────────────────────────────────────
+
+    Test timeout of 15000ms exceeded.
+
+    Error: page.waitForResponse: Test timeout of 15000ms exceeded.
+
+      11 | for(const [location,names,km] of cases)test(`${location}：网页显示共享结果、图钉与原视频`,async({page})=>{
+      12 |   await setup(page);await page.locator('#query').fill(location);
+    > 13 |   const response=page.waitForResponse(r=>r.url().includes('/api/nearby?'));
+         |                       ^
+      14 |   await page.getByRole('button',{name:'查最近三家',exact:true}).click();
+      15 |   const data=await(await response).json();expect(data.status).toBe('ok');
+      16 |   await expect(page.locator('#map .map-pin')).toHaveCount(4);
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/tests/dual-city.spec.cjs:13:23
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/dual-city-上海豫园地铁站：网页显示共享结果、图钉与原视频/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/dual-city-上海豫园地铁站：网页显示共享结果、图钉与原视频/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/dual-city-上海豫园地铁站：网页显示共享结果、图钉与原视频/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/dual-city-上海豫园地铁站：网页显示共享结果、图钉与原视频/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/dual-city.spec.cjs:26:1 › 北京切上海：旧图钉、列表、详情同步清除 ───────────────────────────────────────────
+
+    Test timeout of 15000ms exceeded.
+
+    Error: locator.click: Test timeout of 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '北京王府井', exact: true })
+
+
+      25 | });
+      26 | test('北京切上海：旧图钉、列表、详情同步清除',async({page})=>{
+    > 27 |   await setup(page);await page.getByRole('button',{name:'北京王府井',exact:true}).click();
+         |                                                                              ^
+      28 |   await expect(page.locator('#results')).toContainText('富春居');await page.locator('[data-marker-index="1"]').click();
+      29 |   await page.getByRole('button',{name:'上海豫园',exact:true}).click();
+      30 |   await expect(page.locator('#results')).toContainText('上海老饭店');await expect(page.locator('#results')).not.toContainText('富春居');
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-7-c72be9d584e1/workdir/foodmap/tests/dual-city.spec.cjs:27:78
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/dual-city-北京切上海：旧图钉、列表、详情同步清除/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/dual-city-北京切上海：旧图钉、列表、详情同步清除/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/dual-city-北京切上海：旧图钉、列表、详情同步清除/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/dual-city-北京切上海：旧图钉、列表、详情同步清除/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    tests/dual-city.spec.cjs:11:40 › 北京王府井地铁站：网页显示共享结果、图钉与原视频 ──────────────────────────────────────
+    tests/dual-city.spec.cjs:11:40 › 上海豫园地铁站：网页显示共享结果、图钉与原视频 ───────────────────────────────────────
+    tests/dual-city.spec.cjs:26:1 › 北京切上海：旧图钉、列表、详情同步清除 ────────────────────────────────────────────
