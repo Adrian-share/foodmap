@@ -1,0 +1,19 @@
+{
+  "name": "beijing-food-map",
+  "version": "1.0.0",
+  "private": true,
+  "description": "北京十家探店门店的高德交互式地图",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node amap-server.cjs",
+    "test": "node --test acceptance.test.cjs server.test.cjs",
+    "test:page": "playwright test",
+    "test:all": "npm test && npm run test:page",
+    "test:live": "playwright test --config playwright.live.config.cjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0"
+  }
+}
