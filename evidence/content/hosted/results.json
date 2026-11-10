@@ -1,0 +1,45 @@
+[
+  {
+    "device": "desktop",
+    "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/?review=1",
+    "checked_at": "2026-11-10T05:52:07.852Z",
+    "candidate_count": 9,
+    "no_overflow": true,
+    "before": {
+      "time": 0,
+      "paused": true
+    },
+    "after": {
+      "time": 0.701418,
+      "paused": false,
+      "readyState": 4
+    },
+    "playback_verified": true,
+    "site_stayed": true,
+    "published_count": 0
+  },
+  {
+    "device": "mobile",
+    "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/?review=1",
+    "checked_at": "2026-11-10T05:52:19.997Z",
+    "candidate_count": 9,
+    "no_overflow": true,
+    "before": {
+      "time": 0,
+      "paused": true
+    },
+    "after": {
+      "time": 0.725333,
+      "paused": false,
+      "readyState": 4
+    },
+    "playback_verified": true,
+    "site_stayed": true,
+    "published_count": 0
+  },
+  {
+    "map_query": "王府井",
+    "real_map": true,
+    "results": "富春居（北京璞瑄酒店店） · 1.72 km\n\n东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层\n\n探店记录相关 B 站视频\n泰丰楼 · 1.92 km\n\n西城区 · 大栅栏 · 前门西大街2号楼\n\n探店记录相关 B 站视频\n北京宜宾招待所·餐厅 · 2.82 km\n\n西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)\n\n探店记录相关 B 站视频"
+  }
+]

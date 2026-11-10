@@ -20,3 +20,4 @@ playwright-report/
 content/review-frames/*.png
 content/reference-images/*.jpg
 evidence/content/live*/*.png
+evidence/content/hosted/*-playing.png
