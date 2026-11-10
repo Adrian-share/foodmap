@@ -1,0 +1,140 @@
+{
+  "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1k1KN6BEvw",
+  "checked_at": "2026-11-10T05:28:33.004661+00:00",
+  "http_status": 200,
+  "response": {
+    "code": 0,
+    "message": "OK",
+    "ttl": 1,
+    "data": {
+      "bvid": "BV1k1KN6BEvw",
+      "aid": 116941993806585,
+      "videos": 1,
+      "tid": 212,
+      "tid_v2": 2150,
+      "tname": "",
+      "tname_v2": "",
+      "copyright": 3,
+      "pic": "http://i1.hdslb.com/bfs/archive/a8bcefe1769a8b3d9a9db70fc3031c12ac6bb55f.jpg",
+      "title": "特厨探店|小又隐蔽，凭什么能开十多年？小李私藏—三秦人家",
+      "pubdate": 1784431800,
+      "ctime": 1784393923,
+      "desc": "",
+      "desc_v2": null,
+      "state": 0,
+      "duration": 222,
+      "rights": {
+        "bp": 0,
+        "elec": 0,
+        "download": 1,
+        "movie": 0,
+        "pay": 0,
+        "hd5": 0,
+        "no_reprint": 0,
+        "autoplay": 1,
+        "ugc_pay": 0,
+        "is_cooperation": 0,
+        "ugc_pay_preview": 0,
+        "no_background": 0,
+        "clean_mode": 0,
+        "is_stein_gate": 0,
+        "is_360": 0,
+        "no_share": 0,
+        "arc_pay": 0,
+        "free_watch": 0
+      },
+      "owner": {
+        "mid": 3546888255048212,
+        "name": "特厨隋坡",
+        "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+      },
+      "stat": {
+        "aid": 116941993806585,
+        "view": 2007668,
+        "danmaku": 1853,
+        "reply": 4546,
+        "favorite": 10945,
+        "coin": 6488,
+        "share": 7679,
+        "now_rank": 0,
+        "his_rank": 81,
+        "like": 126309,
+        "dislike": 0,
+        "evaluation": "",
+        "vt": 0
+      },
+      "argue_info": {
+        "argue_msg": "",
+        "argue_type": 0,
+        "argue_link": ""
+      },
+      "dynamic": "",
+      "cid": 40080901302,
+      "dimension": {
+        "width": 2160,
+        "height": 3840,
+        "rotate": 0
+      },
+      "premiere": null,
+      "teenage_mode": 1,
+      "is_chargeable_season": false,
+      "is_story": true,
+      "is_upower_exclusive": false,
+      "is_upower_play": false,
+      "is_upower_preview": false,
+      "enable_vt": 0,
+      "vt_display": "",
+      "is_upower_exclusive_with_qa": false,
+      "is_hua_sheng": false,
+      "no_cache": false,
+      "pages": [
+        {
+          "cid": 40080901302,
+          "page": 1,
+          "from": "vupload",
+          "part": "特厨探店|小又隐蔽，凭什么能开十多年？小李私藏—三秦人家",
+          "duration": 222,
+          "vid": "",
+          "weblink": "",
+          "dimension": {
+            "width": 2160,
+            "height": 3840,
+            "rotate": 0
+          },
+          "first_frame": "http://i1.hdslb.com/bfs/storyff/_00002kd7bfduye8t72q68gg82n3myub_firsti.jpg",
+          "ctime": 1784393923,
+          "asr_language": "cmn"
+        }
+      ],
+      "subtitle": {
+        "allow_submit": false,
+        "list": []
+      },
+      "is_season_display": false,
+      "user_garb": {
+        "url_image_ani_cut": ""
+      },
+      "honor_reply": {
+        "honor": [
+          {
+            "aid": 116941993806585,
+            "type": 3,
+            "desc": "全站排行榜最高第81名",
+            "weekly_recommend_num": 0
+          },
+          {
+            "aid": 116941993806585,
+            "type": 7,
+            "desc": "热门收录",
+            "weekly_recommend_num": 0
+          }
+        ]
+      },
+      "like_icon": "",
+      "need_jump_bv": false,
+      "disable_show_up_info": false,
+      "is_story_play": 1,
+      "is_view_self": false
+    }
+  }
+}

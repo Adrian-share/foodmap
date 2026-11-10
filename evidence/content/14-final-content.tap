@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: C01 九条有可回查结论，三位实际作者 UID 与候选匹配
+ok 1 - C01 九条有可回查结论，三位实际作者 UID 与候选匹配
+  ---
+  duration_ms: 4.415542
+  type: 'test'
+  ...
+# Subtest: C02 未核准分店、异地、未知营业状态不发布；已核准者可入库
+ok 2 - C02 未核准分店、异地、未知营业状态不发布；已核准者可入库
+  ---
+  duration_ms: 18.326833
+  type: 'test'
+  ...
+# Subtest: C03 缺图、来源不符、错分 P、错时间、无授权均不发布
+ok 3 - C03 缺图、来源不符、错分 P、错时间、无授权均不发布
+  ---
+  duration_ms: 6.651833
+  type: 'test'
+  ...
+# Subtest: C04 官方播放器携带 BV、分 P、时间点，默认不自动播放
+ok 4 - C04 官方播放器携带 BV、分 P、时间点，默认不自动播放
+  ---
+  duration_ms: 3.265292
+  type: 'test'
+  ...
+# Subtest: C05 本批未核卡片均不进入公开列表，文件实存检查不可省略
+ok 5 - C05 本批未核卡片均不进入公开列表，文件实存检查不可省略
+  ---
+  duration_ms: 3.851958
+  type: 'test'
+  ...
+# Subtest: C06 重导幂等：UID/BV/探店和高德门店去重；撤批不残留
+ok 6 - C06 重导幂等：UID/BV/探店和高德门店去重；撤批不残留
+  ---
+  duration_ms: 4.480958
+  type: 'test'
+  ...
+# Subtest: C07 本批不包含视频/音轨，公开图片必须走自有路径
+ok 7 - C07 本批不包含视频/音轨，公开图片必须走自有路径
+  ---
+  duration_ms: 35.338417
+  type: 'test'
+  ...
+# Subtest: C06 新的已核准记录在同一份网页及 MCP 搜索服务中入榜；待核项不入榜
+ok 8 - C06 新的已核准记录在同一份网页及 MCP 搜索服务中入榜；待核项不入榜
+  ---
+  duration_ms: 32.557209
+  type: 'test'
+  ...
+# Subtest: 公开内容与审核清单分离，未准用参考图永不下发
+ok 9 - 公开内容与审核清单分离，未准用参考图永不下发
+  ---
+  duration_ms: 106.218667
+  type: 'test'
+  ...
+# Subtest: Node 与 Worker 共用内容路由，页面、脚本、CSS 可读取且只读
+ok 10 - Node 与 Worker 共用内容路由，页面、脚本、CSS 可读取且只读
+  ---
+  duration_ms: 38.034583
+  type: 'test'
+  ...
+# Subtest: 内容入口保持本站，部署只允许官方播放器而不代理视频
+ok 11 - 内容入口保持本站，部署只允许官方播放器而不代理视频
+  ---
+  duration_ms: 19.721833
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 650.964125

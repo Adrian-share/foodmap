@@ -1,0 +1,13 @@
+{
+  "http_status": 200,
+  "response": {
+    "code": -352,
+    "message": "风控校验失败",
+    "ttl": 1,
+    "data": {
+      "v_voucher": "voucher_287083d4-aeee-4298-a0f7-21abf7a48991"
+    }
+  },
+  "url": "https://api.bilibili.com/x/space/wbi/arc/search?mid=3546728118618546&ps=30&pn=1&order=pubdate",
+  "checked_at": "2026-11-10T05:33:56.354175+00:00"
+}

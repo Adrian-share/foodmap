@@ -3,6 +3,7 @@ const {join} = require('node:path');
 const {createHash} = require('node:crypto');
 const manifest = require('./assets/images/manifest.json');
 const catalog = require('./data/catalog.json');
+const contentAssets = require('./content/public-assets.json');
 const restaurants = catalog.shops.map(s => ({...s,video:catalog.visits.find(v=>v.shop_id===s.id)?.video}));
 
 // Bundled, verified assets keep tool queries offline and independent of CDN hotlink rules.
@@ -19,6 +20,8 @@ const images = new Map(manifest.map(image => {
   return [image.restaurant, {...image, bytes}];
 }));
 function withImage(shop, baseUrl) {
+  const screenshot=shop.visits?.flatMap(v=>v.record?.visit?.screenshots||[]).find(i=>contentAssets['/'+i.path]?.sha256===i.sha256);
+  if(screenshot)return {...shop,image:{url:new URL('/'+screenshot.path,baseUrl).href,source:screenshot.source_video,alt:screenshot.alt,kind:'video_screenshot',timestamp_ms:screenshot.timestamp_ms,usage_basis:screenshot.usage_basis,mime_type:contentAssets['/'+screenshot.path].type,sha256:screenshot.sha256}};
   const image = images.get(shop.name);
   if (!image) return shop;
   return {...shop, image:{
@@ -36,13 +39,13 @@ function imageForPath(path) {
 function caption(shop) {
   if(!shop.image)return `### ${shop.name}\n\n直线距离：${(shop.meters/1000).toFixed(2)} km\n\n${shop.address}\n\n[分店出处](${shop.source}) · [原视频](${shop.video})\n\n核对状态：${shop.verification}；${shop.coordinate_note}\n`;
   return `### ${shop.name}\n\n直线距离：${(shop.meters / 1000).toFixed(2)} km\n\n` +
-    `![${shop.image.alt}](${shop.image.url})\n\n图片：原探店视频封面 · [图片出处](${shop.image.source})\n\n` +
+    `![${shop.image.alt}](${shop.image.url})\n\n图片：${shop.image.kind==='video_screenshot'?'原视频真实截图（'+shop.image.timestamp_ms/1000+' 秒）':'原探店视频封面'} · [图片出处](${shop.image.source})\n\n` +
     `[探店出处](${shop.source}) · [B站视频](${shop.video})\n`;
 }
 
 function imageContent(shops) {
   return shops.filter(shop=>shop.image).flatMap(shop => [{type:'text', text:caption(shop)},
-    {type:'image', data:images.get(shop.name).bytes.toString('base64'), mimeType:'image/jpeg'}]);
+    {type:'image', data:shop.image.kind==='video_screenshot'?contentAssets[new URL(shop.image.url).pathname].base64:images.get(shop.name).bytes.toString('base64'), mimeType:shop.image.mime_type||'image/jpeg'}]);
 }
 
 module.exports = {withImage, imageForPath, caption, imageContent};

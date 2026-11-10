@@ -2,8 +2,12 @@ import handler from '../beijing-food-map/amap-handler.cjs';
 import html from '../beijing-food-map/index.html';
 import samples from '../beijing-food-map/samples.js?raw';
 import prototype from '../beijing-food-map/prototype.js?raw';
+import contentHtml from '../content/index.html';
+import contentScript from '../content/app.js?raw';
+import contentStyle from '../content/style.css?raw';
 
 const assets = {'index.html': html, 'samples.js': samples, 'prototype.js': prototype};
+Object.assign(assets,{'content/index.html':contentHtml,'content/app.js':contentScript,'content/style.css':contentStyle});
 const release = typeof FOODMAP_RELEASE === 'string' ? FOODMAP_RELEASE : 'development';
 
 export default {

@@ -1,0 +1,8 @@
+{
+  "query": "提督",
+  "source": "https://restapi.amap.com/v5/place/text",
+  "checked_at": "2026-11-10T05:32:56.246746+00:00",
+  "status": "0",
+  "info": "CUQPS_HAS_EXCEEDED_THE_LIMIT",
+  "pois": []
+}

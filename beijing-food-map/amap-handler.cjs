@@ -21,6 +21,7 @@ function createHandler(options = {}) {
   if (typeof options === 'string') options = {serviceKey: options};
   const {serviceKey, jsKey, securityCode, request = fetch, readAsset} = options;
   const mapEnabled = Boolean(jsKey && securityCode);
+  const content=require('../content/http.cjs').createContentHandler({readAsset});
   async function upstream(path, params, key, host = 'https://restapi.amap.com') {
     const url = new URL(path, host);
     url.search = new URLSearchParams(params);
@@ -34,6 +35,8 @@ function createHandler(options = {}) {
     try {
       if (req.method !== 'GET') return json({error:'只支持读取'}, 405);
       const url = new URL(req.url, 'http://127.0.0.1');
+      const contentResponse=await content(req);
+      if(contentResponse)return contentResponse;
       const asset = Object.hasOwn(assets, url.pathname) && assets[url.pathname];
       if (asset) {
         const [file, type] = asset;

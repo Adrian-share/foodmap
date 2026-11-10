@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><!--308195--><script>window._GreyResult = {method:"direct",versionId:"308195"}</script>
+    <meta charset="UTF-8">
+    <title>哔哩哔哩外链播放器 - 使用说明</title>
+    <meta name="spm_prefix" content="457.0">
+    <meta name="keywords" content="bilibili,哔哩哔哩,外链,站外,播放器,使用说明,使用文档" />
+    <meta name="description" content="哔哩哔哩外链播放器使用说明" />
+    <script src="//s1.hdslb.com/bfs/seed/log/report/log-reporter.js"></script>
+    <style>
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        }
+        table {
+            max-width: 100%;
+            border: 0.05rem solid #0000001f;
+            border-radius: 0.1rem;
+            border-spacing: 0;
+            overflow: auto;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+        td, th {
+            text-align: left;
+            padding: 8px 12px;
+        }
+        th {
+            min-width: 5rem;
+        }
+        td {
+            border-top: 0.05rem solid #0000001f;
+        }
+        .iframe-example {
+            position: relative;
+            width: 640px;
+            height: 360px;
+            box-shadow: 0 0 8px #e5e9ef;
+        }
+        @supports (aspect-ratio: 16 / 9) {
+            .iframe-example {
+                max-width: 720px;
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16 / 9;
+            }
+        }
+        .iframe-example iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+<article>
+    <h1>站外(外链)播放器使用文档</h1>
+    <section>
+        <h2>引用地址</h2>
+        <pre>https://player.bilibili.com/player.html</pre>
+    </section>
+    <section>
+        <h2>使用示例</h2>
+        <pre>&lt;iframe src="//player.bilibili.com/player.html?bvid=BV1B7411m7LV" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"&gt;&lt;/iframe&gt;</pre>
+        <p class="iframe-example">
+            <iframe src="//player.bilibili.com/player.html?aid=386733968&cid=794775520&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+        </p>
+    </section>
+    <section>
+        <h2>QueryString 参数</h2>
+        <p><b>boolean</b> 类型，在 QueryString 中可以使用 <b>0</b> 和 <b>1</b> 表示。</p>
+        <table>
+            <thead>
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必要</th>
+                <th>说明</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>aid</td>
+                <td><code>number</code></td>
+                <td></td>
+                <td>UGC 视频 ID。aid、bvid 选择其一即可</td>
+            </tr>
+            <tr>
+                <td>cid</td>
+                <td><code>number</code></td>
+                <td></td>
+                <td>UGC 视频 ID</td>
+            </tr>
+            <tr>
+                <td>bvid</td>
+                <td><code>string</code></td>
+                <td>✅</td>
+                <td>UGC 视频 ID。aid、bvid 选择其一即可</td>
+            </tr>
+            <tr>
+                <td>seasonId</td>
+                <td><code>number</code></td>
+                <td></td>
+                <td>OGV 视频 ID</td>
+            </tr>
+            <tr>
+                <td>episodeId</td>
+                <td><code>number</code></td>
+                <td>✅</td>
+                <td>OGV 视频 ID。优先级高于 aid、bvid</td>
+            </tr>
+            <tr>
+                <td>poster</td>
+                <td><code>boolean</code></td>
+                <td></td>
+                <td>展示封面</td>
+            </tr>
+            <tr>
+                <td>autoplay</td>
+                <td><code>boolean</code></td>
+                <td></td>
+                <td>自动播放</td>
+            </tr>
+            <tr>
+                <td>muted</td>
+                <td><code>boolean</code></td>
+                <td></td>
+                <td>静音</td>
+            </tr>
+            <tr>
+                <td>t</td>
+                <td><code>number</code></td>
+                <td></td>
+                <td>跳转到媒体的初始时间点，单位：秒</td>
+            </tr>
+            <tr>
+                <td>danmaku</td>
+                <td><code>boolean</code></td>
+                <td></td>
+                <td><code>false</code> 表示<b>关闭弹幕</b>，其他表示默认值</td>
+            </tr>
+            <tr>
+                <td>kind</td>
+                <td><code>number</code></td>
+                <td></td>
+                <td>群组种类。非通用业务需要此参数</td>
+            </tr>
+            <tr>
+                <td>refer</td>
+                <td><code>boolean</code></td>
+                <td></td>
+                <td>跳链时携带当前的 Referrer。用于合作方查询来自嵌入网站的跳转次数</td>
+            </tr>
+            <tr>
+                <td>p</td>
+                <td><code>number</code></td>
+                <td></td>
+                <td>多 P 视频的集数。从 1 开始计数，若有 cid 参数，则此参数不生效</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</article>
+<hr>
+<footer>
+    <p>Goto <a href="//www.bilibili.com" title="bilibili Homepage">bilibili</a> Homepage.</p>
+</footer>
+</body>
+</html>

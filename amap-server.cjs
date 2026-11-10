@@ -28,6 +28,7 @@ function createServer(options = {}) {
   const {imageForPath}=require('./images.cjs');
   const service=createNearbyService({...options,audit:options.audit||(()=>{})});
   const mcp=createMcpHandler({...options,service});
+  const content=require('./content/http.cjs').createContentHandler({readAsset:file=>readFile(join(__dirname,file))});
   async function upstream(path, params, key, host = 'https://restapi.amap.com') {
     const url = new URL(path, host);
     url.search = new URLSearchParams(params);
@@ -39,6 +40,11 @@ function createServer(options = {}) {
   return http.createServer(async (req, res) => {
     try {
       const url = new URL(req.url, 'http://127.0.0.1');
+      if(url.pathname.startsWith('/content/')||url.pathname==='/api/content'){
+        const response=await content(new Request(url,{method:req.method}));
+        res.writeHead(response.status,Object.fromEntries(response.headers));
+        return res.end(Buffer.from(await response.arrayBuffer()));
+      }
       if(url.pathname==='/mcp')return mcp(req,res);
       if(req.method!=='GET'&&req.method!=='HEAD')return json(res,{error:'只支持读取'},405);
       if(url.pathname==='/health')return json(res,{status:'ok'});

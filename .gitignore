@@ -15,3 +15,8 @@ test-results/
 playwright-report/
 *.tgz
 .DS_Store
+
+# 未取得公开使用依据的审核图片仅以 Multica 附件交付，不推送源码或部署
+content/review-frames/*.png
+content/reference-images/*.jpg
+evidence/content/live*/*.png

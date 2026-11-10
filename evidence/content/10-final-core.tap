@@ -1,0 +1,514 @@
+
+> dual-city-food-map@1.0.0 test
+> node --test acceptance.test.cjs server.test.cjs mcp.acceptance.test.cjs image.acceptance.test.cjs dual-city.acceptance.test.cjs && node --test beijing-food-map/acceptance.test.cjs beijing-food-map/server.test.cjs deployment/worker.test.mjs && node --test content.acceptance.test.cjs content.http.test.cjs
+
+TAP version 13
+# Subtest: 三个固定起点的距离与验收基准误差不超过 0.05 km
+ok 1 - 三个固定起点的距离与验收基准误差不超过 0.05 km
+  ---
+  duration_ms: 6.872625
+  type: 'test'
+  ...
+# Subtest: 样本有十个不同的门店，均有地址、坐标和来源
+ok 2 - 样本有十个不同的门店，均有地址、坐标和来源
+  ---
+  duration_ms: 2.240916
+  type: 'test'
+  ...
+# Subtest: 王府井定位到地铁站并选出最近三家
+ok 3 - 王府井定位到地铁站并选出最近三家
+  ---
+  duration_ms: 6.535292
+  type: 'test'
+  ...
+# Subtest: 东坝定位到地铁站并选出最近三家
+ok 4 - 东坝定位到地铁站并选出最近三家
+  ---
+  duration_ms: 2.189459
+  type: 'test'
+  ...
+# Subtest: 大钟寺定位到地铁站并选出最近三家
+ok 5 - 大钟寺定位到地铁站并选出最近三家
+  ---
+  duration_ms: 2.366584
+  type: 'test'
+  ...
+# Subtest: 识别王府井的口述误写，未知地点不回退到旧结果
+ok 6 - 识别王府井的口述误写，未知地点不回退到旧结果
+  ---
+  duration_ms: 1.6525
+  type: 'test'
+  ...
+# Subtest: 高德静态底图请求包含一个起点和三个依序编号的门店
+ok 7 - 高德静态底图请求包含一个起点和三个依序编号的门店
+  ---
+  duration_ms: 10.867042
+  type: 'test'
+  ...
+# Subtest: 北京王府井地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+ok 8 - 北京王府井地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+  ---
+  duration_ms: 98.411708
+  type: 'test'
+  ...
+# Subtest: 上海豫园地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+ok 9 - 上海豫园地铁站：固定 ATDD 起点、三家、独立距离复算与原视频
+  ---
+  duration_ms: 13.198125
+  type: 'test'
+  ...
+# Subtest: 无位置 "我附近有什么？"：先追问，零解析
+ok 10 - 无位置 "我附近有什么？"：先追问，零解析
+  ---
+  duration_ms: 2.572833
+  type: 'test'
+  ...
+# Subtest: 无位置 ""：先追问，零解析
+ok 11 - 无位置 ""：先追问，零解析
+  ---
+  duration_ms: 2.51975
+  type: 'test'
+  ...
+# Subtest: 无位置 "我在这里"：先追问，零解析
+ok 12 - 无位置 "我在这里"：先追问，零解析
+  ---
+  duration_ms: 0.823958
+  type: 'test'
+  ...
+# Subtest: 城市冲突、未知位置不沿用上一地点
+ok 13 - 城市冲突、未知位置不沿用上一地点
+  ---
+  duration_ms: 4.858583
+  type: 'test'
+  ...
+# Subtest: 待核对上海门店退出正式收录排名，固定样本明确标记
+ok 14 - 待核对上海门店退出正式收录排名，固定样本明确标记
+  ---
+  duration_ms: 6.236042
+  type: 'test'
+  ...
+# Subtest: 实时地名解析限制上海、排除外地和非车站，歧义先选再查询
+ok 15 - 实时地名解析限制上海、排除外地和非车站，歧义先选再查询
+  ---
+  duration_ms: 96.864083
+  type: 'test'
+  ...
+# Subtest: 网页 HTTP 与真实 MCP 协议共用同一版本结果；并发双城不串数据
+ok 16 - 网页 HTTP 与真实 MCP 协议共用同一版本结果；并发双城不串数据
+  ---
+  duration_ms: 1734.296666
+  type: 'test'
+  ...
+# Subtest: 十家原始门店各有一张来自其原视频的真实封面，记录哈希及出处
+ok 17 - 十家原始门店各有一张来自其原视频的真实封面，记录哈希及出处
+  ---
+  duration_ms: 16.314541
+  type: 'test'
+  ...
+# Subtest: 王府井通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+ok 18 - 王府井通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 830.173292
+  type: 'test'
+  ...
+# Subtest: 东坝通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+ok 19 - 东坝通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 297.704167
+  type: 'test'
+  ...
+# Subtest: 大钟寺通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+ok 20 - 大钟寺通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 136.235166
+  type: 'test'
+  ...
+# Subtest: 豫园通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+ok 21 - 豫园通过真实 MCP 返回三个对应图片块、图文及可读取的本地图片地址
+  ---
+  duration_ms: 137.370792
+  type: 'test'
+  ...
+# Subtest: 缺位置及未知位置不返回图片或图文推荐
+ok 22 - 缺位置及未知位置不返回图片或图文推荐
+  ---
+  duration_ms: 134.579833
+  type: 'test'
+  ...
+# Subtest: 图片路径只允许已登记资产，保持只读及跨源边界
+ok 23 - 图片路径只允许已登记资产，保持只读及跨源边界
+  ---
+  duration_ms: 39.18925
+  type: 'test'
+  ...
+# Subtest: 真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema
+ok 24 - 真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema
+  ---
+  duration_ms: 946.828917
+  type: 'test'
+  ...
+# Subtest: 王府井返回正确样本起点、最近三家、米制直线距离及完整出处
+ok 25 - 王府井返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 304.988
+  type: 'test'
+  ...
+# Subtest: 东坝返回正确样本起点、最近三家、米制直线距离及完整出处
+ok 26 - 东坝返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 156.267875
+  type: 'test'
+  ...
+# Subtest: 大钟寺返回正确样本起点、最近三家、米制直线距离及完整出处
+ok 27 - 大钟寺返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 143.084334
+  type: 'test'
+  ...
+# Subtest: 望府井别名及北京前缀、地铁站后缀复用正确起点
+ok 28 - 望府井别名及北京前缀、地铁站后缀复用正确起点
+  ---
+  duration_ms: 125.231167
+  type: 'test'
+  ...
+# Subtest: 缺位置 ""：needs_location，无结果、无地点解析
+ok 29 - 缺位置 ""：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 80.941583
+  type: 'test'
+  ...
+# Subtest: 缺位置 "  "：needs_location，无结果、无地点解析
+ok 30 - 缺位置 "  "：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 39.33275
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我附近"：needs_location，无结果、无地点解析
+ok 31 - 缺位置 "我附近"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 49.2955
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我附近有什么？"：needs_location，无结果、无地点解析
+ok 32 - 缺位置 "我附近有什么？"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 33.161125
+  type: 'test'
+  ...
+# Subtest: 缺位置 "附近"：needs_location，无结果、无地点解析
+ok 33 - 缺位置 "附近"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 77.459917
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我在这里"：needs_location，无结果、无地点解析
+ok 34 - 缺位置 "我在这里"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 38.848125
+  type: 'test'
+  ...
+# Subtest: 缺位置 "当前位置"：needs_location，无结果、无地点解析
+ok 35 - 缺位置 "当前位置"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 38.072166
+  type: 'test'
+  ...
+# Subtest: 未知地点不复用同客户端上次起点，缺位置后补东坝才解析
+ok 36 - 未知地点不复用同客户端上次起点，缺位置后补东坝才解析
+  ---
+  duration_ms: 109.957583
+  type: 'test'
+  ...
+# Subtest: 非字符串参数拒绝；并发不同地点互不串用
+ok 37 - 非字符串参数拒绝；并发不同地点互不串用
+  ---
+  duration_ms: 100.559375
+  type: 'test'
+  ...
+# Subtest: HTTP 路径、非法 JSON、方法及跨源请求边界
+ok 38 - HTTP 路径、非法 JSON、方法及跨源请求边界
+  ---
+  duration_ms: 43.211792
+  type: 'test'
+  ...
+# Subtest: 公开配置只返回 JS key，不暴露安全密钥或 Web 服务 key
+ok 39 - 公开配置只返回 JS key，不暴露安全密钥或 Web 服务 key
+  ---
+  duration_ms: 941.707417
+  type: 'test'
+  ...
+# Subtest: 无凭据配置和状态接口可访问，搜索返回明确 503，未知地址 404
+ok 40 - 无凭据配置和状态接口可访问，搜索返回明确 503，未知地址 404
+  ---
+  duration_ms: 81.536458
+  type: 'test'
+  ...
+# Subtest: 只有 JS key 而无安全密钥时不尝试加载地图
+ok 41 - 只有 JS key 而无安全密钥时不尝试加载地图
+  ---
+  duration_ms: 43.236
+  type: 'test'
+  ...
+# Subtest: 望府井归一化为王府井地铁站，只接受北京范围的正确站点
+ok 42 - 望府井归一化为王府井地铁站，只接受北京范围的正确站点
+  ---
+  duration_ms: 40.585541
+  type: 'test'
+  ...
+# Subtest: 同名同类型站点不任意取第一个，保留所有候选供页面选择
+ok 43 - 同名同类型站点不任意取第一个，保留所有候选供页面选择
+  ---
+  duration_ms: 63.703459
+  type: 'test'
+  ...
+# Subtest: 空输入、长输入和超出北京的静态图坐标拒绝请求
+ok 44 - 空输入、长输入和超出北京的静态图坐标拒绝请求
+  ---
+  duration_ms: 115.154459
+  type: 'test'
+  ...
+# Subtest: 上游鉴权错误和网络错误返回通用错误，不泄露密钥
+ok 45 - 上游鉴权错误和网络错误返回通用错误，不泄露密钥
+  ---
+  duration_ms: 56.595917
+  type: 'test'
+  ...
+# Subtest: SDK 代理把安全密钥加到服务端 URL，覆盖用户传来的密钥
+ok 46 - SDK 代理把安全密钥加到服务端 URL，覆盖用户传来的密钥
+  ---
+  duration_ms: 27.832875
+  type: 'test'
+  ...
+# Subtest: 地图样式代理使用 webapi 域名，其他代理不接受任意目标
+ok 47 - 地图样式代理使用 webapi 域名，其他代理不接受任意目标
+  ---
+  duration_ms: 29.01875
+  type: 'test'
+  ...
+1..47
+# tests 47
+# suites 0
+# pass 47
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3556.397708
+TAP version 13
+# Subtest: 三个固定起点的距离与验收基准误差不超过 0.05 km
+ok 1 - 三个固定起点的距离与验收基准误差不超过 0.05 km
+  ---
+  duration_ms: 5.396375
+  type: 'test'
+  ...
+# Subtest: 样本有十个不同的门店，均有地址、坐标和来源
+ok 2 - 样本有十个不同的门店，均有地址、坐标和来源
+  ---
+  duration_ms: 5.118958
+  type: 'test'
+  ...
+# Subtest: 王府井定位到地铁站并选出最近三家
+ok 3 - 王府井定位到地铁站并选出最近三家
+  ---
+  duration_ms: 1.561625
+  type: 'test'
+  ...
+# Subtest: 东坝定位到地铁站并选出最近三家
+ok 4 - 东坝定位到地铁站并选出最近三家
+  ---
+  duration_ms: 14.385167
+  type: 'test'
+  ...
+# Subtest: 大钟寺定位到地铁站并选出最近三家
+ok 5 - 大钟寺定位到地铁站并选出最近三家
+  ---
+  duration_ms: 1.114958
+  type: 'test'
+  ...
+# Subtest: 识别王府井的口述误写，未知地点不回退到旧结果
+ok 6 - 识别王府井的口述误写，未知地点不回退到旧结果
+  ---
+  duration_ms: 2.273416
+  type: 'test'
+  ...
+# Subtest: 提交三个地名，离线页面均显示起点、三个图钉和三条结果
+ok 7 - 提交三个地名，离线页面均显示起点、三个图钉和三条结果
+  ---
+  duration_ms: 19.180667
+  type: 'test'
+  ...
+# Subtest: 高德静态底图请求包含一个起点和三个依序编号的门店
+ok 8 - 高德静态底图请求包含一个起点和三个依序编号的门店
+  ---
+  duration_ms: 22.254875
+  type: 'test'
+  ...
+# Subtest: 公开配置只返回 JS key，不暴露安全密钥或 Web 服务 key
+ok 9 - 公开配置只返回 JS key，不暴露安全密钥或 Web 服务 key
+  ---
+  duration_ms: 261.561209
+  type: 'test'
+  ...
+# Subtest: 无凭据配置和状态接口可访问，搜索返回明确 503，未知地址 404
+ok 10 - 无凭据配置和状态接口可访问，搜索返回明确 503，未知地址 404
+  ---
+  duration_ms: 79.806875
+  type: 'test'
+  ...
+# Subtest: 只有 JS key 而无安全密钥时不尝试加载地图
+ok 11 - 只有 JS key 而无安全密钥时不尝试加载地图
+  ---
+  duration_ms: 28.096417
+  type: 'test'
+  ...
+# Subtest: 望府井归一化为王府井地铁站，只接受北京范围的正确站点
+ok 12 - 望府井归一化为王府井地铁站，只接受北京范围的正确站点
+  ---
+  duration_ms: 39.23825
+  type: 'test'
+  ...
+# Subtest: 同名同类型站点不任意取第一个，保留所有候选供页面选择
+ok 13 - 同名同类型站点不任意取第一个，保留所有候选供页面选择
+  ---
+  duration_ms: 30.922291
+  type: 'test'
+  ...
+# Subtest: 空输入、长输入和超出北京的静态图坐标拒绝请求
+ok 14 - 空输入、长输入和超出北京的静态图坐标拒绝请求
+  ---
+  duration_ms: 76.36525
+  type: 'test'
+  ...
+# Subtest: 上游鉴权错误和网络错误返回通用错误，不泄露密钥
+ok 15 - 上游鉴权错误和网络错误返回通用错误，不泄露密钥
+  ---
+  duration_ms: 41.694084
+  type: 'test'
+  ...
+# Subtest: SDK 代理把安全密钥加到服务端 URL，覆盖用户传来的密钥
+ok 16 - SDK 代理把安全密钥加到服务端 URL，覆盖用户传来的密钥
+  ---
+  duration_ms: 26.118417
+  type: 'test'
+  ...
+# Subtest: 地图样式代理使用 webapi 域名，其他代理不接受任意目标
+ok 17 - 地图样式代理使用 webapi 域名，其他代理不接受任意目标
+  ---
+  duration_ms: 35.393292
+  type: 'test'
+  ...
+# Subtest: 同一个请求处理器在无 Node HTTP 和文件系统的环境返回页面及配置
+ok 18 - 同一个请求处理器在无 Node HTTP 和文件系统的环境返回页面及配置
+  ---
+  duration_ms: 124.638792
+  type: 'test'
+  ...
+# Subtest: 托管环境不发布源码、配置文件或任意静态文件
+ok 19 - 托管环境不发布源码、配置文件或任意静态文件
+  ---
+  duration_ms: 7.17825
+  type: 'test'
+  ...
+# Subtest: 托管地图代理使用环境凭据且不信任浏览器传入的 key 与 jscode
+ok 20 - 托管地图代理使用环境凭据且不信任浏览器传入的 key 与 jscode
+  ---
+  duration_ms: 7.52525
+  type: 'test'
+  ...
+# Subtest: 上游 HTTP 错误和异常在托管环境返回 502，不泄露密钥
+ok 21 - 上游 HTTP 错误和异常在托管环境返回 502，不泄露密钥
+  ---
+  duration_ms: 17.064041
+  type: 'test'
+  ...
+# Subtest: 使用 Worker 支持的重定向策略，并拒绝把凭据请求跟随到其他地址
+ok 22 - 使用 Worker 支持的重定向策略，并拒绝把凭据请求跟随到其他地址
+  ---
+  duration_ms: 6.286209
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1134.144458
+TAP version 13
+# Subtest: C01 九条有可回查结论，三位实际作者 UID 与候选匹配
+ok 1 - C01 九条有可回查结论，三位实际作者 UID 与候选匹配
+  ---
+  duration_ms: 4.813167
+  type: 'test'
+  ...
+# Subtest: C02 未核准分店、异地、未知营业状态不发布；已核准者可入库
+ok 2 - C02 未核准分店、异地、未知营业状态不发布；已核准者可入库
+  ---
+  duration_ms: 15.617
+  type: 'test'
+  ...
+# Subtest: C03 缺图、来源不符、错分 P、错时间、无授权均不发布
+ok 3 - C03 缺图、来源不符、错分 P、错时间、无授权均不发布
+  ---
+  duration_ms: 6.695958
+  type: 'test'
+  ...
+# Subtest: C04 官方播放器携带 BV、分 P、时间点，默认不自动播放
+ok 4 - C04 官方播放器携带 BV、分 P、时间点，默认不自动播放
+  ---
+  duration_ms: 3.496
+  type: 'test'
+  ...
+# Subtest: C05 本批未核卡片均不进入公开列表，文件实存检查不可省略
+ok 5 - C05 本批未核卡片均不进入公开列表，文件实存检查不可省略
+  ---
+  duration_ms: 4.393625
+  type: 'test'
+  ...
+# Subtest: C06 重导幂等：UID/BV/探店和高德门店去重；撤批不残留
+ok 6 - C06 重导幂等：UID/BV/探店和高德门店去重；撤批不残留
+  ---
+  duration_ms: 3.671375
+  type: 'test'
+  ...
+# Subtest: C07 本批不包含视频/音轨，公开图片必须走自有路径
+ok 7 - C07 本批不包含视频/音轨，公开图片必须走自有路径
+  ---
+  duration_ms: 37.751208
+  type: 'test'
+  ...
+# Subtest: C06 新的已核准记录在同一份网页及 MCP 搜索服务中入榜；待核项不入榜
+ok 8 - C06 新的已核准记录在同一份网页及 MCP 搜索服务中入榜；待核项不入榜
+  ---
+  duration_ms: 41.064958
+  type: 'test'
+  ...
+# Subtest: 公开内容与审核清单分离，未准用参考图永不下发
+ok 9 - 公开内容与审核清单分离，未准用参考图永不下发
+  ---
+  duration_ms: 110.322416
+  type: 'test'
+  ...
+# Subtest: Node 与 Worker 共用内容路由，页面、脚本、CSS 可读取且只读
+ok 10 - Node 与 Worker 共用内容路由，页面、脚本、CSS 可读取且只读
+  ---
+  duration_ms: 36.949708
+  type: 'test'
+  ...
+# Subtest: 内容入口保持本站，部署只允许官方播放器而不代理视频
+ok 11 - 内容入口保持本站，部署只允许官方播放器而不代理视频
+  ---
+  duration_ms: 19.051375
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 666.324791

@@ -1,0 +1,57 @@
+{
+  "query": "陶陶居",
+  "source": "https://restapi.amap.com/v5/place/text",
+  "checked_at": "2026-11-10T05:32:56.181564+00:00",
+  "status": "1",
+  "info": "OK",
+  "pois": [
+    {
+      "parent": "B0HUYMS0AF",
+      "address": "工体北路58号太古里西区五层",
+      "distance": "",
+      "pcode": "110000",
+      "adcode": "110105",
+      "pname": "北京市",
+      "cityname": "北京市",
+      "type": "餐饮服务;中餐厅;中餐厅",
+      "typecode": "050100",
+      "adname": "朝阳区",
+      "citycode": "010",
+      "name": "陶陶居酒家(太古里店)",
+      "location": "116.453170,39.934465",
+      "id": "B0H305D455"
+    },
+    {
+      "parent": "B0FFH145N4",
+      "address": "南纬路2号院内(近医学科学院)",
+      "distance": "",
+      "pcode": "110000",
+      "adcode": "110102",
+      "pname": "北京市",
+      "cityname": "北京市",
+      "type": "餐饮服务;中餐厅;综合酒楼",
+      "typecode": "050101",
+      "adname": "西城区",
+      "citycode": "010",
+      "name": "陶陶居酒家(中国医学科学院医药生物技术研究所5号楼店)",
+      "location": "116.395532,39.878948",
+      "id": "B000A84FXI"
+    },
+    {
+      "parent": "B000A856LJ",
+      "address": "北京城区朝阳北路101号朝阳大悦城7层-10",
+      "distance": "",
+      "pcode": "110000",
+      "adcode": "110105",
+      "pname": "北京市",
+      "cityname": "北京市",
+      "type": "餐饮服务;中餐厅;广东菜(粤菜)",
+      "typecode": "050103",
+      "adname": "朝阳区",
+      "citycode": "010",
+      "name": "陶陶居酒家(朝阳大悦城店)",
+      "location": "116.518862,39.924314",
+      "id": "B0J2A76HFJ"
+    }
+  ]
+}

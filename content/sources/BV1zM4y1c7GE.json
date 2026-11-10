@@ -1,0 +1,146 @@
+{
+  "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1zM4y1c7GE",
+  "checked_at": "2026-11-10T05:28:33.399326+00:00",
+  "http_status": 200,
+  "response": {
+    "code": 0,
+    "message": "OK",
+    "ttl": 1,
+    "data": {
+      "bvid": "BV1zM4y1c7GE",
+      "aid": 934965489,
+      "videos": 1,
+      "tid": 212,
+      "tid_v2": 2150,
+      "tname": "",
+      "tname_v2": "",
+      "copyright": 1,
+      "pic": "http://i1.hdslb.com/bfs/archive/28a39250b61268596a35cf5c4fafa539103923e6.jpg",
+      "title": "北京陶陶居 厨子探店¥644",
+      "pubdate": 1639798213,
+      "ctime": 1639798217,
+      "desc": "BGM 陈小春《战无不胜》",
+      "desc_v2": [
+        {
+          "raw_text": "BGM 陈小春《战无不胜》",
+          "type": 1,
+          "biz_id": 0
+        }
+      ],
+      "state": 0,
+      "duration": 213,
+      "mission_id": 276017,
+      "rights": {
+        "bp": 0,
+        "elec": 0,
+        "download": 1,
+        "movie": 0,
+        "pay": 0,
+        "hd5": 0,
+        "no_reprint": 1,
+        "autoplay": 1,
+        "ugc_pay": 0,
+        "is_cooperation": 0,
+        "ugc_pay_preview": 0,
+        "no_background": 0,
+        "clean_mode": 0,
+        "is_stein_gate": 0,
+        "is_360": 0,
+        "no_share": 0,
+        "arc_pay": 0,
+        "free_watch": 0
+      },
+      "owner": {
+        "mid": 544336675,
+        "name": "真探唐仁杰",
+        "face": "https://i1.hdslb.com/bfs/face/f82b7cb6e6b9e2351bb201f668af10b66b4d0d5c.jpg"
+      },
+      "stat": {
+        "aid": 934965489,
+        "view": 1387851,
+        "danmaku": 942,
+        "reply": 1325,
+        "favorite": 1691,
+        "coin": 1655,
+        "share": 1448,
+        "now_rank": 0,
+        "his_rank": 0,
+        "like": 69381,
+        "dislike": 0,
+        "evaluation": "",
+        "vt": 0
+      },
+      "argue_info": {
+        "argue_msg": "",
+        "argue_type": 0,
+        "argue_link": ""
+      },
+      "dynamic": "厨子探店北京陶陶居，只讲真话不说屁话。菜不难吃，但是远不及广州总店。",
+      "cid": 462706494,
+      "dimension": {
+        "width": 1080,
+        "height": 1920,
+        "rotate": 0
+      },
+      "premiere": null,
+      "teenage_mode": 0,
+      "is_chargeable_season": false,
+      "is_story": true,
+      "is_upower_exclusive": false,
+      "is_upower_play": false,
+      "is_upower_preview": false,
+      "enable_vt": 0,
+      "vt_display": "",
+      "is_upower_exclusive_with_qa": false,
+      "is_hua_sheng": false,
+      "no_cache": false,
+      "pages": [
+        {
+          "cid": 462706494,
+          "page": 1,
+          "from": "vupload",
+          "part": "2021-12-17-陶陶居（无广告）-@马金章拍摄@李倩倩剪辑-有字幕版",
+          "duration": 213,
+          "vid": "",
+          "weblink": "",
+          "dimension": {
+            "width": 1080,
+            "height": 1920,
+            "rotate": 0
+          },
+          "first_frame": "http://i1.hdslb.com/bfs/storyff/n211217a2orujoilzkieh3qcwm0hpi6i_firsti.jpg",
+          "ctime": 1639798217
+        }
+      ],
+      "subtitle": {
+        "allow_submit": false,
+        "list": []
+      },
+      "is_season_display": false,
+      "user_garb": {
+        "url_image_ani_cut": ""
+      },
+      "honor_reply": {
+        "honor": [
+          {
+            "aid": 934965489,
+            "type": 4,
+            "desc": "热门",
+            "weekly_recommend_num": 0
+          },
+          {
+            "aid": 934965489,
+            "type": 7,
+            "desc": "热门收录",
+            "weekly_recommend_num": 0
+          }
+        ]
+      },
+      "like_icon": "",
+      "need_jump_bv": false,
+      "disable_show_up_info": false,
+      "is_story_play": 1,
+      "is_view_self": false
+    }
+  }
+}

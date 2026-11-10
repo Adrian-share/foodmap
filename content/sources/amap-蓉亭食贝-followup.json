@@ -1,0 +1,25 @@
+{
+  "query": "蓉亭食贝",
+  "source": "https://restapi.amap.com/v5/place/text",
+  "checked_at": "2026-11-10T05:45:49.918808+00:00",
+  "status": "1",
+  "info": "OK",
+  "pois": [
+    {
+      "parent": "",
+      "address": "大屯街道大屯北路华悦国际公寓",
+      "distance": "",
+      "pcode": "110000",
+      "adcode": "110105",
+      "pname": "北京市",
+      "cityname": "北京市",
+      "type": "餐饮服务;中餐厅;中餐厅",
+      "typecode": "050100",
+      "adname": "朝阳区",
+      "citycode": "010",
+      "name": "樂川·蓉亭食贝(亚运村店)",
+      "location": "116.413218,40.006234",
+      "id": "B0FFGCY5QP"
+    }
+  ]
+}

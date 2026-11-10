@@ -1,0 +1,130 @@
+{
+  "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1ao4y1k75R",
+  "checked_at": "2026-11-10T05:28:33.416147+00:00",
+  "http_status": 200,
+  "response": {
+    "code": 0,
+    "message": "OK",
+    "ttl": 1,
+    "data": {
+      "bvid": "BV1ao4y1k75R",
+      "aid": 376238126,
+      "videos": 1,
+      "tid": 212,
+      "tid_v2": 2150,
+      "tname": "",
+      "tname_v2": "",
+      "copyright": 1,
+      "pic": "http://i1.hdslb.com/bfs/archive/e470ce3c21bf2dc25da14799108cf4451371ae4e.jpg",
+      "title": "便宜坊 厨子探店 ¥862",
+      "pubdate": 1623845731,
+      "ctime": 1623845731,
+      "desc": "全聚德去完了，你们要我去便宜坊，我来了，厨子探店，不来虚的。\n大家觉得9:16在B站看着可以接受吗？\n评论区留言给我～",
+      "desc_v2": [
+        {
+          "raw_text": "全聚德去完了，你们要我去便宜坊，我来了，厨子探店，不来虚的。\n大家觉得9:16在B站看着可以接受吗？\n评论区留言给我～",
+          "type": 1,
+          "biz_id": 0
+        }
+      ],
+      "state": 0,
+      "duration": 156,
+      "mission_id": 33573,
+      "rights": {
+        "bp": 0,
+        "elec": 0,
+        "download": 1,
+        "movie": 0,
+        "pay": 0,
+        "hd5": 0,
+        "no_reprint": 1,
+        "autoplay": 1,
+        "ugc_pay": 0,
+        "is_cooperation": 0,
+        "ugc_pay_preview": 0,
+        "no_background": 0,
+        "clean_mode": 0,
+        "is_stein_gate": 0,
+        "is_360": 0,
+        "no_share": 0,
+        "arc_pay": 0,
+        "free_watch": 0
+      },
+      "owner": {
+        "mid": 544336675,
+        "name": "真探唐仁杰",
+        "face": "https://i1.hdslb.com/bfs/face/f82b7cb6e6b9e2351bb201f668af10b66b4d0d5c.jpg"
+      },
+      "stat": {
+        "aid": 376238126,
+        "view": 2306656,
+        "danmaku": 792,
+        "reply": 697,
+        "favorite": 1879,
+        "coin": 1037,
+        "share": 1485,
+        "now_rank": 0,
+        "his_rank": 0,
+        "like": 46262,
+        "dislike": 0,
+        "evaluation": "",
+        "vt": 0
+      },
+      "argue_info": {
+        "argue_msg": "",
+        "argue_type": 0,
+        "argue_link": ""
+      },
+      "dynamic": "第三条",
+      "cid": 355206675,
+      "dimension": {
+        "width": 720,
+        "height": 1280,
+        "rotate": 0
+      },
+      "premiere": null,
+      "teenage_mode": 0,
+      "is_chargeable_season": false,
+      "is_story": true,
+      "is_upower_exclusive": false,
+      "is_upower_play": false,
+      "is_upower_preview": false,
+      "enable_vt": 0,
+      "vt_display": "",
+      "is_upower_exclusive_with_qa": false,
+      "is_hua_sheng": false,
+      "no_cache": false,
+      "pages": [
+        {
+          "cid": 355206675,
+          "page": 1,
+          "from": "vupload",
+          "part": "便宜坊",
+          "duration": 156,
+          "vid": "",
+          "weblink": "",
+          "dimension": {
+            "width": 720,
+            "height": 1280,
+            "rotate": 0
+          },
+          "ctime": 1623845731
+        }
+      ],
+      "subtitle": {
+        "allow_submit": false,
+        "list": []
+      },
+      "is_season_display": false,
+      "user_garb": {
+        "url_image_ani_cut": ""
+      },
+      "honor_reply": {},
+      "like_icon": "",
+      "need_jump_bv": false,
+      "disable_show_up_info": false,
+      "is_story_play": 1,
+      "is_view_self": false
+    }
+  }
+}

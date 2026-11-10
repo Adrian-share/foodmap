@@ -65,8 +65,8 @@ async function verify(page, name) {
     await expect(info).toContainText(shop.name);
     await expect(info).toContainText(shop.address);
     await expect(info).toContainText('km');
-    await expect(info.getByRole('link', {name: '探店记录'})).toHaveAttribute('href', shop.source);
-    await expect(item.getByRole('link', {name: '探店记录'})).toHaveAttribute('href', shop.source);
+    await expect(info.getByRole('link', {name: '探店记录'})).toHaveAttribute('href', '/content/?bvid=' + shop.video.match(/BV[0-9A-Za-z]{10}/)[0]);
+    await expect(item.getByRole('link', {name: '探店记录'})).toHaveAttribute('href', '/content/?bvid=' + shop.video.match(/BV[0-9A-Za-z]{10}/)[0]);
   }
 }
 

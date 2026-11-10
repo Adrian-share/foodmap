@@ -1,0 +1,119 @@
+
+Running 9 tests using 1 worker
+
+  ✘  1 tests/page.spec.cjs:64:43 › 王府井：同屏四个图钉、编号排序、分店地址距离与出处 (22.6s)
+  ✘  2 tests/page.spec.cjs:64:43 › 东坝：同屏四个图钉、编号排序、分店地址距离与出处 (22.4s)
+  ✘  3 tests/page.spec.cjs:64:43 › 大钟寺：同屏四个图钉、编号排序、分店地址距离与出处 (22.8s)
+  ✘  4 tests/page.spec.cjs:70:1 › 望府井纠错与切换起点清除旧图钉及详情 (3.0s)
+
+
+  1) tests/page.spec.cjs:64:43 › 王府井：同屏四个图钉、编号排序、分店地址距离与出处 ─────────────────────────────────────────
+
+    Test timeout of 15000ms exceeded.
+
+    Error: locator.fill: Test timeout of 15000ms exceeded.
+    Call log:
+      - waiting for getByLabel('起点', { exact: true })
+        - locator resolved to <input id="query" required="" maxlength="80" autocomplete="off" placeholder="例如 王府井"/>
+        - fill("王府井")
+      - attempting fill action
+        - waiting for element to be visible, enabled and editable
+
+
+      28 | }
+      29 | async function search(page, query) {
+    > 30 |   await page.getByLabel('起点', {exact: true}).fill(query);
+         |                                              ^
+      31 |   await page.getByRole('button', {name: '查最近三家', exact: true}).click();
+      32 | }
+      33 | async function verify(page, name) {
+        at search (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-8-8b3dc7b7fc9a/workdir/foodmap/beijing-food-map/tests/page.spec.cjs:30:46)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-8-8b3dc7b7fc9a/workdir/foodmap/beijing-food-map/tests/page.spec.cjs:66:9
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-王府井：同屏四个图钉、编号排序、分店地址距离与出处/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-王府井：同屏四个图钉、编号排序、分店地址距离与出处/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-王府井：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-王府井：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/page.spec.cjs:64:43 › 东坝：同屏四个图钉、编号排序、分店地址距离与出处 ──────────────────────────────────────────
+
+    Test timeout of 15000ms exceeded.
+
+    Error: locator.click: Test timeout of 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '查最近三家', exact: true })
+
+
+      29 | async function search(page, query) {
+      30 |   await page.getByLabel('起点', {exact: true}).fill(query);
+    > 31 |   await page.getByRole('button', {name: '查最近三家', exact: true}).click();
+         |                                                                ^
+      32 | }
+      33 | async function verify(page, name) {
+      34 |   const {names, km} = expected[name];
+        at search (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-8-8b3dc7b7fc9a/workdir/foodmap/beijing-food-map/tests/page.spec.cjs:31:64)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-8-8b3dc7b7fc9a/workdir/foodmap/beijing-food-map/tests/page.spec.cjs:66:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-东坝：同屏四个图钉、编号排序、分店地址距离与出处/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-东坝：同屏四个图钉、编号排序、分店地址距离与出处/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-东坝：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-东坝：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) tests/page.spec.cjs:64:43 › 大钟寺：同屏四个图钉、编号排序、分店地址距离与出处 ─────────────────────────────────────────
+
+    Test timeout of 15000ms exceeded.
+
+    Error: locator.click: Test timeout of 15000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '查最近三家', exact: true })
+
+
+      29 | async function search(page, query) {
+      30 |   await page.getByLabel('起点', {exact: true}).fill(query);
+    > 31 |   await page.getByRole('button', {name: '查最近三家', exact: true}).click();
+         |                                                                ^
+      32 | }
+      33 | async function verify(page, name) {
+      34 |   const {names, km} = expected[name];
+        at search (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-8-8b3dc7b7fc9a/workdir/foodmap/beijing-food-map/tests/page.spec.cjs:31:64)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-8-8b3dc7b7fc9a/workdir/foodmap/beijing-food-map/tests/page.spec.cjs:66:3
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-大钟寺：同屏四个图钉、编号排序、分店地址距离与出处/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-大钟寺：同屏四个图钉、编号排序、分店地址距离与出处/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-大钟寺：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-大钟寺：同屏四个图钉、编号排序、分店地址距离与出处/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3 failed
+    tests/page.spec.cjs:64:43 › 王府井：同屏四个图钉、编号排序、分店地址距离与出处 ──────────────────────────────────────────
+    tests/page.spec.cjs:64:43 › 东坝：同屏四个图钉、编号排序、分店地址距离与出处 ───────────────────────────────────────────
+    tests/page.spec.cjs:64:43 › 大钟寺：同屏四个图钉、编号排序、分店地址距离与出处 ──────────────────────────────────────────
+  1 interrupted
+    tests/page.spec.cjs:70:1 › 望府井纠错与切换起点清除旧图钉及详情 ──────────────────────────────────────────────────
+  5 did not run

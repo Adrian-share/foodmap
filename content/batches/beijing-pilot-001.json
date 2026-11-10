@@ -1,0 +1,2194 @@
+{
+  "batch_id": "beijing-pilot-001",
+  "version": "beijing-pilot-001.2026-11-10.1",
+  "created_at": "2026-11-10T05:33:35.206072+00:00",
+  "source_list": "附件 首批来源.json",
+  "records": [
+    {
+      "batch_id": "beijing-pilot-001",
+      "creator": {
+        "uid": "3546888255048212",
+        "name": "特厨隋坡",
+        "profile_url": "https://space.bilibili.com/3546888255048212"
+      },
+      "video": {
+        "bvid": "BV1k1KN6BEvw",
+        "url": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+        "title": "特厨探店|小又隐蔽，凭什么能开十多年？小李私藏—三秦人家",
+        "published_at": "2026-07-19T11:30:00+08:00",
+        "part": 1,
+        "cid": 40080901302,
+        "duration_seconds": 222,
+        "owner_uid": "3546888255048212",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/BV1k1KN6BEvw.json",
+        "playback_evidence": "evidence/content/live/results.json"
+      },
+      "visit": {
+        "id": "candidate:BV1k1KN6BEvw:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "三秦人家",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1k1KN6BEvw",
+            "checked_at": "2026-11-10T05:28:33.004661+00:00",
+            "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "playback",
+            "status": "verified",
+            "url": "https://player.bilibili.com/player.html?bvid=BV1k1KN6BEvw&p=1&t=0&autoplay=0&danmaku=0",
+            "checked_at": "2026-11-10T05:38:29.455Z",
+            "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+          },
+          {
+            "type": "frame_review",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+            "seconds": 5,
+            "note": "门头“三秦人家”和出镜作者；未见完整地址；与高德候选尚不能唯一对应。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "reference_images": [
+        {
+          "path": "content/reference-images/BV1k1KN6BEvw-p1-0.jpg",
+          "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+          "source_image_url": "https://i1.hdslb.com/bfs/storyff/_00002kd7bfduye8t72q68gg82n3myub_firsti.jpg",
+          "kind": "official_first_frame",
+          "timestamp_ms": null,
+          "alt": "三秦人家原视频官方首帧，保留原水印",
+          "sha256": "0519b6dbcbca925b1d2dffff3d8b47dbc8a7042acfc60753d31abf895df1a943",
+          "usage_basis": null,
+          "rights_status": "pending",
+          "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+        }
+      ],
+      "branch_candidates": [
+        {
+          "name": "三秦人家(八里庄店)",
+          "amap_poi_id": "B0FFFAIUBD",
+          "amap_url": "https://ditu.amap.com/place/B0FFFAIUBD",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "朝阳北路八里庄南里32号(近红领巾公园)",
+          "gcj02": {
+            "lng": 116.499364,
+            "lat": 39.9227
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "三秦人家饺子坊(丰西北里店)",
+          "amap_poi_id": "B0FFFX0F2G",
+          "amap_url": "https://ditu.amap.com/place/B0FFFX0F2G",
+          "city": "北京市",
+          "district": "丰台区",
+          "address": "丰西北里362号车站派出所东侧",
+          "gcj02": {
+            "lng": 116.250846,
+            "lat": 39.837737
+          },
+          "status": "candidate_only"
+        }
+      ],
+      "review": {
+        "status": "missing_screenshot",
+        "reasons": [
+          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
+          "已有带时间点的播放器实截图，公开使用依据仍待补",
+          "营业状态待确认"
+        ],
+        "suggested_capture": {
+          "part": 1,
+          "start_seconds": 5,
+          "end_seconds": 5,
+          "target": "门头“三秦人家”和出镜作者；未见完整地址；现有实截图可回查，待补完整地址画面及公开使用依据。"
+        }
+      },
+      "review_frames": [
+        {
+          "bvid": "BV1k1KN6BEvw",
+          "part": 1,
+          "timestamp_ms": 5000,
+          "path": "content/review-frames/BV1k1KN6BEvw-p1-5000.png",
+          "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 5,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "2227e5ea22cbd21396cb9e8b9e65f82126a4d98c0457f24c6420e230c350ab28",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:40:39.084Z",
+          "alt": "门头“三秦人家”和出镜作者；未见完整地址（原视频 5 秒）",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1k1KN6BEvw",
+          "part": 1,
+          "timestamp_ms": 15000,
+          "path": "content/review-frames/BV1k1KN6BEvw-p1-15000.png",
+          "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 15,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "9335698efcde63f2b7451f46d9122992e5a090b7bb567e26677f5a2e070175da",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:40:40.966Z",
+          "alt": "三秦人家 原视频 15.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1k1KN6BEvw",
+          "part": 1,
+          "timestamp_ms": 219000,
+          "path": "content/review-frames/BV1k1KN6BEvw-p1-219000.png",
+          "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 219,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "4e12d3ea7db8a2e302db9c427d5689ae85260426c24c3d62f60d445613185c57",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:40:43.211Z",
+          "alt": "三秦人家 原视频 219.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        }
+      ]
+    },
+    {
+      "batch_id": "beijing-pilot-001",
+      "creator": {
+        "uid": "3546888255048212",
+        "name": "特厨隋坡",
+        "profile_url": "https://space.bilibili.com/3546888255048212"
+      },
+      "video": {
+        "bvid": "BV1uHANzsEEk",
+        "url": "https://www.bilibili.com/video/BV1uHANzsEEk/",
+        "title": "特厨探店|四张桌子干了三碗饭（来个下联）—江西小炒",
+        "published_at": "2026-03-22T11:30:00+08:00",
+        "part": 1,
+        "cid": 36873700789,
+        "duration_seconds": 203,
+        "owner_uid": "3546888255048212",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/BV1uHANzsEEk.json",
+        "playback_evidence": "evidence/content/live/results.json"
+      },
+      "visit": {
+        "id": "candidate:BV1uHANzsEEk:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "江西小炒",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1uHANzsEEk",
+            "checked_at": "2026-11-10T05:28:33.014930+00:00",
+            "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "playback",
+            "status": "verified",
+            "url": "https://player.bilibili.com/player.html?bvid=BV1uHANzsEEk&p=1&t=0&autoplay=0&danmaku=0",
+            "checked_at": "2026-11-10T05:38:37.076Z",
+            "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+          },
+          {
+            "type": "frame_review",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1uHANzsEEk/",
+            "seconds": 5,
+            "note": "江西小炒门头与北京相关字幕；门牌地址未完整显示；与高德候选尚不能唯一对应。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "reference_images": [
+        {
+          "path": "content/reference-images/BV1uHANzsEEk-p1-0.jpg",
+          "source_video": "https://www.bilibili.com/video/BV1uHANzsEEk/",
+          "source_image_url": "https://i2.hdslb.com/bfs/storyff/_000009vte437bf05c24ucokfzugewob_firsti.jpg",
+          "kind": "official_first_frame",
+          "timestamp_ms": null,
+          "alt": "江西小炒原视频官方首帧，保留原水印",
+          "sha256": "92fe64c650639b697eecd2e08381d17aa616a0a7d55e97ddc592976f5a4be9f5",
+          "usage_basis": null,
+          "rights_status": "pending",
+          "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+        }
+      ],
+      "branch_candidates": [
+        {
+          "name": "江西小炒",
+          "amap_poi_id": "B0KKCDEW3A",
+          "amap_url": "https://ditu.amap.com/place/B0KKCDEW3A",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "武圣路52号",
+          "gcj02": {
+            "lng": 116.466299,
+            "lat": 39.863692
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "江西小炒",
+          "amap_poi_id": "B0L3OKX23Y",
+          "amap_url": "https://ditu.amap.com/place/B0L3OKX23Y",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "建外街道建国门外大街丙12号宝钢大厦对面",
+          "gcj02": {
+            "lng": 116.446225,
+            "lat": 39.907475
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "江西小炒",
+          "amap_poi_id": "B0MUP7EHH9",
+          "amap_url": "https://ditu.amap.com/place/B0MUP7EHH9",
+          "city": "北京市",
+          "district": "大兴区",
+          "address": "奥宇模板公司南门西140米",
+          "gcj02": {
+            "lng": 116.640341,
+            "lat": 39.65814
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "江西小炒",
+          "amap_poi_id": "B0MDNOFIQ0",
+          "amap_url": "https://ditu.amap.com/place/B0MDNOFIQ0",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "大鲁店一村村民委员会东侧",
+          "gcj02": {
+            "lng": 116.595644,
+            "lat": 39.83887
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "江西小炒(老君堂路店)",
+          "amap_poi_id": "B0HG3PCOI7",
+          "amap_url": "https://ditu.amap.com/place/B0HG3PCOI7",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "十八里店乡老君堂村海棠公园武警路乙2号A幢一层底商5号",
+          "gcj02": {
+            "lng": 116.508448,
+            "lat": 39.838822
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "江西小炒",
+          "amap_poi_id": "B0MULRVNDY",
+          "amap_url": "https://ditu.amap.com/place/B0MULRVNDY",
+          "city": "北京市",
+          "district": "顺义区",
+          "address": "北河学校西巷与北河学校东巷交叉口西60米",
+          "gcj02": {
+            "lng": 116.709938,
+            "lat": 40.056027
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "江西小炒",
+          "amap_poi_id": "B0MGYU6JQ3",
+          "amap_url": "https://ditu.amap.com/place/B0MGYU6JQ3",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "周家庄北路与西大望南路交叉口东北40米",
+          "gcj02": {
+            "lng": 116.477732,
+            "lat": 39.864942
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "江西小炒",
+          "amap_poi_id": "B0MAS1GW9Q",
+          "amap_url": "https://ditu.amap.com/place/B0MAS1GW9Q",
+          "city": "北京市",
+          "district": "房山区",
+          "address": "公韩路与房窑路交叉口北60米",
+          "gcj02": {
+            "lng": 116.202645,
+            "lat": 39.615538
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "江西小炒",
+          "amap_poi_id": "B0LDJ1Y52D",
+          "amap_url": "https://ditu.amap.com/place/B0LDJ1Y52D",
+          "city": "北京市",
+          "district": "通州区",
+          "address": "小堡南街与徐宋路交叉口西160米",
+          "gcj02": {
+            "lng": 116.72024,
+            "lat": 39.948344
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "江西小炒(大杜社店)",
+          "amap_poi_id": "B0I237ZAUE",
+          "amap_url": "https://ditu.amap.com/place/B0I237ZAUE",
+          "city": "北京市",
+          "district": "通州区",
+          "address": "九德路与漷马路交叉口东南60米",
+          "gcj02": {
+            "lng": 116.65321,
+            "lat": 39.750205
+          },
+          "status": "candidate_only"
+        }
+      ],
+      "review": {
+        "status": "missing_screenshot",
+        "reasons": [
+          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
+          "已有带时间点的播放器实截图，公开使用依据仍待补",
+          "营业状态待确认"
+        ],
+        "suggested_capture": {
+          "part": 1,
+          "start_seconds": 5,
+          "end_seconds": 5,
+          "target": "江西小炒门头与北京相关字幕；门牌地址未完整显示；现有实截图可回查，待补完整地址画面及公开使用依据。"
+        }
+      },
+      "review_frames": [
+        {
+          "bvid": "BV1uHANzsEEk",
+          "part": 1,
+          "timestamp_ms": 5000,
+          "path": "content/review-frames/BV1uHANzsEEk-p1-5000.png",
+          "source_video": "https://www.bilibili.com/video/BV1uHANzsEEk/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 5,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "f1fb534055eb8b17521b2534e32a6cfc2c1c0a2358b17228a18014e77b8d09f9",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:40:48.708Z",
+          "alt": "江西小炒门头与北京相关字幕；门牌地址未完整显示（原视频 5 秒）",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1uHANzsEEk",
+          "part": 1,
+          "timestamp_ms": 15000,
+          "path": "content/review-frames/BV1uHANzsEEk-p1-15000.png",
+          "source_video": "https://www.bilibili.com/video/BV1uHANzsEEk/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 15,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "3b9ac656f535e9e5b3bf8745e72b7a8548bae50b39a0ac27eb85bb2d9aa83def",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:40:50.524Z",
+          "alt": "江西小炒 原视频 15.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1uHANzsEEk",
+          "part": 1,
+          "timestamp_ms": 200000,
+          "path": "content/review-frames/BV1uHANzsEEk-p1-200000.png",
+          "source_video": "https://www.bilibili.com/video/BV1uHANzsEEk/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 200,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "018aaf0f73a8edc60ddefa211d309d85d21ba5ff58c49a752e56074c11dd730d",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:40:52.776Z",
+          "alt": "江西小炒 原视频 200.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        }
+      ]
+    },
+    {
+      "batch_id": "beijing-pilot-001",
+      "creator": {
+        "uid": "3546888255048212",
+        "name": "特厨隋坡",
+        "profile_url": "https://space.bilibili.com/3546888255048212"
+      },
+      "video": {
+        "bvid": "BV1fzhM6iE5k",
+        "url": "https://www.bilibili.com/video/BV1fzhM6iE5k/",
+        "title": "特厨探店丨北京最难订?!吃到了能记一生的炒饭!-龙庭",
+        "published_at": "2026-08-25T11:30:00+08:00",
+        "part": 1,
+        "cid": 41237351970,
+        "duration_seconds": 203,
+        "owner_uid": "3546888255048212",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/BV1fzhM6iE5k.json",
+        "playback_evidence": "evidence/content/live/results.json"
+      },
+      "visit": {
+        "id": "candidate:BV1fzhM6iE5k:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "龙庭",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1fzhM6iE5k",
+            "checked_at": "2026-11-10T05:28:33.021303+00:00",
+            "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "playback",
+            "status": "verified",
+            "url": "https://player.bilibili.com/player.html?bvid=BV1fzhM6iE5k&p=1&t=0&autoplay=0&danmaku=0",
+            "checked_at": "2026-11-10T05:38:44.360Z",
+            "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+          },
+          {
+            "type": "frame_review",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1fzhM6iE5k/",
+            "seconds": 5,
+            "note": "作者在龙庭开场介绍；未显示可唯一定位分店的地址；与高德候选尚不能唯一对应。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "reference_images": [
+        {
+          "path": "content/reference-images/BV1fzhM6iE5k-p1-0.jpg",
+          "source_video": "https://www.bilibili.com/video/BV1fzhM6iE5k/",
+          "source_image_url": "https://i2.hdslb.com/bfs/storyff/_000034s3ql44k0vua25md5xu06kklwb_firsti.jpg",
+          "kind": "official_first_frame",
+          "timestamp_ms": null,
+          "alt": "龙庭原视频官方首帧，保留原水印",
+          "sha256": "1e5eff867d7877c1200611693bbe21a3fc746fbbc7a45d4cfc24f027581cb622",
+          "usage_basis": null,
+          "rights_status": "pending",
+          "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+        }
+      ],
+      "branch_candidates": [
+        {
+          "name": "龙庭汤泉",
+          "amap_poi_id": "B0G23MBDLW",
+          "amap_url": "https://ditu.amap.com/place/B0G23MBDLW",
+          "city": "北京市",
+          "district": "通州区",
+          "address": "环景路18号院9号楼2-3层",
+          "gcj02": {
+            "lng": 116.545274,
+            "lat": 39.736884
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "龙庭琇厨(龙庭龙汇店)",
+          "amap_poi_id": "B000A96Q73",
+          "amap_url": "https://ditu.amap.com/place/B000A96Q73",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "西大望路23号合生财富广场2层",
+          "gcj02": {
+            "lng": 116.47835,
+            "lat": 39.890135
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "龙庭琇厨(融汇店)",
+          "amap_poi_id": "B0FFMFPC0A",
+          "amap_url": "https://ditu.amap.com/place/B0FFMFPC0A",
+          "city": "北京市",
+          "district": "海淀区",
+          "address": "高粱桥斜街42号",
+          "gcj02": {
+            "lng": 116.34504,
+            "lat": 39.946512
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "龙庭 The House of Dynasties(北京瑰丽酒店)",
+          "amap_poi_id": "B0J0TUZ5O9",
+          "amap_url": "https://ditu.amap.com/place/B0J0TUZ5O9",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "北京瑰丽酒店4层(呼家楼地铁站D西南口步行250米)",
+          "gcj02": {
+            "lng": 116.460588,
+            "lat": 39.920336
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "龙庭公寓",
+          "amap_poi_id": "B000A7I7WX",
+          "amap_url": "https://ditu.amap.com/place/B000A7I7WX",
+          "city": "北京市",
+          "district": "顺义区",
+          "address": "幸福东区22号",
+          "gcj02": {
+            "lng": 116.658096,
+            "lat": 40.132668
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "龙庭温泉酒店(马驹桥店)",
+          "amap_poi_id": "B0FFJHWDZ4",
+          "amap_url": "https://ditu.amap.com/place/B0FFJHWDZ4",
+          "city": "北京市",
+          "district": "通州区",
+          "address": "漷马路与506乡道交叉口南150米",
+          "gcj02": {
+            "lng": 116.545275,
+            "lat": 39.736925
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "龙庭庭院人家(辛房路店)",
+          "amap_poi_id": "B0MUKHY0RZ",
+          "amap_url": "https://ditu.amap.com/place/B0MUKHY0RZ",
+          "city": "北京市",
+          "district": "通州区",
+          "address": "环景路18号院9号楼一层",
+          "gcj02": {
+            "lng": 116.545452,
+            "lat": 39.736922
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "龙庭宿舍",
+          "amap_poi_id": "B0LDZ9V6R9",
+          "amap_url": "https://ditu.amap.com/place/B0LDZ9V6R9",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "百子湾南一路与茂兴西路交叉口西220米",
+          "gcj02": {
+            "lng": 116.480224,
+            "lat": 39.898387
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "龙庭侯村村民委员会",
+          "amap_poi_id": "B000A8854Z",
+          "amap_url": "https://ditu.amap.com/place/B000A8854Z",
+          "city": "北京市",
+          "district": "顺义区",
+          "address": "孙三路附近",
+          "gcj02": {
+            "lng": 116.937748,
+            "lat": 40.05703
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "龙庭公寓停车场",
+          "amap_poi_id": "B000AA1Z0Y",
+          "amap_url": "https://ditu.amap.com/place/B000AA1Z0Y",
+          "city": "北京市",
+          "district": "顺义区",
+          "address": "幸福东街龙庭公寓",
+          "gcj02": {
+            "lng": 116.658044,
+            "lat": 40.133025
+          },
+          "status": "candidate_only"
+        }
+      ],
+      "review": {
+        "status": "missing_screenshot",
+        "reasons": [
+          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
+          "已有带时间点的播放器实截图，公开使用依据仍待补",
+          "营业状态待确认"
+        ],
+        "suggested_capture": {
+          "part": 1,
+          "start_seconds": 5,
+          "end_seconds": 5,
+          "target": "作者在龙庭开场介绍；未显示可唯一定位分店的地址；现有实截图可回查，待补完整地址画面及公开使用依据。"
+        }
+      },
+      "review_frames": [
+        {
+          "bvid": "BV1fzhM6iE5k",
+          "part": 1,
+          "timestamp_ms": 5000,
+          "path": "content/review-frames/BV1fzhM6iE5k-p1-5000.png",
+          "source_video": "https://www.bilibili.com/video/BV1fzhM6iE5k/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 5,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "d2feca98baa3f0bb31586be4bcf8fb65fd3a7e9782e04c28d97fbdce4db2c412",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:40:57.773Z",
+          "alt": "作者在龙庭开场介绍；未显示可唯一定位分店的地址（原视频 5 秒）",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1fzhM6iE5k",
+          "part": 1,
+          "timestamp_ms": 15000,
+          "path": "content/review-frames/BV1fzhM6iE5k-p1-15000.png",
+          "source_video": "https://www.bilibili.com/video/BV1fzhM6iE5k/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 15,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "81e47169865c258770e30c7cfc8fa169aecf75fc95479630ead435b725b2cd07",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:40:59.393Z",
+          "alt": "龙庭 原视频 15.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1fzhM6iE5k",
+          "part": 1,
+          "timestamp_ms": 200000,
+          "path": "content/review-frames/BV1fzhM6iE5k-p1-200000.png",
+          "source_video": "https://www.bilibili.com/video/BV1fzhM6iE5k/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 200,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "e26d22ece19986496bd8c68d5f39b07e23c4fd510b57112f2d8798db84aa5f89",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:01.655Z",
+          "alt": "龙庭 原视频 200.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        }
+      ]
+    },
+    {
+      "batch_id": "beijing-pilot-001",
+      "creator": {
+        "uid": "3546728118618546",
+        "name": "厨者王波",
+        "profile_url": "https://space.bilibili.com/3546728118618546"
+      },
+      "video": {
+        "bvid": "BV1AdqYYNEDM",
+        "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+        "title": "探店丨厨者王波•去学去看 蓉亭食贝 蓉派川菜在北京的知名管子，到底怎么样？！",
+        "published_at": "2024-12-13T11:30:37+08:00",
+        "part": 1,
+        "cid": 27311410395,
+        "duration_seconds": 298,
+        "owner_uid": "3546728118618546",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/BV1AdqYYNEDM.json",
+        "playback_evidence": "evidence/content/live/results.json"
+      },
+      "visit": {
+        "id": "candidate:BV1AdqYYNEDM:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "蓉亭食贝",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1AdqYYNEDM",
+            "checked_at": "2026-11-10T05:28:33.229096+00:00",
+            "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "playback",
+            "status": "verified",
+            "url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+            "checked_at": "2026-11-10T05:38:51.696Z",
+            "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+          },
+          {
+            "type": "frame_review",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+            "seconds": 5,
+            "note": "作者在餐厅门外介绍；未见完整门牌和地址；与高德候选尚不能唯一对应。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "reference_images": [
+        {
+          "path": "content/reference-images/BV1AdqYYNEDM-p1-0.jpg",
+          "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "source_image_url": "https://i1.hdslb.com/bfs/storyff/n241213sa5bn14nzv8j232pt8jlkpf80_firsti.jpg",
+          "kind": "official_first_frame",
+          "timestamp_ms": null,
+          "alt": "蓉亭食贝原视频官方首帧，保留原水印",
+          "sha256": "c2215ec3b835acef0c52901fe85db57c4563c9f56a980fadf9c4111594cb51b1",
+          "usage_basis": null,
+          "rights_status": "pending",
+          "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+        }
+      ],
+      "branch_candidates": [
+        {
+          "name": "樂川·蓉亭食贝(亚运村店)",
+          "amap_poi_id": "B0FFGCY5QP",
+          "amap_url": "https://ditu.amap.com/place/B0FFGCY5QP",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "大屯街道大屯北路华悦国际公寓",
+          "gcj02": {
+            "lng": 116.413218,
+            "lat": 40.006234
+          },
+          "status": "candidate_only"
+        }
+      ],
+      "review": {
+        "status": "missing_screenshot",
+        "reasons": [
+          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
+          "已有带时间点的播放器实截图，公开使用依据仍待补",
+          "营业状态待确认"
+        ],
+        "suggested_capture": {
+          "part": 1,
+          "start_seconds": 5,
+          "end_seconds": 5,
+          "target": "作者在餐厅门外介绍；未见完整门牌和地址；现有实截图可回查，待补完整地址画面及公开使用依据。"
+        }
+      },
+      "review_frames": [
+        {
+          "bvid": "BV1AdqYYNEDM",
+          "part": 1,
+          "timestamp_ms": 5000,
+          "path": "content/review-frames/BV1AdqYYNEDM-p1-5000.png",
+          "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 5,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "610f3d90894027b15413e5235dc47fec2d2f683e22242a02d30f48b5ced38724",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:07.274Z",
+          "alt": "作者在餐厅门外介绍；未见完整门牌和地址（原视频 5 秒）",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1AdqYYNEDM",
+          "part": 1,
+          "timestamp_ms": 15000,
+          "path": "content/review-frames/BV1AdqYYNEDM-p1-15000.png",
+          "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 15,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "c973ea680aa24cc27d2b7cade51706d987d35b5563f55aaa53a98b7d885588e2",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:09.096Z",
+          "alt": "蓉亭食贝 原视频 15.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1AdqYYNEDM",
+          "part": 1,
+          "timestamp_ms": 295000,
+          "path": "content/review-frames/BV1AdqYYNEDM-p1-295000.png",
+          "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 295,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "6fd43bfd6150efb43bd3b1fb5307f6e47a305221d6299c092563982fd8cabfa6",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:11.210Z",
+          "alt": "蓉亭食贝 原视频 295.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        }
+      ]
+    },
+    {
+      "batch_id": "beijing-pilot-001",
+      "creator": {
+        "uid": "3546728118618546",
+        "name": "厨者王波",
+        "profile_url": "https://space.bilibili.com/3546728118618546"
+      },
+      "video": {
+        "bvid": "BV1NG6kYTEXG",
+        "url": "https://www.bilibili.com/video/BV1NG6kYTEXG/",
+        "title": "探店丨厨者王波•去学去看 峨嵋酒家 宫保鸡丁不愧是头牌菜！今日收获了个烧排骨",
+        "published_at": "2025-01-03T11:50:16+08:00",
+        "part": 1,
+        "cid": 27668907646,
+        "duration_seconds": 295,
+        "owner_uid": "3546728118618546",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/BV1NG6kYTEXG.json",
+        "playback_evidence": "evidence/content/live/results.json"
+      },
+      "visit": {
+        "id": "candidate:BV1NG6kYTEXG:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "峨嵋酒家",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1NG6kYTEXG",
+            "checked_at": "2026-11-10T05:28:33.263385+00:00",
+            "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "playback",
+            "status": "verified",
+            "url": "https://player.bilibili.com/player.html?bvid=BV1NG6kYTEXG&p=1&t=0&autoplay=0&danmaku=0",
+            "checked_at": "2026-11-10T05:38:58.962Z",
+            "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+          },
+          {
+            "type": "frame_review",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1NG6kYTEXG/",
+            "seconds": 15,
+            "note": "峨嵋酒家牌匾；未标明具体分店；与高德候选尚不能唯一对应。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "reference_images": [
+        {
+          "path": "content/reference-images/BV1NG6kYTEXG-p1-0.jpg",
+          "source_video": "https://www.bilibili.com/video/BV1NG6kYTEXG/",
+          "source_image_url": "https://i2.hdslb.com/bfs/storyff/n250103sagxpvo2snq0qn2itfufkct5u_firsti.jpg",
+          "kind": "official_first_frame",
+          "timestamp_ms": null,
+          "alt": "峨嵋酒家原视频官方首帧，保留原水印",
+          "sha256": "7a2a7bb9b43cce69ed4bfd28ae5bdf7e8a48f3daa30e864d95acff85ac61e444",
+          "usage_basis": null,
+          "rights_status": "pending",
+          "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+        }
+      ],
+      "branch_candidates": [
+        {
+          "name": "峨嵋酒家(地安门店)",
+          "amap_poi_id": "B0FFIN766K",
+          "amap_url": "https://ditu.amap.com/place/B0FFIN766K",
+          "city": "北京市",
+          "district": "西城区",
+          "address": "地外大街155号(什刹海地铁站C东南口步行410米)",
+          "gcj02": {
+            "lng": 116.396042,
+            "lat": 39.933781
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "峨嵋酒家(王府井步行街店)",
+          "amap_poi_id": "B0FFHESJVD",
+          "amap_url": "https://ditu.amap.com/place/B0FFHESJVD",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "金鱼胡同3号和平饭店东侧(灯市口地铁站C东南口步行320米)",
+          "gcj02": {
+            "lng": 116.416267,
+            "lat": 39.915729
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "峨嵋酒家(德内店)",
+          "amap_poi_id": "B000A87I3Y",
+          "amap_url": "https://ditu.amap.com/place/B000A87I3Y",
+          "city": "北京市",
+          "district": "西城区",
+          "address": "北京城区德胜门内大街262号(厂桥路口北)",
+          "gcj02": {
+            "lng": 116.379985,
+            "lat": 39.935121
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "峨嵋酒家(方庄店)",
+          "amap_poi_id": "B0GK37TXZK",
+          "amap_url": "https://ditu.amap.com/place/B0GK37TXZK",
+          "city": "北京市",
+          "district": "丰台区",
+          "address": "蒲芳路30号(蒲黄榆地铁站G东南口步行170米)",
+          "gcj02": {
+            "lng": 116.426285,
+            "lat": 39.865418
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "峨嵋酒家(鲜鱼口老字号美食街店)",
+          "amap_poi_id": "B0G0XSYORJ",
+          "amap_url": "https://ditu.amap.com/place/B0G0XSYORJ",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "鲜鱼口74号(前门地铁站I西南口步行450米)",
+          "gcj02": {
+            "lng": 116.399764,
+            "lat": 39.896081
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "峨嵋酒家(牡丹园店)",
+          "amap_poi_id": "B000A87GMV",
+          "amap_url": "https://ditu.amap.com/place/B000A87GMV",
+          "city": "北京市",
+          "district": "海淀区",
+          "address": "花园东路11号泰兴大厦1层(牡丹园地铁站F口步行400米)",
+          "gcj02": {
+            "lng": 116.368474,
+            "lat": 39.980279
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "峨嵋酒家(惠新东街店)",
+          "amap_poi_id": "B0IRFC9ABF",
+          "amap_url": "https://ditu.amap.com/place/B0IRFC9ABF",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "北京城区惠新东街10号",
+          "gcj02": {
+            "lng": 116.4247,
+            "lat": 39.982452
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "峨嵋酒家·烤鸭·川京两味(亚运村鸟巢店)",
+          "amap_poi_id": "B0JR65GHY7",
+          "amap_url": "https://ditu.amap.com/place/B0JR65GHY7",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "北京城区安慧里二区4号楼3层4-10号",
+          "gcj02": {
+            "lng": 116.410577,
+            "lat": 39.994803
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "峨嵋酒家(学院路店)",
+          "amap_poi_id": "B0FFHOOXZH",
+          "amap_url": "https://ditu.amap.com/place/B0FFHOOXZH",
+          "city": "北京市",
+          "district": "海淀区",
+          "address": "学清路甲18号中关村东升科技园学院园一层A区102室",
+          "gcj02": {
+            "lng": 116.353305,
+            "lat": 40.009719
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "峨嵋酒家",
+          "amap_poi_id": "B0FFH2P6YS",
+          "amap_url": "https://ditu.amap.com/place/B0FFH2P6YS",
+          "city": "北京市",
+          "district": "大兴区",
+          "address": "珠宝城入口旁(黄村西大街地铁站D西南口旁)",
+          "gcj02": {
+            "lng": 116.332089,
+            "lat": 39.730905
+          },
+          "status": "candidate_only"
+        }
+      ],
+      "review": {
+        "status": "missing_screenshot",
+        "reasons": [
+          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
+          "已有带时间点的播放器实截图，公开使用依据仍待补",
+          "营业状态待确认"
+        ],
+        "suggested_capture": {
+          "part": 1,
+          "start_seconds": 15,
+          "end_seconds": 15,
+          "target": "峨嵋酒家牌匾；未标明具体分店；现有实截图可回查，待补完整地址画面及公开使用依据。"
+        }
+      },
+      "review_frames": [
+        {
+          "bvid": "BV1NG6kYTEXG",
+          "part": 1,
+          "timestamp_ms": 5000,
+          "path": "content/review-frames/BV1NG6kYTEXG-p1-5000.png",
+          "source_video": "https://www.bilibili.com/video/BV1NG6kYTEXG/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 5,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "893b51a5d81c9640f719835ba62be66377d605a4734694bffb4b2deba350f61d",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:17.760Z",
+          "alt": "峨嵋酒家 原视频 5.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1NG6kYTEXG",
+          "part": 1,
+          "timestamp_ms": 15000,
+          "path": "content/review-frames/BV1NG6kYTEXG-p1-15000.png",
+          "source_video": "https://www.bilibili.com/video/BV1NG6kYTEXG/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 15,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "c7d4d20168955fb077c07a98522c5948f00cf82f64ecf04a431397f1436be2a9",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:19.589Z",
+          "alt": "峨嵋酒家牌匾；未标明具体分店（原视频 15 秒）",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1NG6kYTEXG",
+          "part": 1,
+          "timestamp_ms": 292000,
+          "path": "content/review-frames/BV1NG6kYTEXG-p1-292000.png",
+          "source_video": "https://www.bilibili.com/video/BV1NG6kYTEXG/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 292,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "183ceb18c057911cf75da26d02c856109654a6f269d4b5125282cf4f8d38a6ed",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:22.042Z",
+          "alt": "峨嵋酒家 原视频 292.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        }
+      ]
+    },
+    {
+      "batch_id": "beijing-pilot-001",
+      "creator": {
+        "uid": "3546728118618546",
+        "name": "厨者王波",
+        "profile_url": "https://space.bilibili.com/3546728118618546"
+      },
+      "video": {
+        "bvid": "BV1gkxKefEfW",
+        "url": "https://www.bilibili.com/video/BV1gkxKefEfW/",
+        "title": "探店丨厨者王波•去学去看 便宜坊 顶着压力给大家测评下！烤鸭的一鸭三吃很棒！",
+        "published_at": "2024-09-28T13:26:23+08:00",
+        "part": 1,
+        "cid": 26040864581,
+        "duration_seconds": 368,
+        "owner_uid": "3546728118618546",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/BV1gkxKefEfW.json",
+        "playback_evidence": "evidence/content/live/results.json"
+      },
+      "visit": {
+        "id": "candidate:BV1gkxKefEfW:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "便宜坊",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1gkxKefEfW",
+            "checked_at": "2026-11-10T05:28:33.250060+00:00",
+            "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "playback",
+            "status": "verified",
+            "url": "https://player.bilibili.com/player.html?bvid=BV1gkxKefEfW&p=1&t=0&autoplay=0&danmaku=0",
+            "checked_at": "2026-11-10T05:39:05.840Z",
+            "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+          },
+          {
+            "type": "frame_review",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1gkxKefEfW/",
+            "seconds": 5,
+            "note": "作者在餐厅内与菜品同框；未见分店地址；与高德候选尚不能唯一对应。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "reference_images": [
+        {
+          "path": "content/reference-images/BV1gkxKefEfW-p1-0.jpg",
+          "source_video": "https://www.bilibili.com/video/BV1gkxKefEfW/",
+          "source_image_url": "https://i0.hdslb.com/bfs/storyff/n240928bd2jd90kt2jvd3m2q6wcwmtxm_firsti.jpg",
+          "kind": "official_first_frame",
+          "timestamp_ms": null,
+          "alt": "便宜坊原视频官方首帧，保留原水印",
+          "sha256": "798a13dde7b69fbc3dccc92fc5544754c5a85b55ac1b1b335fb3814cf720a19e",
+          "usage_basis": null,
+          "rights_status": "pending",
+          "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+        }
+      ],
+      "branch_candidates": [
+        {
+          "name": "便宜坊烤鸭(鲜鱼口老字号美食街店)",
+          "amap_poi_id": "B000A8ULHM",
+          "amap_url": "https://ditu.amap.com/place/B000A8ULHM",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "北京城区鲜鱼口街65-77号(前门地铁站G东南口步行350米)",
+          "gcj02": {
+            "lng": 116.400768,
+            "lat": 39.89644
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(王府井王府商厦店)",
+          "amap_poi_id": "B0MBKRQYTC",
+          "amap_url": "https://ditu.amap.com/place/B0MBKRQYTC",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "王府井大街301号王府商厦四层403华为或蜜雪冰城进入电梯四楼",
+          "gcj02": {
+            "lng": 116.411125,
+            "lat": 39.910332
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊(地安门店)",
+          "amap_poi_id": "B0L0NMRJCY",
+          "amap_url": "https://ditu.amap.com/place/B0L0NMRJCY",
+          "city": "北京市",
+          "district": "西城区",
+          "address": "地安门外大街与地安门东大街交叉口北60米",
+          "gcj02": {
+            "lng": 116.39641,
+            "lat": 39.934106
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊(灯市口店)",
+          "amap_poi_id": "B0LA1H1CVL",
+          "amap_url": "https://ditu.amap.com/place/B0LA1H1CVL",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "东四南大街157号2楼灯市口地铁站A口出来2层",
+          "gcj02": {
+            "lng": 116.417555,
+            "lat": 39.917314
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(梨园店)",
+          "amap_poi_id": "B0FFIETEZO",
+          "amap_url": "https://ditu.amap.com/place/B0FFIETEZO",
+          "city": "北京市",
+          "district": "通州区",
+          "address": "梨园镇群芳南街111号(高楼金地铁站A西北口步行290米)",
+          "gcj02": {
+            "lng": 116.680507,
+            "lat": 39.863915
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(玉蜓桥店)",
+          "amap_poi_id": "B000A7ZI8C",
+          "amap_url": "https://ditu.amap.com/place/B000A7ZI8C",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "北京城区天坛东路73号(天坛东里南区东2门旁)",
+          "gcj02": {
+            "lng": 116.420905,
+            "lat": 39.873845
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭店(和平里店)",
+          "amap_poi_id": "B0K3998BWE",
+          "amap_url": "https://ditu.amap.com/place/B0K3998BWE",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "和平里西街69号东单菜市场四层(地铁5号线和平里北街D口)",
+          "gcj02": {
+            "lng": 116.418056,
+            "lat": 39.958022
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(兴创大厦店)",
+          "amap_poi_id": "B0FFFAEINJ",
+          "amap_url": "https://ditu.amap.com/place/B0FFFAEINJ",
+          "city": "北京市",
+          "district": "大兴区",
+          "address": "金星西路6号院1号楼兴创大厦3层",
+          "gcj02": {
+            "lng": 116.330309,
+            "lat": 39.762847
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(哈德门店)",
+          "amap_poi_id": "B000A8054S",
+          "amap_url": "https://ditu.amap.com/place/B000A8054S",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "崇文门外街道崇文门外大街16号便宜坊大厦4层",
+          "gcj02": {
+            "lng": 116.419325,
+            "lat": 39.898925
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(国瑞购物中心店)",
+          "amap_poi_id": "B0K6DH88PP",
+          "amap_url": "https://ditu.amap.com/place/B0K6DH88PP",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "北京城区崇外大街16号便宜坊大厦a座4层",
+          "gcj02": {
+            "lng": 116.419373,
+            "lat": 39.898817
+          },
+          "status": "candidate_only"
+        }
+      ],
+      "review": {
+        "status": "missing_screenshot",
+        "reasons": [
+          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
+          "已有带时间点的播放器实截图，公开使用依据仍待补",
+          "营业状态待确认"
+        ],
+        "suggested_capture": {
+          "part": 1,
+          "start_seconds": 5,
+          "end_seconds": 5,
+          "target": "作者在餐厅内与菜品同框；未见分店地址；现有实截图可回查，待补完整地址画面及公开使用依据。"
+        }
+      },
+      "review_frames": [
+        {
+          "bvid": "BV1gkxKefEfW",
+          "part": 1,
+          "timestamp_ms": 5000,
+          "path": "content/review-frames/BV1gkxKefEfW-p1-5000.png",
+          "source_video": "https://www.bilibili.com/video/BV1gkxKefEfW/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 5,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "0f3e81e63737ca04cddae3dd3e0cf5cf4003e5e7525a758b4c34a0f206a69f75",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:27.882Z",
+          "alt": "作者在餐厅内与菜品同框；未见分店地址（原视频 5 秒）",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1gkxKefEfW",
+          "part": 1,
+          "timestamp_ms": 15000,
+          "path": "content/review-frames/BV1gkxKefEfW-p1-15000.png",
+          "source_video": "https://www.bilibili.com/video/BV1gkxKefEfW/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 15,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "49dfdc3e9194bd40fb2f1470fb6530c0d4b3afb7320d5616fa11716e4935d8af",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:29.036Z",
+          "alt": "便宜坊 原视频 15.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1gkxKefEfW",
+          "part": 1,
+          "timestamp_ms": 365000,
+          "path": "content/review-frames/BV1gkxKefEfW-p1-365000.png",
+          "source_video": "https://www.bilibili.com/video/BV1gkxKefEfW/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 365,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "e10ae37729ab4be1f9dac42c2a52471c6704a276708ceee3461f192e267ffb75",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:30.742Z",
+          "alt": "便宜坊 原视频 365.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        }
+      ]
+    },
+    {
+      "batch_id": "beijing-pilot-001",
+      "creator": {
+        "uid": "544336675",
+        "name": "真探唐仁杰",
+        "profile_url": "https://space.bilibili.com/544336675"
+      },
+      "video": {
+        "bvid": "BV1zM4y1c7GE",
+        "url": "https://www.bilibili.com/video/BV1zM4y1c7GE/",
+        "title": "北京陶陶居 厨子探店¥644",
+        "published_at": "2021-12-18T11:30:13+08:00",
+        "part": 1,
+        "cid": 462706494,
+        "duration_seconds": 213,
+        "owner_uid": "544336675",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/BV1zM4y1c7GE.json",
+        "playback_evidence": "evidence/content/live/results.json"
+      },
+      "visit": {
+        "id": "candidate:BV1zM4y1c7GE:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "陶陶居",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1zM4y1c7GE",
+            "checked_at": "2026-11-10T05:28:33.399326+00:00",
+            "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "playback",
+            "status": "verified",
+            "url": "https://player.bilibili.com/player.html?bvid=BV1zM4y1c7GE&p=1&t=0&autoplay=0&danmaku=0",
+            "checked_at": "2026-11-10T05:39:13.795Z",
+            "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+          },
+          {
+            "type": "frame_review",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1zM4y1c7GE/",
+            "seconds": 5,
+            "note": "作者在陶陶居店内展示单据；无法确定北京哪家分店；与高德候选尚不能唯一对应。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "reference_images": [
+        {
+          "path": "content/reference-images/BV1zM4y1c7GE-p1-0.jpg",
+          "source_video": "https://www.bilibili.com/video/BV1zM4y1c7GE/",
+          "source_image_url": "https://i1.hdslb.com/bfs/storyff/n211217a2orujoilzkieh3qcwm0hpi6i_firsti.jpg",
+          "kind": "official_first_frame",
+          "timestamp_ms": null,
+          "alt": "北京陶陶居原视频官方首帧，保留原水印",
+          "sha256": "2635715bec5c46d4388c6cf7db378df656d3f7772ba0180b60c01c5fffe18ec2",
+          "usage_basis": null,
+          "rights_status": "pending",
+          "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+        }
+      ],
+      "branch_candidates": [
+        {
+          "name": "陶陶居酒家(太古里店)",
+          "amap_poi_id": "B0H305D455",
+          "amap_url": "https://ditu.amap.com/place/B0H305D455",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "工体北路58号太古里西区五层",
+          "gcj02": {
+            "lng": 116.45317,
+            "lat": 39.934465
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "陶陶居酒家(中国医学科学院医药生物技术研究所5号楼店)",
+          "amap_poi_id": "B000A84FXI",
+          "amap_url": "https://ditu.amap.com/place/B000A84FXI",
+          "city": "北京市",
+          "district": "西城区",
+          "address": "南纬路2号院内(近医学科学院)",
+          "gcj02": {
+            "lng": 116.395532,
+            "lat": 39.878948
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "陶陶居酒家(朝阳大悦城店)",
+          "amap_poi_id": "B0J2A76HFJ",
+          "amap_url": "https://ditu.amap.com/place/B0J2A76HFJ",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "北京城区朝阳北路101号朝阳大悦城7层-10",
+          "gcj02": {
+            "lng": 116.518862,
+            "lat": 39.924314
+          },
+          "status": "candidate_only"
+        }
+      ],
+      "review": {
+        "status": "missing_screenshot",
+        "reasons": [
+          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
+          "已有带时间点的播放器实截图，公开使用依据仍待补",
+          "营业状态待确认"
+        ],
+        "suggested_capture": {
+          "part": 1,
+          "start_seconds": 5,
+          "end_seconds": 5,
+          "target": "作者在陶陶居店内展示单据；无法确定北京哪家分店；现有实截图可回查，待补完整地址画面及公开使用依据。"
+        }
+      },
+      "review_frames": [
+        {
+          "bvid": "BV1zM4y1c7GE",
+          "part": 1,
+          "timestamp_ms": 5000,
+          "path": "content/review-frames/BV1zM4y1c7GE-p1-5000.png",
+          "source_video": "https://www.bilibili.com/video/BV1zM4y1c7GE/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 5,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "2577028d10f42abe239acc813650aa2b727359f1bd8298208b818db6d8dfb2bf",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:36.613Z",
+          "alt": "作者在陶陶居店内展示单据；无法确定北京哪家分店（原视频 5 秒）",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1zM4y1c7GE",
+          "part": 1,
+          "timestamp_ms": 15000,
+          "path": "content/review-frames/BV1zM4y1c7GE-p1-15000.png",
+          "source_video": "https://www.bilibili.com/video/BV1zM4y1c7GE/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 15,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "bd1bbb0e16e6a58edd4a5d54923a065b8d59cd3e8a69864b1f9650b4784f7d8a",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:38.259Z",
+          "alt": "陶陶居 原视频 15.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1zM4y1c7GE",
+          "part": 1,
+          "timestamp_ms": 210000,
+          "path": "content/review-frames/BV1zM4y1c7GE-p1-210000.png",
+          "source_video": "https://www.bilibili.com/video/BV1zM4y1c7GE/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 210,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "71b7b06926395239b25996af8168b8dbf1c5e7f40b481b69c03e80a3e53ff63a",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:40.544Z",
+          "alt": "陶陶居 原视频 210.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        }
+      ]
+    },
+    {
+      "batch_id": "beijing-pilot-001",
+      "creator": {
+        "uid": "544336675",
+        "name": "真探唐仁杰",
+        "profile_url": "https://space.bilibili.com/544336675"
+      },
+      "video": {
+        "bvid": "BV1CT411k75q",
+        "url": "https://www.bilibili.com/video/BV1CT411k75q/",
+        "title": "北京.提督  厨子探店¥928",
+        "published_at": "2023-01-31T11:30:00+08:00",
+        "part": 1,
+        "cid": 985860254,
+        "duration_seconds": 248,
+        "owner_uid": "544336675",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/BV1CT411k75q.json",
+        "playback_evidence": "evidence/content/live/results.json"
+      },
+      "visit": {
+        "id": "candidate:BV1CT411k75q:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "提督",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1CT411k75q",
+            "checked_at": "2026-11-10T05:28:33.426636+00:00",
+            "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "playback",
+            "status": "verified",
+            "url": "https://player.bilibili.com/player.html?bvid=BV1CT411k75q&p=1&t=0&autoplay=0&danmaku=0",
+            "checked_at": "2026-11-10T05:39:21.275Z",
+            "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+          },
+          {
+            "type": "frame_review",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1CT411k75q/",
+            "seconds": 5,
+            "note": "作者在提督店内点评；未见完整分店地址；与高德候选尚不能唯一对应。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "reference_images": [
+        {
+          "path": "content/reference-images/BV1CT411k75q-p1-0.jpg",
+          "source_video": "https://www.bilibili.com/video/BV1CT411k75q/",
+          "source_image_url": "https://i2.hdslb.com/bfs/storyff/n230130qn170bk5y85m08i3k6aaw19f0_firsti.jpg",
+          "kind": "official_first_frame",
+          "timestamp_ms": null,
+          "alt": "北京提督原视频官方首帧，保留原水印",
+          "sha256": "7395418876ee291a046ff99ef9251bb5615d4c4ad69ecaa68fe2881eea7969db",
+          "usage_basis": null,
+          "rights_status": "pending",
+          "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+        }
+      ],
+      "branch_candidates": [
+        {
+          "name": "提督·TIDU烤鸭·北京菜(前门创始店)",
+          "amap_poi_id": "B0H65COK9M",
+          "amap_url": "https://ditu.amap.com/place/B0H65COK9M",
+          "city": "北京市",
+          "district": "西城区",
+          "address": "坊廊坊头条21号院W9楼4层01号",
+          "gcj02": {
+            "lng": 116.394922,
+            "lat": 39.897546
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "提督臻选·TIDU RESERVE(三里屯太古里南区店)",
+          "amap_poi_id": "B0H23BQ011",
+          "amap_url": "https://ditu.amap.com/place/B0H23BQ011",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "三里屯路19号三里屯太古里南区L4层",
+          "gcj02": {
+            "lng": 116.455066,
+            "lat": 39.934392
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "提督·TIDU烤鸭·北京菜(蓝色港湾店)",
+          "amap_poi_id": "B0JAXL5HDU",
+          "amap_url": "https://ditu.amap.com/place/B0JAXL5HDU",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "朝阳公园路6号院SOLANA蓝色港湾亮马美食街,1层M174",
+          "gcj02": {
+            "lng": 116.47658,
+            "lat": 39.95035
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "提督·TIDU烤鸭·北京菜(望京万科店)",
+          "amap_poi_id": "B0H17S6X4U",
+          "amap_url": "https://ditu.amap.com/place/B0H17S6X4U",
+          "city": "北京市",
+          "district": "朝阳区",
+          "address": "望京街9号商业街1层步行街提督前台",
+          "gcj02": {
+            "lng": 116.483637,
+            "lat": 39.990473
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "提督·TIDU烤鸭·北京菜(北京荟聚店)",
+          "amap_poi_id": "B0LG445YJS",
+          "amap_url": "https://ditu.amap.com/place/B0LG445YJS",
+          "city": "北京市",
+          "district": "大兴区",
+          "address": "北京城区欣宁街15号北京荟聚中心三层(三层宜家斜对面)",
+          "gcj02": {
+            "lng": 116.325957,
+            "lat": 39.788192
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "提督·TIDU烤鸭·北京菜(祥云小镇店)",
+          "amap_poi_id": "B0K6F9QLC4",
+          "amap_url": "https://ditu.amap.com/place/B0K6F9QLC4",
+          "city": "北京市",
+          "district": "顺义区",
+          "address": "安泰大街9号院中粮·祥云小镇北区F1层",
+          "gcj02": {
+            "lng": 116.537122,
+            "lat": 40.088978
+          },
+          "status": "candidate_only"
+        }
+      ],
+      "review": {
+        "status": "missing_screenshot",
+        "reasons": [
+          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
+          "已有带时间点的播放器实截图，公开使用依据仍待补",
+          "营业状态待确认"
+        ],
+        "suggested_capture": {
+          "part": 1,
+          "start_seconds": 5,
+          "end_seconds": 5,
+          "target": "作者在提督店内点评；未见完整分店地址；现有实截图可回查，待补完整地址画面及公开使用依据。"
+        }
+      },
+      "review_frames": [
+        {
+          "bvid": "BV1CT411k75q",
+          "part": 1,
+          "timestamp_ms": 5000,
+          "path": "content/review-frames/BV1CT411k75q-p1-5000.png",
+          "source_video": "https://www.bilibili.com/video/BV1CT411k75q/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 5,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "c79543c9424a04ac997366eb9a486c78e7da921297bfb7e45ae0b1b034e89e3a",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:46.242Z",
+          "alt": "作者在提督店内点评；未见完整分店地址（原视频 5 秒）",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1CT411k75q",
+          "part": 1,
+          "timestamp_ms": 15000,
+          "path": "content/review-frames/BV1CT411k75q-p1-15000.png",
+          "source_video": "https://www.bilibili.com/video/BV1CT411k75q/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 15,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "09610031d00c4230c7a030f8cf8e5694c9e8c0ef0a9a282ddb3545332933ff3b",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:48.107Z",
+          "alt": "提督 原视频 15.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1CT411k75q",
+          "part": 1,
+          "timestamp_ms": 245000,
+          "path": "content/review-frames/BV1CT411k75q-p1-245000.png",
+          "source_video": "https://www.bilibili.com/video/BV1CT411k75q/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 245,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "755446f93d47ced31d9cb1c277f091b2d9804efce0564d2ae6459a27035cb63c",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:50.549Z",
+          "alt": "提督 原视频 245.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        }
+      ]
+    },
+    {
+      "batch_id": "beijing-pilot-001",
+      "creator": {
+        "uid": "544336675",
+        "name": "真探唐仁杰",
+        "profile_url": "https://space.bilibili.com/544336675"
+      },
+      "video": {
+        "bvid": "BV1ao4y1k75R",
+        "url": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+        "title": "便宜坊 厨子探店 ¥862",
+        "published_at": "2021-06-16T20:15:31+08:00",
+        "part": 1,
+        "cid": 355206675,
+        "duration_seconds": 156,
+        "owner_uid": "544336675",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/BV1ao4y1k75R.json",
+        "playback_evidence": "evidence/content/live/results.json"
+      },
+      "visit": {
+        "id": "candidate:BV1ao4y1k75R:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "便宜坊",
+        "branch_name": null,
+        "city": null,
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1ao4y1k75R",
+            "checked_at": "2026-11-10T05:28:33.416147+00:00",
+            "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "playback",
+            "status": "verified",
+            "url": "https://player.bilibili.com/player.html?bvid=BV1ao4y1k75R&p=1&t=0&autoplay=0&danmaku=0",
+            "checked_at": "2026-11-10T05:39:28.654Z",
+            "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+          },
+          {
+            "type": "frame_review",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+            "seconds": 5,
+            "note": "作者与烤鸭同框；城市及具体便宜坊分店均需补证；与高德候选尚不能唯一对应。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "reference_images": [],
+      "branch_candidates": [
+        {
+          "name": "便宜坊烤鸭(鲜鱼口老字号美食街店)",
+          "amap_poi_id": "B000A8ULHM",
+          "amap_url": "https://ditu.amap.com/place/B000A8ULHM",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "北京城区鲜鱼口街65-77号(前门地铁站G东南口步行350米)",
+          "gcj02": {
+            "lng": 116.400768,
+            "lat": 39.89644
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(王府井王府商厦店)",
+          "amap_poi_id": "B0MBKRQYTC",
+          "amap_url": "https://ditu.amap.com/place/B0MBKRQYTC",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "王府井大街301号王府商厦四层403华为或蜜雪冰城进入电梯四楼",
+          "gcj02": {
+            "lng": 116.411125,
+            "lat": 39.910332
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊(地安门店)",
+          "amap_poi_id": "B0L0NMRJCY",
+          "amap_url": "https://ditu.amap.com/place/B0L0NMRJCY",
+          "city": "北京市",
+          "district": "西城区",
+          "address": "地安门外大街与地安门东大街交叉口北60米",
+          "gcj02": {
+            "lng": 116.39641,
+            "lat": 39.934106
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊(灯市口店)",
+          "amap_poi_id": "B0LA1H1CVL",
+          "amap_url": "https://ditu.amap.com/place/B0LA1H1CVL",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "东四南大街157号2楼灯市口地铁站A口出来2层",
+          "gcj02": {
+            "lng": 116.417555,
+            "lat": 39.917314
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(梨园店)",
+          "amap_poi_id": "B0FFIETEZO",
+          "amap_url": "https://ditu.amap.com/place/B0FFIETEZO",
+          "city": "北京市",
+          "district": "通州区",
+          "address": "梨园镇群芳南街111号(高楼金地铁站A西北口步行290米)",
+          "gcj02": {
+            "lng": 116.680507,
+            "lat": 39.863915
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(玉蜓桥店)",
+          "amap_poi_id": "B000A7ZI8C",
+          "amap_url": "https://ditu.amap.com/place/B000A7ZI8C",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "北京城区天坛东路73号(天坛东里南区东2门旁)",
+          "gcj02": {
+            "lng": 116.420905,
+            "lat": 39.873845
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭店(和平里店)",
+          "amap_poi_id": "B0K3998BWE",
+          "amap_url": "https://ditu.amap.com/place/B0K3998BWE",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "和平里西街69号东单菜市场四层(地铁5号线和平里北街D口)",
+          "gcj02": {
+            "lng": 116.418056,
+            "lat": 39.958022
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(兴创大厦店)",
+          "amap_poi_id": "B0FFFAEINJ",
+          "amap_url": "https://ditu.amap.com/place/B0FFFAEINJ",
+          "city": "北京市",
+          "district": "大兴区",
+          "address": "金星西路6号院1号楼兴创大厦3层",
+          "gcj02": {
+            "lng": 116.330309,
+            "lat": 39.762847
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(哈德门店)",
+          "amap_poi_id": "B000A8054S",
+          "amap_url": "https://ditu.amap.com/place/B000A8054S",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "崇文门外街道崇文门外大街16号便宜坊大厦4层",
+          "gcj02": {
+            "lng": 116.419325,
+            "lat": 39.898925
+          },
+          "status": "candidate_only"
+        },
+        {
+          "name": "便宜坊烤鸭(国瑞购物中心店)",
+          "amap_poi_id": "B0K6DH88PP",
+          "amap_url": "https://ditu.amap.com/place/B0K6DH88PP",
+          "city": "北京市",
+          "district": "东城区",
+          "address": "北京城区崇外大街16号便宜坊大厦a座4层",
+          "gcj02": {
+            "lng": 116.419373,
+            "lat": 39.898817
+          },
+          "status": "candidate_only"
+        }
+      ],
+      "review": {
+        "status": "missing_screenshot",
+        "reasons": [
+          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
+          "已有带时间点的播放器实截图，公开使用依据仍待补",
+          "营业状态待确认",
+          "官方元数据无 first_frame；需用户或创作者提供原视频对应截图",
+          "城市仅来自附件候选口径，原画面未补齐北京证据"
+        ],
+        "suggested_capture": {
+          "part": 1,
+          "start_seconds": 5,
+          "end_seconds": 5,
+          "target": "作者与烤鸭同框；城市及具体便宜坊分店均需补证；现有实截图可回查，待补完整地址画面及公开使用依据。"
+        }
+      },
+      "review_frames": [
+        {
+          "bvid": "BV1ao4y1k75R",
+          "part": 1,
+          "timestamp_ms": 5000,
+          "path": "content/review-frames/BV1ao4y1k75R-p1-5000.png",
+          "source_video": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 5,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "caa79cd33370cb91cb3863d44eedd3e495a9983fcc791b2d4456b17274442e70",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:56.047Z",
+          "alt": "作者与烤鸭同框；城市及具体便宜坊分店均需补证（原视频 5 秒）",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1ao4y1k75R",
+          "part": 1,
+          "timestamp_ms": 15000,
+          "path": "content/review-frames/BV1ao4y1k75R-p1-15000.png",
+          "source_video": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 15,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "2f34e7e16c4815b9106860d1e4b236c9abaaedaf9ca681cfb2a6bba11031f508",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:57.698Z",
+          "alt": "便宜坊 原视频 15.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        },
+        {
+          "bvid": "BV1ao4y1k75R",
+          "part": 1,
+          "timestamp_ms": 153000,
+          "path": "content/review-frames/BV1ao4y1k75R-p1-153000.png",
+          "source_video": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+          "capture_method": "浏览器对官方播放器 video 元素截图",
+          "current_seconds": 153,
+          "readyState": 4,
+          "video_width": 360,
+          "video_height": 640,
+          "sha256": "6d2b77bc1c64434d0e97079b27bc478ecf6c01b566fbec767f417f332571909e",
+          "rights_status": "pending",
+          "usage_basis": null,
+          "checked_at": "2026-11-10T05:41:59.702Z",
+          "alt": "便宜坊 原视频 153.0 秒画面；待补公开使用依据",
+          "frame_verified": true
+        }
+      ]
+    }
+  ],
+  "inventory": [
+    {
+      "uid": "3546888255048212",
+      "name": "特厨隋坡",
+      "scope": "仅附件三条候选；尝试官方主页与投稿列表第一页",
+      "candidate_count": 3,
+      "processed_count": 3,
+      "published_count": 0,
+      "reached_end": false,
+      "last_accessible_bvid": "BV1fzhM6iE5k",
+      "oldest_candidate_date": "2026-03-22T11:30:00+08:00",
+      "newest_candidate_date": "2026-08-25T11:30:00+08:00",
+      "history_stop": "官方投稿列表第一页 HTTP 412；未获得完整视频列表与分页游标，未到末尾；浏览器主页 弹出登录",
+      "profile_url": "https://space.bilibili.com/3546888255048212",
+      "history_evidence": "content/sources/history-3546888255048212.json",
+      "profile_evidence": "content/sources/profile-inventory.json"
+    },
+    {
+      "uid": "3546728118618546",
+      "name": "厨者王波",
+      "scope": "仅附件三条候选；尝试官方主页与投稿列表第一页",
+      "candidate_count": 3,
+      "processed_count": 3,
+      "published_count": 0,
+      "reached_end": false,
+      "last_accessible_bvid": "BV1gkxKefEfW",
+      "oldest_candidate_date": "2024-09-28T13:26:23+08:00",
+      "newest_candidate_date": "2025-01-03T11:50:16+08:00",
+      "history_stop": "官方投稿列表第一页 HTTP 200，接口 code=-352；未获得完整视频列表与分页游标，未到末尾；浏览器主页 显示投稿总数但视频列表为空，不能据此认定没有视频",
+      "profile_url": "https://space.bilibili.com/3546728118618546",
+      "history_evidence": "content/sources/history-3546728118618546.json",
+      "profile_evidence": "content/sources/profile-inventory.json"
+    },
+    {
+      "uid": "544336675",
+      "name": "真探唐仁杰",
+      "scope": "仅附件三条候选；尝试官方主页与投稿列表第一页",
+      "candidate_count": 3,
+      "processed_count": 3,
+      "published_count": 0,
+      "reached_end": false,
+      "last_accessible_bvid": "BV1ao4y1k75R",
+      "oldest_candidate_date": "2021-06-16T20:15:31+08:00",
+      "newest_candidate_date": "2023-01-31T11:30:00+08:00",
+      "history_stop": "官方投稿列表第一页 HTTP 412；未获得完整视频列表与分页游标，未到末尾；浏览器主页 弹出登录",
+      "profile_url": "https://space.bilibili.com/544336675",
+      "history_evidence": "content/sources/history-544336675.json",
+      "profile_evidence": "content/sources/profile-inventory.json"
+    }
+  ]
+}

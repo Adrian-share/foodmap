@@ -1,0 +1,1543 @@
+{
+  "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1fzhM6iE5k",
+  "checked_at": "2026-11-10T05:28:33.021303+00:00",
+  "http_status": 200,
+  "response": {
+    "code": 0,
+    "message": "OK",
+    "ttl": 1,
+    "data": {
+      "bvid": "BV1fzhM6iE5k",
+      "aid": 117153604830442,
+      "videos": 1,
+      "tid": 212,
+      "tid_v2": 2150,
+      "tname": "",
+      "tname_v2": "",
+      "copyright": 3,
+      "pic": "http://i1.hdslb.com/bfs/archive/cf409d8aa2e0ea9e647d5e56db09e54eacac5747.jpg",
+      "title": "特厨探店丨北京最难订?!吃到了能记一生的炒饭!-龙庭",
+      "pubdate": 1787628600,
+      "ctime": 1787622573,
+      "desc": "",
+      "desc_v2": null,
+      "state": 0,
+      "duration": 203,
+      "rights": {
+        "bp": 0,
+        "elec": 0,
+        "download": 1,
+        "movie": 0,
+        "pay": 0,
+        "hd5": 0,
+        "no_reprint": 0,
+        "autoplay": 1,
+        "ugc_pay": 0,
+        "is_cooperation": 0,
+        "ugc_pay_preview": 0,
+        "no_background": 0,
+        "clean_mode": 0,
+        "is_stein_gate": 0,
+        "is_360": 0,
+        "no_share": 0,
+        "arc_pay": 0,
+        "free_watch": 0
+      },
+      "owner": {
+        "mid": 3546888255048212,
+        "name": "特厨隋坡",
+        "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+      },
+      "stat": {
+        "aid": 117153604830442,
+        "view": 2200415,
+        "danmaku": 5696,
+        "reply": 9405,
+        "favorite": 5565,
+        "coin": 7169,
+        "share": 4045,
+        "now_rank": 0,
+        "his_rank": 57,
+        "like": 132692,
+        "dislike": 0,
+        "evaluation": "",
+        "vt": 0
+      },
+      "argue_info": {
+        "argue_msg": "",
+        "argue_type": 0,
+        "argue_link": ""
+      },
+      "dynamic": "",
+      "cid": 41237351970,
+      "dimension": {
+        "width": 2160,
+        "height": 3840,
+        "rotate": 0
+      },
+      "season_id": 5622142,
+      "premiere": null,
+      "teenage_mode": 1,
+      "is_chargeable_season": false,
+      "is_story": true,
+      "is_upower_exclusive": false,
+      "is_upower_play": false,
+      "is_upower_preview": false,
+      "enable_vt": 0,
+      "vt_display": "",
+      "is_upower_exclusive_with_qa": false,
+      "is_hua_sheng": false,
+      "no_cache": false,
+      "pages": [
+        {
+          "cid": 41237351970,
+          "page": 1,
+          "from": "vupload",
+          "part": "特厨探店丨北京最难订?!吃到了能记一生的炒饭!-龙庭",
+          "duration": 203,
+          "vid": "",
+          "weblink": "",
+          "dimension": {
+            "width": 2160,
+            "height": 3840,
+            "rotate": 0
+          },
+          "first_frame": "http://i2.hdslb.com/bfs/storyff/_000034s3ql44k0vua25md5xu06kklwb_firsti.jpg",
+          "ctime": 1787622573,
+          "asr_language": "cmn"
+        }
+      ],
+      "subtitle": {
+        "allow_submit": false,
+        "list": []
+      },
+      "ugc_season": {
+        "id": 5622142,
+        "title": "北京",
+        "cover": "https://s1.hdslb.com/bfs/templar/york-static/viedeo_material_default.png",
+        "mid": 3546888255048212,
+        "intro": "",
+        "sign_state": 0,
+        "attribute": 140,
+        "stat": {
+          "season_id": 5622142,
+          "view": 56341935,
+          "danmaku": 160468,
+          "reply": 115157,
+          "fav": 368417,
+          "coin": 1271165,
+          "share": 141349,
+          "now_rank": 0,
+          "his_rank": 0,
+          "like": 4192470,
+          "vt": 0,
+          "vv": 56341935
+        },
+        "ep_count": 13,
+        "season_type": 1,
+        "is_pay_season": false,
+        "enable_vt": 0,
+        "sections": [
+          {
+            "season_id": 5622142,
+            "id": 6239509,
+            "title": "正片",
+            "type": 1,
+            "episodes": [
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 129347659,
+                "aid": 114541392300677,
+                "cid": 30064575216,
+                "title": "一个认真大姐开的普通东北菜馆是什么样？-二探水一方鱼馆",
+                "attribute": 0,
+                "arc": {
+                  "aid": 114541392300677,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i2.hdslb.com/bfs/archive/a54cfd03113efe3fa4844b6754fe12281804cdd9.jpg",
+                  "title": "一个认真大姐开的普通东北菜馆是什么样？-二探水一方鱼馆",
+                  "pubdate": 1747798200,
+                  "ctime": 1747798200,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 209,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 114541392300677,
+                    "view": 5473713,
+                    "danmaku": 13792,
+                    "reply": 20444,
+                    "fav": 44561,
+                    "coin": 319853,
+                    "share": 10450,
+                    "now_rank": 0,
+                    "his_rank": 1,
+                    "like": 538105,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 5473713
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 30064575216,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "一个认真大姐开的普通东北菜馆是什么样？-二探水一方鱼馆",
+                  "duration": 209,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 2160,
+                    "height": 3840,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV1AvJhzbE45",
+                "pages": [
+                  {
+                    "cid": 30064575216,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "一个认真大姐开的普通东北菜馆是什么样？-二探水一方鱼馆",
+                    "duration": 209,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 2160,
+                      "height": 3840,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 129347660,
+                "aid": 114504499201522,
+                "cid": 29951724830,
+                "title": "揭秘！吃一顿国宴是什么体验？",
+                "attribute": 0,
+                "arc": {
+                  "aid": 114504499201522,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i1.hdslb.com/bfs/archive/484baf613f271f510d8b4c1e3837e96adaf70e3d.jpg",
+                  "title": "揭秘！吃一顿国宴是什么体验？",
+                  "pubdate": 1747279800,
+                  "ctime": 1747279800,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 275,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 114504499201522,
+                    "view": 11486738,
+                    "danmaku": 64291,
+                    "reply": 20078,
+                    "fav": 136952,
+                    "coin": 420074,
+                    "share": 44427,
+                    "now_rank": 0,
+                    "his_rank": 1,
+                    "like": 1195125,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 11486738
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 29951724830,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "揭秘！吃一顿国宴是什么体验？",
+                  "duration": 275,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 2160,
+                    "height": 3840,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV114EezqEm2",
+                "pages": [
+                  {
+                    "cid": 29951724830,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "揭秘！吃一顿国宴是什么体验？",
+                    "duration": 275,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 2160,
+                      "height": 3840,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 129347674,
+                "aid": 114424824201425,
+                "cid": 29709045660,
+                "title": "新人博主来B站的第一天，来看看全聚德！",
+                "attribute": 0,
+                "arc": {
+                  "aid": 114424824201425,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i0.hdslb.com/bfs/archive/6d91c51dfd6cb6bc4c913643c527049dba63db59.jpg",
+                  "title": "新人博主来B站的第一天，来看看全聚德！",
+                  "pubdate": 1746070200,
+                  "ctime": 1746070200,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 192,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 114424824201425,
+                    "view": 12464012,
+                    "danmaku": 26633,
+                    "reply": 22198,
+                    "fav": 72080,
+                    "coin": 379182,
+                    "share": 19994,
+                    "now_rank": 0,
+                    "his_rank": 1,
+                    "like": 828856,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 12464012
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 29709045660,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "新人博主来B站的第一天，来看看全聚德！",
+                  "duration": 192,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 2160,
+                    "height": 3840,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV1BxGXzbEis",
+                "pages": [
+                  {
+                    "cid": 29709045660,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "新人博主来B站的第一天，来看看全聚德！",
+                    "duration": 192,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 2160,
+                      "height": 3840,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 131434499,
+                "aid": 114721831259804,
+                "cid": 30621762934,
+                "title": "特厨体验 |清华和北大谁的饭更好吃？",
+                "attribute": 0,
+                "arc": {
+                  "aid": 114721831259804,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i0.hdslb.com/bfs/archive/73587976d9fa64b1d214ffe463f85a053cf8b9d6.jpg",
+                  "title": "特厨体验 |清华和北大谁的饭更好吃？",
+                  "pubdate": 1750563000,
+                  "ctime": 1750563000,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 214,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 114721831259804,
+                    "view": 2246083,
+                    "danmaku": 5273,
+                    "reply": 7741,
+                    "fav": 7796,
+                    "coin": 18345,
+                    "share": 6692,
+                    "now_rank": 0,
+                    "his_rank": 30,
+                    "like": 173169,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 2246083
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 30621762934,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "特厨体验 |清华和北大谁的饭更好吃？",
+                  "duration": 214,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 2160,
+                    "height": 3840,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV1xANUzVE4T",
+                "pages": [
+                  {
+                    "cid": 30621762934,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "特厨体验 |清华和北大谁的饭更好吃？",
+                    "duration": 214,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 2160,
+                      "height": 3840,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 131989984,
+                "aid": 114754328857463,
+                "cid": 30723212456,
+                "title": "特厨探店 |众多网红推荐的炖菜小馆—泽秀",
+                "attribute": 0,
+                "arc": {
+                  "aid": 114754328857463,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i1.hdslb.com/bfs/archive/c9c9802ddabbc0f565256124138c740f5909369f.jpg",
+                  "title": "特厨探店 |众多网红推荐的炖菜小馆—泽秀",
+                  "pubdate": 1751081400,
+                  "ctime": 1751081400,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 210,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 114754328857463,
+                    "view": 3204715,
+                    "danmaku": 13308,
+                    "reply": 4321,
+                    "fav": 6245,
+                    "coin": 20190,
+                    "share": 1351,
+                    "now_rank": 0,
+                    "his_rank": 30,
+                    "like": 197024,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 3204715
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 30723212456,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "特厨探店 |众多网红推荐的炖菜小馆—泽秀",
+                  "duration": 210,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 2160,
+                    "height": 3840,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV1YrKBzhEKF",
+                "pages": [
+                  {
+                    "cid": 30723212456,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "特厨探店 |众多网红推荐的炖菜小馆—泽秀",
+                    "duration": 210,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 2160,
+                      "height": 3840,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 140394656,
+                "aid": 115002161827406,
+                "cid": 31596872718,
+                "title": "特厨探店｜特级厨师是怎样教徒弟的？—金山小馆",
+                "attribute": 0,
+                "arc": {
+                  "aid": 115002161827406,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i1.hdslb.com/bfs/archive/607e93b7fef83ff391022935b50b2bbb0f0e59ac.jpg",
+                  "title": "特厨探店｜特级厨师是怎样教徒弟的？—金山小馆",
+                  "pubdate": 1754796600,
+                  "ctime": 1754796600,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 597,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 115002161827406,
+                    "view": 5545271,
+                    "danmaku": 17986,
+                    "reply": 10058,
+                    "fav": 17516,
+                    "coin": 44451,
+                    "share": 8032,
+                    "now_rank": 0,
+                    "his_rank": 23,
+                    "like": 234641,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 5545271
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 31596872718,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "特厨探店｜特级厨师是怎样教徒弟的？—金山小馆",
+                  "duration": 597,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 3840,
+                    "height": 2160,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV1YzbAzsErN",
+                "pages": [
+                  {
+                    "cid": 31596872718,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "特厨探店｜特级厨师是怎样教徒弟的？—金山小馆",
+                    "duration": 597,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 3840,
+                      "height": 2160,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 159236297,
+                "aid": 115555407236274,
+                "cid": 34032386253,
+                "title": "特厨探店|求了好久，才套出来的特级厨师珍藏小馆—厨忆小湖南",
+                "attribute": 0,
+                "arc": {
+                  "aid": 115555407236274,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i0.hdslb.com/bfs/archive/76075ea8c49b1543fd3bc5c278a6da291873d5da.jpg",
+                  "title": "特厨探店|求了好久，才套出来的特级厨师珍藏小馆—厨忆小湖南",
+                  "pubdate": 1763263800,
+                  "ctime": 1763263800,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 233,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 115555407236274,
+                    "view": 2796933,
+                    "danmaku": 1926,
+                    "reply": 6104,
+                    "fav": 24218,
+                    "coin": 22037,
+                    "share": 14227,
+                    "now_rank": 0,
+                    "his_rank": 13,
+                    "like": 199797,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 2796933
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 34032386253,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "特厨探店|求了好久，才套出来的特级厨师珍藏小馆—厨忆小湖南",
+                  "duration": 233,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 2160,
+                    "height": 3840,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV17WCUBVEDJ",
+                "pages": [
+                  {
+                    "cid": 34032386253,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "特厨探店|求了好久，才套出来的特级厨师珍藏小馆—厨忆小湖南",
+                    "duration": 233,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 2160,
+                      "height": 3840,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 159236298,
+                "aid": 115407750958237,
+                "cid": 33251527702,
+                "title": "特厨探店|宝藏肉饼店？怎么藏在村子里！—全宜美肉饼",
+                "attribute": 0,
+                "arc": {
+                  "aid": 115407750958237,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i2.hdslb.com/bfs/archive/eb600b33598d94c5c83e1d91e628c02ea5f8bff2.jpg",
+                  "title": "特厨探店|宝藏肉饼店？怎么藏在村子里！—全宜美肉饼",
+                  "pubdate": 1761017400,
+                  "ctime": 1761017400,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 201,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 115407750958237,
+                    "view": 2117635,
+                    "danmaku": 2987,
+                    "reply": 2435,
+                    "fav": 11979,
+                    "coin": 8894,
+                    "share": 5694,
+                    "now_rank": 0,
+                    "his_rank": 47,
+                    "like": 146222,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 2117635
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 33251527702,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "特厨探店|宝藏肉饼店？怎么藏在村子里！—全宜美肉饼",
+                  "duration": 201,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 2160,
+                    "height": 3840,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV1txW2zsEWn",
+                "pages": [
+                  {
+                    "cid": 33251527702,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "特厨探店|宝藏肉饼店？怎么藏在村子里！—全宜美肉饼",
+                    "duration": 201,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 2160,
+                      "height": 3840,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 159236299,
+                "aid": 115344131885312,
+                "cid": 32945604715,
+                "title": "特厨探店|十几块一个的饺子到底是什么味？！—喜鼎",
+                "attribute": 0,
+                "arc": {
+                  "aid": 115344131885312,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i0.hdslb.com/bfs/archive/9490717f6efaa1df97fabc87f0ed844d0b303d87.jpg",
+                  "title": "特厨探店|十几块一个的饺子到底是什么味？！—喜鼎",
+                  "pubdate": 1760067000,
+                  "ctime": 1760067000,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 243,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 115344131885312,
+                    "view": 1795121,
+                    "danmaku": 3225,
+                    "reply": 1817,
+                    "fav": 4967,
+                    "coin": 6170,
+                    "share": 4434,
+                    "now_rank": 0,
+                    "his_rank": 0,
+                    "like": 106254,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 1795121
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 32945604715,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "特厨探店|十几块一个的饺子到底是什么味？！—喜鼎",
+                  "duration": 243,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 2160,
+                    "height": 3840,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV1LCxCzPE1T",
+                "pages": [
+                  {
+                    "cid": 32945604715,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "特厨探店|十几块一个的饺子到底是什么味？！—喜鼎",
+                    "duration": 243,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 2160,
+                      "height": 3840,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 159236509,
+                "aid": 115363039675859,
+                "cid": 33026409095,
+                "title": "特厨探店|很喜欢他的店名说了很多，你们就当教学视频看—小饭店大厨师",
+                "attribute": 0,
+                "arc": {
+                  "aid": 115363039675859,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i0.hdslb.com/bfs/archive/1c59865ec2fed073f9a586474f16a430c44413a3.jpg",
+                  "title": "特厨探店|很喜欢他的店名说了很多，你们就当教学视频看—小饭店大厨师",
+                  "pubdate": 1760326200,
+                  "ctime": 1760326200,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 200,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 115363039675859,
+                    "view": 2233344,
+                    "danmaku": 1459,
+                    "reply": 2047,
+                    "fav": 5733,
+                    "coin": 6354,
+                    "share": 1872,
+                    "now_rank": 0,
+                    "his_rank": 66,
+                    "like": 129886,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 2233344
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 33026409095,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "特厨探店|很喜欢他的店名说了很多，你们就当教学视频看—小饭店大厨师",
+                  "duration": 200,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 1920,
+                    "height": 3414,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV13j4kzdE6p",
+                "pages": [
+                  {
+                    "cid": 33026409095,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "特厨探店|很喜欢他的店名说了很多，你们就当教学视频看—小饭店大厨师",
+                    "duration": 200,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 1920,
+                      "height": 3414,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 183885314,
+                "aid": 116268707417258,
+                "cid": 36873700789,
+                "title": "特厨探店|四张桌子干了三碗饭（来个下联）—江西小炒",
+                "attribute": 0,
+                "arc": {
+                  "aid": 116268707417258,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i1.hdslb.com/bfs/archive/940a8ddf5fe48614702d9b3e5a96bc4e60387e4e.jpg",
+                  "title": "特厨探店|四张桌子干了三碗饭（来个下联）—江西小炒",
+                  "pubdate": 1774150200,
+                  "ctime": 1774150200,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 203,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 116268707417258,
+                    "view": 2328235,
+                    "danmaku": 1289,
+                    "reply": 4024,
+                    "fav": 9813,
+                    "coin": 9397,
+                    "share": 6133,
+                    "now_rank": 0,
+                    "his_rank": 49,
+                    "like": 150182,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 2328235
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 36873700789,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "特厨探店|四张桌子干了三碗饭（来个下联）—江西小炒",
+                  "duration": 203,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 2160,
+                    "height": 3840,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV1uHANzsEEk",
+                "pages": [
+                  {
+                    "cid": 36873700789,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "特厨探店|四张桌子干了三碗饭（来个下联）—江西小炒",
+                    "duration": 203,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 2160,
+                      "height": 3840,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 218597660,
+                "aid": 117153604830442,
+                "cid": 41237351970,
+                "title": "特厨探店丨北京最难订?!吃到了能记一生的炒饭!-龙庭",
+                "attribute": 0,
+                "arc": {
+                  "aid": 117153604830442,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i1.hdslb.com/bfs/archive/cf409d8aa2e0ea9e647d5e56db09e54eacac5747.jpg",
+                  "title": "特厨探店丨北京最难订?!吃到了能记一生的炒饭!-龙庭",
+                  "pubdate": 1787628600,
+                  "ctime": 1787628600,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 203,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 117153604830442,
+                    "view": 2200415,
+                    "danmaku": 5696,
+                    "reply": 9405,
+                    "fav": 5565,
+                    "coin": 7169,
+                    "share": 4045,
+                    "now_rank": 0,
+                    "his_rank": 57,
+                    "like": 132692,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 2200415
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 41237351970,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "特厨探店丨北京最难订?!吃到了能记一生的炒饭!-龙庭",
+                  "duration": 203,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 2160,
+                    "height": 3840,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV1fzhM6iE5k",
+                "pages": [
+                  {
+                    "cid": 41237351970,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "特厨探店丨北京最难订?!吃到了能记一生的炒饭!-龙庭",
+                    "duration": 203,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 2160,
+                      "height": 3840,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              },
+              {
+                "season_id": 5622142,
+                "section_id": 6239509,
+                "id": 219071187,
+                "aid": 117166389070474,
+                "cid": 41317827620,
+                "title": "特厨探店｜这真不会赔？肉铺老板就敢这样定价？",
+                "attribute": 0,
+                "arc": {
+                  "aid": 117166389070474,
+                  "videos": 0,
+                  "type_id": 0,
+                  "type_name": "",
+                  "copyright": 0,
+                  "pic": "http://i2.hdslb.com/bfs/archive/be295ee58d990122d03622b9374b43a165f23e46.jpg",
+                  "title": "特厨探店｜这真不会赔？肉铺老板就敢这样定价？",
+                  "pubdate": 1787820600,
+                  "ctime": 1787820600,
+                  "desc": "",
+                  "state": 0,
+                  "duration": 183,
+                  "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 0,
+                    "autoplay": 0,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "arc_pay": 0,
+                    "free_watch": 0
+                  },
+                  "author": {
+                    "mid": 3546888255048212,
+                    "name": "特厨隋坡",
+                    "face": "https://i2.hdslb.com/bfs/face/4a6a6e459f71080664d3952957f2eafc02418b85.jpg"
+                  },
+                  "stat": {
+                    "aid": 117166389070474,
+                    "view": 2449719,
+                    "danmaku": 2603,
+                    "reply": 4485,
+                    "fav": 20992,
+                    "coin": 9049,
+                    "share": 13998,
+                    "now_rank": 0,
+                    "his_rank": 50,
+                    "like": 160517,
+                    "dislike": 0,
+                    "evaluation": "",
+                    "argue_msg": "",
+                    "vt": 0,
+                    "vv": 2449719
+                  },
+                  "dynamic": "",
+                  "dimension": {
+                    "width": 0,
+                    "height": 0,
+                    "rotate": 0
+                  },
+                  "desc_v2": null,
+                  "is_chargeable_season": false,
+                  "is_blooper": false,
+                  "enable_vt": 0,
+                  "vt_display": "",
+                  "type_id_v2": 0,
+                  "type_name_v2": "",
+                  "is_lesson_video": 0
+                },
+                "page": {
+                  "cid": 41317827620,
+                  "page": 1,
+                  "from": "vupload",
+                  "part": "特厨探店｜这真不会赔？肉铺老板就敢这样定价？",
+                  "duration": 183,
+                  "vid": "",
+                  "weblink": "",
+                  "dimension": {
+                    "width": 1080,
+                    "height": 1920,
+                    "rotate": 0
+                  }
+                },
+                "bvid": "BV1dehw61EwH",
+                "pages": [
+                  {
+                    "cid": 41317827620,
+                    "page": 1,
+                    "from": "vupload",
+                    "part": "特厨探店｜这真不会赔？肉铺老板就敢这样定价？",
+                    "duration": 183,
+                    "vid": "",
+                    "weblink": "",
+                    "dimension": {
+                      "width": 1080,
+                      "height": 1920,
+                      "rotate": 0
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "is_season_display": true,
+      "user_garb": {
+        "url_image_ani_cut": ""
+      },
+      "honor_reply": {
+        "honor": [
+          {
+            "aid": 117153604830442,
+            "type": 3,
+            "desc": "全站排行榜最高第57名",
+            "weekly_recommend_num": 0
+          },
+          {
+            "aid": 117153604830442,
+            "type": 7,
+            "desc": "热门收录",
+            "weekly_recommend_num": 0
+          }
+        ]
+      },
+      "like_icon": "",
+      "need_jump_bv": false,
+      "disable_show_up_info": false,
+      "is_story_play": 1,
+      "is_view_self": false
+    }
+  }
+}

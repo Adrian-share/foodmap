@@ -19,7 +19,7 @@ for(const [location,names,km] of cases)test(`${location}：网页显示共享结
     const li=page.locator('#results > li').nth(i);await expect(li).toContainText(names[i]);await expect(li).toContainText(km[i]+' km');
     await page.locator(`#map [data-marker-index="${i+1}"]`).click();
     const detail=page.locator('.shop-info');await expect(detail).toContainText(data.results[i].address);
-    await expect(detail.getByRole('link',{name:'相关 B 站视频'})).toHaveAttribute('href',data.results[i].video);
+    await expect(detail.getByRole('link',{name:'相关 B 站视频'})).toHaveAttribute('href','/content/?bvid='+data.results[i].video.match(/BV[0-9A-Za-z]{10}/)[0]);
     await page.getByRole('button',{name:'显示全部图钉'}).click();
   }
 });

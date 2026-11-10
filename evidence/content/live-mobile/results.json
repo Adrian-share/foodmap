@@ -1,0 +1,29 @@
+[
+  {
+    "bvid": "BV1k1KN6BEvw",
+    "part": 1,
+    "checked_at": "2026-11-10T05:45:08.453Z",
+    "official_player": "https://player.bilibili.com/player.html?bvid=BV1k1KN6BEvw&p=1&t=0&autoplay=0&danmaku=0",
+    "site_origin": "http://127.0.0.1:59471",
+    "proxy_configured": true,
+    "player_http_status": 200,
+    "frame_url": "https://player.bilibili.com/player.html?bvid=BV1k1KN6BEvw&p=1&t=0&autoplay=0&danmaku=0",
+    "visible_text": "进入哔哩哔哩，观看更高清",
+    "before": {
+      "time": 0,
+      "duration": 222,
+      "readyState": 4,
+      "paused": true,
+      "error": null
+    },
+    "after": {
+      "time": 0.425737,
+      "duration": 222,
+      "readyState": 4,
+      "paused": false,
+      "error": null
+    },
+    "playback_verified": true,
+    "site_stayed": true
+  }
+]

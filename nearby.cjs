@@ -1,4 +1,5 @@
 const catalog = require('./data/catalog.json');
+const publishedContent = require('./content/http.cjs').catalog;
 const {origins, resolveFixture, airDistance} = require('./samples.js');
 const cities = {
   北京:{region:'110000',bounds:[115.4,117.6,39.4,41.1]},
@@ -12,9 +13,9 @@ function missingLocation(location) {
   const text=location.trim().replace(/[\s，,。！？?!、]/g,'');
   return !text || /^(?:我)?(?:的)?(?:附近|这里|这儿|周围|周边|在这里|在这儿|所在位置|当前位置|现在的位置)(?:有(?:什么|啥)|有什么好吃的|有什么餐厅|有什么探店餐厅)?$/.test(text);
 }
-function createNearbyService({mode='fixture',dataset='fixture',serviceKey,request=fetch,audit=()=>{}}={}) {
+function createNearbyService({mode='fixture',dataset='fixture',serviceKey,request=fetch,audit=()=>{},contentCatalog=publishedContent}={}) {
   if(!['fixture','live'].includes(mode)||!['fixture','verified'].includes(dataset))throw Error('无效数据或地点模式');
-  const base={coordinate_system:'GCJ-02',distance_type:'straight_line',dataset,data_version:catalog.version,mode,
+  const base={coordinate_system:'GCJ-02',distance_type:'straight_line',dataset,data_version:catalog.version+(dataset==='verified'?'+'+contentCatalog.version:''),mode,
     sample_count:10,scope:dataset==='fixture'?'排名仅限当前城市的固定验收样本；上海候选未完成分店和营业状态核对，和平饭店采用酒店点位。':'排名仅限当前城市已核实收录门店。',results:[]};
   async function resolve({location,city,origin_id}={}) {
     if(typeof location!=='string'||location.length>80)return {status:'needs_location',message:'请提供你所在的酒店、地铁站或地标名称。',matches:[]};
@@ -57,10 +58,11 @@ function createNearbyService({mode='fixture',dataset='fixture',serviceKey,reques
     const resolved=await resolve(input);
     if(resolved.status!=='ok')return {...base,status:resolved.status,message:resolved.message,...(resolved.matches.length?{candidates:resolved.matches}:{})};
     const origin=resolved.matches[0];
-    const eligible=catalog.shops.filter(s=>s.city===origin.city&&validPoint(s,origin.city)
+    const shops=dataset==='fixture'?catalog.shops:[...catalog.shops,...contentCatalog.shops.filter(s=>!catalog.shops.some(old=>old.id===s.id||old.amap_poi_id===s.amap_poi_id))];
+    const eligible=shops.filter(s=>s.city===origin.city&&validPoint(s,origin.city)
       &&(s.verification==='verified'||dataset==='fixture'&&s.fixture_eligible));
     const results=eligible.flatMap(shop=>{
-      const visits=catalog.visits.filter(v=>v.shop_id===shop.id);
+      const visits=[...catalog.visits,...(dataset==='verified'?contentCatalog.visits:[])].filter(v=>v.shop_id===shop.id);
       if(!visits.length)return [];
       return [{...shop,video:visits[0].video,visits,meters:airDistance(origin,shop)}];
     }).sort((a,b)=>a.meters-b.meters||a.id.localeCompare(b.id)).slice(0,3);

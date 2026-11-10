@@ -1,0 +1,8 @@
+{
+  "query": "蓉亭食贝",
+  "source": "https://restapi.amap.com/v5/place/text",
+  "checked_at": "2026-11-10T05:32:55.904584+00:00",
+  "status": "0",
+  "info": "CUQPS_HAS_EXCEEDED_THE_LIMIT",
+  "pois": []
+}

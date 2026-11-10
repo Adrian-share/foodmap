@@ -1,0 +1,6 @@
+{
+  "http_status": 412,
+  "error": "Precondition Failed",
+  "url": "https://api.bilibili.com/x/space/wbi/arc/search?mid=544336675&ps=30&pn=1&order=pubdate",
+  "checked_at": "2026-11-10T05:33:56.323705+00:00"
+}

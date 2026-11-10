@@ -14,7 +14,7 @@
     const anchor = document.createElement('a');
     anchor.textContent = label;
     anchor.href = url;
-    anchor.target = '_blank';
+
     anchor.rel = 'noopener noreferrer';
     return anchor;
   }
@@ -23,8 +23,8 @@
     title.textContent = shop.name + ' · ' + (shop.meters / 1000).toFixed(2) + ' km';
     const address = document.createElement('p');
     address.textContent = shop.address;
-    container.append(title, address, link('探店记录', shop.source));
-    if (shop.video) container.append(link('相关 B 站视频', shop.video));
+    container.append(title, address, link('探店记录', '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
+    if (shop.video) container.append(link('相关 B 站视频', '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
   }
   function selectShop(index) {
     if (!current) return;
@@ -50,8 +50,8 @@
       title.addEventListener('click', () => selectShop(index));
       const address = document.createElement('p');
       address.textContent = shop.address;
-      item.append(title, address, link('探店记录', shop.source));
-      if (shop.video) item.append(link('相关 B 站视频', shop.video));
+      item.append(title, address, link('探店记录', '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
+      if (shop.video) item.append(link('相关 B 站视频', '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
       list.append(item);
     });
   }

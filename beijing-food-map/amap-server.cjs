@@ -5,7 +5,7 @@ const {createHandler, mapParameters} = require('./amap-handler.cjs');
 
 function createServer(options = {}) {
   if (typeof options === 'string') options = {serviceKey: options};
-  const handle = createHandler({...options, readAsset: file => readFile(join(__dirname, file))});
+  const handle = createHandler({...options, readAsset: file => readFile(join(__dirname, file.startsWith('content/')?'..':'', file))});
   return http.createServer(async (req, res) => {
     const response = await handle(new Request(new URL(req.url, 'http://127.0.0.1'), {method: req.method}));
     res.writeHead(response.status, Object.fromEntries(response.headers));

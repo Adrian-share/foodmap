@@ -13,7 +13,7 @@
     const anchor = document.createElement('a');
     anchor.textContent = label;
     anchor.href = url;
-    anchor.target = '_blank';
+
     anchor.rel = 'noopener noreferrer';
     return anchor;
   }
@@ -22,13 +22,13 @@
     title.textContent = shop.name + ' · ' + (shop.meters / 1000).toFixed(2) + ' km';
     const address = document.createElement('p');
     address.textContent = shop.address;
-    container.append(title, address, link('探店记录', shop.source));
+    container.append(title, address, link('探店记录', '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
     const evidence=document.createElement('p');
     evidence.textContent='原视频作者：'+(shop.visits||[]).map(v=>v.creator).join('、');
     if(shop.verification==='pending')evidence.textContent+=' · 分店和营业状态待核实 · '+shop.coordinate_note;
     if((shop.visits||[]).some(v=>v.source_scope==='inherited_beijing_outside_requested_creators'))evidence.textContent+=' · 沿用北京基线，作者不在指定三位内';
     container.append(evidence);
-    if (shop.video) container.append(link('相关 B 站视频', shop.video));
+    if (shop.video) container.append(link('相关 B 站视频', '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
   }
   function selectShop(index) {
     if (!current) return;
@@ -54,8 +54,8 @@
       title.addEventListener('click', () => selectShop(index));
       const address = document.createElement('p');
       address.textContent = shop.address;
-      item.append(title, address, link('探店记录', shop.source));
-      if (shop.video) item.append(link('相关 B 站视频', shop.video));
+      item.append(title, address, link('探店记录', '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
+      if (shop.video) item.append(link('相关 B 站视频', '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
       const evidence=document.createElement('p');
       evidence.textContent=(shop.visits||[]).map(v=>v.creator).join('、');
       if(shop.verification==='pending')evidence.textContent+=' · 分店与营业状态待核实';

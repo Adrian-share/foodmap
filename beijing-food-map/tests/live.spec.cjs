@@ -49,7 +49,7 @@ for (const name of Object.keys(expected)) test(`真实高德地图：${name}`, a
     await expect(info).toContainText(ranked[i].name);
     await expect(info).toContainText(ranked[i].address);
     await expect(info).toContainText(ranked[i].km.toFixed(2) + ' km');
-    await expect(info.getByRole('link', {name: '探店记录'})).toHaveAttribute('href', ranked[i].source);
+    await expect(info.getByRole('link', {name: '探店记录'})).toHaveAttribute('href', '/content/?bvid=' + ranked[i].video.match(/BV[0-9A-Za-z]{10}/)[0]);
     if (i === 0) await page.screenshot({path: `test-results/live-${name}-detail.png`, fullPage: true});
     // 真实信息窗可能遮挡邻近图钉，使用页面提供的控件关闭后检查下一家。
     await page.getByRole('button', {name: '显示全部图钉'}).click();

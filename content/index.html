@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>北京探店 · 视频与门店</title><link rel="stylesheet" href="/content/style.css"></head>
+<body><main>
+<nav><a href="/">← 返回探店地图</a><span>北京 · 内容档案</span></nav>
+<header><p class="eyebrow">从一条视频，到一家具体的店</p><h1>跟着厨师，认识北京</h1><p>原视频、到访分店和真实画面一起核对。确认后的探店，才进入附近推荐。</p></header>
+<div class="toolbar"><a href="/content/" id="published-tab">已收录</a><a href="/content/?review=1" id="review-tab">候选核对</a><label>搜索内容<input id="content-query" type="search" placeholder="搜店名、UP 主或 BV 号"></label></div>
+<p id="summary" role="status">正在加载内容…</p><p id="review-note" hidden>审核清单 · 以下均为待核记录，不是正式卡片。灰色区域仅用于界面验证；不代表已有可用截图。</p>
+<section id="cards" aria-label="探店内容"></section>
+<footer>视频由 B 站官方播放器提供。本站仅保存经核准的图片；原视频、音轨和片段不下载、不代理。</footer>
+</main>
+<dialog id="video-dialog" aria-labelledby="video-title"><button id="close-video" class="close" aria-label="关闭视频">×</button><h2 id="video-title"></h2><p id="video-author"></p><p id="video-source"></p><div id="video-slot"></div><p id="video-status" role="status"></p><div class="actions"><button id="load-video">在本站打开视频</button><button id="video-unavailable" hidden>播放器无法播放</button><button id="retry-video" hidden>重试播放器</button></div><p>原视频暂不可播放时，已核对的门店和出处仍保留在本页。</p></dialog>
+<script src="/content/app.js" defer></script></body></html>

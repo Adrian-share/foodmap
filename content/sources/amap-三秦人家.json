@@ -1,0 +1,41 @@
+{
+  "query": "三秦人家",
+  "source": "https://restapi.amap.com/v5/place/text",
+  "checked_at": "2026-11-10T05:32:55.807706+00:00",
+  "status": "1",
+  "info": "OK",
+  "pois": [
+    {
+      "parent": "B0FFL76XYL",
+      "address": "朝阳北路八里庄南里32号(近红领巾公园)",
+      "distance": "",
+      "pcode": "110000",
+      "adcode": "110105",
+      "pname": "北京市",
+      "cityname": "北京市",
+      "type": "餐饮服务;中餐厅;中餐厅",
+      "typecode": "050100",
+      "adname": "朝阳区",
+      "citycode": "010",
+      "name": "三秦人家(八里庄店)",
+      "location": "116.499364,39.922700",
+      "id": "B0FFFAIUBD"
+    },
+    {
+      "parent": "",
+      "address": "丰西北里362号车站派出所东侧",
+      "distance": "",
+      "pcode": "110000",
+      "adcode": "110106",
+      "pname": "北京市",
+      "cityname": "北京市",
+      "type": "餐饮服务;中餐厅;特色/地方风味餐厅",
+      "typecode": "050118",
+      "adname": "丰台区",
+      "citycode": "010",
+      "name": "三秦人家饺子坊(丰西北里店)",
+      "location": "116.250846,39.837737",
+      "id": "B0FFFX0F2G"
+    }
+  ]
+}
