@@ -1,0 +1,44 @@
+{
+  "origin": {
+    "name": "东坝地铁站",
+    "address": "朝阳区 · 3号线",
+    "lng": 116.547126,
+    "lat": 39.965732,
+    "type": "150500"
+  },
+  "fixture": {
+    "name": "东坝地铁站",
+    "lng": 116.547126,
+    "lat": 39.965732,
+    "source": "https://ditu.amap.com/place/BV09269671"
+  },
+  "ranked": [
+    {
+      "name": "寂川（西大望路店）",
+      "address": "朝阳区 · 大望路 · 西大望路甲2号航空大厦F1层",
+      "lng": 116.478297,
+      "lat": 39.915326,
+      "source": "https://tanwei.org/nearby/poi/3b2babea-c3df-519b-b75a-d79e38fdb215",
+      "video": "https://www.bilibili.com/video/BV1ma411v7V1/",
+      "km": 8.114673742871675
+    },
+    {
+      "name": "潇湘阁（三里屯SOHO店）",
+      "address": "朝阳区 · 三里屯 · 北京城区三里屯SOHO1号商场B1-117/下沉广场赛百味路口往里走30米",
+      "lng": 116.452883,
+      "lat": 39.933123,
+      "source": "https://tanwei.org/nearby/poi/ca7d347b-2d77-5697-9b9f-3206d9c86a05",
+      "video": "https://www.bilibili.com/video/BV1Lh4y1d7U5/",
+      "km": 8.813968075518405
+    },
+    {
+      "name": "老吉堂·吉来（正大中心店）",
+      "address": "朝阳区 · 大望路 · 金和东路20号院1号楼正大中心3层302b",
+      "lng": 116.468365,
+      "lat": 39.912794,
+      "source": "https://tanwei.org/nearby/poi/223dbb83-1fba-5e97-9b9c-e0c3eee7ab26",
+      "video": "https://www.bilibili.com/video/BV1D64y1K7uj/",
+      "km": 8.929685497642858
+    }
+  ]
+}

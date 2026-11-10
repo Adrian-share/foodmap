@@ -1,0 +1,116 @@
+
+> beijing-food-map@1.0.0 test
+> node --test acceptance.test.cjs server.test.cjs
+
+TAP version 13
+# Subtest: 三个固定起点的距离与验收基准误差不超过 0.05 km
+ok 1 - 三个固定起点的距离与验收基准误差不超过 0.05 km
+  ---
+  duration_ms: 5.356083
+  type: 'test'
+  ...
+# Subtest: 样本有十个不同的门店，均有地址、坐标和来源
+ok 2 - 样本有十个不同的门店，均有地址、坐标和来源
+  ---
+  duration_ms: 6.971917
+  type: 'test'
+  ...
+# Subtest: 王府井定位到地铁站并选出最近三家
+ok 3 - 王府井定位到地铁站并选出最近三家
+  ---
+  duration_ms: 1.396917
+  type: 'test'
+  ...
+# Subtest: 东坝定位到地铁站并选出最近三家
+ok 4 - 东坝定位到地铁站并选出最近三家
+  ---
+  duration_ms: 16.017
+  type: 'test'
+  ...
+# Subtest: 大钟寺定位到地铁站并选出最近三家
+ok 5 - 大钟寺定位到地铁站并选出最近三家
+  ---
+  duration_ms: 1.316833
+  type: 'test'
+  ...
+# Subtest: 识别王府井的口述误写，未知地点不回退到旧结果
+ok 6 - 识别王府井的口述误写，未知地点不回退到旧结果
+  ---
+  duration_ms: 2.487542
+  type: 'test'
+  ...
+# Subtest: 提交三个地名，离线页面均显示起点、三个图钉和三条结果
+ok 7 - 提交三个地名，离线页面均显示起点、三个图钉和三条结果
+  ---
+  duration_ms: 19.178708
+  type: 'test'
+  ...
+# Subtest: 高德静态底图请求包含一个起点和三个依序编号的门店
+ok 8 - 高德静态底图请求包含一个起点和三个依序编号的门店
+  ---
+  duration_ms: 13.783875
+  type: 'test'
+  ...
+# Subtest: 公开配置只返回 JS key，不暴露安全密钥或 Web 服务 key
+ok 9 - 公开配置只返回 JS key，不暴露安全密钥或 Web 服务 key
+  ---
+  duration_ms: 251.036291
+  type: 'test'
+  ...
+# Subtest: 无凭据配置和状态接口可访问，搜索返回明确 503，未知地址 404
+ok 10 - 无凭据配置和状态接口可访问，搜索返回明确 503，未知地址 404
+  ---
+  duration_ms: 77.398542
+  type: 'test'
+  ...
+# Subtest: 只有 JS key 而无安全密钥时不尝试加载地图
+ok 11 - 只有 JS key 而无安全密钥时不尝试加载地图
+  ---
+  duration_ms: 42.400167
+  type: 'test'
+  ...
+# Subtest: 望府井归一化为王府井地铁站，只接受北京范围的正确站点
+ok 12 - 望府井归一化为王府井地铁站，只接受北京范围的正确站点
+  ---
+  duration_ms: 32.122666
+  type: 'test'
+  ...
+# Subtest: 同名同类型站点不任意取第一个，保留所有候选供页面选择
+ok 13 - 同名同类型站点不任意取第一个，保留所有候选供页面选择
+  ---
+  duration_ms: 29.605208
+  type: 'test'
+  ...
+# Subtest: 空输入、长输入和超出北京的静态图坐标拒绝请求
+ok 14 - 空输入、长输入和超出北京的静态图坐标拒绝请求
+  ---
+  duration_ms: 67.608584
+  type: 'test'
+  ...
+# Subtest: 上游鉴权错误和网络错误返回通用错误，不泄露密钥
+ok 15 - 上游鉴权错误和网络错误返回通用错误，不泄露密钥
+  ---
+  duration_ms: 51.847167
+  type: 'test'
+  ...
+# Subtest: SDK 代理把安全密钥加到服务端 URL，覆盖用户传来的密钥
+ok 16 - SDK 代理把安全密钥加到服务端 URL，覆盖用户传来的密钥
+  ---
+  duration_ms: 28.541458
+  type: 'test'
+  ...
+# Subtest: 地图样式代理使用 webapi 域名，其他代理不接受任意目标
+ok 17 - 地图样式代理使用 webapi 域名，其他代理不接受任意目标
+  ---
+  duration_ms: 26.315708
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1114.694875

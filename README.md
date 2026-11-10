@@ -68,3 +68,7 @@ codex mcp add dual_city_food_map --url http://127.0.0.1:8767/mcp
 当前交付为可运行代码与验收证据，尚未部署公网。FACT-3 历史记录显示服务器首页为 Paperclip，缺少 SSH 用户名、端口及探店部署目录；它不能作为本业务上线证据。
 
 目标环境就绪后执行 `npm ci --omit=dev`，用进程管理器注入环境变量启动 `node amap-server.cjs`（默认 `127.0.0.1:8767`，`HOST`、`PORT` 可覆盖）。代理 `/`、`/api/`、`/_AMapService/`、`/images/`、`/mcp` 到同一服务，配置 HTTPS 后用正式地址复验；`GET /health` 为就绪检查。MCP 沿用已验收的 localhost Host/Origin 校验，不能直接假定外部域名已放行，远程访问策略需按目标部署配置。
+
+## 托管部署
+
+已验收北京版的 Worker 与发布脚本沿用 FACT-3，见 `docs/deployment.md`。根目录为 FACT-7 双城网页与 MCP；`beijing-food-map/` 是当前托管的北京页面。内容批次模块由两个页面复用。

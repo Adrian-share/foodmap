@@ -5,3 +5,13 @@ node_modules/
 test-results/browser/
 test-results/live/
 playwright-report/
+
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+test-results/
+playwright-report/
+*.tgz
+.DS_Store
