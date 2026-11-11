@@ -20,7 +20,6 @@
   ol{margin:0;padding-left:30px}li{padding:12px 8px;border-bottom:1px solid #d8e2db;border-radius:6px}
   li[aria-current=true]{background:#dcece1;box-shadow:inset 3px 0 #137664}
   li p{font-size:.9em;margin:5px 0}a{color:#075f71;margin-right:10px}
-  .visit-image{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;margin-bottom:8px}
   .shop-select{border:0;background:transparent;padding:0;text-align:left;font-weight:700}
   .map-pin{display:block;min-width:36px;height:36px;border:2px solid white;background:#137664;color:white;border-radius:50%;padding:0 7px;box-shadow:0 2px 8px #0005;font-weight:700}
   .map-pin.origin{background:#173d6b}.shop-info{max-width:300px;padding:8px;color:#102624;font:14px/1.5 system-ui,sans-serif;background:white;border-radius:8px}
@@ -30,9 +29,10 @@
   footer{margin-top:24px;border-top:1px solid #d8e2db;padding-top:12px;font-size:.85rem;color:#49675f}
   @media(max-width:760px){body{padding:14px}.layout{grid-template-columns:1fr}#map,#preview{height:380px}.layout ol{padding-left:28px}}
 </style>
+<link rel="stylesheet" href="/content/home-cards.css">
 </head>
 <body>
-<header><h1>北京探店地图</h1><p>输入北京地点，从已核实收录门店中找最近三家。距离采用直线距离。</p></header>
+<header><h1>北京探店地图</h1><p>输入北京地铁站、酒店或地标，从已收录的北京门店中找最近三家。</p></header>
 <form id="search">
   <label for="query">起点</label>
   <input id="query" required placeholder="例如 王府井" autocomplete="off" maxlength="80">
@@ -57,11 +57,12 @@
       <button id="retry-map" type="button" hidden>重试地图</button>
     </div>
   </section>
-  <ol id="results" aria-label="最近三家门店"></ol>
+  <section class="result-panel" aria-label="附近探店"><div class="results-heading"><h2>附近探店</h2><span id="result-count">按直线距离排序</span></div><ol id="results" aria-label="最近三家门店"></ol></section>
 </main>
 <p><a href="/content/">查看探店内容</a> · <a href="/content/?review=1">本批候选核对</a></p>
-<footer>仅对已核实收录门店排序 · 地点与门店统一采用 GCJ-02 坐标 · 直线距离不代表步行或驾车距离</footer>
+<footer>对当前版本已收录北京门店排序 · 原视频记录为历史探店，出发前请核实营业状态 · 地点与门店统一采用 GCJ-02 坐标 · 直线距离不代表步行或驾车距离</footer>
 <script src="samples.js"></script>
+<script src="/content/home-cards.js"></script>
 <script src="prototype.js"></script>
 </body>
 </html>

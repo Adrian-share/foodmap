@@ -1,5 +1,7 @@
 # 双城探店地图
 
+2026-11-11 首页图文卡已发布：[线上首页](https://shareworld-foodmap.yzxpg95.chatgpt.site/)。搜索“安立路地铁站”，可直接看到新增蓉亭食贝（亚运村店）的原视频截帧、0.61 km 距离和厨者王波的探店描述。最新验收见 `docs/HOME-CARDS-REPORT.md`，逐条盘点在 `content/inventory/creators-2026-11-11.json`；本地首页运行 `npm run start:home`。
+
 网页和 Codex MCP 共用 `data/catalog.json`、`nearby.cjs` 的地点解析与 Haversine 直线距离排序。一个 HTTP 服务提供网页、`GET /api/nearby`、原视频封面和 Streamable HTTP `POST /mcp`。复用 FACT-4 高德地图、FACT-5 只读工具和图片。原验收代码见提交 `2f725c7`；来源及用户补充的成果目录见 `docs/BASELINES.md`。
 
 ## 启动

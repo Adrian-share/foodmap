@@ -1,0 +1,6 @@
+{
+  "url": "https://api.bilibili.com/x/web-interface/search/type?search_type=video&keyword=%E7%9C%9F%E6%8E%A2%E5%94%90%E4%BB%81%E6%9D%B0+%E5%8C%97%E4%BA%AC&page=1&page_size=30",
+  "http_status": 412,
+  "error": "HTTPError",
+  "checked_at": "2026-11-11T03:24:45.491904+00:00"
+}

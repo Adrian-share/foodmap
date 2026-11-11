@@ -1,0 +1,10 @@
+{
+  "url": "https://api.bilibili.com/x/space/wbi/arc/search?mid=3546728118618546&keyword=%E5%8C%97%E4%BA%AC&pn=1&ps=30",
+  "http_status": 200,
+  "response": {
+    "code": -403,
+    "message": "访问权限不足",
+    "ttl": 1
+  },
+  "checked_at": "2026-11-11T03:24:45.338454+00:00"
+}

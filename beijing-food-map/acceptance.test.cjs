@@ -64,16 +64,18 @@ test('提交三个地名，页面读取共享查询并显示四个图钉和三�
   const ids = ['query', 'status', 'results', 'candidates', 'preview', 'map', 'search', 'map-status', 'retry-search', 'retry-map', 'fit-map'];
   const elements = Object.fromEntries(ids.map(id => [id, new Element()]));
   const document = {
+    body: new Element(),
     getElementById: id => elements[id],
     querySelectorAll: () => [],
     createElement: tag => new Element(tag),
     createElementNS: (_, tag) => new Element(tag)
   };
   const service=require('../nearby.cjs').createNearbyService({dataset:'verified'});
-  const context = vm.createContext({document, URLSearchParams, AbortSignal, location:{protocol:'file:'},
+  const context = vm.createContext({window:{},document, URLSearchParams, AbortSignal, location:{protocol:'file:'},
     fetch:async url=>({ok:true,json:()=>service.query(Object.fromEntries(new URL(url,'http://test').searchParams))})});
+  context.window=context;
   const settle=()=>new Promise(resolve=>setImmediate(resolve));
-  for (const script of ['samples.js', 'prototype.js']) {
+  for (const script of ['../content/home-cards.js', 'samples.js', 'prototype.js']) {
     vm.runInContext(readFileSync(join(__dirname, script), 'utf8'), context);
   }
 

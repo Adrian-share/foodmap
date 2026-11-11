@@ -21,7 +21,8 @@ const images = new Map(manifest.map(image => {
 }));
 function withImage(shop, baseUrl, assets=contentAssets) {
   const card=require('./content/presentation.cjs').withContentCard(shop,baseUrl,assets);
-  if(card.card)return card;
+  if(card.image)return card;
+  shop=card;
   const image = images.get(shop.name);
   if (!image) return shop;
   return {...shop, image:{

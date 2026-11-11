@@ -15,10 +15,10 @@ for(const [name,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{wi
     await expect(page.locator('#map .map-pin')).toHaveCount(4);
     const index=await card.evaluate(e=>Array.from(e.parentNode.children).indexOf(e)+1);
     await page.locator('#map [data-marker-index="'+index+'"]').click();await expect(card).toHaveAttribute('aria-current','true');
-    const href=await card.getByRole('link',{name:'探店记录',exact:true}).getAttribute('href');expect(href).toContain('visit_id=');
+    const href=await card.getByRole('link',{name:'查看探店详情 →',exact:true}).getAttribute('href');expect(href).toContain('visit_id=');
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
     fs.mkdirSync('evidence/content-interface',{recursive:true});await page.screenshot({path:'evidence/content-interface/'+name+'-synthetic.png',fullPage:true});
-    await card.getByRole('link',{name:'探店记录',exact:true}).click();await expect(page.locator('#video-dialog')).toBeVisible();await expect(page.locator('#video-title')).toContainText('TEST-NEW');
+    await card.getByRole('link',{name:'查看探店详情 →',exact:true}).click();await expect(page.locator('#video-dialog')).toBeVisible();await expect(page.locator('#video-title')).toContainText('TEST-NEW');
     await page.getByRole('button',{name:'在本站打开视频',exact:true}).click();
     let player=new URL(await page.locator('iframe').getAttribute('src'));expect(player.searchParams.get('p')).toBe('1');expect(player.searchParams.get('t')).toBe('10');
     const other=fixture().batches[0].records[1];
@@ -26,6 +26,6 @@ for(const [name,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{wi
     await page.getByRole('button',{name:'在本站打开视频',exact:true}).click();player=new URL(await page.locator('iframe').getAttribute('src'));expect(player.searchParams.get('p')).toBe('2');expect(player.searchParams.get('t')).toBe('50');
     await page.goto('/content/?bvid='+other.video.bvid);await expect(page.locator('#video-dialog')).not.toBeVisible();await expect(page.locator('.card')).toHaveCount(2);await expect(page.locator('#summary')).toContainText('多次到访');
     await page.goto('/content/?visit_id=withdrawn&bvid='+other.video.bvid);await expect(page.locator('#video-dialog')).not.toBeVisible();await expect(page.locator('#summary')).toContainText('已撤回');
-    await page.goto('/content/?review=1');await expect(page.locator('.card')).toHaveCount(3);await expect(page.locator('.card img')).toHaveCount(0);await expect(page.locator('#summary')).toContainText('2 位 UP 主');
+    await page.goto('/content/?review=1');await expect(page.locator('.card')).toHaveCount(3);await expect(page.locator('.card img')).toHaveCount(3);await expect(page.locator('#summary')).toContainText('2 位 UP 主');
   });
 }

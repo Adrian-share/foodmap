@@ -9,6 +9,7 @@
   }
   function load(){
     if(!active)return;
+    if(!active.player_url)return unavailable();
     const u=new URL(active.player_url);if(u.origin!=='https://player.bilibili.com'||u.pathname!=='/player.html')return unavailable();
     const f=document.createElement('iframe');f.src=u.href;f.title=active.video.title+' · B 站官方播放器';
     f.allow='fullscreen; picture-in-picture';f.allowFullscreen=true;f.referrerPolicy='strict-origin-when-cross-origin';
@@ -32,9 +33,9 @@
     $('cards').replaceChildren();
     for(const r of found){
       const card=el('article',null,'card');card.dataset.bvid=r.video.bvid;card.dataset.visitId=r.visit_id;card.dataset.published=String(r.published);
-      if(r.published&&r.visit.screenshots.length&&!review){const i=r.visit.screenshots[0],img=el('img');img.src='/'+i.path;img.alt=i.alt;img.loading='lazy';card.append(img);}
-      else{const ph=el('div',null,'placeholder');ph.append(el('strong','待补截图'),el('span','仅供界面验证 · 未发布'));card.append(ph);}
-      const body=el('div',null,'card-body');body.append(el('span',r.published?'已收录':'待核分店 · 待补截图','tag'),el('p',r.creator.name,'creator'),el('h2',r.visit.store_name),el('p',r.video.title,'title'),el('p',r.visit.branch_name?`${r.visit.district} · ${r.visit.address}`:'具体分店与地址待核实'),el('p',r.video.bvid+' · P'+r.video.part+' · '+r.video.published_at.slice(0,10),'bvid'));
+      if(r.published&&r.visit.screenshots.length){const i=r.visit.screenshots[0],img=el('img');img.src='/'+i.path;img.alt=i.alt;img.loading='lazy';card.append(img);}
+      else{const ph=el('div',null,'placeholder');ph.append(el('strong','待补截图'),el('span',r.published?'门店已收录 · 截图待补':'仅供界面验证 · 未发布'));card.append(ph);}
+      const body=el('div',null,'card-body');body.append(el('span',r.published?'已收录':'待核分店 · 待补截图','tag'),el('p',r.creator.name,'creator'),el('h2',r.visit.store_name),el('p',r.video.title,'title'),el('p',r.visit.branch_name?`${r.visit.district} · ${r.visit.address}`:'具体分店与地址待核实'),el('p',r.video.bvid+' · P'+r.video.part+' · '+(r.video.published_at||'日期待核').slice(0,10),'bvid'));
       if(r.published&&r.visit.screenshots.length){const i=r.visit.screenshots[0];body.append(el('p','画面：'+i.alt+' · '+(i.timestamp_ms/1000)+' 秒 · 来源 '+r.video.bvid));}
       if(r.published){
         for(const o of (r.visit.opinions||[]).slice(0,2))body.append(el('p','UP 主观点：'+o.text+'（'+o.seconds+' 秒）'));
@@ -42,7 +43,7 @@
       }
       const btn=el('button',r.published?'在本站查看视频':'核对原视频');btn.type='button';btn.onclick=()=>open(r,btn);body.append(btn);card.append(body);$('cards').append(card);
     }
-    if(!found.length)$('cards').append(el('p',term?'没有匹配的探店记录。':'本批暂无正式卡片。可进入候选核对，查看九条来源和待补材料。','empty'));
+    if(!found.length)$('cards').append(el('p',term?'没有匹配的探店记录。':'暂无正式卡片。可进入候选核对，查看来源和待补材料。','empty'));
   }
   $('content-query').oninput=render;
   (async()=>{

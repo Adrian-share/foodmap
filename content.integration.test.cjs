@@ -69,16 +69,16 @@ test('Worker、Node HTTP、真实 MCP 协议的版本、店序、距离和到访
   const player=new URL(exact.records[0].player_url);assert.equal(player.searchParams.get('p'),'2');assert.equal(player.searchParams.get('t'),'50');
   const image=await worker(new Request(shop.image.url));assert.equal(image.status,200);assert.deepEqual(Buffer.from(await image.arrayBuffer()),f.bytes);
   assert.equal((await worker(new Request('https://preview.test/api/content?visit_id=missing'))).status,404);
-  const review=await(await worker(new Request('https://preview.test/api/content?review=1'))).json();assert.equal(review.batches.length,2);assert.ok(review.records.every(r=>r.visit.screenshots.length===0));
+  const review=await(await worker(new Request('https://preview.test/api/content?review=1'))).json();assert.equal(review.batches.length,2);assert.ok(review.records.every(r=>r.visit.screenshots.length===1));
   assert.equal((await worker(new Request('https://preview.test/mcp',{method:'POST'}))).status,405);
 });
 
-test('未启用 UID、缺失文件、缺少到访 ID 和未知时长不能进入公开列表',()=>{
+test('未启用 UID、无 ID、无时长不收录；缺图只保留已核准到访',()=>{
   const f=fixture();const r=record({uid:'888888'});
   assert.equal(buildCatalog([{...f.batches[0],records:[r]}],()=>true,f.config).visits.length,0);
   for(const change of [r=>r.visit.id=null,r=>r.video.duration_seconds=null]){
     const r=record();change(r);assert.equal(buildCatalog([{...f.batches[0],records:[r]}],()=>true,f.config).visits.length,0);
   }
-  const s=createContentState({config:f.config,batches:f.batches},{});assert.equal(s.catalog.visits.length,0);
-  assert.ok(s.records.every(r=>r.publication_reasons.some(reason=>reason.includes('文件'))));
+  const s=createContentState({config:f.config,batches:f.batches},{});assert.equal(s.catalog.visits.length,3);
+  assert.ok(s.records.every(r=>r.image_status==='missing'&&r.visit.screenshots.length===0));
 });

@@ -1,4 +1,5 @@
 const {chromium}=require('@playwright/test');const fs=require('node:fs');const assert=require('node:assert/strict');
+const expectedPublished=require('../content/catalog.cjs').publicRecords(require('../content/batches/beijing-pilot-001.json').records).length;
 (async()=>{
   const base='https://shareworld-foodmap.yzxpg95.chatgpt.site',u=new URL(process.env.HTTPS_PROXY||process.env.HTTP_PROXY);
   const browser=await chromium.launch({headless:true,proxy:{server:u.protocol+'//'+u.host,username:decodeURIComponent(u.username),password:decodeURIComponent(u.password)}});
@@ -19,7 +20,7 @@ const {chromium}=require('@playwright/test');const fs=require('node:fs');const a
       r.after=await video.evaluate(v=>({time:v.currentTime,paused:v.paused,readyState:v.readyState}));r.playback_verified=r.after.time>r.before.time+.2&&r.after.readyState>=2;assert.ok(r.playback_verified);
       r.site_stayed=new URL(page.url()).origin===base;assert.ok(r.site_stayed);await page.screenshot({path:`evidence/content/hosted/${device}-playing.png`});
       await page.getByRole('button',{name:'播放器无法播放',exact:true}).click();assert.ok((await page.locator('#video-status').innerText()).includes('原视频暂不可播放'));await page.screenshot({path:`evidence/content/hosted/${device}-fallback.png`});
-      await page.getByRole('button',{name:'关闭视频'}).click();await page.goto(base+'/content/');await page.locator('.empty').waitFor();r.published_count=await page.locator('.card').count();assert.equal(r.published_count,0);
+      await page.getByRole('button',{name:'关闭视频'}).click();await page.goto(base+'/content/');await page.locator('#summary').filter({hasText:'已收录'}).waitFor();r.published_count=await page.locator('.card').count();assert.equal(r.published_count,expectedPublished);
       results.push(r);await page.close();
     }
     const p=await browser.newPage({viewport:{width:1440,height:1000}});

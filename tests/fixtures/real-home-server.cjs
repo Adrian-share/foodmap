@@ -1,0 +1,2 @@
+// The real approved batch and real screenshot; only the upstream POI response is offline.
+require('../../beijing-food-map/amap-server.cjs').createServer({serviceKey:'fixture-only',jsKey:'fixture',securityCode:'fixture',request:async()=>Response.json({status:'1',pois:[{id:'station-anlilu',name:'安立路(地铁站)',adname:'朝阳区',location:'116.407845,40.002619',typecode:'150500'}]})}).listen(Number(process.env.PORT||8779),'127.0.0.1');

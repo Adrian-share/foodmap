@@ -45,29 +45,7 @@
     infoWindow.open(map, markers[index + 1].getPosition());
   }
   function showList(shops) {
-    shops.forEach((shop, index) => {
-      const item = document.createElement('li');
-      const title = document.createElement('button');
-      title.type = 'button';
-      title.className = 'shop-select';
-      title.textContent = shop.name + ' · ' + (shop.meters / 1000).toFixed(2) + ' km';
-      title.addEventListener('click', () => selectShop(index));
-      const address = document.createElement('p');
-      address.textContent = shop.address;
-      item.append(title, address, link('探店记录', shop.detail_url || '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
-      if (shop.video) item.append(link('相关 B 站视频', shop.detail_url || '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
-      const evidence=document.createElement('p');
-      evidence.textContent=shop.card ? 'UP 主：'+shop.card.creator.name : (shop.visits||[]).map(v=>v.creator).join('、');
-      if(shop.card?.description){const description=document.createElement('p');description.textContent=shop.card.description.text;item.append(description);}
-      if(shop.verification==='pending')evidence.textContent+=' · 分店与营业状态待核实';
-      if((shop.visits||[]).some(v=>v.source_scope==='inherited_beijing_outside_requested_creators'))evidence.textContent+=' · 沿用北京基线，作者不在指定三位内';
-      item.append(evidence);
-      if(shop.image){
-        const photo=document.createElement('img');photo.src=shop.image.url;photo.alt=shop.image.alt;
-        photo.width=192;photo.height=108;photo.loading='lazy';item.append(photo);
-      }
-      list.append(item);
-    });
+    shops.forEach((shop,index)=>list.append(FoodmapHomeCards.render(shop,index,()=>selectShop(index))));
   }
   function showSketch(origin, shops) {
     preview.replaceChildren();
@@ -126,6 +104,7 @@
       content.className = 'map-pin' + (index ? '' : ' origin');
       content.textContent = index ? String(index) : '起';
       content.setAttribute('data-marker-index', String(index));
+      content.dataset.storeId=item.id||item.name;
       content.setAttribute('aria-label', (index ? index + ' · ' : '起点 · ') + item.name);
       const marker = new AMap.Marker({position: [item.lng, item.lat], content, anchor: 'center', title: item.name});
       if (index) {

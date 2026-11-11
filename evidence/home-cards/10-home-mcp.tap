@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: A02 首页实际目录包含原十家之外的亚运村分店，能从普通起点距离排序找到
+ok 1 - A02 首页实际目录包含原十家之外的亚运村分店，能从普通起点距离排序找到
+  ---
+  duration_ms: 143.681125
+  type: 'test'
+  ...
+# Subtest: A05 新店在共享 HTTP 与 MCP 结果中保持分店、原视频和截帧一致
+ok 2 - A05 新店在共享 HTTP 与 MCP 结果中保持分店、原视频和截帧一致
+  ---
+  duration_ms: 1249.134791
+  type: 'test'
+  ...
+# Subtest: A05 分店按 POI 去重，保留多个探店关系，重导同批不增点位
+ok 3 - A05 分店按 POI 去重，保留多个探店关系，重导同批不增点位
+  ---
+  duration_ms: 5.749959
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1881.20125

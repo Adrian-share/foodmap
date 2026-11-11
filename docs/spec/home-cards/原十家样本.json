@@ -1,0 +1,72 @@
+[
+  {
+    "name": "泰丰楼",
+    "address": "西城区 · 大栅栏 · 前门西大街2号楼",
+    "lng": 116.391816,
+    "lat": 39.899823,
+    "video": "https://www.bilibili.com/video/BV1CB4y147BG/"
+  },
+  {
+    "name": "北京宜宾招待所·餐厅",
+    "address": "西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)",
+    "lng": 116.379692,
+    "lat": 39.901244,
+    "video": "https://www.bilibili.com/video/BV1wT1WYxEjC/"
+  },
+  {
+    "name": "潇湘阁（三里屯SOHO店）",
+    "address": "朝阳区 · 三里屯 · 北京城区三里屯SOHO1号商场B1-117/下沉广场赛百味路口往里走30米",
+    "lng": 116.452883,
+    "lat": 39.933123,
+    "video": "https://www.bilibili.com/video/BV1Lh4y1d7U5/"
+  },
+  {
+    "name": "老吉堂·吉来（正大中心店）",
+    "address": "朝阳区 · 大望路 · 金和东路20号院1号楼正大中心3层302b",
+    "lng": 116.468365,
+    "lat": 39.912794,
+    "video": "https://www.bilibili.com/video/BV1D64y1K7uj/"
+  },
+  {
+    "name": "富春居（北京璞瑄酒店店）",
+    "address": "东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层",
+    "lng": 116.410001,
+    "lat": 39.923532,
+    "video": "https://www.bilibili.com/video/BV1144y1G7Fo/"
+  },
+  {
+    "name": "同和居（月坛店）",
+    "address": "西城区 · 月坛 · 月坛南街甲71号",
+    "lng": 116.34003,
+    "lat": 39.914177,
+    "video": "https://www.bilibili.com/video/BV1Dg411j73k/"
+  },
+  {
+    "name": "寂川（西大望路店）",
+    "address": "朝阳区 · 大望路 · 西大望路甲2号航空大厦F1层",
+    "lng": 116.478297,
+    "lat": 39.915326,
+    "video": "https://www.bilibili.com/video/BV1ma411v7V1/"
+  },
+  {
+    "name": "聚德楼饭庄（劲松店）",
+    "address": "朝阳区 · 劲松 · 东三环南路乙52号1层(劲松地铁站B东北口步行370米)",
+    "lng": 116.462054,
+    "lat": 39.886822,
+    "video": "https://www.bilibili.com/video/BV1aj411A7Bg/"
+  },
+  {
+    "name": "砂锅居（西四店）",
+    "address": "西城区 · 西四 · 北京城区西四南大街60号(西四地铁站D西南口步行340米)",
+    "lng": 116.373779,
+    "lat": 39.920459,
+    "video": "https://www.bilibili.com/video/BV1ka411n7Nd/"
+  },
+  {
+    "name": "洪福亮酒家（南草厂街店）",
+    "address": "西城区 · 官园 · 北京城区南草厂街91号",
+    "lng": 116.363946,
+    "lat": 39.936263,
+    "video": "https://www.bilibili.com/video/BV1LY4y1k7LX/"
+  }
+]

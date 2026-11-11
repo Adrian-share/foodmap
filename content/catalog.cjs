@@ -6,20 +6,23 @@ const videoSource=bvid=>`https://www.bilibili.com/video/${bvid}/`;
 function assess(r,options=config){
   const reasons=[],v=r.video||{},s=r.visit||{};
   if(!options.creator_uids.includes(r.creator?.uid)||v.owner_uid!==r.creator?.uid||v.metadata_status!=='verified'||!r.creator?.name?.trim())reasons.push('作者归属未核准');
-  if(!/^[A-Za-z0-9_-]+$/.test(s.id||''))reasons.push('缺少稳定的到访 ID');
+  if(!/^[A-Za-z0-9_:-]{1,200}$/.test(s.id||''))reasons.push('缺少稳定的到访 ID');
   if(!BV.test(v.bvid)||v.url!==videoSource(v.bvid)||!Number.isInteger(v.part)||v.part<1||!v.published_at)reasons.push('原视频信息不完整');
   if(s.city!=='北京市'||!s.branch_name||!s.district||!s.address||!s.store_id||!s.amap_poi_id||s.amap_url!==`https://ditu.amap.com/place/${s.amap_poi_id}`)reasons.push('北京具体分店未核准');
   if(!s.gcj02||!Number.isFinite(s.gcj02.lng)||!Number.isFinite(s.gcj02.lat)||s.gcj02.lng<115.4||s.gcj02.lng>117.6||s.gcj02.lat<39.4||s.gcj02.lat>41.1)reasons.push('GCJ-02 点位未核准');
   if(!s.evidence?.some(e=>e.type==='branch'&&e.status==='verified'&&e.url===v.url&&Number.isFinite(e.seconds))||!s.evidence?.some(e=>e.type==='amap'&&e.status==='verified'&&e.url===s.amap_url))reasons.push('缺少原视频分店及高德对应证据');
-  if(s.business_status!=='open')reasons.push('当前营业状态待核或已关闭');
+  if(['closed','moved'].includes(s.business_status))reasons.push('门店已关闭或迁移');
   if(!Number.isFinite(v.duration_seconds)||!Number.isFinite(s.start_seconds)||!Number.isFinite(s.end_seconds)||s.start_seconds<0||s.end_seconds<=s.start_seconds||s.end_seconds>v.duration_seconds)reasons.push('到访片段时间未核准');
   if([...(s.opinions||[]),...(s.dishes||[])].some(x=>!x.text?.trim()||x.source_video!==v.url||!Number.isFinite(x.seconds)||x.seconds<s.start_seconds||x.seconds>s.end_seconds))reasons.push('观点或菜品缺少对应时间点证据');
-  const images=s.screenshots||[];
-  if(!images.length||images.some(i=>!IMAGE.test(i.path)||i.source_video!==v.url||i.part!==v.part||!Number.isFinite(i.timestamp_ms)||i.timestamp_ms<s.start_seconds*1000||i.timestamp_ms>s.end_seconds*1000||!i.alt?.trim()||!i.usage_basis?.trim()||i.rights_status!=='approved'||i.frame_verified!==true||! /^[a-f0-9]{64}$/.test(i.sha256||'')))reasons.push('待补对应片段的真实截图及使用依据');
   if(r.review?.status!=='approved')reasons.push('尚未审核通过');
   return reasons;
 }
-function publicRecords(records,assetAvailable=()=>false,options=config){return records.filter(r=>!assess(r,options).length&&r.visit.screenshots.every(assetAvailable));}
+// FACT-8 current contract: verified visits remain searchable when screenshots are missing.
+function publicRecords(records,assetAvailable,options=config){return records.filter(r=>!assess(r,options).length);}
+function validScreenshot(r,i){
+  const s=r.visit,v=r.video;
+  return IMAGE.test(i.path)&&i.source_video===v.url&&i.part===v.part&&Number.isFinite(i.timestamp_ms)&&i.timestamp_ms>=s.start_seconds*1000&&i.timestamp_ms<=s.end_seconds*1000&&!!i.alt?.trim()&&i.frame_verified===true&&/^[a-f0-9]{64}$/.test(i.sha256||'');
+}
 const visitKey=r=>[r.video.bvid,r.video.part,r.visit.id].join(':');
 const detailUrl=r=>'/content/?visit_id='+encodeURIComponent(visitKey(r));
 function playerUrl(r){
@@ -53,4 +56,4 @@ function buildCatalog(batches,assetAvailable,options=config){
   }
   return {version:[...versions].sort().map(([k,v])=>k+':'+v).join(','),creators:[...creators.values()],videos:[...videos.values()],shops:[...shops.values()],visits:[...visits.values()]};
 }
-module.exports={assess,publicRecords,buildCatalog,playerUrl,videoSource,visitKey,detailUrl,IMAGE};
+module.exports={assess,publicRecords,validScreenshot,buildCatalog,playerUrl,videoSource,visitKey,detailUrl,IMAGE};

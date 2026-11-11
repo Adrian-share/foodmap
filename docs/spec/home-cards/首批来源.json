@@ -1,0 +1,23 @@
+{
+  "city": "北京市",
+  "batch_id": "beijing-pilot-001",
+  "creators": [
+    {"name": "特厨隋坡", "uid": "3546888255048212", "profile_url": "https://space.bilibili.com/3546888255048212", "candidates": [
+      {"bvid": "BV1k1KN6BEvw", "title_hint": "三秦人家"},
+      {"bvid": "BV1uHANzsEEk", "title_hint": "江西小炒"},
+      {"bvid": "BV1fzhM6iE5k", "title_hint": "龙庭"}
+    ]},
+    {"name": "厨者王波", "uid": "3546728118618546", "profile_url": "https://space.bilibili.com/3546728118618546", "candidates": [
+      {"bvid": "BV1AdqYYNEDM", "title_hint": "蓉亭食贝"},
+      {"bvid": "BV1NG6kYTEXG", "title_hint": "峨嵋酒家"},
+      {"bvid": "BV1gkxKefEfW", "title_hint": "便宜坊"}
+    ]},
+    {"name": "真探唐仁杰", "uid": "544336675", "profile_url": "https://space.bilibili.com/544336675", "candidates": [
+      {"bvid": "BV1zM4y1c7GE", "title_hint": "北京陶陶居"},
+      {"bvid": "BV1CT411k75q", "title_hint": "北京提督"},
+      {"bvid": "BV1ao4y1k75R", "title_hint": "便宜坊"}
+    ]}
+  ],
+  "source_url_pattern": "https://www.bilibili.com/video/{bvid}/",
+  "note": "候选仅用于试跑。城市、分店、片段时间和截图需要逐条核对。"
+}

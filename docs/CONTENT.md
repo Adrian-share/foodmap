@@ -1,27 +1,23 @@
-## 北京内容批次
+## 首页门店与图文卡（2026-11-11）
 
-FACT-9 的多批次配置、接口字段、去重与扩展流程见 [内容接口契约](CONTENT-INTERFACE.md)。以下保留首批采集与来源说明。
+多批次、作者配置、旧门店映射与精确到访契约见 [FACT-9 内容接口说明](CONTENT-INTERFACE.md)。
 
-`content/batches/beijing-pilot-001.json` 对应附件输出模板；保留 creator、video、visit、review 四组字段。未知信息使用 null。UID 与 BV 已由官方元数据核对；高德同名点位放在 `branch_candidates`，不当作实际到访分店。
+本轮以 `docs/spec/home-cards/TASK.md` 和《验收规格.md》为准。分店与视频关系核对通过即可进入首页搜索；图片独立核验，缺图或图片加载失败显示“截图待补”。上一轮把截图使用依据和必须有图作为收录前置条件，与本轮明确规格不符，已移除这些额外门槛；不把任务指定的截图展示描述成取得创作者授权。
 
-`reference_images` 是官方首帧线索；`review_frames` 是浏览器在官方播放器指定时间对 video 元素截取的 PNG。它们均未取得可确认的公开使用依据，不是可发布的 `visit.screenshots`。这些图片只通过任务附件交付；Git 忽略实际图片文件，服务器路由和部署包不提供这些资源。原水印、署名和播放器画面均保留。九条视频均未下载、代理或保存。
+当前收录新店为蓉亭食贝（亚运村店），稳定 ID `amap:B0FFGCY5QP`。原视频 `BV1AdqYYNEDM`、作者 UID `3546728118618546`；P1 00:12 牌匾直接写明“蓉亭食贝（北京亚运村店）”。P1 00:30 为肉丝近景且字幕提到肉丝很嫩，首页图片和短描述绑定该次探店。高德地址、行政区、GCJ-02 与牌匾分店对应；当前营业状态未实时保证，保留 unknown，页脚提示出发前核实。
 
-公开列表 `/content/` 只读取通过全部门槛的记录；`/content/?review=1` 是明确标注的候选核对清单，图片区域为界面验证占位。原地图的探店入口进入本站内容页，详情按需打开 B 站官方 iframe，传 BV、分 P、起始秒数与 `autoplay=0`。iframe 禁止顶层导航与弹窗。浏览器无法可靠地跨源判断 B 站内部播放错误，提供明确的“播放器无法播放”降级按钮；iframe 文档加载成功不作为真实播放成功证据。
+数据保存在 `content/batches/beijing-pilot-001.json`。`content/catalog.cjs` 负责作者、视频、分店、片段和审核校验；`validScreenshot` 单独校验截图来源、分 P、时间点、路径与哈希。`scripts/build-content.cjs` 校验实际图片并生成部署用 `content/public-assets.json`。图片在 `content/images/`，视频响应、片段和音轨不保存。
 
-## 核准、构建与撤回
+`content/config.json` 配置启用批次、作者 UID 和旧门店映射，构建生成同一内容快照。`nearby.cjs` 把原十店与已核准批次合并，按分店 ID/POI 去重并保留多个探店关系。旧线上 samples.js 没有暴露稳定 ID，沿用已验收 `data/catalog.json` 的同名 beijing-1…10，未重写旧店地址和点位。`/api/home/catalog` 保留为兼容目录入口；`beijing-food-map/prototype.js` 直接调用 `/api/nearby`，与 Node/MCP 使用相同的服务端排序。没有为安立路或新店写单独结果，所有正常地点查询走原高德检索。
 
-1. 取得原视频到访分店的可复查画面和时间点，对应高德唯一 POI、北京市地址、GCJ-02 坐标及当前营业状态；不从同名检索结果直接选第一家。
-2. 取得图片使用依据，把核准图片放入 `content/images/`。按模板补充 source_video、part、timestamp_ms、alt、usage_basis、rights_status=approved、frame_verified=true 及 SHA-256。截图时间点必须属于该分店片段。
-3. 在 `visit.evidence` 中分别写入已核准的 branch、amap 证据。审核通过才设 `review.status=approved`。
-4. 运行 `npm run content:build`。它检查文件、图片签名和哈希，产生 `content/public-assets.json`；只有已核准图片进入运行时。缺文件或哈希不符会使构建失败。再执行 `npm test`、`npm run test:content:page` 和 `npm run build:hosted`。
-5. 同一个 Worker/Node 内容路由提供正式卡片和图片。FACT-7 根目录的 `nearby.cjs` 将已核准记录加入 verified 数据集，网页与 MCP 共用；fixture 固定样本继续用于原有排序验收。FACT-9 开发分支的托管首页已接入 `/api/nearby`，与 Node/MCP 共享查询；生产部署仍以 FACT-8 的实际发布为准。当前正式内容为 0，新增真实门店尚未完成验收。
+`content/home-cards.js` 和 CSS 在托管北京版及根目录双城版共用。卡片编号来自排序后的同一数组，与地图 Marker 使用同一门店 ID、编号和点位。卡片只有一个站内详情入口；真实截图使用 contain 保留完整水印。详情按需打开 B 站官方播放器，默认不自动播放。固定样本保留用于回归；生产结果按本次目录重新排序。
 
-批次派生目录按 UID、BV、探店 ID 及高德 POI 去重，重复导入不叠加。`buildCatalog` 从启用批次重建，停用批次或移除加载列表再构建可撤回；线上版本可按 `docs/deployment.md` 回退。记录版本在 API 的 version 与附近搜索 verified 数据版本中。启用批次、作者 UID 与旧门店 POI 映射统一配置在 `content/config.json`；构建产生 `compiled.json` 和 `public-assets.json`，运行时不直接扫描批次。
+## 盘点、验证与维护
 
-## 基线与测试
+三位作者的逐条盘点在 `content/inventory/creators-2026-11-11.json`。种子九条仍是内容核对批次；王波官方北京合集增加 58 条待核线索，共盘点 67 条，逐条核对作者 UID。其余未核分店不进入首页。官方合集与账号投稿接口限制均留证；合集末尾不等于账号历史末尾。
 
-本分支合入 FACT-7 `7d5a64a` 的双城/MCP，以及 FACT-3 `7583016` 的 Worker、部署脚本和北京页面；合并记录 `c6f1596`。生产部署没有增加公网 MCP，不把本地协议回归当作已上线 MCP。
+运行 `npm run content:build`、`npm test`、`npm run test:home`、`npm run test:page`；托管北京旧页面回归在 `beijing-food-map/` 中运行 `../node_modules/.bin/playwright test`。本地托管首页用 `npm run start:home`，默认 8766 端口；根目录 `npm start` 仍为双城/MCP 应用。
 
-`content.acceptance.test.cjs` 与 `content.http.test.cjs` 覆盖作者归属、分店/城市、截图/使用依据、片段时间、幂等、撤批、公开隔离、HTTP 路由及搜索接入。`tests/content.spec.cjs` 用明确标注的播放器替身验证桌面/手机操作和降级；真实播放证据另由 `scripts/verify-content-live.cjs` 在浏览器中检查 video 时间推进，JSON 和截图仅留在审核附件中。旧页面测试只把原第三方内容链接期望改为本站入口，排名、图钉、地址和距离断言保留。
+本轮证据在 `evidence/home-cards/`：01-red.tap 与接入前线上 before-home.json/png 证明原先无新店。`scripts/verify-home-cards-hosted.cjs` 从线上正常搜索，检查图片加载、独立复算距离、核对图钉 ID 和编号，再检查详情和图片失败降级。旧 test-results 和 evidence/content 是上一轮历史证据，不替代本轮结果。
 
-`scripts/capture-content-frames.cjs` 只保存图片；`scripts/inventory-creators.cjs` 从正常官方主页记录可见范围，不绕过登录、人机校验或列表限制。原始元数据、无可用字幕结果、高德候选与列表限制在 `content/sources/`。标题与首屏数量均不代表完整北京历史。
+重复导入同批次不增加点位。buildCatalog 按启用批次重建，可停用/撤回批次后重新构建；整站回退沿用 docs/deployment.md。本轮更新原有公开站点，保留受众，不增加公网 MCP。

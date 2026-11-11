@@ -1,4 +1,4 @@
-const {assess,buildCatalog,visitKey,detailUrl,playerUrl}=require('./catalog.cjs');
+const {assess,buildCatalog,visitKey,detailUrl,playerUrl,validScreenshot}=require('./catalog.cjs');
 
 // A single compiled snapshot supplies both Node and Worker. Never read batches at request time.
 function createContentState({batches,config,version},images){
@@ -11,7 +11,7 @@ function createContentState({batches,config,version},images){
     if(batch.enabled===false)continue;
     for(const r of batch.records){
       const id=visitKey(r),reasons=assess(r,config);
-      if(!reasons.length&&!r.visit.screenshots.every(assetAvailable))reasons.push('截图文件未通过构建校验');
+      const screenshots=(r.visit.screenshots||[]).filter(i=>validScreenshot(r,i)&&assetAvailable(i));
       const existing=records.get(id);
       if(existing){
         if(JSON.stringify(existing.raw)!==JSON.stringify(r))throw Error('到访 ID 冲突：'+id);
@@ -20,7 +20,7 @@ function createContentState({batches,config,version},images){
       let player=null;
       try{player=playerUrl(r);}catch{}
       records.set(id,{raw:r,batch_ids:[batch.batch_id],value:{
-        visit_id:id,detail_url:detailUrl(r),creator:r.creator,video:r.video,visit:r.visit,
+        visit_id:id,detail_url:detailUrl(r),creator:r.creator,video:r.video,visit:{...r.visit,screenshots},image_status:screenshots.length?'available':'missing',
         review:r.review,publication_reasons:reasons,player_url:player,published:publishedKeys.has(id)
       }});
     }

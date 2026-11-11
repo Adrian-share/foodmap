@@ -13,6 +13,17 @@ function missingLocation(location) {
   const text=location.trim().replace(/[\s，,。！？?!、]/g,'');
   return !text || /^(?:我)?(?:的)?(?:附近|这里|这儿|周围|周边|在这里|在这儿|所在位置|当前位置|现在的位置)(?:有(?:什么|啥)|有什么好吃的|有什么餐厅|有什么探店餐厅)?$/.test(text);
 }
+function catalogData(dataset='verified',contentCatalog=publishedContent){
+  const shops=new Map(catalog.shops.map(s=>[s.id,s]));
+  const shopIds=new Map();
+  if(dataset==='verified')for(const shop of contentCatalog.shops){
+    const old=catalog.shops.find(s=>s.id===shop.id||s.amap_poi_id&&s.amap_poi_id===shop.amap_poi_id);
+    const id=old?.id||shop.id;shopIds.set(shop.id,id);
+    shops.set(id,{...old,...shop,id});
+  }
+  const visits=[...catalog.visits,...(dataset==='verified'?contentCatalog.visits.map(v=>({...v,shop_id:shopIds.get(v.shop_id)||v.shop_id})):[])];
+  return {shops:[...shops.values()],visits};
+}
 function createNearbyService({mode='fixture',dataset='fixture',serviceKey,request=fetch,audit=()=>{},contentCatalog=publishedContent}={}) {
   if(!['fixture','live'].includes(mode)||!['fixture','verified'].includes(dataset))throw Error('无效数据或地点模式');
   const base={coordinate_system:'GCJ-02',distance_type:'straight_line',dataset,data_version:catalog.version+(dataset==='verified'?'+'+contentCatalog.version:''),mode,
@@ -58,17 +69,11 @@ function createNearbyService({mode='fixture',dataset='fixture',serviceKey,reques
     const resolved=await resolve(input);
     if(resolved.status!=='ok')return {...base,status:resolved.status,message:resolved.message,...(resolved.matches.length?{candidates:resolved.matches}:{})};
     const origin=resolved.matches[0];
-    const shops=new Map(catalog.shops.map(s=>[s.id,s]));
-    const shopIds=new Map();
-    if(dataset==='verified')for(const shop of contentCatalog.shops){
-      const old=catalog.shops.find(s=>s.id===shop.id||s.amap_poi_id&&s.amap_poi_id===shop.amap_poi_id);
-      const id=old?.id||shop.id;shopIds.set(shop.id,id);
-      shops.set(id,{...old,...shop,id});
-    }
-    const eligible=[...shops.values()].filter(s=>s.city===origin.city&&validPoint(s,origin.city)
+    const {shops,visits:allVisits}=catalogData(dataset,contentCatalog);
+    const eligible=shops.filter(s=>s.city===origin.city&&validPoint(s,origin.city)
       &&(s.verification==='verified'||dataset==='fixture'&&s.fixture_eligible));
     const results=eligible.flatMap(shop=>{
-      const visits=[...catalog.visits,...(dataset==='verified'?contentCatalog.visits.map(v=>({...v,shop_id:shopIds.get(v.shop_id)||v.shop_id})):[])].filter(v=>v.shop_id===shop.id);
+      const visits=allVisits.filter(v=>v.shop_id===shop.id);
       if(!visits.length)return [];
       return [{...shop,video:visits[0].video,visits,meters:airDistance(origin,shop)}];
     }).sort((a,b)=>a.meters-b.meters||a.id.localeCompare(b.id)).slice(0,3);
@@ -78,4 +83,4 @@ function createNearbyService({mode='fixture',dataset='fixture',serviceKey,reques
   }
   return {query,resolve};
 }
-module.exports={createNearbyService,validPoint,missingLocation};
+module.exports={createNearbyService,validPoint,missingLocation,catalogData};

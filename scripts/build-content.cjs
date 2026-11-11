@@ -1,5 +1,5 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
-const {assess}=require('../content/catalog.cjs');
+const {assess,validScreenshot}=require('../content/catalog.cjs');
 const {createContentState}=require('../content/state.cjs');
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
 function buildContent(root=path.join(__dirname,'..')){
@@ -33,7 +33,8 @@ function buildContent(root=path.join(__dirname,'..')){
     batches.push({batch_id:batch.batch_id,version:batch.version,records:batch.records.map(r=>({creator:r.creator,video:r.video,visit:r.visit,review:r.review}))});
     for(const r of batch.records){
       if(assess(r,config).length)continue;
-      for(const i of r.visit.screenshots){
+      for(const i of r.visit.screenshots||[]){
+        if(!validScreenshot(r,i))continue;
         const file=path.join(root,i.path),bytes=fs.readFileSync(file),sha256=hash(bytes);
         if(sha256!==i.sha256)throw Error('截图哈希不一致：'+i.path);
         const ext=path.extname(file).slice(1),type='image/'+(ext==='jpg'?'jpeg':ext);

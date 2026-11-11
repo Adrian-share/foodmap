@@ -41,33 +41,7 @@
     infoWindow.open(map, markers[index + 1].getPosition());
   }
   function showList(shops) {
-    shops.forEach((shop, index) => {
-      const item = document.createElement('li');
-      item.dataset.storeId = shop.id;
-      if (shop.card) {
-        item.dataset.visitId = shop.card.visit_id;
-        const image = document.createElement('img');
-        image.className = 'visit-image'; image.src = shop.card.image.url; image.alt = shop.card.image.alt;
-        const attribution = document.createElement('p');
-        attribution.textContent = 'UP 主：' + shop.card.creator.name + ' · 原视频截图 ' + shop.card.image.timestamp_ms / 1000 + ' 秒';
-        item.append(image, attribution);
-        if (shop.card.description) {
-          const description = document.createElement('p');
-          description.textContent = shop.card.description.text;
-          item.append(description);
-        }
-      }
-      const title = document.createElement('button');
-      title.type = 'button';
-      title.className = 'shop-select';
-      title.textContent = shop.name + ' · ' + (shop.meters / 1000).toFixed(2) + ' km';
-      title.addEventListener('click', () => selectShop(index));
-      const address = document.createElement('p');
-      address.textContent = shop.address;
-      item.append(title, address, link('探店记录', shop.detail_url || '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
-      if (shop.video) item.append(link('相关 B 站视频', shop.detail_url || '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
-      list.append(item);
-    });
+    shops.forEach((shop,index)=>list.append(FoodmapHomeCards.render(shop,index,()=>selectShop(index))));
   }
   function showSketch(origin, shops) {
     preview.replaceChildren();
@@ -147,6 +121,7 @@
     const {origin, results: shops} = result;
     current = {origin, shops};
     list.dataset.version = result.data_version;
+    document.body.dataset.catalogVersion = result.data_version;
     showList(shops);
     if (map) showMap();
     else showSketch(origin, shops);
