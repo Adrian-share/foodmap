@@ -12,7 +12,7 @@ for(const [device,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{
     const card=page.locator('#results>li').first();await expect(card).toHaveAttribute('data-store-id','amap:B0FFGCY5QP');
     await expect(card).toContainText('蓉亭食贝');await expect(card).toContainText('厨者王波');await expect(card).toContainText('肉丝');await expect(card.locator('.straight-distance')).toContainText(/0\.6\d km/);
     const img=card.locator('img');await expect(img).toBeVisible();await expect.poll(()=>img.evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true);await expect(img).toHaveAttribute('src',/\/content\/images\/BV1AdqYYNEDM-p1-30000\.png$/);
-    await expect(card.locator('.pin-number')).toHaveText('1');expect(await page.evaluate(()=>window.sdkMap.markers[1].position)).toEqual([116.413218,40.006234]);
+    await expect(card.locator('.pin-number')).toHaveText('1');await expect(page.locator('#map [data-marker-index="1"]')).toHaveAttribute('data-store-id','amap:B0FFGCY5QP');expect(await page.evaluate(()=>window.sdkMap.markers[1].position)).toEqual([116.413218,40.006234]);
     await expect(card.getByRole('link')).toHaveCount(1);await expect(card.getByRole('link')).toHaveAttribute('href',/visit_id=BV1AdqYYNEDM/);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
     await page.screenshot({path:`evidence/home-cards/${device}-fixture.png`,fullPage:true});

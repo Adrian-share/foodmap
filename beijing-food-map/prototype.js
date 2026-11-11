@@ -100,6 +100,7 @@
       content.className = 'map-pin' + (index ? '' : ' origin');
       content.textContent = index ? String(index) : '起';
       content.setAttribute('data-marker-index', String(index));
+      content.setAttribute('data-store-id', item.id || item.name);
       content.setAttribute('aria-label', (index ? index + ' · ' : '起点 · ') + item.name);
       const marker = new AMap.Marker({position: [item.lng, item.lat], content, anchor: 'center', title: item.name});
       if (index) {
