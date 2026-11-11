@@ -116,3 +116,15 @@ npm run build:hosted
 FACT-9 本地真实样本测试读取正式批次和图片，只替换高德上游地点响应与地图 SDK；独立保留桌面/手机卡片截图，不能把模拟底图当作真实高德证据。FACT-8 v4 的真实线上地图证据保留在 `evidence/home-cards/hosted/`。新增扩展场景另使用两批合成数据验证，不发布为内容。
 
 通过构建、服务/MCP 协议、两套首页、内容页与多批次页面检查后，沿用同一 Sites 项目和公开受众发布。发布记录和最终测试数见 `evidence/content-interface/validation.json`。Sites 原生接口已确认当前站点未声明 MCP；本变更没有新增公网 MCP。Node 协议比较通过不代表 Codex 图形客户端已实测。
+
+## 本轮最终结果
+
+原站点已发布 **v5**：https://shareworld-foodmap.yzxpg95.chatgpt.site 。部署源码 `96a5b7f`，release `ac08125a0cf337dc`，未改变公开受众。
+
+- 服务/HTTP/MCP/构建相关自动检查 **87/87**；页面检查 **29/29**；公网部署检查 **13/13**。
+- v5 线上桌面、手机均用“安立路地铁站”实际搜索，蓉亭食贝为第 1、0.61 km，540×960 原视频截图加载成功；真实高德编号一致。
+- 两端均打开精确到访详情，官方播放器原视频实际时间推进，图片加载失败时保留门店与距离并显示截图待补。
+- 多批次与新增 UID 在预览测试中验证重导、撤回与同店多视频；合成批次没有发布到生产。
+- 本机直接访问被 Cloudflare 拒绝；使用会话已配置代理完成以上联网验收。生产 Worker 仍未开放 MCP，Node MCP 已逐字段与共享查询比对。
+
+本轮线上原始记录和截图在 `evidence/content-interface/hosted/`，部署回执在 `deployment.json`。接口增量 PR：https://github.com/Adrian-share/foodmap/pull/5 ，目标为 FACT-8 开发分支，以便只审阅本次变化。

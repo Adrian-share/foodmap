@@ -26,6 +26,28 @@
     "passed": true
   },
   "production_mcp": "Sites get_site(include_mcp_connection=true) explicitly reports Site does not declare an MCP server",
-  "direct_network": "Cloudflare 403 from this local runtime; not an application response",
-  "deployment": "pending"
+  "direct_network": "Direct requests returned Cloudflare 403; configured session proxy passed live checks.",
+  "deployment": {
+    "version": 5,
+    "status": "succeeded",
+    "source_commit": "96a5b7f984159e5053c7ecb8a86a1f03521a172c",
+    "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site",
+    "release": "ac08125a0cf337dc"
+  },
+  "hosted_browser": {
+    "desktop": "passed",
+    "mobile": "passed",
+    "real_map": true,
+    "real_video_playback": true,
+    "image_failure_fallback": "passed",
+    "screenshot_size": [
+      540,
+      960
+    ],
+    "distance_km": 0.61
+  },
+  "deployment_http": {
+    "passed": 13,
+    "failed": 0
+  }
 }

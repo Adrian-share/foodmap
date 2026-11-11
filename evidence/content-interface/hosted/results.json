@@ -1,0 +1,498 @@
+[
+  {
+    "device": "desktop",
+    "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "checked_at": "2026-11-11T04:06:40.104Z",
+    "catalog_version": "beijing-pilot-001:beijing-pilot-001.2026-11-11.2@8804174909dbd3c2",
+    "data_version": "dual-city-2026-11-10.1+beijing-pilot-001:beijing-pilot-001.2026-11-11.2@8804174909dbd3c2",
+    "shop_count": 11,
+    "origin": {
+      "id": "BV10416647",
+      "name": "安立路地铁站",
+      "lng": 116.407845,
+      "lat": 40.002619,
+      "city": "北京",
+      "district": "朝阳区",
+      "address": "北京 · 朝阳区 · 15号线",
+      "source": "https://ditu.amap.com/place/BV10416647",
+      "coordinate_source": "amap_live"
+    },
+    "store_id": "amap:B0FFGCY5QP",
+    "bvid": "BV1AdqYYNEDM",
+    "screenshot_timestamp_ms": 30000,
+    "distance_km": 0.61,
+    "card_text": "1\n蓉亭食贝（亚运村店）\n0.61 km\n\n北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）\n\n厨者王波 · B 站探店\n\n厨者王波探店：试吃肉丝，并提到肉丝吃起来很嫩。\n\n画面 P1 · 30 秒\n\n查看探店详情 →",
+    "image": {
+      "src": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1AdqYYNEDM-p1-30000.png",
+      "naturalWidth": 540,
+      "naturalHeight": 960
+    },
+    "marker_number": 1,
+    "real_map": true,
+    "store_response": {
+      "id": "amap:B0FFGCY5QP",
+      "name": "蓉亭食贝（亚运村店）",
+      "city": "北京",
+      "district": "朝阳区",
+      "address": "北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）",
+      "lng": 116.413218,
+      "lat": 40.006234,
+      "verification": "verified",
+      "source": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+      "amap_poi_id": "B0FFGCY5QP",
+      "visits": [
+        {
+          "id": "BV1AdqYYNEDM:1:BV1AdqYYNEDM:p1:B0FFGCY5QP",
+          "local_id": "BV1AdqYYNEDM:p1:B0FFGCY5QP",
+          "shop_id": "amap:B0FFGCY5QP",
+          "bvid": "BV1AdqYYNEDM",
+          "video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "creator": "厨者王波",
+          "uid": "3546728118618546",
+          "record": {
+            "creator": {
+              "uid": "3546728118618546",
+              "name": "厨者王波",
+              "profile_url": "https://space.bilibili.com/3546728118618546"
+            },
+            "video": {
+              "bvid": "BV1AdqYYNEDM",
+              "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+              "title": "探店丨厨者王波•去学去看 蓉亭食贝 蓉派川菜在北京的知名管子，到底怎么样？！",
+              "published_at": "2024-12-13T11:30:37+08:00",
+              "part": 1,
+              "cid": 27311410395,
+              "duration_seconds": 298,
+              "owner_uid": "3546728118618546",
+              "metadata_status": "verified",
+              "playback_status": "playable",
+              "metadata_evidence": "content/sources/BV1AdqYYNEDM.json",
+              "playback_evidence": "evidence/content/live/results.json"
+            },
+            "visit": {
+              "id": "BV1AdqYYNEDM:p1:B0FFGCY5QP",
+              "start_seconds": 0,
+              "end_seconds": 298,
+              "store_id": "amap:B0FFGCY5QP",
+              "store_name": "蓉亭食贝",
+              "branch_name": "亚运村店",
+              "city": "北京市",
+              "district": "朝阳区",
+              "address": "北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）",
+              "amap_poi_id": "B0FFGCY5QP",
+              "amap_url": "https://ditu.amap.com/place/B0FFGCY5QP",
+              "gcj02": {
+                "lng": 116.413218,
+                "lat": 40.006234
+              },
+              "business_status": "unknown",
+              "evidence": [
+                {
+                  "type": "metadata",
+                  "status": "verified",
+                  "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1AdqYYNEDM",
+                  "checked_at": "2026-11-10T05:28:33.229096+00:00",
+                  "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+                },
+                {
+                  "type": "playback",
+                  "status": "verified",
+                  "url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+                  "checked_at": "2026-11-10T05:38:51.696Z",
+                  "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+                },
+                {
+                  "type": "frame_review",
+                  "status": "pending",
+                  "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+                  "seconds": 5,
+                  "note": "作者在餐厅门外介绍；未见完整门牌和地址；与高德候选尚不能唯一对应。"
+                },
+                {
+                  "type": "branch",
+                  "status": "verified",
+                  "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+                  "seconds": 12,
+                  "note": "原视频必吃榜牌匾清晰写明“蓉亭食贝（北京亚运村店）”。"
+                },
+                {
+                  "type": "amap",
+                  "status": "verified",
+                  "url": "https://ditu.amap.com/place/B0FFGCY5QP",
+                  "checked_at": "2026-11-11",
+                  "note": "高德 POI B0FFGCY5QP：樂川·蓉亭食贝(亚运村店)，朝阳区大屯北路华悦国际公寓；与牌匾分店一致。证据见 content/sources/amap-蓉亭食贝-followup.json。"
+                },
+                {
+                  "type": "address_corroboration",
+                  "status": "verified",
+                  "url": "https://www.visitbeijing.com.cn/article/4OYENbN2xPz?device=amp",
+                  "note": "北京旅游网对应蓉亭食贝地址：大屯北路312号金泉美食宫1楼；高德使用园区名称华悦国际公寓。"
+                }
+              ],
+              "opinions": [
+                {
+                  "text": "试吃肉丝，并提到肉丝吃起来很嫩。",
+                  "seconds": 30,
+                  "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/"
+                }
+              ],
+              "dishes": [],
+              "screenshots": [
+                {
+                  "path": "content/images/BV1AdqYYNEDM-p1-30000.png",
+                  "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+                  "part": 1,
+                  "timestamp_ms": 30000,
+                  "alt": "厨者王波探店原视频：肉丝近景，字幕提到肉丝吃起来很嫩",
+                  "frame_verified": true,
+                  "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+                  "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+                  "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+                  "rights_status": "not_recorded"
+                }
+              ]
+            },
+            "review": {
+              "status": "approved",
+              "reasons": [],
+              "conclusion": "P1 12秒分店牌匾 + 高德对应 POI 核准；P1 30秒截图与描述对应同一次探店。营业状态未实时保证。"
+            }
+          },
+          "detail_url": "/content/?visit_id=BV1AdqYYNEDM%3A1%3ABV1AdqYYNEDM%3Ap1%3AB0FFGCY5QP"
+        }
+      ],
+      "video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+      "creator": "厨者王波",
+      "note": "试吃肉丝，并提到肉丝吃起来很嫩。",
+      "image": {
+        "path": "content/images/BV1AdqYYNEDM-p1-30000.png",
+        "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+        "part": 1,
+        "timestamp_ms": 30000,
+        "alt": "厨者王波探店原视频：肉丝近景，字幕提到肉丝吃起来很嫩",
+        "frame_verified": true,
+        "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+        "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+        "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+        "rights_status": "not_recorded",
+        "url": "/content/images/BV1AdqYYNEDM-p1-30000.png",
+        "kind": "video_screenshot",
+        "source": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+        "mime_type": "image/png"
+      },
+      "featured_visit_id": "BV1AdqYYNEDM:1:BV1AdqYYNEDM:p1:B0FFGCY5QP",
+      "detail_url": "/content/?visit_id=BV1AdqYYNEDM%3A1%3ABV1AdqYYNEDM%3Ap1%3AB0FFGCY5QP",
+      "card": {
+        "visit_id": "BV1AdqYYNEDM:1:BV1AdqYYNEDM:p1:B0FFGCY5QP",
+        "store_id": "amap:B0FFGCY5QP",
+        "creator": {
+          "uid": "3546728118618546",
+          "name": "厨者王波",
+          "profile_url": "https://space.bilibili.com/3546728118618546"
+        },
+        "description": {
+          "text": "试吃肉丝，并提到肉丝吃起来很嫩。",
+          "seconds": 30,
+          "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/"
+        },
+        "image": {
+          "path": "content/images/BV1AdqYYNEDM-p1-30000.png",
+          "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "part": 1,
+          "timestamp_ms": 30000,
+          "alt": "厨者王波探店原视频：肉丝近景，字幕提到肉丝吃起来很嫩",
+          "frame_verified": true,
+          "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+          "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+          "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+          "rights_status": "not_recorded",
+          "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1AdqYYNEDM-p1-30000.png",
+          "kind": "video_screenshot",
+          "source": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "mime_type": "image/png"
+        },
+        "detail_url": "/content/?visit_id=BV1AdqYYNEDM%3A1%3ABV1AdqYYNEDM%3Ap1%3AB0FFGCY5QP",
+        "player_url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+        "video": {
+          "bvid": "BV1AdqYYNEDM",
+          "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "title": "探店丨厨者王波•去学去看 蓉亭食贝 蓉派川菜在北京的知名管子，到底怎么样？！",
+          "published_at": "2024-12-13T11:30:37+08:00",
+          "part": 1,
+          "cid": 27311410395,
+          "duration_seconds": 298,
+          "owner_uid": "3546728118618546",
+          "metadata_status": "verified",
+          "playback_status": "playable",
+          "metadata_evidence": "content/sources/BV1AdqYYNEDM.json",
+          "playback_evidence": "evidence/content/live/results.json"
+        }
+      },
+      "note_seconds": 30
+    },
+    "player_url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+    "before": {
+      "time": 0,
+      "paused": true
+    },
+    "after": {
+      "time": 0.576,
+      "readyState": 4
+    },
+    "playing": true
+  },
+  {
+    "device": "mobile",
+    "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "checked_at": "2026-11-11T04:07:00.181Z",
+    "catalog_version": "beijing-pilot-001:beijing-pilot-001.2026-11-11.2@8804174909dbd3c2",
+    "data_version": "dual-city-2026-11-10.1+beijing-pilot-001:beijing-pilot-001.2026-11-11.2@8804174909dbd3c2",
+    "shop_count": 11,
+    "origin": {
+      "id": "BV10416647",
+      "name": "安立路地铁站",
+      "lng": 116.407845,
+      "lat": 40.002619,
+      "city": "北京",
+      "district": "朝阳区",
+      "address": "北京 · 朝阳区 · 15号线",
+      "source": "https://ditu.amap.com/place/BV10416647",
+      "coordinate_source": "amap_live"
+    },
+    "store_id": "amap:B0FFGCY5QP",
+    "bvid": "BV1AdqYYNEDM",
+    "screenshot_timestamp_ms": 30000,
+    "distance_km": 0.61,
+    "card_text": "1\n蓉亭食贝（亚运村店）\n0.61 km\n\n北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）\n\n厨者王波 · B 站探店\n\n厨者王波探店：试吃肉丝，并提到肉丝吃起来很嫩。\n\n画面 P1 · 30 秒\n\n查看探店详情 →",
+    "image": {
+      "src": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1AdqYYNEDM-p1-30000.png",
+      "naturalWidth": 540,
+      "naturalHeight": 960
+    },
+    "marker_number": 1,
+    "real_map": true,
+    "store_response": {
+      "id": "amap:B0FFGCY5QP",
+      "name": "蓉亭食贝（亚运村店）",
+      "city": "北京",
+      "district": "朝阳区",
+      "address": "北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）",
+      "lng": 116.413218,
+      "lat": 40.006234,
+      "verification": "verified",
+      "source": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+      "amap_poi_id": "B0FFGCY5QP",
+      "visits": [
+        {
+          "id": "BV1AdqYYNEDM:1:BV1AdqYYNEDM:p1:B0FFGCY5QP",
+          "local_id": "BV1AdqYYNEDM:p1:B0FFGCY5QP",
+          "shop_id": "amap:B0FFGCY5QP",
+          "bvid": "BV1AdqYYNEDM",
+          "video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "creator": "厨者王波",
+          "uid": "3546728118618546",
+          "record": {
+            "creator": {
+              "uid": "3546728118618546",
+              "name": "厨者王波",
+              "profile_url": "https://space.bilibili.com/3546728118618546"
+            },
+            "video": {
+              "bvid": "BV1AdqYYNEDM",
+              "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+              "title": "探店丨厨者王波•去学去看 蓉亭食贝 蓉派川菜在北京的知名管子，到底怎么样？！",
+              "published_at": "2024-12-13T11:30:37+08:00",
+              "part": 1,
+              "cid": 27311410395,
+              "duration_seconds": 298,
+              "owner_uid": "3546728118618546",
+              "metadata_status": "verified",
+              "playback_status": "playable",
+              "metadata_evidence": "content/sources/BV1AdqYYNEDM.json",
+              "playback_evidence": "evidence/content/live/results.json"
+            },
+            "visit": {
+              "id": "BV1AdqYYNEDM:p1:B0FFGCY5QP",
+              "start_seconds": 0,
+              "end_seconds": 298,
+              "store_id": "amap:B0FFGCY5QP",
+              "store_name": "蓉亭食贝",
+              "branch_name": "亚运村店",
+              "city": "北京市",
+              "district": "朝阳区",
+              "address": "北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）",
+              "amap_poi_id": "B0FFGCY5QP",
+              "amap_url": "https://ditu.amap.com/place/B0FFGCY5QP",
+              "gcj02": {
+                "lng": 116.413218,
+                "lat": 40.006234
+              },
+              "business_status": "unknown",
+              "evidence": [
+                {
+                  "type": "metadata",
+                  "status": "verified",
+                  "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1AdqYYNEDM",
+                  "checked_at": "2026-11-10T05:28:33.229096+00:00",
+                  "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+                },
+                {
+                  "type": "playback",
+                  "status": "verified",
+                  "url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+                  "checked_at": "2026-11-10T05:38:51.696Z",
+                  "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+                },
+                {
+                  "type": "frame_review",
+                  "status": "pending",
+                  "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+                  "seconds": 5,
+                  "note": "作者在餐厅门外介绍；未见完整门牌和地址；与高德候选尚不能唯一对应。"
+                },
+                {
+                  "type": "branch",
+                  "status": "verified",
+                  "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+                  "seconds": 12,
+                  "note": "原视频必吃榜牌匾清晰写明“蓉亭食贝（北京亚运村店）”。"
+                },
+                {
+                  "type": "amap",
+                  "status": "verified",
+                  "url": "https://ditu.amap.com/place/B0FFGCY5QP",
+                  "checked_at": "2026-11-11",
+                  "note": "高德 POI B0FFGCY5QP：樂川·蓉亭食贝(亚运村店)，朝阳区大屯北路华悦国际公寓；与牌匾分店一致。证据见 content/sources/amap-蓉亭食贝-followup.json。"
+                },
+                {
+                  "type": "address_corroboration",
+                  "status": "verified",
+                  "url": "https://www.visitbeijing.com.cn/article/4OYENbN2xPz?device=amp",
+                  "note": "北京旅游网对应蓉亭食贝地址：大屯北路312号金泉美食宫1楼；高德使用园区名称华悦国际公寓。"
+                }
+              ],
+              "opinions": [
+                {
+                  "text": "试吃肉丝，并提到肉丝吃起来很嫩。",
+                  "seconds": 30,
+                  "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/"
+                }
+              ],
+              "dishes": [],
+              "screenshots": [
+                {
+                  "path": "content/images/BV1AdqYYNEDM-p1-30000.png",
+                  "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+                  "part": 1,
+                  "timestamp_ms": 30000,
+                  "alt": "厨者王波探店原视频：肉丝近景，字幕提到肉丝吃起来很嫩",
+                  "frame_verified": true,
+                  "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+                  "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+                  "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+                  "rights_status": "not_recorded"
+                }
+              ]
+            },
+            "review": {
+              "status": "approved",
+              "reasons": [],
+              "conclusion": "P1 12秒分店牌匾 + 高德对应 POI 核准；P1 30秒截图与描述对应同一次探店。营业状态未实时保证。"
+            }
+          },
+          "detail_url": "/content/?visit_id=BV1AdqYYNEDM%3A1%3ABV1AdqYYNEDM%3Ap1%3AB0FFGCY5QP"
+        }
+      ],
+      "video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+      "creator": "厨者王波",
+      "note": "试吃肉丝，并提到肉丝吃起来很嫩。",
+      "image": {
+        "path": "content/images/BV1AdqYYNEDM-p1-30000.png",
+        "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+        "part": 1,
+        "timestamp_ms": 30000,
+        "alt": "厨者王波探店原视频：肉丝近景，字幕提到肉丝吃起来很嫩",
+        "frame_verified": true,
+        "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+        "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+        "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+        "rights_status": "not_recorded",
+        "url": "/content/images/BV1AdqYYNEDM-p1-30000.png",
+        "kind": "video_screenshot",
+        "source": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+        "mime_type": "image/png"
+      },
+      "featured_visit_id": "BV1AdqYYNEDM:1:BV1AdqYYNEDM:p1:B0FFGCY5QP",
+      "detail_url": "/content/?visit_id=BV1AdqYYNEDM%3A1%3ABV1AdqYYNEDM%3Ap1%3AB0FFGCY5QP",
+      "card": {
+        "visit_id": "BV1AdqYYNEDM:1:BV1AdqYYNEDM:p1:B0FFGCY5QP",
+        "store_id": "amap:B0FFGCY5QP",
+        "creator": {
+          "uid": "3546728118618546",
+          "name": "厨者王波",
+          "profile_url": "https://space.bilibili.com/3546728118618546"
+        },
+        "description": {
+          "text": "试吃肉丝，并提到肉丝吃起来很嫩。",
+          "seconds": 30,
+          "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/"
+        },
+        "image": {
+          "path": "content/images/BV1AdqYYNEDM-p1-30000.png",
+          "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "part": 1,
+          "timestamp_ms": 30000,
+          "alt": "厨者王波探店原视频：肉丝近景，字幕提到肉丝吃起来很嫩",
+          "frame_verified": true,
+          "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+          "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+          "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+          "rights_status": "not_recorded",
+          "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1AdqYYNEDM-p1-30000.png",
+          "kind": "video_screenshot",
+          "source": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "mime_type": "image/png"
+        },
+        "detail_url": "/content/?visit_id=BV1AdqYYNEDM%3A1%3ABV1AdqYYNEDM%3Ap1%3AB0FFGCY5QP",
+        "player_url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+        "video": {
+          "bvid": "BV1AdqYYNEDM",
+          "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "title": "探店丨厨者王波•去学去看 蓉亭食贝 蓉派川菜在北京的知名管子，到底怎么样？！",
+          "published_at": "2024-12-13T11:30:37+08:00",
+          "part": 1,
+          "cid": 27311410395,
+          "duration_seconds": 298,
+          "owner_uid": "3546728118618546",
+          "metadata_status": "verified",
+          "playback_status": "playable",
+          "metadata_evidence": "content/sources/BV1AdqYYNEDM.json",
+          "playback_evidence": "evidence/content/live/results.json"
+        }
+      },
+      "note_seconds": 30
+    },
+    "player_url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+    "before": {
+      "time": 0,
+      "paused": true
+    },
+    "after": {
+      "time": 0.533333,
+      "readyState": 4
+    },
+    "playing": true
+  },
+  {
+    "image_failure_fallback": true,
+    "text": "截图待补\n1\n蓉亭食贝（亚运村店）\n0.61 km\n\n北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）\n\n厨者王波 · B 站探店\n\n厨者王波探店：试吃肉丝，并提到肉丝吃起来很嫩。\n\n画面 P1 · 30 秒\n\n查看探店详情 →"
+  }
+]
