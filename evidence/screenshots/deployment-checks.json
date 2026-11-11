@@ -1,0 +1,60 @@
+{
+  "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site",
+  "release": "c8b9ec479f5878d7",
+  "transport": "configured-proxy",
+  "result": "passed",
+  "checks": [
+    {
+      "path": "/healthz",
+      "status": 200
+    },
+    {
+      "path": "/",
+      "status": 200
+    },
+    {
+      "path": "/samples.js",
+      "status": 200
+    },
+    {
+      "path": "/prototype.js",
+      "status": 200
+    },
+    {
+      "path": "/api/amap/config",
+      "status": 200
+    },
+    {
+      "path": "/api/amap/search?q=%E4%B8%9C%E5%9D%9D",
+      "status": 200
+    },
+    {
+      "path": "/api/amap/search?q=%E7%8E%8B%E5%BA%9C%E4%BA%95",
+      "status": 200
+    },
+    {
+      "path": "/api/amap/search?q=%E5%A4%A7%E9%92%9F%E5%AF%BA",
+      "status": 200
+    },
+    {
+      "path": "/.env",
+      "status": 404
+    },
+    {
+      "path": "/.openai/hosting.json",
+      "status": 404
+    },
+    {
+      "path": "/amap-handler.cjs",
+      "status": 404
+    },
+    {
+      "path": "/missing",
+      "status": 404
+    },
+    {
+      "path": "/api/amap/search",
+      "status": 405
+    }
+  ]
+}

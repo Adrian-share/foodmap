@@ -1,0 +1,153 @@
+{
+  "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site",
+  "checked_at": "2026-11-11T06:46:41.600Z",
+  "shops": [
+    {
+      "store_id": "beijing-1",
+      "name": "泰丰楼",
+      "visit_id": "visit-beijing-1",
+      "bvid": "BV1CB4y147BG",
+      "part": 1,
+      "timestamp_ms": 170100,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1CB4y147BG-p1-170100.jpg",
+      "sha256": "358eebc2485365b4ac738d0fdf715bf491e8c908eaed51528f705efa6abc389e",
+      "hash_and_detail_verified": true
+    },
+    {
+      "store_id": "beijing-2",
+      "name": "北京宜宾招待所·餐厅",
+      "visit_id": "visit-beijing-2",
+      "bvid": "BV1wT1WYxEjC",
+      "part": 1,
+      "timestamp_ms": 161600,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1wT1WYxEjC-p1-161600.jpg",
+      "sha256": "11fd9888979f74d85301cc308a15b6033f4593ec297747e40d1d0a6d8976cbb5",
+      "hash_and_detail_verified": true
+    },
+    {
+      "store_id": "beijing-3",
+      "name": "潇湘阁（三里屯SOHO店）",
+      "visit_id": "visit-beijing-3",
+      "bvid": "BV1Lh4y1d7U5",
+      "part": 1,
+      "timestamp_ms": 121100,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1Lh4y1d7U5-p1-121100.jpg",
+      "sha256": "ccca5da6e67fe4ad50a67491b64853772cd6c5fb234d48cf4b5b9d363f5969e5",
+      "hash_and_detail_verified": true
+    },
+    {
+      "store_id": "beijing-4",
+      "name": "老吉堂·吉来（正大中心店）",
+      "visit_id": "visit-beijing-4",
+      "bvid": "BV1D64y1K7uj",
+      "part": 1,
+      "timestamp_ms": 162400,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1D64y1K7uj-p1-162400.jpg",
+      "sha256": "5f19222e502320e4296e7421c57cefba1e6cdbaee986deb2cf09c5bad9a23e4e",
+      "hash_and_detail_verified": true
+    },
+    {
+      "store_id": "beijing-5",
+      "name": "富春居（北京璞瑄酒店店）",
+      "visit_id": "visit-beijing-5",
+      "bvid": "BV1144y1G7Fo",
+      "part": 1,
+      "timestamp_ms": 63400,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1144y1G7Fo-p1-63400.jpg",
+      "sha256": "6ef58a98d5b9cb610870a3ceaa5cf4d84d7f1e4f5aaaf4053248d87c7cc91935",
+      "hash_and_detail_verified": true
+    },
+    {
+      "store_id": "beijing-6",
+      "name": "同和居（月坛店）",
+      "visit_id": "visit-beijing-6",
+      "bvid": "BV1Dg411j73k",
+      "part": 1,
+      "timestamp_ms": 159600,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1Dg411j73k-p1-159600.jpg",
+      "sha256": "37eb3f0f123af7d46bca43eff5bfc01030f1356aa28aa2ea341c66d660f54ef1",
+      "hash_and_detail_verified": true
+    },
+    {
+      "store_id": "beijing-7",
+      "name": "寂川（西大望路店）",
+      "visit_id": "visit-beijing-7",
+      "bvid": "BV1ma411v7V1",
+      "part": 1,
+      "timestamp_ms": 35200,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1ma411v7V1-p1-35200.jpg",
+      "sha256": "4217babbcfa39b9652b029c5cfcead2aac95f4dad10fb9929848ba98158c980b",
+      "hash_and_detail_verified": true
+    },
+    {
+      "store_id": "beijing-8",
+      "name": "聚德楼饭庄（劲松店）",
+      "visit_id": "visit-beijing-8",
+      "bvid": "BV1aj411A7Bg",
+      "part": 1,
+      "timestamp_ms": 207000,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1aj411A7Bg-p1-207000.jpg",
+      "sha256": "2e93196de190409dea16e0e091ffe4e1bd981a30e327151eb1e44e16d7a9c6a4",
+      "hash_and_detail_verified": true
+    },
+    {
+      "store_id": "beijing-9",
+      "name": "砂锅居（西四店）",
+      "visit_id": "visit-beijing-9",
+      "bvid": "BV1ka411n7Nd",
+      "part": 1,
+      "timestamp_ms": 44400,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1ka411n7Nd-p1-44400.jpg",
+      "sha256": "a25af87162f2d602977f7a35bd3abff60ab4cc7ede85bd2967765497f4c7a83f",
+      "hash_and_detail_verified": true
+    },
+    {
+      "store_id": "beijing-10",
+      "name": "洪福亮酒家（南草厂街店）",
+      "visit_id": "visit-beijing-10",
+      "bvid": "BV1LY4y1k7LX",
+      "part": 1,
+      "timestamp_ms": 88200,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1LY4y1k7LX-p1-88200.jpg",
+      "sha256": "c4bfca9fbf2cefac88059bc814add79e367e1035713aaa26e4f259e796402be6",
+      "hash_and_detail_verified": true
+    },
+    {
+      "store_id": "amap:B0FFGCY5QP",
+      "name": "蓉亭食贝（亚运村店）",
+      "visit_id": "BV1AdqYYNEDM:1:BV1AdqYYNEDM:p1:B0FFGCY5QP",
+      "bvid": "BV1AdqYYNEDM",
+      "part": 1,
+      "timestamp_ms": 30000,
+      "image_url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1AdqYYNEDM-p1-30000.png",
+      "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+      "hash_and_detail_verified": true
+    }
+  ],
+  "pages": [
+    {
+      "device": "desktop",
+      "all_images_decoded": true,
+      "home_images": 3,
+      "map_ready": true,
+      "home_store_ids": [
+        "beijing-5",
+        "beijing-1",
+        "beijing-2"
+      ]
+    },
+    {
+      "device": "mobile",
+      "all_images_decoded": true,
+      "home_images": 3,
+      "map_ready": true,
+      "home_store_ids": [
+        "beijing-5",
+        "beijing-1",
+        "beijing-2"
+      ]
+    }
+  ],
+  "version": "beijing-pilot-001:beijing-pilot-001.2026-11-11.2@f893d0c3b5aa11b6",
+  "complete": true
+}
