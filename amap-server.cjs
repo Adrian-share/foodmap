@@ -26,9 +26,10 @@ function createServer(options = {}) {
   const {createNearbyService}=require('./nearby.cjs');
   const {createMcpHandler,decorate}=require('./mcp-server.cjs');
   const {imageForPath}=require('./images.cjs');
-  const service=createNearbyService({...options,audit:options.audit||(()=>{})});
+  const state=options.contentState||require('./content/runtime.cjs');
+  const service=createNearbyService({contentCatalog:state.catalog,...options,audit:options.audit||(()=>{})});
   const mcp=createMcpHandler({...options,service});
-  const content=require('./content/http.cjs').createContentHandler({readAsset:file=>readFile(join(__dirname,file))});
+  const content=require('./content/http.cjs').createContentHandler({state,readAsset:file=>readFile(join(__dirname,file))});
   async function upstream(path, params, key, host = 'https://restapi.amap.com') {
     const url = new URL(path, host);
     url.search = new URLSearchParams(params);
@@ -55,7 +56,7 @@ function createServer(options = {}) {
       }
       if(url.pathname==='/api/nearby'){
         const data=await service.query(Object.fromEntries(url.searchParams));
-        return json(res,decorate(data,options.publicBaseUrl||`http://${req.headers.host}`));
+        return json(res,decorate(data,options.publicBaseUrl||`http://${req.headers.host}`,state.images));
       }
       const asset = Object.hasOwn(assets, url.pathname) && assets[url.pathname];
       if (asset) {

@@ -1,5 +1,5 @@
 const catalog = require('./data/catalog.json');
-const publishedContent = require('./content/http.cjs').catalog;
+const publishedContent = require('./content/runtime.cjs').catalog;
 const {origins, resolveFixture, airDistance} = require('./samples.js');
 const cities = {
   北京:{region:'110000',bounds:[115.4,117.6,39.4,41.1]},
@@ -34,7 +34,7 @@ function createNearbyService({mode='fixture',dataset='fixture',serviceKey,reques
       if(!serviceKey)throw Error('高德 Web 服务凭据未配置');
       const url=new URL('https://restapi.amap.com/v5/place/text');
       url.search=new URLSearchParams({key:serviceKey,keywords:station?.name||location.replace(/^(北京|上海)(?:市)?\s*/,''),region:cities[city].region,city_limit:'true',page_size:'10'});
-      const r=await request(url,{signal:AbortSignal.timeout(10000),redirect:'error'});
+      const r=await request(url,{signal:AbortSignal.timeout(10000),redirect:'manual'});
       if(!r.ok)throw Error('高德地点检索失败');
       const data=await r.json();if(data.status!=='1'||!Array.isArray(data.pois))throw Error('高德地点检索失败');
       matches=data.pois.flatMap(p=>{
@@ -58,11 +58,17 @@ function createNearbyService({mode='fixture',dataset='fixture',serviceKey,reques
     const resolved=await resolve(input);
     if(resolved.status!=='ok')return {...base,status:resolved.status,message:resolved.message,...(resolved.matches.length?{candidates:resolved.matches}:{})};
     const origin=resolved.matches[0];
-    const shops=dataset==='fixture'?catalog.shops:[...catalog.shops,...contentCatalog.shops.filter(s=>!catalog.shops.some(old=>old.id===s.id||old.amap_poi_id===s.amap_poi_id))];
-    const eligible=shops.filter(s=>s.city===origin.city&&validPoint(s,origin.city)
+    const shops=new Map(catalog.shops.map(s=>[s.id,s]));
+    const shopIds=new Map();
+    if(dataset==='verified')for(const shop of contentCatalog.shops){
+      const old=catalog.shops.find(s=>s.id===shop.id||s.amap_poi_id&&s.amap_poi_id===shop.amap_poi_id);
+      const id=old?.id||shop.id;shopIds.set(shop.id,id);
+      shops.set(id,{...old,...shop,id});
+    }
+    const eligible=[...shops.values()].filter(s=>s.city===origin.city&&validPoint(s,origin.city)
       &&(s.verification==='verified'||dataset==='fixture'&&s.fixture_eligible));
     const results=eligible.flatMap(shop=>{
-      const visits=[...catalog.visits,...(dataset==='verified'?contentCatalog.visits:[])].filter(v=>v.shop_id===shop.id);
+      const visits=[...catalog.visits,...(dataset==='verified'?contentCatalog.visits.map(v=>({...v,shop_id:shopIds.get(v.shop_id)||v.shop_id})):[])].filter(v=>v.shop_id===shop.id);
       if(!visits.length)return [];
       return [{...shop,video:visits[0].video,visits,meters:airDistance(origin,shop)}];
     }).sort((a,b)=>a.meters-b.meters||a.id.localeCompare(b.id)).slice(0,3);

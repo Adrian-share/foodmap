@@ -1,0 +1,579 @@
+{
+  "warning": "仅用于接口测试，不是真实门店/图片/作者审核材料；不得加入生产启用批次",
+  "config": {
+    "creator_uids": [
+      "3546888255048212",
+      "999999999999"
+    ],
+    "store_aliases": {}
+  },
+  "batches": [
+    {
+      "batch_id": "contract-a",
+      "version": "1",
+      "created_at": "2026-11-11T00:00:00Z",
+      "source_list": [
+        "TEST ONLY"
+      ],
+      "inventory": {
+        "status": "synthetic"
+      },
+      "records": [
+        {
+          "batch_id": "beijing-pilot-001",
+          "creator": {
+            "uid": "3546888255048212",
+            "name": "接口测试作者（非真实内容）",
+            "profile_url": "https://space.bilibili.com/3546888255048212"
+          },
+          "video": {
+            "bvid": "BV1k1KN6BEvw",
+            "url": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+            "title": "接口测试视频（不作为来源证据）",
+            "published_at": "2026-07-19T11:30:00+08:00",
+            "part": 1,
+            "cid": 40080901302,
+            "duration_seconds": 120,
+            "owner_uid": "3546888255048212",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1k1KN6BEvw.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "visit-a",
+            "store_id": "amap:TEST-NEW",
+            "store_name": "接口测试店（非真实门店）",
+            "branch_name": "TEST-NEW",
+            "city": "北京市",
+            "district": "东城区",
+            "address": "接口测试地址",
+            "amap_poi_id": "TEST-NEW",
+            "amap_url": "https://ditu.amap.com/place/TEST-NEW",
+            "gcj02": {
+              "lng": 116.411571,
+              "lat": 39.908069
+            },
+            "business_status": "open",
+            "start_seconds": 10,
+            "end_seconds": 30,
+            "evidence": [
+              {
+                "type": "branch",
+                "status": "verified",
+                "url": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+                "seconds": 10
+              },
+              {
+                "type": "amap",
+                "status": "verified",
+                "url": "https://ditu.amap.com/place/TEST-NEW"
+              }
+            ],
+            "opinions": [
+              {
+                "text": "仅测试描述与同一次到访绑定，不是真实探店观点。",
+                "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+                "seconds": 11
+              }
+            ],
+            "dishes": [],
+            "screenshots": [
+              {
+                "path": "content/images/contract-test.png",
+                "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+                "part": 1,
+                "timestamp_ms": 11000,
+                "alt": "合成测试图片，非视频截图",
+                "usage_basis": "仅用于接口测试的合成像素",
+                "rights_status": "approved",
+                "frame_verified": true,
+                "sha256": "8d0a9c2a111ad0bc6aa4702a9bc70de9eba86e3248909364d61d05930c6a5969"
+              }
+            ]
+          },
+          "reference_images": [
+            {
+              "path": "content/reference-images/BV1k1KN6BEvw-p1-0.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "source_image_url": "https://i1.hdslb.com/bfs/storyff/_00002kd7bfduye8t72q68gg82n3myub_firsti.jpg",
+              "kind": "official_first_frame",
+              "timestamp_ms": null,
+              "alt": "三秦人家原视频官方首帧，保留原水印",
+              "sha256": "0519b6dbcbca925b1d2dffff3d8b47dbc8a7042acfc60753d31abf895df1a943",
+              "usage_basis": null,
+              "rights_status": "pending",
+              "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+            }
+          ],
+          "branch_candidates": [
+            {
+              "name": "三秦人家(八里庄店)",
+              "amap_poi_id": "B0FFFAIUBD",
+              "amap_url": "https://ditu.amap.com/place/B0FFFAIUBD",
+              "city": "北京市",
+              "district": "朝阳区",
+              "address": "朝阳北路八里庄南里32号(近红领巾公园)",
+              "gcj02": {
+                "lng": 116.499364,
+                "lat": 39.9227
+              },
+              "status": "candidate_only"
+            },
+            {
+              "name": "三秦人家饺子坊(丰西北里店)",
+              "amap_poi_id": "B0FFFX0F2G",
+              "amap_url": "https://ditu.amap.com/place/B0FFFX0F2G",
+              "city": "北京市",
+              "district": "丰台区",
+              "address": "丰西北里362号车站派出所东侧",
+              "gcj02": {
+                "lng": 116.250846,
+                "lat": 39.837737
+              },
+              "status": "candidate_only"
+            }
+          ],
+          "review": {
+            "status": "approved",
+            "reasons": [
+              "测试替身，不得发布为正式内容"
+            ]
+          },
+          "review_frames": [
+            {
+              "bvid": "BV1k1KN6BEvw",
+              "part": 1,
+              "timestamp_ms": 5000,
+              "path": "content/review-frames/BV1k1KN6BEvw-p1-5000.png",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "capture_method": "浏览器对官方播放器 video 元素截图",
+              "current_seconds": 5,
+              "readyState": 4,
+              "video_width": 360,
+              "video_height": 640,
+              "sha256": "2227e5ea22cbd21396cb9e8b9e65f82126a4d98c0457f24c6420e230c350ab28",
+              "rights_status": "pending",
+              "usage_basis": null,
+              "checked_at": "2026-11-10T05:40:39.084Z",
+              "alt": "门头“三秦人家”和出镜作者；未见完整地址（原视频 5 秒）",
+              "frame_verified": true
+            },
+            {
+              "bvid": "BV1k1KN6BEvw",
+              "part": 1,
+              "timestamp_ms": 15000,
+              "path": "content/review-frames/BV1k1KN6BEvw-p1-15000.png",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "capture_method": "浏览器对官方播放器 video 元素截图",
+              "current_seconds": 15,
+              "readyState": 4,
+              "video_width": 360,
+              "video_height": 640,
+              "sha256": "9335698efcde63f2b7451f46d9122992e5a090b7bb567e26677f5a2e070175da",
+              "rights_status": "pending",
+              "usage_basis": null,
+              "checked_at": "2026-11-10T05:40:40.966Z",
+              "alt": "三秦人家 原视频 15.0 秒画面；待补公开使用依据",
+              "frame_verified": true
+            },
+            {
+              "bvid": "BV1k1KN6BEvw",
+              "part": 1,
+              "timestamp_ms": 219000,
+              "path": "content/review-frames/BV1k1KN6BEvw-p1-219000.png",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "capture_method": "浏览器对官方播放器 video 元素截图",
+              "current_seconds": 219,
+              "readyState": 4,
+              "video_width": 360,
+              "video_height": 640,
+              "sha256": "4e12d3ea7db8a2e302db9c427d5689ae85260426c24c3d62f60d445613185c57",
+              "rights_status": "pending",
+              "usage_basis": null,
+              "checked_at": "2026-11-10T05:40:43.211Z",
+              "alt": "三秦人家 原视频 219.0 秒画面；待补公开使用依据",
+              "frame_verified": true
+            }
+          ]
+        },
+        {
+          "batch_id": "beijing-pilot-001",
+          "creator": {
+            "uid": "3546888255048212",
+            "name": "接口测试作者（非真实内容）",
+            "profile_url": "https://space.bilibili.com/3546888255048212"
+          },
+          "video": {
+            "bvid": "BV1k1KN6BEvw",
+            "url": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+            "title": "接口测试视频（不作为来源证据）",
+            "published_at": "2026-07-19T11:30:00+08:00",
+            "part": 2,
+            "cid": 40080901302,
+            "duration_seconds": 120,
+            "owner_uid": "3546888255048212",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1k1KN6BEvw.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "branch-b",
+            "store_id": "amap:TEST-BRANCH",
+            "store_name": "接口测试店（非真实门店）",
+            "branch_name": "TEST-BRANCH",
+            "city": "北京市",
+            "district": "东城区",
+            "address": "接口测试地址",
+            "amap_poi_id": "TEST-BRANCH",
+            "amap_url": "https://ditu.amap.com/place/TEST-BRANCH",
+            "gcj02": {
+              "lng": 116.411571,
+              "lat": 39.908069
+            },
+            "business_status": "open",
+            "start_seconds": 50,
+            "end_seconds": 70,
+            "evidence": [
+              {
+                "type": "branch",
+                "status": "verified",
+                "url": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+                "seconds": 50
+              },
+              {
+                "type": "amap",
+                "status": "verified",
+                "url": "https://ditu.amap.com/place/TEST-BRANCH"
+              }
+            ],
+            "opinions": [
+              {
+                "text": "仅测试描述与同一次到访绑定，不是真实探店观点。",
+                "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+                "seconds": 51
+              }
+            ],
+            "dishes": [],
+            "screenshots": [
+              {
+                "path": "content/images/contract-test.png",
+                "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+                "part": 2,
+                "timestamp_ms": 51000,
+                "alt": "合成测试图片，非视频截图",
+                "usage_basis": "仅用于接口测试的合成像素",
+                "rights_status": "approved",
+                "frame_verified": true,
+                "sha256": "8d0a9c2a111ad0bc6aa4702a9bc70de9eba86e3248909364d61d05930c6a5969"
+              }
+            ]
+          },
+          "reference_images": [
+            {
+              "path": "content/reference-images/BV1k1KN6BEvw-p1-0.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "source_image_url": "https://i1.hdslb.com/bfs/storyff/_00002kd7bfduye8t72q68gg82n3myub_firsti.jpg",
+              "kind": "official_first_frame",
+              "timestamp_ms": null,
+              "alt": "三秦人家原视频官方首帧，保留原水印",
+              "sha256": "0519b6dbcbca925b1d2dffff3d8b47dbc8a7042acfc60753d31abf895df1a943",
+              "usage_basis": null,
+              "rights_status": "pending",
+              "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+            }
+          ],
+          "branch_candidates": [
+            {
+              "name": "三秦人家(八里庄店)",
+              "amap_poi_id": "B0FFFAIUBD",
+              "amap_url": "https://ditu.amap.com/place/B0FFFAIUBD",
+              "city": "北京市",
+              "district": "朝阳区",
+              "address": "朝阳北路八里庄南里32号(近红领巾公园)",
+              "gcj02": {
+                "lng": 116.499364,
+                "lat": 39.9227
+              },
+              "status": "candidate_only"
+            },
+            {
+              "name": "三秦人家饺子坊(丰西北里店)",
+              "amap_poi_id": "B0FFFX0F2G",
+              "amap_url": "https://ditu.amap.com/place/B0FFFX0F2G",
+              "city": "北京市",
+              "district": "丰台区",
+              "address": "丰西北里362号车站派出所东侧",
+              "gcj02": {
+                "lng": 116.250846,
+                "lat": 39.837737
+              },
+              "status": "candidate_only"
+            }
+          ],
+          "review": {
+            "status": "approved",
+            "reasons": [
+              "测试替身，不得发布为正式内容"
+            ]
+          },
+          "review_frames": [
+            {
+              "bvid": "BV1k1KN6BEvw",
+              "part": 1,
+              "timestamp_ms": 5000,
+              "path": "content/review-frames/BV1k1KN6BEvw-p1-5000.png",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "capture_method": "浏览器对官方播放器 video 元素截图",
+              "current_seconds": 5,
+              "readyState": 4,
+              "video_width": 360,
+              "video_height": 640,
+              "sha256": "2227e5ea22cbd21396cb9e8b9e65f82126a4d98c0457f24c6420e230c350ab28",
+              "rights_status": "pending",
+              "usage_basis": null,
+              "checked_at": "2026-11-10T05:40:39.084Z",
+              "alt": "门头“三秦人家”和出镜作者；未见完整地址（原视频 5 秒）",
+              "frame_verified": true
+            },
+            {
+              "bvid": "BV1k1KN6BEvw",
+              "part": 1,
+              "timestamp_ms": 15000,
+              "path": "content/review-frames/BV1k1KN6BEvw-p1-15000.png",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "capture_method": "浏览器对官方播放器 video 元素截图",
+              "current_seconds": 15,
+              "readyState": 4,
+              "video_width": 360,
+              "video_height": 640,
+              "sha256": "9335698efcde63f2b7451f46d9122992e5a090b7bb567e26677f5a2e070175da",
+              "rights_status": "pending",
+              "usage_basis": null,
+              "checked_at": "2026-11-10T05:40:40.966Z",
+              "alt": "三秦人家 原视频 15.0 秒画面；待补公开使用依据",
+              "frame_verified": true
+            },
+            {
+              "bvid": "BV1k1KN6BEvw",
+              "part": 1,
+              "timestamp_ms": 219000,
+              "path": "content/review-frames/BV1k1KN6BEvw-p1-219000.png",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "capture_method": "浏览器对官方播放器 video 元素截图",
+              "current_seconds": 219,
+              "readyState": 4,
+              "video_width": 360,
+              "video_height": 640,
+              "sha256": "4e12d3ea7db8a2e302db9c427d5689ae85260426c24c3d62f60d445613185c57",
+              "rights_status": "pending",
+              "usage_basis": null,
+              "checked_at": "2026-11-10T05:40:43.211Z",
+              "alt": "三秦人家 原视频 219.0 秒画面；待补公开使用依据",
+              "frame_verified": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "batch_id": "contract-b",
+      "version": "1",
+      "created_at": "2026-11-11T00:00:00Z",
+      "source_list": [
+        "TEST ONLY"
+      ],
+      "inventory": {
+        "status": "synthetic"
+      },
+      "records": [
+        {
+          "batch_id": "beijing-pilot-001",
+          "creator": {
+            "uid": "999999999999",
+            "name": "接口测试作者（非真实内容）",
+            "profile_url": "https://space.bilibili.com/999999999999"
+          },
+          "video": {
+            "bvid": "BV1ao4y1k75R",
+            "url": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+            "title": "接口测试视频（不作为来源证据）",
+            "published_at": "2026-07-19T11:30:00+08:00",
+            "part": 1,
+            "cid": 40080901302,
+            "duration_seconds": 120,
+            "owner_uid": "999999999999",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1k1KN6BEvw.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "visit-new-author",
+            "store_id": "amap:TEST-NEW",
+            "store_name": "接口测试店（非真实门店）",
+            "branch_name": "TEST-NEW",
+            "city": "北京市",
+            "district": "东城区",
+            "address": "接口测试地址",
+            "amap_poi_id": "TEST-NEW",
+            "amap_url": "https://ditu.amap.com/place/TEST-NEW",
+            "gcj02": {
+              "lng": 116.411571,
+              "lat": 39.908069
+            },
+            "business_status": "open",
+            "start_seconds": 40,
+            "end_seconds": 60,
+            "evidence": [
+              {
+                "type": "branch",
+                "status": "verified",
+                "url": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+                "seconds": 40
+              },
+              {
+                "type": "amap",
+                "status": "verified",
+                "url": "https://ditu.amap.com/place/TEST-NEW"
+              }
+            ],
+            "opinions": [
+              {
+                "text": "仅测试描述与同一次到访绑定，不是真实探店观点。",
+                "source_video": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+                "seconds": 41
+              }
+            ],
+            "dishes": [],
+            "screenshots": [
+              {
+                "path": "content/images/contract-test.png",
+                "source_video": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+                "part": 1,
+                "timestamp_ms": 41000,
+                "alt": "合成测试图片，非视频截图",
+                "usage_basis": "仅用于接口测试的合成像素",
+                "rights_status": "approved",
+                "frame_verified": true,
+                "sha256": "8d0a9c2a111ad0bc6aa4702a9bc70de9eba86e3248909364d61d05930c6a5969"
+              }
+            ]
+          },
+          "reference_images": [
+            {
+              "path": "content/reference-images/BV1k1KN6BEvw-p1-0.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "source_image_url": "https://i1.hdslb.com/bfs/storyff/_00002kd7bfduye8t72q68gg82n3myub_firsti.jpg",
+              "kind": "official_first_frame",
+              "timestamp_ms": null,
+              "alt": "三秦人家原视频官方首帧，保留原水印",
+              "sha256": "0519b6dbcbca925b1d2dffff3d8b47dbc8a7042acfc60753d31abf895df1a943",
+              "usage_basis": null,
+              "rights_status": "pending",
+              "note": "官方首帧仅用于审核；未验证对应播放时间，不作为正式卡片截图。"
+            }
+          ],
+          "branch_candidates": [
+            {
+              "name": "三秦人家(八里庄店)",
+              "amap_poi_id": "B0FFFAIUBD",
+              "amap_url": "https://ditu.amap.com/place/B0FFFAIUBD",
+              "city": "北京市",
+              "district": "朝阳区",
+              "address": "朝阳北路八里庄南里32号(近红领巾公园)",
+              "gcj02": {
+                "lng": 116.499364,
+                "lat": 39.9227
+              },
+              "status": "candidate_only"
+            },
+            {
+              "name": "三秦人家饺子坊(丰西北里店)",
+              "amap_poi_id": "B0FFFX0F2G",
+              "amap_url": "https://ditu.amap.com/place/B0FFFX0F2G",
+              "city": "北京市",
+              "district": "丰台区",
+              "address": "丰西北里362号车站派出所东侧",
+              "gcj02": {
+                "lng": 116.250846,
+                "lat": 39.837737
+              },
+              "status": "candidate_only"
+            }
+          ],
+          "review": {
+            "status": "approved",
+            "reasons": [
+              "测试替身，不得发布为正式内容"
+            ]
+          },
+          "review_frames": [
+            {
+              "bvid": "BV1k1KN6BEvw",
+              "part": 1,
+              "timestamp_ms": 5000,
+              "path": "content/review-frames/BV1k1KN6BEvw-p1-5000.png",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "capture_method": "浏览器对官方播放器 video 元素截图",
+              "current_seconds": 5,
+              "readyState": 4,
+              "video_width": 360,
+              "video_height": 640,
+              "sha256": "2227e5ea22cbd21396cb9e8b9e65f82126a4d98c0457f24c6420e230c350ab28",
+              "rights_status": "pending",
+              "usage_basis": null,
+              "checked_at": "2026-11-10T05:40:39.084Z",
+              "alt": "门头“三秦人家”和出镜作者；未见完整地址（原视频 5 秒）",
+              "frame_verified": true
+            },
+            {
+              "bvid": "BV1k1KN6BEvw",
+              "part": 1,
+              "timestamp_ms": 15000,
+              "path": "content/review-frames/BV1k1KN6BEvw-p1-15000.png",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "capture_method": "浏览器对官方播放器 video 元素截图",
+              "current_seconds": 15,
+              "readyState": 4,
+              "video_width": 360,
+              "video_height": 640,
+              "sha256": "9335698efcde63f2b7451f46d9122992e5a090b7bb567e26677f5a2e070175da",
+              "rights_status": "pending",
+              "usage_basis": null,
+              "checked_at": "2026-11-10T05:40:40.966Z",
+              "alt": "三秦人家 原视频 15.0 秒画面；待补公开使用依据",
+              "frame_verified": true
+            },
+            {
+              "bvid": "BV1k1KN6BEvw",
+              "part": 1,
+              "timestamp_ms": 219000,
+              "path": "content/review-frames/BV1k1KN6BEvw-p1-219000.png",
+              "source_video": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+              "capture_method": "浏览器对官方播放器 video 元素截图",
+              "current_seconds": 219,
+              "readyState": 4,
+              "video_width": 360,
+              "video_height": 640,
+              "sha256": "4e12d3ea7db8a2e302db9c427d5689ae85260426c24c3d62f60d445613185c57",
+              "rights_status": "pending",
+              "usage_basis": null,
+              "checked_at": "2026-11-10T05:40:43.211Z",
+              "alt": "三秦人家 原视频 219.0 秒画面；待补公开使用依据",
+              "frame_verified": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "image_assets": {
+    "/content/images/contract-test.png": {
+      "base64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jrXcAAAAASUVORK5CYII=",
+      "sha256": "8d0a9c2a111ad0bc6aa4702a9bc70de9eba86e3248909364d61d05930c6a5969",
+      "type": "image/png"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "batches": [
+    {"path": "batches/beijing-pilot-001.json", "enabled": true}
+  ],
+  "creator_uids": ["3546888255048212", "3546728118618546", "544336675"],
+  "store_aliases": {}
+}

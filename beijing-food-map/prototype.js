@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const {restaurants, normalize, resolveFixture, closest} = samples;
+  const {normalize} = samples;
   const byId = id => document.getElementById(id);
   const query = byId('query'), status = byId('status'), list = byId('results');
   const candidates = byId('candidates'), preview = byId('preview'), mapElement = byId('map');
@@ -23,8 +23,8 @@
     title.textContent = shop.name + ' · ' + (shop.meters / 1000).toFixed(2) + ' km';
     const address = document.createElement('p');
     address.textContent = shop.address;
-    container.append(title, address, link('探店记录', '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
-    if (shop.video) container.append(link('相关 B 站视频', '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
+    container.append(title, address, link('探店记录', shop.detail_url || '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
+    if (shop.video) container.append(link('相关 B 站视频', shop.detail_url || '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
   }
   function selectShop(index) {
     if (!current) return;
@@ -43,6 +43,20 @@
   function showList(shops) {
     shops.forEach((shop, index) => {
       const item = document.createElement('li');
+      item.dataset.storeId = shop.id;
+      if (shop.card) {
+        item.dataset.visitId = shop.card.visit_id;
+        const image = document.createElement('img');
+        image.className = 'visit-image'; image.src = shop.card.image.url; image.alt = shop.card.image.alt;
+        const attribution = document.createElement('p');
+        attribution.textContent = 'UP 主：' + shop.card.creator.name + ' · 原视频截图 ' + shop.card.image.timestamp_ms / 1000 + ' 秒';
+        item.append(image, attribution);
+        if (shop.card.description) {
+          const description = document.createElement('p');
+          description.textContent = shop.card.description.text;
+          item.append(description);
+        }
+      }
       const title = document.createElement('button');
       title.type = 'button';
       title.className = 'shop-select';
@@ -50,8 +64,8 @@
       title.addEventListener('click', () => selectShop(index));
       const address = document.createElement('p');
       address.textContent = shop.address;
-      item.append(title, address, link('探店记录', '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
-      if (shop.video) item.append(link('相关 B 站视频', '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
+      item.append(title, address, link('探店记录', shop.detail_url || '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
+      if (shop.video) item.append(link('相关 B 站视频', shop.detail_url || '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
       list.append(item);
     });
   }
@@ -127,54 +141,51 @@
     fit();
     fitMap.hidden = false;
   }
-  function render(origin, version) {
+  function render(result, version) {
     if (version !== searchVersion) return;
     clear();
-    const shops = closest(origin, restaurants);
+    const {origin, results: shops} = result;
     current = {origin, shops};
+    list.dataset.version = result.data_version;
     showList(shops);
     if (map) showMap();
     else showSketch(origin, shops);
-    status.textContent = (config.searchEnabled ? '高德地点检索 · ' : '离线固定样本 · ')
-      + origin.name + (origin.address ? ' · ' + origin.address : '')
-      + ' · 十家样本中直线距离最近的三家';
+    status.textContent = result.message + ' · ' + result.scope;
   }
   function validOrigin(item) {
     return item && typeof item.name === 'string' && Number.isFinite(item.lng) && Number.isFinite(item.lat)
       && item.lng >= 115.4 && item.lng <= 117.6 && item.lat >= 39.4 && item.lat <= 41.1;
   }
-  async function search(input = query.value) {
+  async function search(input = query.value, originId) {
     lastInput = input;
     const version = ++searchVersion;
     const name = normalize(input);
     clear();
     if (!name) {status.textContent = '请输入地点名称。'; return;}
-    if (!config.searchEnabled) {
-      const origin = resolveFixture(name);
-      if (origin) render(origin, version);
-      else status.textContent = '离线样本仅支持王府井、东坝和大钟寺，当前地点未找到。';
-      return;
-    }
-    status.textContent = '正在高德地图搜索地点…';
+    status.textContent = '正在搜索地点与附近探店…';
     try {
-      const response = await fetch('/api/amap/search?' + new URLSearchParams({q: name}), {signal: AbortSignal.timeout(12000)});
+      const params = new URLSearchParams({location: name, city: '北京'});
+      if (originId) params.set('origin_id', originId);
+      const response = await fetch('/api/nearby?' + params, {signal: AbortSignal.timeout(12000)});
       const result = await response.json();
       if (version !== searchVersion) return;
-      if (!response.ok || !Array.isArray(result.matches) || !result.matches.every(validOrigin)) throw Error('搜索失败');
-      const matches = result.matches;
-      if (matches.length === 1) {render(matches[0], version); return;}
-      status.textContent = matches.length ? '请选择准确的起点。' : '未找到可定位的地点，请更换关键词。';
-      matches.forEach(poi => {
+      if (!response.ok || !Array.isArray(result.results)) throw Error('搜索失败');
+      if (result.status === 'ok') {
+        if (!validOrigin(result.origin) || !result.results.every(s => validOrigin(s) && Number.isFinite(s.meters))) throw Error('搜索失败');
+        render(result, version); return;
+      }
+      status.textContent = result.message;
+      for (const poi of result.candidates || []) {
         const button = document.createElement('button');
         button.type = 'button';
         button.textContent = poi.name + (poi.address ? ' · ' + poi.address : '');
-        button.addEventListener('click', () => render(poi, version));
+        button.addEventListener('click', () => {if (version === searchVersion) search(input, poi.id);});
         candidates.append(button);
-      });
+      }
     } catch {
       if (version !== searchVersion) return;
       clear();
-      status.textContent = '高德地点检索失败，请重试搜索。';
+      status.textContent = '地点与附近探店检索失败，请重试搜索。';
       retrySearch.hidden = false;
     }
   }

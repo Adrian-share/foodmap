@@ -18,7 +18,7 @@
     $('video-status').textContent='已打开官方播放器，点击播放器内播放键开始。若受限，请点击“播放器无法播放”。';
   }
   function open(r,button){
-    active=r;opener=button;$('video-title').textContent=r.visit?.store_name||r.video.title;
+    active=r;opener=button;$('video-title').textContent=r.visit?[r.visit.store_name,r.visit.branch_name].filter(Boolean).join(' · '):r.video.title;
     $('video-author').textContent=(r.creator?.name||'原视频')+' · '+r.video.bvid+' · P'+r.video.part;
     $('video-source').textContent='B 站原视频出处：'+r.video.url;
     $('video-slot').replaceChildren();$('load-video').hidden=false;$('retry-video').hidden=true;$('video-unavailable').hidden=true;
@@ -31,11 +31,11 @@
     const term=$('content-query').value.trim().toLowerCase(),found=records.filter(r=>[r.creator.name,r.video.title,r.video.bvid,r.visit.store_name,r.visit.branch_name].filter(Boolean).join(' ').toLowerCase().includes(term));
     $('cards').replaceChildren();
     for(const r of found){
-      const card=el('article',null,'card');card.dataset.bvid=r.video.bvid;card.dataset.published=String(r.published);
-      if(r.published&&r.visit.screenshots.length){const i=r.visit.screenshots[0],img=el('img');img.src='/'+i.path;img.alt=i.alt;img.loading='lazy';card.append(img);}
+      const card=el('article',null,'card');card.dataset.bvid=r.video.bvid;card.dataset.visitId=r.visit_id;card.dataset.published=String(r.published);
+      if(r.published&&r.visit.screenshots.length&&!review){const i=r.visit.screenshots[0],img=el('img');img.src='/'+i.path;img.alt=i.alt;img.loading='lazy';card.append(img);}
       else{const ph=el('div',null,'placeholder');ph.append(el('strong','待补截图'),el('span','仅供界面验证 · 未发布'));card.append(ph);}
       const body=el('div',null,'card-body');body.append(el('span',r.published?'已收录':'待核分店 · 待补截图','tag'),el('p',r.creator.name,'creator'),el('h2',r.visit.store_name),el('p',r.video.title,'title'),el('p',r.visit.branch_name?`${r.visit.district} · ${r.visit.address}`:'具体分店与地址待核实'),el('p',r.video.bvid+' · P'+r.video.part+' · '+r.video.published_at.slice(0,10),'bvid'));
-      if(r.published){const i=r.visit.screenshots[0];body.append(el('p','画面：'+i.alt+' · '+(i.timestamp_ms/1000)+' 秒 · 来源 '+r.video.bvid));}
+      if(r.published&&r.visit.screenshots.length){const i=r.visit.screenshots[0];body.append(el('p','画面：'+i.alt+' · '+(i.timestamp_ms/1000)+' 秒 · 来源 '+r.video.bvid));}
       if(r.published){
         for(const o of (r.visit.opinions||[]).slice(0,2))body.append(el('p','UP 主观点：'+o.text+'（'+o.seconds+' 秒）'));
         for(const d of r.visit.dishes||[])body.append(el('p','菜品：'+d.text+'（'+d.seconds+' 秒）'));
@@ -49,9 +49,17 @@
     try{
       const response=await fetch('/api/content'+(review?'?review=1':''));if(!response.ok)throw Error();const data=await response.json();records=data.records;
       $(review?'review-tab':'published-tab').setAttribute('aria-current','page');$('review-note').hidden=!review;
-      $('summary').textContent=review?`本批 ${records.length} 条候选 · 已收录 ${data.published_count} 条 · 三位 UP 主`:`已收录 ${data.published_count} 条 · 经分店与截图核对`;
+      $('summary').textContent=review?`${data.batches?.length||1} 个批次 · ${records.length} 条候选 · 已收录 ${data.published_count} 条 · ${new Set(records.map(r=>r.creator.uid)).size} 位 UP 主`:`已收录 ${data.published_count} 条 · 经分店与截图核对`;
       render();
+      const visit=params.get('visit_id');
+      if(visit){
+        const r=records.find(r=>r.visit_id===visit);
+        if(r)open(r,$('published-tab'));
+        else $('summary').textContent='该到访记录不存在、已撤回或尚未公开。';
+        return;
+      }
       const bv=params.get('bvid');if(/^BV[1-9A-HJ-NP-Za-km-z]{10}$/.test(bv||'')){
+        if(records.filter(r=>r.video.bvid===bv).length>1){$('content-query').value=bv;render();$('summary').textContent='该视频包含多次到访，请选择对应分店。';return;}
         const r=records.find(r=>r.video.bvid===bv)||{video:{bvid:bv,title:bv,part:1,url:`https://www.bilibili.com/video/${bv}/`,playback_status:'pending'},player_url:`https://player.bilibili.com/player.html?bvid=${bv}&p=1&t=0&autoplay=0&danmaku=0`};
         open(r,$('published-tab'));
       }

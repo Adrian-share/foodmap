@@ -1,5 +1,7 @@
 ## 北京内容批次
 
+FACT-9 的多批次配置、接口字段、去重与扩展流程见 [内容接口契约](CONTENT-INTERFACE.md)。以下保留首批采集与来源说明。
+
 `content/batches/beijing-pilot-001.json` 对应附件输出模板；保留 creator、video、visit、review 四组字段。未知信息使用 null。UID 与 BV 已由官方元数据核对；高德同名点位放在 `branch_candidates`，不当作实际到访分店。
 
 `reference_images` 是官方首帧线索；`review_frames` 是浏览器在官方播放器指定时间对 video 元素截取的 PNG。它们均未取得可确认的公开使用依据，不是可发布的 `visit.screenshots`。这些图片只通过任务附件交付；Git 忽略实际图片文件，服务器路由和部署包不提供这些资源。原水印、署名和播放器画面均保留。九条视频均未下载、代理或保存。
@@ -12,9 +14,9 @@
 2. 取得图片使用依据，把核准图片放入 `content/images/`。按模板补充 source_video、part、timestamp_ms、alt、usage_basis、rights_status=approved、frame_verified=true 及 SHA-256。截图时间点必须属于该分店片段。
 3. 在 `visit.evidence` 中分别写入已核准的 branch、amap 证据。审核通过才设 `review.status=approved`。
 4. 运行 `npm run content:build`。它检查文件、图片签名和哈希，产生 `content/public-assets.json`；只有已核准图片进入运行时。缺文件或哈希不符会使构建失败。再执行 `npm test`、`npm run test:content:page` 和 `npm run build:hosted`。
-5. 同一个 Worker/Node 内容路由提供正式卡片和图片。FACT-7 根目录的 `nearby.cjs` 将已核准记录加入 verified 数据集，网页与 MCP 共用；fixture 固定样本继续用于原有排序验收。当前托管仍沿用北京十店前端；若有新店获准，需要先把该托管前端接到共享附近服务再验收新点位，本批没有新正式门店，因此不改变当前地图名单。
+5. 同一个 Worker/Node 内容路由提供正式卡片和图片。FACT-7 根目录的 `nearby.cjs` 将已核准记录加入 verified 数据集，网页与 MCP 共用；fixture 固定样本继续用于原有排序验收。FACT-9 开发分支的托管首页已接入 `/api/nearby`，与 Node/MCP 共享查询；生产部署仍以 FACT-8 的实际发布为准。当前正式内容为 0，新增真实门店尚未完成验收。
 
-批次派生目录按 UID、BV、探店 ID 及高德 POI 去重，重复导入不叠加。`buildCatalog` 从启用批次重建，停用批次或移除加载列表再构建可撤回；线上版本可按 `docs/deployment.md` 回退。记录版本在 API 的 version 与附近搜索 verified 数据版本中。
+批次派生目录按 UID、BV、探店 ID 及高德 POI 去重，重复导入不叠加。`buildCatalog` 从启用批次重建，停用批次或移除加载列表再构建可撤回；线上版本可按 `docs/deployment.md` 回退。记录版本在 API 的 version 与附近搜索 verified 数据版本中。启用批次、作者 UID 与旧门店 POI 映射统一配置在 `content/config.json`；构建产生 `compiled.json` 和 `public-assets.json`，运行时不直接扫描批次。
 
 ## 基线与测试
 

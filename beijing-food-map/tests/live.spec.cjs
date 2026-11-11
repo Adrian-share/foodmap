@@ -12,11 +12,11 @@ for (const name of Object.keys(expected)) test(`真实高德地图：${name}`, a
   await page.goto('/');
   await expect(page.locator('#map')).toHaveAttribute('data-ready', 'true');
   await page.getByLabel('起点', {exact: true}).fill(name);
-  const searchResponse = page.waitForResponse(response => response.url().includes('/api/amap/search?'));
+  const searchResponse = page.waitForResponse(response => response.url().includes('/api/nearby?'));
   await page.getByRole('button', {name: '查最近三家', exact: true}).click();
   const result = await (await searchResponse).json();
-  expect(result.matches).toHaveLength(1);
-  const origin = result.matches[0];
+  expect(result.status).toBe('ok');
+  const origin = result.origin;
   await expect(page.locator('#status')).toContainText(name + '地铁站');
   await expect(page.locator('#map .map-pin')).toHaveCount(4);
   await expect(page.locator('#map [data-marker-index="0"]')).toHaveAttribute('aria-label', '起点 · ' + origin.name);
