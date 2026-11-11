@@ -42,7 +42,7 @@ test('识别王府井的口述误写，未知地点不回退到旧结果', () =>
   assert.equal(resolveFixture('未知位置'), undefined);
 });
 
-test('提交三个地名，离线页面均显示起点、三个图钉和三条结果', () => {
+test('提交三个地名，页面读取共享查询并显示四个图钉和三条结果', async () => {
   const vm = require('node:vm');
   const {readFileSync} = require('node:fs');
   const {join} = require('node:path');
@@ -50,9 +50,9 @@ test('提交三个地名，离线页面均显示起点、三个图钉和三条�
   class Element {
     constructor(tag = '') {
       this.tag = tag;
-      this.dataset = {};
       this.children = [];
       this.listeners = {};
+      this.dataset = {};
       this.namespaceURI = 'http://www.w3.org/2000/svg';
     }
     addEventListener(event, listener) { this.listeners[event] = listener; }
@@ -61,29 +61,35 @@ test('提交三个地名，离线页面均显示起点、三个图钉和三条�
     setAttribute() {}
   }
 
-  const ids = ['query', 'status', 'results', 'candidates', 'preview', 'map', 'search', 'map-status', 'retry-search', 'retry-map', 'fit-map', 'result-count'];
+  const ids = ['query', 'status', 'results', 'candidates', 'preview', 'map', 'search', 'map-status', 'retry-search', 'retry-map', 'fit-map'];
   const elements = Object.fromEntries(ids.map(id => [id, new Element()]));
   const document = {
+    body: new Element(),
     getElementById: id => elements[id],
     querySelectorAll: () => [],
     createElement: tag => new Element(tag),
     createElementNS: (_, tag) => new Element(tag)
   };
-  const context = vm.createContext({document});
+  const service=require('../nearby.cjs').createNearbyService({dataset:'verified'});
+  const context = vm.createContext({window:{},document, URLSearchParams, AbortSignal, location:{protocol:'file:'},
+    fetch:async url=>({ok:true,json:()=>service.query(Object.fromEntries(new URL(url,'http://test').searchParams))})});
   context.window=context;
-  for (const script of ['samples.js', '../content/home-cards.js', 'prototype.js']) {
+  const settle=()=>new Promise(resolve=>setImmediate(resolve));
+  for (const script of ['../content/home-cards.js', 'samples.js', 'prototype.js']) {
     vm.runInContext(readFileSync(join(__dirname, script), 'utf8'), context);
   }
 
   for (const input of ['望府井', '东坝', '大钟寺']) {
     elements.query.value = input;
     elements.search.listeners.submit({preventDefault() {}});
+    await settle();
     assert.equal(elements.results.children.length, 3);
     const [svg] = elements.preview.children;
     assert.equal(svg.children.filter(node => node.tag === 'circle').length, 4);
   }
   elements.query.value = '未知位置';
   elements.search.listeners.submit({preventDefault() {}});
+    await settle();
   assert.equal(elements.results.children.length, 0);
   assert.equal(elements.preview.children.length, 0);
 });

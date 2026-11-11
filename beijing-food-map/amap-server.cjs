@@ -7,7 +7,7 @@ function createServer(options = {}) {
   if (typeof options === 'string') options = {serviceKey: options};
   const handle = createHandler({...options, readAsset: file => readFile(join(__dirname, file.startsWith('content/')?'..':'', file))});
   return http.createServer(async (req, res) => {
-    const response = await handle(new Request(new URL(req.url, 'http://127.0.0.1'), {method: req.method}));
+    const response = await handle(new Request(new URL(req.url, 'http://' + req.headers.host), {method: req.method}));
     res.writeHead(response.status, Object.fromEntries(response.headers));
     res.end(Buffer.from(await response.arrayBuffer()));
   });

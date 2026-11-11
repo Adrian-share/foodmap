@@ -3,7 +3,7 @@ const {NodeStreamableHTTPServerTransport, localhostHostValidation, localhostOrig
 const {z} = require('zod');
 const {withImage, caption, imageContent} = require('./images.cjs');
 
-const instructions = '你是双城探店助手。用户没有明确提供位置（例如只问“我附近有什么？”）时，先追问所在城市、酒店、地铁站或地标，等用户补充后才调用 find_nearby_food。禁止猜位置、默认起点、IP、设备定位或跨会话记忆。用户补充位置后再查询。有歧义时展示城市、行政区、候选名称，让用户选择，再用 origin_id 查询。成功时告诉用户准确起点、坐标来源、最近三家完整分店名、直线距离、分店地址、探店出处和原视频链接。说明数据版本、固定样本范围和候选核对状态；固定验收样本不代表实时营业。每家有 image 时使用 cards_markdown 展示原视频封面。无图时直接给文字，不可编造图片。needs_location、ambiguous、location_not_found 时不推荐门店或图片。';
+const instructions = '你是双城探店助手。用户没有明确提供位置（例如只问“我附近有什么？”）时，先追问所在城市、酒店、地铁站或地标，等用户补充后才调用 find_nearby_food。禁止猜位置、默认起点、IP、设备定位或跨会话记忆。用户补充位置后再查询。有歧义时展示城市、行政区、候选名称，让用户选择，再用 origin_id 查询。成功时告诉用户准确起点、坐标来源、最近三家完整分店名、直线距离、分店地址、探店出处和原视频链接。说明数据版本、固定样本范围和候选核对状态；固定验收样本不代表实时营业。每家有 image 时使用 cards_markdown 展示图片，按 image.kind 区分原视频截图与封面；作者、描述和播放入口取同一 card。无图时直接给文字，不可编造图片。needs_location、ambiguous、location_not_found 时不推荐门店或图片。';
 const outputSchema = z.object({
   status:z.enum(['ok','needs_location','ambiguous','location_not_found']),
   message:z.string(), coordinate_system:z.literal('GCJ-02'), distance_type:z.literal('straight_line'),
@@ -17,7 +17,7 @@ const outputSchema = z.object({
   candidates:z.array(z.object({id:z.string(),name:z.string(),city:z.string(),district:z.string()}).passthrough()).optional(),
   cards_markdown:z.string().optional()
 });
-function createMcpServer(audit, baseUrl, service) {
+function createMcpServer(audit, baseUrl, service, assets) {
   const server = new McpServer({name:'dual-city-food-map', version:'2.0.0'}, {instructions});
   server.registerTool('find_nearby_food', {
     title:'双城附近探店',
@@ -27,15 +27,15 @@ function createMcpServer(audit, baseUrl, service) {
     outputSchema,
     annotations:{readOnlyHint:true, destructiveHint:false, idempotentHint:true, openWorldHint:true}
   }, async input => {
-    const data = decorate(await service.query(input), baseUrl);
+    const data = decorate(await service.query(input), baseUrl, assets);
     audit({event:'tool_result', tool:'find_nearby_food', ...input, result:data});
-    return {content:[{type:'text', text:JSON.stringify(data)}, ...imageContent(data.results)], structuredContent:data};
+    return {content:[{type:'text', text:JSON.stringify(data)}, ...imageContent(data.results,assets)], structuredContent:data};
   });
   return server;
 }
-function decorate(data,baseUrl) {
+function decorate(data,baseUrl,assets) {
   if(data.status!=='ok')return data;
-  const results=data.results.map(shop=>withImage(shop,baseUrl));
+  const results=data.results.map(shop=>withImage(shop,baseUrl,assets));
   return {...data,results,cards_markdown:results.map(caption).join('\n')};
 }
 function json(res, status, body) {
@@ -43,13 +43,13 @@ function json(res, status, body) {
   res.end(JSON.stringify(body));
 }
 
-function createMcpHandler({audit=()=>{},publicBaseUrl,service}) {
+function createMcpHandler({audit=()=>{},publicBaseUrl,service,contentState}) {
   if(publicBaseUrl&&!/^https?:$/.test(new URL(publicBaseUrl).protocol))throw Error('PUBLIC_BASE_URL 必须使用 http 或 https');
   const validateHost=localhostHostValidation(), validateOrigin=localhostOriginValidation();
   return async (req,res)=>{
     if(!validateHost(req,res)||!validateOrigin(req,res))return;
     if(req.method!=='POST'){res.setHeader('Allow','POST');return json(res,405,{error:'请使用 Streamable HTTP POST /mcp'});}
-    const server=createMcpServer(audit,publicBaseUrl||`http://${req.headers.host}`,service);
+    const server=createMcpServer(audit,publicBaseUrl||`http://${req.headers.host}`,service,contentState?.images);
     const transport=new NodeStreamableHTTPServerTransport({sessionIdGenerator:undefined,enableJsonResponse:true});
     try {
       await server.connect(transport);

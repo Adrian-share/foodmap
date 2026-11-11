@@ -1,0 +1,53 @@
+{
+  "checked_at": "2026-11-11T04:02:48.225687+00:00",
+  "baseline": "4d48a57",
+  "unit_protocol": {
+    "passed": 87,
+    "failed": 0
+  },
+  "browser": {
+    "passed": 29,
+    "failed": 0,
+    "breakdown": {
+      "dual_city": 12,
+      "hosted_regression": 9,
+      "content": 3,
+      "real_home_cards": 3,
+      "two_batches": 2
+    },
+    "engine": "Playwright ARM Chromium",
+    "map_sdk": "mock",
+    "player": "mock"
+  },
+  "bundled_worker": {
+    "store": "amap:B0FFGCY5QP",
+    "meters": 609.1120538726736,
+    "screenshot_ms": 30000,
+    "passed": true
+  },
+  "production_mcp": "Sites get_site(include_mcp_connection=true) explicitly reports Site does not declare an MCP server",
+  "direct_network": "Direct requests returned Cloudflare 403; configured session proxy passed live checks.",
+  "deployment": {
+    "version": 5,
+    "status": "succeeded",
+    "source_commit": "96a5b7f984159e5053c7ecb8a86a1f03521a172c",
+    "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site",
+    "release": "ac08125a0cf337dc"
+  },
+  "hosted_browser": {
+    "desktop": "passed",
+    "mobile": "passed",
+    "real_map": true,
+    "real_video_playback": true,
+    "image_failure_fallback": "passed",
+    "screenshot_size": [
+      540,
+      960
+    ],
+    "distance_km": 0.61
+  },
+  "deployment_http": {
+    "passed": 13,
+    "failed": 0
+  }
+}

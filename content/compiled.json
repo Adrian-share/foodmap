@@ -1,0 +1,1271 @@
+{
+  "version": "beijing-pilot-001:beijing-pilot-001.2026-11-11.2@f893d0c3b5aa11b6",
+  "config": {
+    "creator_uids": [
+      "3546728118618546",
+      "3546888255048212",
+      "544336675"
+    ],
+    "store_aliases": {}
+  },
+  "batches": [
+    {
+      "batch_id": "beijing-pilot-001",
+      "version": "beijing-pilot-001.2026-11-11.2",
+      "records": [
+        {
+          "creator": {
+            "uid": "3546888255048212",
+            "name": "特厨隋坡",
+            "profile_url": "https://space.bilibili.com/3546888255048212"
+          },
+          "video": {
+            "bvid": "BV1k1KN6BEvw",
+            "url": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+            "title": "特厨探店|小又隐蔽，凭什么能开十多年？小李私藏—三秦人家",
+            "published_at": "2026-07-19T11:30:00+08:00",
+            "part": 1,
+            "cid": 40080901302,
+            "duration_seconds": 222,
+            "owner_uid": "3546888255048212",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1k1KN6BEvw.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "candidate:BV1k1KN6BEvw:p1",
+            "start_seconds": null,
+            "end_seconds": null,
+            "store_id": null,
+            "store_name": "三秦人家",
+            "branch_name": null,
+            "city": "北京市",
+            "district": null,
+            "address": null,
+            "amap_poi_id": null,
+            "amap_url": null,
+            "gcj02": null,
+            "business_status": "unknown",
+            "evidence": [
+              {
+                "type": "metadata",
+                "status": "verified",
+                "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1k1KN6BEvw",
+                "checked_at": "2026-11-10T05:28:33.004661+00:00",
+                "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+              },
+              {
+                "type": "playback",
+                "status": "verified",
+                "url": "https://player.bilibili.com/player.html?bvid=BV1k1KN6BEvw&p=1&t=0&autoplay=0&danmaku=0",
+                "checked_at": "2026-11-10T05:38:29.455Z",
+                "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+              },
+              {
+                "type": "frame_review",
+                "status": "pending",
+                "url": "https://www.bilibili.com/video/BV1k1KN6BEvw/",
+                "seconds": 5,
+                "note": "门头“三秦人家”和出镜作者；未见完整地址；与高德候选尚不能唯一对应。"
+              }
+            ],
+            "opinions": [],
+            "dishes": [],
+            "screenshots": []
+          },
+          "review": {
+            "status": "pending",
+            "reasons": [
+              "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+              "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
+            ],
+            "suggested_capture": {
+              "part": 1,
+              "start_seconds": 5,
+              "end_seconds": 5,
+              "target": "门头“三秦人家”和出镜作者；未见完整地址；现有实截图可回查，待补完整地址画面及公开使用依据。"
+            }
+          }
+        },
+        {
+          "creator": {
+            "uid": "3546888255048212",
+            "name": "特厨隋坡",
+            "profile_url": "https://space.bilibili.com/3546888255048212"
+          },
+          "video": {
+            "bvid": "BV1uHANzsEEk",
+            "url": "https://www.bilibili.com/video/BV1uHANzsEEk/",
+            "title": "特厨探店|四张桌子干了三碗饭（来个下联）—江西小炒",
+            "published_at": "2026-03-22T11:30:00+08:00",
+            "part": 1,
+            "cid": 36873700789,
+            "duration_seconds": 203,
+            "owner_uid": "3546888255048212",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1uHANzsEEk.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "candidate:BV1uHANzsEEk:p1",
+            "start_seconds": null,
+            "end_seconds": null,
+            "store_id": null,
+            "store_name": "江西小炒",
+            "branch_name": null,
+            "city": "北京市",
+            "district": null,
+            "address": null,
+            "amap_poi_id": null,
+            "amap_url": null,
+            "gcj02": null,
+            "business_status": "unknown",
+            "evidence": [
+              {
+                "type": "metadata",
+                "status": "verified",
+                "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1uHANzsEEk",
+                "checked_at": "2026-11-10T05:28:33.014930+00:00",
+                "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+              },
+              {
+                "type": "playback",
+                "status": "verified",
+                "url": "https://player.bilibili.com/player.html?bvid=BV1uHANzsEEk&p=1&t=0&autoplay=0&danmaku=0",
+                "checked_at": "2026-11-10T05:38:37.076Z",
+                "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+              },
+              {
+                "type": "frame_review",
+                "status": "pending",
+                "url": "https://www.bilibili.com/video/BV1uHANzsEEk/",
+                "seconds": 5,
+                "note": "江西小炒门头与北京相关字幕；门牌地址未完整显示；与高德候选尚不能唯一对应。"
+              }
+            ],
+            "opinions": [],
+            "dishes": [],
+            "screenshots": []
+          },
+          "review": {
+            "status": "pending",
+            "reasons": [
+              "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+              "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
+            ],
+            "suggested_capture": {
+              "part": 1,
+              "start_seconds": 5,
+              "end_seconds": 5,
+              "target": "江西小炒门头与北京相关字幕；门牌地址未完整显示；现有实截图可回查，待补完整地址画面及公开使用依据。"
+            }
+          }
+        },
+        {
+          "creator": {
+            "uid": "3546888255048212",
+            "name": "特厨隋坡",
+            "profile_url": "https://space.bilibili.com/3546888255048212"
+          },
+          "video": {
+            "bvid": "BV1fzhM6iE5k",
+            "url": "https://www.bilibili.com/video/BV1fzhM6iE5k/",
+            "title": "特厨探店丨北京最难订?!吃到了能记一生的炒饭!-龙庭",
+            "published_at": "2026-08-25T11:30:00+08:00",
+            "part": 1,
+            "cid": 41237351970,
+            "duration_seconds": 203,
+            "owner_uid": "3546888255048212",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1fzhM6iE5k.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "candidate:BV1fzhM6iE5k:p1",
+            "start_seconds": null,
+            "end_seconds": null,
+            "store_id": null,
+            "store_name": "龙庭",
+            "branch_name": null,
+            "city": "北京市",
+            "district": null,
+            "address": null,
+            "amap_poi_id": null,
+            "amap_url": null,
+            "gcj02": null,
+            "business_status": "unknown",
+            "evidence": [
+              {
+                "type": "metadata",
+                "status": "verified",
+                "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1fzhM6iE5k",
+                "checked_at": "2026-11-10T05:28:33.021303+00:00",
+                "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+              },
+              {
+                "type": "playback",
+                "status": "verified",
+                "url": "https://player.bilibili.com/player.html?bvid=BV1fzhM6iE5k&p=1&t=0&autoplay=0&danmaku=0",
+                "checked_at": "2026-11-10T05:38:44.360Z",
+                "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+              },
+              {
+                "type": "frame_review",
+                "status": "pending",
+                "url": "https://www.bilibili.com/video/BV1fzhM6iE5k/",
+                "seconds": 5,
+                "note": "作者在龙庭开场介绍；未显示可唯一定位分店的地址；与高德候选尚不能唯一对应。"
+              }
+            ],
+            "opinions": [],
+            "dishes": [],
+            "screenshots": []
+          },
+          "review": {
+            "status": "pending",
+            "reasons": [
+              "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+              "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
+            ],
+            "suggested_capture": {
+              "part": 1,
+              "start_seconds": 5,
+              "end_seconds": 5,
+              "target": "作者在龙庭开场介绍；未显示可唯一定位分店的地址；现有实截图可回查，待补完整地址画面及公开使用依据。"
+            }
+          }
+        },
+        {
+          "creator": {
+            "uid": "3546728118618546",
+            "name": "厨者王波",
+            "profile_url": "https://space.bilibili.com/3546728118618546"
+          },
+          "video": {
+            "bvid": "BV1AdqYYNEDM",
+            "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+            "title": "探店丨厨者王波•去学去看 蓉亭食贝 蓉派川菜在北京的知名管子，到底怎么样？！",
+            "published_at": "2024-12-13T11:30:37+08:00",
+            "part": 1,
+            "cid": 27311410395,
+            "duration_seconds": 298,
+            "owner_uid": "3546728118618546",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1AdqYYNEDM.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "BV1AdqYYNEDM:p1:B0FFGCY5QP",
+            "start_seconds": 0,
+            "end_seconds": 298,
+            "store_id": "amap:B0FFGCY5QP",
+            "store_name": "蓉亭食贝",
+            "branch_name": "亚运村店",
+            "city": "北京市",
+            "district": "朝阳区",
+            "address": "北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）",
+            "amap_poi_id": "B0FFGCY5QP",
+            "amap_url": "https://ditu.amap.com/place/B0FFGCY5QP",
+            "gcj02": {
+              "lng": 116.413218,
+              "lat": 40.006234
+            },
+            "business_status": "unknown",
+            "evidence": [
+              {
+                "type": "metadata",
+                "status": "verified",
+                "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1AdqYYNEDM",
+                "checked_at": "2026-11-10T05:28:33.229096+00:00",
+                "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+              },
+              {
+                "type": "playback",
+                "status": "verified",
+                "url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+                "checked_at": "2026-11-10T05:38:51.696Z",
+                "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+              },
+              {
+                "type": "frame_review",
+                "status": "pending",
+                "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+                "seconds": 5,
+                "note": "作者在餐厅门外介绍；未见完整门牌和地址；与高德候选尚不能唯一对应。"
+              },
+              {
+                "type": "branch",
+                "status": "verified",
+                "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+                "seconds": 12,
+                "note": "原视频必吃榜牌匾清晰写明“蓉亭食贝（北京亚运村店）”。"
+              },
+              {
+                "type": "amap",
+                "status": "verified",
+                "url": "https://ditu.amap.com/place/B0FFGCY5QP",
+                "checked_at": "2026-11-11",
+                "note": "高德 POI B0FFGCY5QP：樂川·蓉亭食贝(亚运村店)，朝阳区大屯北路华悦国际公寓；与牌匾分店一致。证据见 content/sources/amap-蓉亭食贝-followup.json。"
+              },
+              {
+                "type": "address_corroboration",
+                "status": "verified",
+                "url": "https://www.visitbeijing.com.cn/article/4OYENbN2xPz?device=amp",
+                "note": "北京旅游网对应蓉亭食贝地址：大屯北路312号金泉美食宫1楼；高德使用园区名称华悦国际公寓。"
+              }
+            ],
+            "opinions": [
+              {
+                "text": "试吃肉丝，并提到肉丝吃起来很嫩。",
+                "seconds": 30,
+                "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/"
+              }
+            ],
+            "dishes": [],
+            "screenshots": [
+              {
+                "path": "content/images/BV1AdqYYNEDM-p1-30000.png",
+                "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+                "part": 1,
+                "timestamp_ms": 30000,
+                "alt": "厨者王波探店原视频：肉丝近景，字幕提到肉丝吃起来很嫩",
+                "frame_verified": true,
+                "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+                "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+                "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+                "rights_status": "not_recorded"
+              }
+            ]
+          },
+          "review": {
+            "status": "approved",
+            "reasons": [],
+            "conclusion": "P1 12秒分店牌匾 + 高德对应 POI 核准；P1 30秒截图与描述对应同一次探店。营业状态未实时保证。"
+          }
+        },
+        {
+          "creator": {
+            "uid": "3546728118618546",
+            "name": "厨者王波",
+            "profile_url": "https://space.bilibili.com/3546728118618546"
+          },
+          "video": {
+            "bvid": "BV1NG6kYTEXG",
+            "url": "https://www.bilibili.com/video/BV1NG6kYTEXG/",
+            "title": "探店丨厨者王波•去学去看 峨嵋酒家 宫保鸡丁不愧是头牌菜！今日收获了个烧排骨",
+            "published_at": "2025-01-03T11:50:16+08:00",
+            "part": 1,
+            "cid": 27668907646,
+            "duration_seconds": 295,
+            "owner_uid": "3546728118618546",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1NG6kYTEXG.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "candidate:BV1NG6kYTEXG:p1",
+            "start_seconds": null,
+            "end_seconds": null,
+            "store_id": null,
+            "store_name": "峨嵋酒家",
+            "branch_name": null,
+            "city": "北京市",
+            "district": null,
+            "address": null,
+            "amap_poi_id": null,
+            "amap_url": null,
+            "gcj02": null,
+            "business_status": "unknown",
+            "evidence": [
+              {
+                "type": "metadata",
+                "status": "verified",
+                "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1NG6kYTEXG",
+                "checked_at": "2026-11-10T05:28:33.263385+00:00",
+                "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+              },
+              {
+                "type": "playback",
+                "status": "verified",
+                "url": "https://player.bilibili.com/player.html?bvid=BV1NG6kYTEXG&p=1&t=0&autoplay=0&danmaku=0",
+                "checked_at": "2026-11-10T05:38:58.962Z",
+                "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+              },
+              {
+                "type": "frame_review",
+                "status": "pending",
+                "url": "https://www.bilibili.com/video/BV1NG6kYTEXG/",
+                "seconds": 15,
+                "note": "峨嵋酒家牌匾；未标明具体分店；与高德候选尚不能唯一对应。"
+              }
+            ],
+            "opinions": [],
+            "dishes": [],
+            "screenshots": []
+          },
+          "review": {
+            "status": "pending",
+            "reasons": [
+              "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+              "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
+            ],
+            "suggested_capture": {
+              "part": 1,
+              "start_seconds": 15,
+              "end_seconds": 15,
+              "target": "峨嵋酒家牌匾；未标明具体分店；现有实截图可回查，待补完整地址画面及公开使用依据。"
+            }
+          }
+        },
+        {
+          "creator": {
+            "uid": "3546728118618546",
+            "name": "厨者王波",
+            "profile_url": "https://space.bilibili.com/3546728118618546"
+          },
+          "video": {
+            "bvid": "BV1gkxKefEfW",
+            "url": "https://www.bilibili.com/video/BV1gkxKefEfW/",
+            "title": "探店丨厨者王波•去学去看 便宜坊 顶着压力给大家测评下！烤鸭的一鸭三吃很棒！",
+            "published_at": "2024-09-28T13:26:23+08:00",
+            "part": 1,
+            "cid": 26040864581,
+            "duration_seconds": 368,
+            "owner_uid": "3546728118618546",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1gkxKefEfW.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "candidate:BV1gkxKefEfW:p1",
+            "start_seconds": null,
+            "end_seconds": null,
+            "store_id": null,
+            "store_name": "便宜坊",
+            "branch_name": null,
+            "city": "北京市",
+            "district": null,
+            "address": null,
+            "amap_poi_id": null,
+            "amap_url": null,
+            "gcj02": null,
+            "business_status": "unknown",
+            "evidence": [
+              {
+                "type": "metadata",
+                "status": "verified",
+                "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1gkxKefEfW",
+                "checked_at": "2026-11-10T05:28:33.250060+00:00",
+                "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+              },
+              {
+                "type": "playback",
+                "status": "verified",
+                "url": "https://player.bilibili.com/player.html?bvid=BV1gkxKefEfW&p=1&t=0&autoplay=0&danmaku=0",
+                "checked_at": "2026-11-10T05:39:05.840Z",
+                "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+              },
+              {
+                "type": "frame_review",
+                "status": "pending",
+                "url": "https://www.bilibili.com/video/BV1gkxKefEfW/",
+                "seconds": 5,
+                "note": "作者在餐厅内与菜品同框；未见分店地址；与高德候选尚不能唯一对应。"
+              }
+            ],
+            "opinions": [],
+            "dishes": [],
+            "screenshots": []
+          },
+          "review": {
+            "status": "pending",
+            "reasons": [
+              "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+              "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
+            ],
+            "suggested_capture": {
+              "part": 1,
+              "start_seconds": 5,
+              "end_seconds": 5,
+              "target": "作者在餐厅内与菜品同框；未见分店地址；现有实截图可回查，待补完整地址画面及公开使用依据。"
+            }
+          }
+        },
+        {
+          "creator": {
+            "uid": "544336675",
+            "name": "真探唐仁杰",
+            "profile_url": "https://space.bilibili.com/544336675"
+          },
+          "video": {
+            "bvid": "BV1zM4y1c7GE",
+            "url": "https://www.bilibili.com/video/BV1zM4y1c7GE/",
+            "title": "北京陶陶居 厨子探店¥644",
+            "published_at": "2021-12-18T11:30:13+08:00",
+            "part": 1,
+            "cid": 462706494,
+            "duration_seconds": 213,
+            "owner_uid": "544336675",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1zM4y1c7GE.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "candidate:BV1zM4y1c7GE:p1",
+            "start_seconds": null,
+            "end_seconds": null,
+            "store_id": null,
+            "store_name": "陶陶居",
+            "branch_name": null,
+            "city": "北京市",
+            "district": null,
+            "address": null,
+            "amap_poi_id": null,
+            "amap_url": null,
+            "gcj02": null,
+            "business_status": "unknown",
+            "evidence": [
+              {
+                "type": "metadata",
+                "status": "verified",
+                "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1zM4y1c7GE",
+                "checked_at": "2026-11-10T05:28:33.399326+00:00",
+                "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+              },
+              {
+                "type": "playback",
+                "status": "verified",
+                "url": "https://player.bilibili.com/player.html?bvid=BV1zM4y1c7GE&p=1&t=0&autoplay=0&danmaku=0",
+                "checked_at": "2026-11-10T05:39:13.795Z",
+                "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+              },
+              {
+                "type": "frame_review",
+                "status": "pending",
+                "url": "https://www.bilibili.com/video/BV1zM4y1c7GE/",
+                "seconds": 5,
+                "note": "作者在陶陶居店内展示单据；无法确定北京哪家分店；与高德候选尚不能唯一对应。"
+              }
+            ],
+            "opinions": [],
+            "dishes": [],
+            "screenshots": []
+          },
+          "review": {
+            "status": "pending",
+            "reasons": [
+              "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+              "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
+            ],
+            "suggested_capture": {
+              "part": 1,
+              "start_seconds": 5,
+              "end_seconds": 5,
+              "target": "作者在陶陶居店内展示单据；无法确定北京哪家分店；现有实截图可回查，待补完整地址画面及公开使用依据。"
+            }
+          }
+        },
+        {
+          "creator": {
+            "uid": "544336675",
+            "name": "真探唐仁杰",
+            "profile_url": "https://space.bilibili.com/544336675"
+          },
+          "video": {
+            "bvid": "BV1CT411k75q",
+            "url": "https://www.bilibili.com/video/BV1CT411k75q/",
+            "title": "北京.提督  厨子探店¥928",
+            "published_at": "2023-01-31T11:30:00+08:00",
+            "part": 1,
+            "cid": 985860254,
+            "duration_seconds": 248,
+            "owner_uid": "544336675",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1CT411k75q.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "candidate:BV1CT411k75q:p1",
+            "start_seconds": null,
+            "end_seconds": null,
+            "store_id": null,
+            "store_name": "提督",
+            "branch_name": null,
+            "city": "北京市",
+            "district": null,
+            "address": null,
+            "amap_poi_id": null,
+            "amap_url": null,
+            "gcj02": null,
+            "business_status": "unknown",
+            "evidence": [
+              {
+                "type": "metadata",
+                "status": "verified",
+                "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1CT411k75q",
+                "checked_at": "2026-11-10T05:28:33.426636+00:00",
+                "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+              },
+              {
+                "type": "playback",
+                "status": "verified",
+                "url": "https://player.bilibili.com/player.html?bvid=BV1CT411k75q&p=1&t=0&autoplay=0&danmaku=0",
+                "checked_at": "2026-11-10T05:39:21.275Z",
+                "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+              },
+              {
+                "type": "frame_review",
+                "status": "pending",
+                "url": "https://www.bilibili.com/video/BV1CT411k75q/",
+                "seconds": 5,
+                "note": "作者在提督店内点评；未见完整分店地址；与高德候选尚不能唯一对应。"
+              }
+            ],
+            "opinions": [],
+            "dishes": [],
+            "screenshots": []
+          },
+          "review": {
+            "status": "pending",
+            "reasons": [
+              "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+              "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
+            ],
+            "suggested_capture": {
+              "part": 1,
+              "start_seconds": 5,
+              "end_seconds": 5,
+              "target": "作者在提督店内点评；未见完整分店地址；现有实截图可回查，待补完整地址画面及公开使用依据。"
+            }
+          }
+        },
+        {
+          "creator": {
+            "uid": "544336675",
+            "name": "真探唐仁杰",
+            "profile_url": "https://space.bilibili.com/544336675"
+          },
+          "video": {
+            "bvid": "BV1ao4y1k75R",
+            "url": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+            "title": "便宜坊 厨子探店 ¥862",
+            "published_at": "2021-06-16T20:15:31+08:00",
+            "part": 1,
+            "cid": 355206675,
+            "duration_seconds": 156,
+            "owner_uid": "544336675",
+            "metadata_status": "verified",
+            "playback_status": "playable",
+            "metadata_evidence": "content/sources/BV1ao4y1k75R.json",
+            "playback_evidence": "evidence/content/live/results.json"
+          },
+          "visit": {
+            "id": "candidate:BV1ao4y1k75R:p1",
+            "start_seconds": null,
+            "end_seconds": null,
+            "store_id": null,
+            "store_name": "便宜坊",
+            "branch_name": null,
+            "city": null,
+            "district": null,
+            "address": null,
+            "amap_poi_id": null,
+            "amap_url": null,
+            "gcj02": null,
+            "business_status": "unknown",
+            "evidence": [
+              {
+                "type": "metadata",
+                "status": "verified",
+                "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1ao4y1k75R",
+                "checked_at": "2026-11-10T05:28:33.416147+00:00",
+                "note": "UID、标题、发布日期、分 P 来自 B 站官方元数据；不证明到访分店。"
+              },
+              {
+                "type": "playback",
+                "status": "verified",
+                "url": "https://player.bilibili.com/player.html?bvid=BV1ao4y1k75R&p=1&t=0&autoplay=0&danmaku=0",
+                "checked_at": "2026-11-10T05:39:28.654Z",
+                "note": "官方播放器实际时间推进，网站未跳转；仅当前代理网络实测。"
+              },
+              {
+                "type": "frame_review",
+                "status": "pending",
+                "url": "https://www.bilibili.com/video/BV1ao4y1k75R/",
+                "seconds": 5,
+                "note": "作者与烤鸭同框；城市及具体便宜坊分店均需补证；与高德候选尚不能唯一对应。"
+              }
+            ],
+            "opinions": [],
+            "dishes": [],
+            "screenshots": []
+          },
+          "review": {
+            "status": "pending",
+            "reasons": [
+              "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+              "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图",
+              "城市需补原视频证据"
+            ],
+            "suggested_capture": {
+              "part": 1,
+              "start_seconds": 5,
+              "end_seconds": 5,
+              "target": "作者与烤鸭同框；城市及具体便宜坊分店均需补证；现有实截图可回查，待补完整地址画面及公开使用依据。"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "baseline_records": [
+    {
+      "id": "visit-beijing-1",
+      "shop_id": "beijing-1",
+      "record": {
+        "creator": {
+          "name": "特厨隋卞",
+          "uid": "1462401621"
+        },
+        "video": {
+          "bvid": "BV1CB4y147BG",
+          "url": "https://www.bilibili.com/video/BV1CB4y147BG/",
+          "title": "北京八大楼快来一遍了，今天看泰丰楼怎么样！竟然一进门被厨师长当场逮捕？！",
+          "part": 1,
+          "duration_seconds": 243,
+          "metadata_status": "baseline_accepted"
+        },
+        "visit": {
+          "id": "visit-beijing-1",
+          "store_id": "beijing-1",
+          "store_name": "泰丰楼",
+          "branch_name": "泰丰楼",
+          "city": "北京",
+          "district": "西城区",
+          "address": "西城区 · 大栅栏 · 前门西大街2号楼",
+          "gcj02": {
+            "lng": 116.391816,
+            "lat": 39.899823
+          },
+          "start_seconds": 0,
+          "end_seconds": 243,
+          "screenshots": [
+            {
+              "path": "content/images/BV1CB4y147BG-p1-170100.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+              "part": 1,
+              "timestamp_ms": 170100,
+              "sha256": "358eebc2485365b4ac738d0fdf715bf491e8c908eaed51528f705efa6abc389e",
+              "alt": "特厨隋卞在泰丰楼用筷子夹起食物试吃的原视频画面",
+              "frame_verified": true,
+              "capture_method": "official-player-video-element",
+              "captured_at": "2026-11-11T06:35:26.937Z",
+              "reviewed_by": "macnimicodex",
+              "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+            }
+          ],
+          "opinions": [],
+          "dishes": []
+        },
+        "review": {
+          "status": "approved",
+          "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+        }
+      }
+    },
+    {
+      "id": "visit-beijing-10",
+      "shop_id": "beijing-10",
+      "record": {
+        "creator": {
+          "name": "真探唐仁杰",
+          "uid": "544336675"
+        },
+        "video": {
+          "bvid": "BV1LY4y1k7LX",
+          "url": "https://www.bilibili.com/video/BV1LY4y1k7LX/",
+          "title": "洪福亮酒家  厨子探店¥212",
+          "part": 1,
+          "duration_seconds": 126,
+          "metadata_status": "baseline_accepted"
+        },
+        "visit": {
+          "id": "visit-beijing-10",
+          "store_id": "beijing-10",
+          "store_name": "洪福亮酒家（南草厂街店）",
+          "branch_name": "洪福亮酒家（南草厂街店）",
+          "city": "北京",
+          "district": "西城区",
+          "address": "西城区 · 官园 · 北京城区南草厂街91号",
+          "gcj02": {
+            "lng": 116.363946,
+            "lat": 39.936263
+          },
+          "start_seconds": 0,
+          "end_seconds": 126,
+          "screenshots": [
+            {
+              "path": "content/images/BV1LY4y1k7LX-p1-88200.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1LY4y1k7LX/",
+              "part": 1,
+              "timestamp_ms": 88200,
+              "sha256": "c4bfca9fbf2cefac88059bc814add79e367e1035713aaa26e4f259e796402be6",
+              "alt": "洪福亮酒家探店视频中的焦熘肥肠近景，保留原片菜名字幕",
+              "frame_verified": true,
+              "capture_method": "official-player-video-element",
+              "captured_at": "2026-11-11T06:36:05.642Z",
+              "reviewed_by": "macnimicodex",
+              "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+            }
+          ],
+          "opinions": [],
+          "dishes": []
+        },
+        "review": {
+          "status": "approved",
+          "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+        }
+      }
+    },
+    {
+      "id": "visit-beijing-2",
+      "shop_id": "beijing-2",
+      "record": {
+        "creator": {
+          "name": "厨者王波",
+          "uid": "3546728118618546"
+        },
+        "video": {
+          "bvid": "BV1wT1WYxEjC",
+          "url": "https://www.bilibili.com/video/BV1wT1WYxEjC/",
+          "title": "探店丨厨者王波•去学去看 宜宾招待所 李庄白肉太棒了！整体很棒啊！",
+          "part": 1,
+          "duration_seconds": 359,
+          "metadata_status": "baseline_accepted"
+        },
+        "visit": {
+          "id": "visit-beijing-2",
+          "store_id": "beijing-2",
+          "store_name": "北京宜宾招待所·餐厅",
+          "branch_name": "北京宜宾招待所·餐厅",
+          "city": "北京",
+          "district": "西城区",
+          "address": "西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)",
+          "gcj02": {
+            "lng": 116.379692,
+            "lat": 39.901244
+          },
+          "start_seconds": 0,
+          "end_seconds": 359,
+          "screenshots": [
+            {
+              "path": "content/images/BV1wT1WYxEjC-p1-161600.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1wT1WYxEjC/",
+              "part": 1,
+              "timestamp_ms": 161600,
+              "sha256": "11fd9888979f74d85301cc308a15b6033f4593ec297747e40d1d0a6d8976cbb5",
+              "alt": "厨者王波在宜宾招待所夹起白肉，桌上摆有切片白肉",
+              "frame_verified": true,
+              "capture_method": "official-player-video-element",
+              "captured_at": "2026-11-11T06:35:24.190Z",
+              "reviewed_by": "macnimicodex",
+              "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+            }
+          ],
+          "opinions": [],
+          "dishes": []
+        },
+        "review": {
+          "status": "approved",
+          "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+        }
+      }
+    },
+    {
+      "id": "visit-beijing-3",
+      "shop_id": "beijing-3",
+      "record": {
+        "creator": {
+          "name": "特厨隋卞",
+          "uid": "1462401621"
+        },
+        "video": {
+          "bvid": "BV1Lh4y1d7U5",
+          "url": "https://www.bilibili.com/video/BV1Lh4y1d7U5/",
+          "title": "隋卞一探 |特厨探店-北京湘菜必吃榜湘菜？-潇湘阁！",
+          "part": 1,
+          "duration_seconds": 173,
+          "metadata_status": "baseline_accepted"
+        },
+        "visit": {
+          "id": "visit-beijing-3",
+          "store_id": "beijing-3",
+          "store_name": "潇湘阁（三里屯SOHO店）",
+          "branch_name": "潇湘阁（三里屯SOHO店）",
+          "city": "北京",
+          "district": "朝阳区",
+          "address": "朝阳区 · 三里屯 · 北京城区三里屯SOHO1号商场B1-117/下沉广场赛百味路口往里走30米",
+          "gcj02": {
+            "lng": 116.452883,
+            "lat": 39.933123
+          },
+          "start_seconds": 0,
+          "end_seconds": 173,
+          "screenshots": [
+            {
+              "path": "content/images/BV1Lh4y1d7U5-p1-121100.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1Lh4y1d7U5/",
+              "part": 1,
+              "timestamp_ms": 121100,
+              "sha256": "ccca5da6e67fe4ad50a67491b64853772cd6c5fb234d48cf4b5b9d363f5969e5",
+              "alt": "潇湘阁探店视频中的鸡爪菜品近景，保留原片菜名字幕",
+              "frame_verified": true,
+              "capture_method": "official-player-video-element",
+              "captured_at": "2026-11-11T06:35:36.076Z",
+              "reviewed_by": "macnimicodex",
+              "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+            }
+          ],
+          "opinions": [],
+          "dishes": []
+        },
+        "review": {
+          "status": "approved",
+          "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+        }
+      }
+    },
+    {
+      "id": "visit-beijing-4",
+      "shop_id": "beijing-4",
+      "record": {
+        "creator": {
+          "name": "特厨隋卞",
+          "uid": "1462401621"
+        },
+        "video": {
+          "bvid": "BV1D64y1K7uj",
+          "url": "https://www.bilibili.com/video/BV1D64y1K7uj/",
+          "title": "特厨探店|上海菜登上北京的必吃榜？！调味真准——老吉堂",
+          "part": 1,
+          "duration_seconds": 232,
+          "metadata_status": "baseline_accepted"
+        },
+        "visit": {
+          "id": "visit-beijing-4",
+          "store_id": "beijing-4",
+          "store_name": "老吉堂·吉来（正大中心店）",
+          "branch_name": "老吉堂·吉来（正大中心店）",
+          "city": "北京",
+          "district": "朝阳区",
+          "address": "朝阳区 · 大望路 · 金和东路20号院1号楼正大中心3层302b",
+          "gcj02": {
+            "lng": 116.468365,
+            "lat": 39.912794
+          },
+          "start_seconds": 0,
+          "end_seconds": 232,
+          "screenshots": [
+            {
+              "path": "content/images/BV1D64y1K7uj-p1-162400.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1D64y1K7uj/",
+              "part": 1,
+              "timestamp_ms": 162400,
+              "sha256": "5f19222e502320e4296e7421c57cefba1e6cdbaee986deb2cf09c5bad9a23e4e",
+              "alt": "老吉堂探店视频中盛有汤品的白碗近景",
+              "frame_verified": true,
+              "capture_method": "official-player-video-element",
+              "captured_at": "2026-11-11T06:35:36.462Z",
+              "reviewed_by": "macnimicodex",
+              "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+            }
+          ],
+          "opinions": [],
+          "dishes": []
+        },
+        "review": {
+          "status": "approved",
+          "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+        }
+      }
+    },
+    {
+      "id": "visit-beijing-5",
+      "shop_id": "beijing-5",
+      "record": {
+        "creator": {
+          "name": "真探唐仁杰",
+          "uid": "544336675"
+        },
+        "video": {
+          "bvid": "BV1144y1G7Fo",
+          "url": "https://www.bilibili.com/video/BV1144y1G7Fo/",
+          "title": "富春居  厨子请客¥？？？",
+          "part": 1,
+          "duration_seconds": 317,
+          "metadata_status": "baseline_accepted"
+        },
+        "visit": {
+          "id": "visit-beijing-5",
+          "store_id": "beijing-5",
+          "store_name": "富春居（北京璞瑄酒店店）",
+          "branch_name": "富春居（北京璞瑄酒店店）",
+          "city": "北京",
+          "district": "东城区",
+          "address": "东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层",
+          "gcj02": {
+            "lng": 116.410001,
+            "lat": 39.923532
+          },
+          "start_seconds": 0,
+          "end_seconds": 317,
+          "screenshots": [
+            {
+              "path": "content/images/BV1144y1G7Fo-p1-63400.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1144y1G7Fo/",
+              "part": 1,
+              "timestamp_ms": 63400,
+              "sha256": "6ef58a98d5b9cb610870a3ceaa5cf4d84d7f1e4f5aaaf4053248d87c7cc91935",
+              "alt": "富春居探店视频中的盘中雕花摆盘与筷子近景",
+              "frame_verified": true,
+              "capture_method": "official-player-video-element",
+              "captured_at": "2026-11-11T06:35:42.244Z",
+              "reviewed_by": "macnimicodex",
+              "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+            }
+          ],
+          "opinions": [],
+          "dishes": []
+        },
+        "review": {
+          "status": "approved",
+          "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+        }
+      }
+    },
+    {
+      "id": "visit-beijing-6",
+      "shop_id": "beijing-6",
+      "record": {
+        "creator": {
+          "name": "真探唐仁杰",
+          "uid": "544336675"
+        },
+        "video": {
+          "bvid": "BV1Dg411j73k",
+          "url": "https://www.bilibili.com/video/BV1Dg411j73k/",
+          "title": "同和居 厨子探店 ¥678",
+          "part": 1,
+          "duration_seconds": 228,
+          "metadata_status": "baseline_accepted"
+        },
+        "visit": {
+          "id": "visit-beijing-6",
+          "store_id": "beijing-6",
+          "store_name": "同和居（月坛店）",
+          "branch_name": "同和居（月坛店）",
+          "city": "北京",
+          "district": "西城区",
+          "address": "西城区 · 月坛 · 月坛南街甲71号",
+          "gcj02": {
+            "lng": 116.34003,
+            "lat": 39.914177
+          },
+          "start_seconds": 0,
+          "end_seconds": 228,
+          "screenshots": [
+            {
+              "path": "content/images/BV1Dg411j73k-p1-159600.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1Dg411j73k/",
+              "part": 1,
+              "timestamp_ms": 159600,
+              "sha256": "37eb3f0f123af7d46bca43eff5bfc01030f1356aa28aa2ea341c66d660f54ef1",
+              "alt": "同和居探店视频中手持烤制肉食的近景",
+              "frame_verified": true,
+              "capture_method": "official-player-video-element",
+              "captured_at": "2026-11-11T06:35:45.750Z",
+              "reviewed_by": "macnimicodex",
+              "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+            }
+          ],
+          "opinions": [],
+          "dishes": []
+        },
+        "review": {
+          "status": "approved",
+          "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+        }
+      }
+    },
+    {
+      "id": "visit-beijing-7",
+      "shop_id": "beijing-7",
+      "record": {
+        "creator": {
+          "name": "特厨隋卞",
+          "uid": "1462401621"
+        },
+        "video": {
+          "bvid": "BV1ma411v7V1",
+          "url": "https://www.bilibili.com/video/BV1ma411v7V1/",
+          "title": "隋卞一探 | 北京新川菜 寂川",
+          "part": 1,
+          "duration_seconds": 176,
+          "metadata_status": "baseline_accepted"
+        },
+        "visit": {
+          "id": "visit-beijing-7",
+          "store_id": "beijing-7",
+          "store_name": "寂川（西大望路店）",
+          "branch_name": "寂川（西大望路店）",
+          "city": "北京",
+          "district": "朝阳区",
+          "address": "朝阳区 · 大望路 · 西大望路甲2号航空大厦F1层",
+          "gcj02": {
+            "lng": 116.478297,
+            "lat": 39.915326
+          },
+          "start_seconds": 0,
+          "end_seconds": 176,
+          "screenshots": [
+            {
+              "path": "content/images/BV1ma411v7V1-p1-35200.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1ma411v7V1/",
+              "part": 1,
+              "timestamp_ms": 35200,
+              "sha256": "4217babbcfa39b9652b029c5cfcead2aac95f4dad10fb9929848ba98158c980b",
+              "alt": "寂川探店视频中博主用餐，桌上摆有红油菜肴",
+              "frame_verified": true,
+              "capture_method": "official-player-video-element",
+              "captured_at": "2026-11-11T06:35:51.945Z",
+              "reviewed_by": "macnimicodex",
+              "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+            }
+          ],
+          "opinions": [],
+          "dishes": []
+        },
+        "review": {
+          "status": "approved",
+          "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+        }
+      }
+    },
+    {
+      "id": "visit-beijing-8",
+      "shop_id": "beijing-8",
+      "record": {
+        "creator": {
+          "name": "真探高文麒",
+          "uid": "3493080560830654"
+        },
+        "video": {
+          "bvid": "BV1aj411A7Bg",
+          "url": "https://www.bilibili.com/video/BV1aj411A7Bg/",
+          "title": "在北京能吃上这道菜的餐厅不多了-聚德楼",
+          "part": 1,
+          "duration_seconds": 460,
+          "metadata_status": "baseline_accepted"
+        },
+        "visit": {
+          "id": "visit-beijing-8",
+          "store_id": "beijing-8",
+          "store_name": "聚德楼饭庄（劲松店）",
+          "branch_name": "聚德楼饭庄（劲松店）",
+          "city": "北京",
+          "district": "朝阳区",
+          "address": "朝阳区 · 劲松 · 东三环南路乙52号1层(劲松地铁站B东北口步行370米)",
+          "gcj02": {
+            "lng": 116.462054,
+            "lat": 39.886822
+          },
+          "start_seconds": 0,
+          "end_seconds": 460,
+          "screenshots": [
+            {
+              "path": "content/images/BV1aj411A7Bg-p1-207000.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1aj411A7Bg/",
+              "part": 1,
+              "timestamp_ms": 207000,
+              "sha256": "2e93196de190409dea16e0e091ffe4e1bd981a30e327151eb1e44e16d7a9c6a4",
+              "alt": "聚德楼探店视频中筷子夹起裹酱菜品的近景",
+              "frame_verified": true,
+              "capture_method": "official-player-video-element",
+              "captured_at": "2026-11-11T06:35:55.252Z",
+              "reviewed_by": "macnimicodex",
+              "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+            }
+          ],
+          "opinions": [],
+          "dishes": []
+        },
+        "review": {
+          "status": "approved",
+          "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+        }
+      }
+    },
+    {
+      "id": "visit-beijing-9",
+      "shop_id": "beijing-9",
+      "record": {
+        "creator": {
+          "name": "特厨隋卞",
+          "uid": "1462401621"
+        },
+        "video": {
+          "bvid": "BV1ka411n7Nd",
+          "url": "https://www.bilibili.com/video/BV1ka411n7Nd/",
+          "title": "特厨隋卞 |八大居之首——砂锅居。几百年的传承之后现在的品质到底怎么样？",
+          "part": 1,
+          "duration_seconds": 221.833,
+          "metadata_status": "baseline_accepted"
+        },
+        "visit": {
+          "id": "visit-beijing-9",
+          "store_id": "beijing-9",
+          "store_name": "砂锅居（西四店）",
+          "branch_name": "砂锅居（西四店）",
+          "city": "北京",
+          "district": "西城区",
+          "address": "西城区 · 西四 · 北京城区西四南大街60号(西四地铁站D西南口步行340米)",
+          "gcj02": {
+            "lng": 116.373779,
+            "lat": 39.920459
+          },
+          "start_seconds": 0,
+          "end_seconds": 221.833,
+          "screenshots": [
+            {
+              "path": "content/images/BV1ka411n7Nd-p1-44400.jpg",
+              "source_video": "https://www.bilibili.com/video/BV1ka411n7Nd/",
+              "part": 1,
+              "timestamp_ms": 44400,
+              "sha256": "a25af87162f2d602977f7a35bd3abff60ab4cc7ede85bd2967765497f4c7a83f",
+              "alt": "砂锅居探店视频中盘装肉食的近景",
+              "frame_verified": true,
+              "capture_method": "official-player-video-element",
+              "captured_at": "2026-11-11T06:36:01.367Z",
+              "reviewed_by": "macnimicodex",
+              "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+            }
+          ],
+          "opinions": [],
+          "dishes": []
+        },
+        "review": {
+          "status": "approved",
+          "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+        }
+      }
+    }
+  ]
+}

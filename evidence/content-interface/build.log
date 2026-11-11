@@ -1,0 +1,6 @@
+
+> dual-city-food-map@1.0.0 build:hosted
+> node scripts/build-hosted.mjs
+
+{"version":"beijing-pilot-001:beijing-pilot-001.2026-11-11.2@8804174909dbd3c2","batches":[{"batch_id":"beijing-pilot-001","version":"beijing-pilot-001.2026-11-11.2"}],"approved":1,"shops":1,"public_images":1}
+{"release":"b4409bab617a0ad0","output":"dist/server/index.js"}

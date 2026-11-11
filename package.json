@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node amap-server.cjs",
-    "test": "node --test acceptance.test.cjs server.test.cjs mcp.acceptance.test.cjs image.acceptance.test.cjs dual-city.acceptance.test.cjs && node --test beijing-food-map/acceptance.test.cjs beijing-food-map/server.test.cjs deployment/worker.test.mjs && node --test content.acceptance.test.cjs content.http.test.cjs home-cards.acceptance.test.cjs",
+    "test": "node --test acceptance.test.cjs server.test.cjs mcp.acceptance.test.cjs image.acceptance.test.cjs dual-city.acceptance.test.cjs && node --test beijing-food-map/acceptance.test.cjs beijing-food-map/server.test.cjs deployment/worker.test.mjs && node --test content.acceptance.test.cjs content.http.test.cjs content.integration.test.cjs home-cards.acceptance.test.cjs screenshots.test.cjs",
     "test:page": "playwright test",
     "test:all": "npm test && npm run test:page",
     "test:live": "playwright test --config playwright.live.config.cjs",
@@ -17,9 +17,12 @@
     "build:hosted": "node scripts/build-hosted.mjs",
     "verify:deployment": "node scripts/verify-deployment.mjs",
     "content:build": "node scripts/build-content.cjs",
+    "screenshots": "node scripts/screenshots.cjs",
+    "test:screenshots": "node --test screenshots.test.cjs",
     "test:content:page": "playwright test --config playwright.content.config.cjs",
     "start:home": "node beijing-food-map/amap-server.cjs",
-    "test:home": "playwright test --config playwright.home.config.cjs"
+    "test:home": "playwright test --config playwright.home.config.cjs",
+    "test:content:integration": "playwright test --config playwright.integration.config.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.0",

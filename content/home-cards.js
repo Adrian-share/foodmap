@@ -2,6 +2,7 @@
   const el=(tag,text,className)=>{const x=document.createElement(tag);if(text)x.textContent=text;if(className)x.className=className;return x;};
   function render(shop,index,onSelect){
     const item=el('li');item.dataset.storeId=shop.id||shop.name;
+    if(shop.featured_visit_id)item.dataset.visitId=shop.featured_visit_id;
     const card=el('article',null,'result-card'),frame=el('div',null,'frame-slot');
     const missing=()=>{frame.replaceChildren(el('span','截图待补'));frame.dataset.missing='true';};
     if(shop.image?.kind==='video_screenshot'){
@@ -16,7 +17,7 @@
     if(shop.note)body.append(el('p',creator+'探店：'+shop.note,'video-note'));
     if(shop.image)body.append(el('p','画面 P'+shop.image.part+' · '+(shop.image.timestamp_ms/1000)+' 秒','frame-source'));
     const bv=shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0];
-    if(bv){const detail=el('a','查看探店详情 →','detail-action');detail.href='/content/?bvid='+bv;body.append(detail);}
+    if(bv){const detail=el('a','查看探店详情 →','detail-action');detail.href=shop.detail_url||'/content/?bvid='+bv;body.append(detail);}
     card.append(frame,body);item.append(card);return item;
   }
   window.FoodmapHomeCards={render};

@@ -19,9 +19,10 @@ const images = new Map(manifest.map(image => {
   }
   return [image.restaurant, {...image, bytes}];
 }));
-function withImage(shop, baseUrl) {
-  const screenshot=shop.visits?.flatMap(v=>v.record?.visit?.screenshots||[]).find(i=>contentAssets['/'+i.path]?.sha256===i.sha256);
-  if(screenshot)return {...shop,image:{url:new URL('/'+screenshot.path,baseUrl).href,source:screenshot.source_video,alt:screenshot.alt,kind:'video_screenshot',timestamp_ms:screenshot.timestamp_ms,usage_basis:screenshot.usage_basis,mime_type:contentAssets['/'+screenshot.path].type,sha256:screenshot.sha256}};
+function withImage(shop, baseUrl, assets=contentAssets) {
+  const card=require('./content/presentation.cjs').withContentCard(shop,baseUrl,assets);
+  if(card.image)return card;
+  shop=card;
   const image = images.get(shop.name);
   if (!image) return shop;
   return {...shop, image:{
@@ -43,9 +44,9 @@ function caption(shop) {
     `[探店出处](${shop.source}) · [B站视频](${shop.video})\n`;
 }
 
-function imageContent(shops) {
+function imageContent(shops, assets=contentAssets) {
   return shops.filter(shop=>shop.image).flatMap(shop => [{type:'text', text:caption(shop)},
-    {type:'image', data:shop.image.kind==='video_screenshot'?contentAssets[new URL(shop.image.url).pathname].base64:images.get(shop.name).bytes.toString('base64'), mimeType:shop.image.mime_type||'image/jpeg'}]);
+    {type:'image', data:shop.image.kind==='video_screenshot'?assets[new URL(shop.image.url).pathname].base64:images.get(shop.name).bytes.toString('base64'), mimeType:shop.image.mime_type||'image/jpeg'}]);
 }
 
 module.exports = {withImage, imageForPath, caption, imageContent};

@@ -1,0 +1,12 @@
+
+> dual-city-food-map@1.0.0 test:home
+> playwright test --config playwright.home.config.cjs
+
+
+Running 3 tests using 1 worker
+
+  ✓  1 tests/home-cards.spec.cjs:10:3 › A02/A03 desktop：正常首页搜索显示新分店的图文卡和一致编号 (1.8s)
+  ✓  2 tests/home-cards.spec.cjs:10:3 › A02/A03 mobile：正常首页搜索显示新分店的图文卡和一致编号 (2.0s)
+  ✓  3 tests/home-cards.spec.cjs:22:1 › A04 图片加载失败与无图门店都保留名称距离并显示截图待补 (829ms)
+
+  3 passed (8.4s)

@@ -74,3 +74,7 @@ codex mcp add dual_city_food_map --url http://127.0.0.1:8767/mcp
 ## 托管部署
 
 已验收北京版的 Worker 与发布脚本沿用 FACT-3，见 `docs/deployment.md`。根目录为 FACT-7 双城网页与 MCP；`beijing-food-map/` 是当前托管的北京页面。内容批次模块由两个页面复用。
+
+## 补充原视频截图
+
+当前托管北京首页的 11 家门店均有对应视频截图。运行 `npm run screenshots -- capture` 采集，`npm run screenshots -- gallery` 生成可选帧的审核页，再用 `apply --review` 入库；完整步骤、断点重跑和发布验证见 [截图方法](docs/SCREENSHOTS.md)。脚本不会自动把未核准分店加入目录。

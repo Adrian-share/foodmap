@@ -11,7 +11,7 @@ execFileSync(process.execPath,['scripts/build-content.cjs'],{stdio:'inherit'});
 const manifest = JSON.parse(await readFile('.openai/hosting.json', 'utf8'));
 if (!manifest.project_id || manifest.static) throw Error('请先配置 Worker Site 的 project_id');
 const tracked = execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard'], {encoding: 'utf8'})
-  .trim().split('\n').filter(path => /^(beijing-food-map\/|deployment\/|scripts\/|content\/|package(-lock)?\.json$)/.test(path)&&!/^content\/(sources|reference-images|review-frames)\//.test(path));
+  .trim().split('\n').filter(path => /^(beijing-food-map\/|deployment\/|scripts\/|content\/|data\/|nearby\.cjs$|samples\.js$|package(-lock)?\.json$)/.test(path)&&!/^content\/(sources|reference-images|review-frames)\//.test(path));
 const hash = createHash('sha256');
 for (const path of tracked.sort()) hash.update(path).update(await readFile(path));
 const release = hash.digest('hex').slice(0, 16);

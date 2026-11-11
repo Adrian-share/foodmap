@@ -21,7 +21,9 @@ function createHandler(options = {}) {
   if (typeof options === 'string') options = {serviceKey: options};
   const {serviceKey, jsKey, securityCode, request = fetch, readAsset} = options;
   const mapEnabled = Boolean(jsKey && securityCode);
-  const content=require('../content/http.cjs').createContentHandler({readAsset});
+  const state=options.contentState||require('../content/runtime.cjs');
+  const content=require('../content/http.cjs').createContentHandler({readAsset,state});
+  const nearby=require('../nearby.cjs').createNearbyService({mode:serviceKey?'live':'fixture',dataset:'verified',...options,contentCatalog:state.catalog});
   async function upstream(path, params, key, host = 'https://restapi.amap.com') {
     const url = new URL(path, host);
     url.search = new URLSearchParams(params);
@@ -37,6 +39,11 @@ function createHandler(options = {}) {
       const url = new URL(req.url, 'http://127.0.0.1');
       const contentResponse=await content(req);
       if(contentResponse)return contentResponse;
+      if(url.pathname==='/api/nearby'){
+        const data=await nearby.query(Object.fromEntries(url.searchParams));
+        const {withContentCard}=require('../content/presentation.cjs');
+        return json({...data,results:data.results.map(s=>withContentCard(s,url.origin,state.images))});
+      }
       const asset = Object.hasOwn(assets, url.pathname) && assets[url.pathname];
       if (asset) {
         const [file, type] = asset;
