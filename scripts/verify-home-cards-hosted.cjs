@@ -1,5 +1,6 @@
 const {chromium}=require('@playwright/test');const fs=require('node:fs');const assert=require('node:assert/strict');
-const {airDistance}=require('../beijing-food-map/samples.js');
+// 用球面余弦独立复算，避免依赖首页的 Haversine 排序函数。
+const airDistance=(a,b)=>{const rad=n=>n*Math.PI/180;return 6371000*Math.acos(Math.min(1,Math.sin(rad(a.lat))*Math.sin(rad(b.lat))+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.cos(rad(a.lng-b.lng))));};
 (async()=>{
   const base='https://shareworld-foodmap.yzxpg95.chatgpt.site',u=new URL(process.env.HTTPS_PROXY||process.env.HTTP_PROXY);
   const browser=await chromium.launch({headless:true,proxy:{server:u.protocol+'//'+u.host,username:decodeURIComponent(u.username),password:decodeURIComponent(u.password)}});

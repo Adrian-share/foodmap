@@ -1,0 +1,34 @@
+{
+  "saved_version": {
+    "id": "appgprj_6af1f6bc10bc8191aec4fc7519a2d793~appgver_3a38e9e7fc4c81918d1f477bbf1115b3",
+    "project_id": "appgprj_6af1f6bc10bc8191aec4fc7519a2d793",
+    "version_number": 4,
+    "source": {
+      "commit_sha": "c027531027e4b6947d6902b913fd123798b37e8e"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000462c8207a2ee0176b7acb9df",
+      "content_hash": "sha256:50c37db162729fd3b5b9450eb9a9c645312804370c4858acd8428b86722e6a3d",
+      "size_bytes": 962560,
+      "file_count": 2
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6af3e527f6d88191b4e738c525a1c96d",
+    "project_id": "appgprj_6af1f6bc10bc8191aec4fc7519a2d793",
+    "title": "探店地图",
+    "version_id": "appgprj_6af1f6bc10bc8191aec4fc7519a2d793~appgver_3a38e9e7fc4c81918d1f477bbf1115b3",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6af1f6bc10bc8191aec4fc7519a2d793",
+    "failure_message": null,
+    "env_set_revision": 1,
+    "updated_at": "2026-11-11T03:47:07.638253+00:00"
+  }
+}

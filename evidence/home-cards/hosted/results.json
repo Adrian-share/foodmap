@@ -1,0 +1,170 @@
+[
+  {
+    "device": "desktop",
+    "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "checked_at": "2026-11-11T03:48:50.091Z",
+    "catalog_version": "beijing-pilot-001.2026-11-11.2",
+    "shop_count": 11,
+    "origin": {
+      "name": "安立路地铁站",
+      "address": "朝阳区 · 15号线",
+      "lng": 116.407845,
+      "lat": 40.002619,
+      "type": "150500"
+    },
+    "store_id": "amap:B0FFGCY5QP",
+    "bvid": "BV1AdqYYNEDM",
+    "screenshot_timestamp_ms": 30000,
+    "distance_km": 0.61,
+    "card_text": "1\n蓉亭食贝（亚运村店）\n0.61 km\n\n北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）\n\n厨者王波 · B 站探店\n\n厨者王波探店：试吃肉丝，并提到肉丝吃起来很嫩。\n\n画面 P1 · 30 秒\n\n查看探店详情 →",
+    "image": {
+      "src": "/content/images/BV1AdqYYNEDM-p1-30000.png",
+      "naturalWidth": 540,
+      "naturalHeight": 960
+    },
+    "marker_number": 1,
+    "real_map": true,
+    "store_response": {
+      "id": "amap:B0FFGCY5QP",
+      "name": "蓉亭食贝（亚运村店）",
+      "city": "北京",
+      "district": "朝阳区",
+      "address": "北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）",
+      "lng": 116.413218,
+      "lat": 40.006234,
+      "verification": "verified",
+      "source": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+      "amap_poi_id": "B0FFGCY5QP",
+      "video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+      "creator": "厨者王波",
+      "note": "试吃肉丝，并提到肉丝吃起来很嫩。",
+      "note_seconds": 30,
+      "image": {
+        "path": "content/images/BV1AdqYYNEDM-p1-30000.png",
+        "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+        "part": 1,
+        "timestamp_ms": 30000,
+        "alt": "厨者王波探店原视频：肉丝近景，字幕提到肉丝吃起来很嫩",
+        "frame_verified": true,
+        "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+        "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+        "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+        "rights_status": "not_recorded",
+        "url": "/content/images/BV1AdqYYNEDM-p1-30000.png",
+        "kind": "video_screenshot"
+      },
+      "visits": [
+        {
+          "id": "BV1AdqYYNEDM:p1:B0FFGCY5QP",
+          "bvid": "BV1AdqYYNEDM",
+          "video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "creator": "厨者王波",
+          "uid": "3546728118618546",
+          "part": 1,
+          "start_seconds": 0,
+          "end_seconds": 298
+        }
+      ]
+    },
+    "player_url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+    "before": {
+      "time": 0,
+      "paused": true
+    },
+    "after": {
+      "time": 0.533333,
+      "readyState": 4
+    },
+    "playing": true
+  },
+  {
+    "device": "mobile",
+    "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "checked_at": "2026-11-11T03:49:14.412Z",
+    "catalog_version": "beijing-pilot-001.2026-11-11.2",
+    "shop_count": 11,
+    "origin": {
+      "name": "安立路地铁站",
+      "address": "朝阳区 · 15号线",
+      "lng": 116.407845,
+      "lat": 40.002619,
+      "type": "150500"
+    },
+    "store_id": "amap:B0FFGCY5QP",
+    "bvid": "BV1AdqYYNEDM",
+    "screenshot_timestamp_ms": 30000,
+    "distance_km": 0.61,
+    "card_text": "1\n蓉亭食贝（亚运村店）\n0.61 km\n\n北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）\n\n厨者王波 · B 站探店\n\n厨者王波探店：试吃肉丝，并提到肉丝吃起来很嫩。\n\n画面 P1 · 30 秒\n\n查看探店详情 →",
+    "image": {
+      "src": "/content/images/BV1AdqYYNEDM-p1-30000.png",
+      "naturalWidth": 540,
+      "naturalHeight": 960
+    },
+    "marker_number": 1,
+    "real_map": true,
+    "store_response": {
+      "id": "amap:B0FFGCY5QP",
+      "name": "蓉亭食贝（亚运村店）",
+      "city": "北京",
+      "district": "朝阳区",
+      "address": "北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）",
+      "lng": 116.413218,
+      "lat": 40.006234,
+      "verification": "verified",
+      "source": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+      "amap_poi_id": "B0FFGCY5QP",
+      "video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+      "creator": "厨者王波",
+      "note": "试吃肉丝，并提到肉丝吃起来很嫩。",
+      "note_seconds": 30,
+      "image": {
+        "path": "content/images/BV1AdqYYNEDM-p1-30000.png",
+        "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+        "part": 1,
+        "timestamp_ms": 30000,
+        "alt": "厨者王波探店原视频：肉丝近景，字幕提到肉丝吃起来很嫩",
+        "frame_verified": true,
+        "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+        "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+        "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+        "rights_status": "not_recorded",
+        "url": "/content/images/BV1AdqYYNEDM-p1-30000.png",
+        "kind": "video_screenshot"
+      },
+      "visits": [
+        {
+          "id": "BV1AdqYYNEDM:p1:B0FFGCY5QP",
+          "bvid": "BV1AdqYYNEDM",
+          "video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+          "creator": "厨者王波",
+          "uid": "3546728118618546",
+          "part": 1,
+          "start_seconds": 0,
+          "end_seconds": 298
+        }
+      ]
+    },
+    "player_url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+    "before": {
+      "time": 0,
+      "paused": true
+    },
+    "after": {
+      "time": 0.528988,
+      "readyState": 4
+    },
+    "playing": true
+  },
+  {
+    "image_failure_fallback": true,
+    "text": "截图待补\n1\n蓉亭食贝（亚运村店）\n0.61 km\n\n北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）\n\n厨者王波 · B 站探店\n\n厨者王波探店：试吃肉丝，并提到肉丝吃起来很嫩。\n\n画面 P1 · 30 秒\n\n查看探店详情 →"
+  }
+]
