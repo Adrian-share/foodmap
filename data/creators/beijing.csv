@@ -1,0 +1,17 @@
+creator_id,name,platform,city,selection_status,uid,profile_url,content_focus,selection_hint,source_entry,verification_status,source_verified_at,related_creator_id,notes
+bj-creator-001,特厨隋坡,bilibili,北京,first_batch,,,,,intro,pending_uid,,,原文列为首批；UID、主页和样例待补充。
+bj-creator-002,厨者王波,bilibili,北京,first_batch,,,,,intro,pending_uid,,,原文列为首批；UID、主页和样例待补充。
+bj-creator-003,真探唐仁杰,bilibili,北京,first_batch,,,,,intro,pending_uid,,,原文列为首批；UID、主页和样例待补充。
+bj-creator-004,井盖小分队,bilibili,北京,candidate,2087495384,https://space.bilibili.com/2087495384,社区小馆和家常菜。样例简介写明牡丹园和店名。,nearby_coverage,01,source_verified,2026-11-11,,
+bj-creator-005,船长觅食记,bilibili,北京,candidate,613814196,https://space.bilibili.com/613814196,胡同小馆、爆肚和涮肉。样例简介给出分店名。,nearby_coverage,02,source_verified,2026-11-11,,
+bj-creator-006,真吃货老白,bilibili,北京,candidate,124458240,https://space.bilibili.com/124458240,京味老字号和传统小吃。,professional_reviews,03,source_verified,2026-11-11,,
+bj-creator-007,卡门姐Carmen,bilibili,北京,candidate,79980672,https://space.bilibili.com/79980672,城区日韩料理、胡同小馆和商圈餐厅。,nearby_coverage,04,source_verified,2026-11-11,,
+bj-creator-008,JASON刘雨鑫,bilibili,北京,candidate,403082144,https://space.bilibili.com/403082144,从昌平小吃到王府井餐厅，适合找不同区域的样本。,,05,source_verified,2026-11-11,,
+bj-creator-009,特厨魏味-,bilibili,北京,candidate,1781681364,https://space.bilibili.com/1781681364,厨师视角看菜品、技法和餐厅出品。,professional_reviews,06,source_verified,2026-11-11,,
+bj-creator-010,真探高文麒,bilibili,北京,candidate,3493080560830654,https://space.bilibili.com/3493080560830654,从饮食文化看京菜和老字号，也可查看「跟着老高吃东西」账号。,professional_reviews,07,source_verified,2026-11-11,,
+bj-creator-011,任芸丽,bilibili,北京,candidate,3325087,https://space.bilibili.com/3325087,胡同里的现代中餐。样例简介写明店名和所在胡同。,,08,source_verified,2026-11-11,,
+bj-creator-012,北京妞小鸽贼,bilibili,北京,candidate,12613385,https://space.bilibili.com/12613385,「北京味道」系列。样例简介给出分店和街道门牌。,,09,source_verified,2026-11-11,,
+bj-creator-013,老孟七喜美食评测,bilibili,北京,candidate,36688806,https://space.bilibili.com/36688806,北京自助餐系列，适合补自助涮肉等类别。,,10,source_verified,2026-11-11,,
+bj-creator-014,丸子狗富贵日常吃货版,bilibili,北京,candidate,3546971182729637,https://space.bilibili.com/3546971182729637,在京各家兰州牛肉面专题，可从驻京办餐厅切入。,,11,source_verified,2026-11-11,,
+bj-creator-015,台湾好A在北京,bilibili,北京,candidate,379509857,https://space.bilibili.com/379509857,在京生活里的京味小吃与涮肉。样例是多店视频，标题给出分店。,,12,source_verified,2026-11-11,,
+bj-creator-016,跟着老高吃东西,bilibili,北京,related_candidate,3546672569256789,https://space.bilibili.com/3546672569256789,北京美食样例；原文建议也可查看此账号。,,07,source_verified,2026-11-11,bj-creator-010,原文第 07 项补充账号；独立 UID，关联不代表已确认账号归属。
