@@ -18,6 +18,7 @@ playwright-report/
 
 # 未取得公开使用依据的审核图片仅以 Multica 附件交付，不推送源码或部署
 content/review-frames/*.png
+content/review-frames/screenshots/
 content/reference-images/*.jpg
 evidence/content/live*/*.png
 evidence/content/hosted/*-playing.png

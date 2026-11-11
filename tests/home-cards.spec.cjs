@@ -20,6 +20,7 @@ for(const [device,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{
   });
 }
 test('A04 图片加载失败与无图门店都保留名称距离并显示截图待补',async({page})=>{
+  await page.route('**/api/nearby?**',async route=>{const response=await route.fetch(),data=await response.json();if(data.results?.[1])data.results[1].image=null;await route.fulfill({response,json:data});});
   await page.route('**/content/images/BV1AdqYYNEDM-p1-30000.png',r=>r.abort());await setup(page);
   const first=page.locator('#results>li').first();await expect(first).toContainText('截图待补');await expect(first).toContainText('蓉亭食贝');await expect(first.locator('.straight-distance')).toBeVisible();
   const second=page.locator('#results>li').nth(1);await expect(second).toContainText('截图待补');await expect(second.locator('.straight-distance')).toBeVisible();

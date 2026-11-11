@@ -50,7 +50,7 @@
     try{
       const response=await fetch('/api/content'+(review?'?review=1':''));if(!response.ok)throw Error();const data=await response.json();records=data.records;
       $(review?'review-tab':'published-tab').setAttribute('aria-current','page');$('review-note').hidden=!review;
-      $('summary').textContent=review?`${data.batches?.length||1} 个批次 · ${records.length} 条候选 · 已收录 ${data.published_count} 条 · ${new Set(records.map(r=>r.creator.uid)).size} 位 UP 主`:`已收录 ${data.published_count} 条 · 经分店与截图核对`;
+      $('summary').textContent=review?`${data.batches?.length||1} 个批次 · ${records.length} 条记录 · 已收录 ${data.published_count} 条 · ${new Set(records.map(r=>r.creator.uid)).size} 位 UP 主`:`已收录 ${data.published_count} 条 · 画面附原视频与时间点`;
       render();
       const visit=params.get('visit_id');
       if(visit){

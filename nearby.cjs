@@ -21,7 +21,8 @@ function catalogData(dataset='verified',contentCatalog=publishedContent){
     const id=old?.id||shop.id;shopIds.set(shop.id,id);
     shops.set(id,{...old,...shop,id});
   }
-  const visits=[...catalog.visits,...(dataset==='verified'?contentCatalog.visits.map(v=>({...v,shop_id:shopIds.get(v.shop_id)||v.shop_id})):[])];
+  const enriched=new Map((dataset==='verified'?contentCatalog.baseline_visits||[]:[]).map(v=>[v.id,v]));
+  const visits=[...catalog.visits.map(v=>({...v,...enriched.get(v.id)})),...(dataset==='verified'?contentCatalog.visits.map(v=>({...v,shop_id:shopIds.get(v.shop_id)||v.shop_id})):[])];
   return {shops:[...shops.values()],visits};
 }
 function createNearbyService({mode='fixture',dataset='fixture',serviceKey,request=fetch,audit=()=>{},contentCatalog=publishedContent}={}) {

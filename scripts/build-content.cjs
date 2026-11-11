@@ -1,6 +1,7 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {assess,validScreenshot}=require('../content/catalog.cjs');
 const {createContentState}=require('../content/state.cjs');
+const {baselineRecords}=require('../content/baseline.cjs');
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
 function buildContent(root=path.join(__dirname,'..')){
   const config=JSON.parse(fs.readFileSync(path.join(root,'content/config.json'),'utf8'));
@@ -13,6 +14,17 @@ function buildContent(root=path.join(__dirname,'..')){
     if(base.shops.some(s=>s.amap_poi_id===poi&&s.id!==id))throw Error('POI 已对应另一旧门店：'+poi);
   }
   const batches=[],seen=new Map(),assets={};
+  function addImage(i){
+    const file=path.join(root,i.path),bytes=fs.readFileSync(file),sha256=hash(bytes);
+    if(sha256!==i.sha256)throw Error('截图哈希不一致：'+i.path);
+    const ext=path.extname(file).slice(1),type='image/'+(ext==='jpg'?'jpeg':ext);
+    const signatures={jpeg:bytes[0]===255&&bytes[1]===216,png:bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])),webp:bytes.toString('ascii',0,4)==='RIFF'&&bytes.toString('ascii',8,12)==='WEBP'};
+    if(!signatures[type.slice(6)])throw Error('图片文件内容无效：'+i.path);
+    assets['/'+i.path]={sha256,type,base64:bytes.toString('base64')};
+  }
+  const registryFile=path.join(root,'content/baseline-screenshots.json');
+  const baseline_records=baselineRecords(base,fs.existsSync(registryFile)?JSON.parse(fs.readFileSync(registryFile,'utf8')):[]);
+  for(const r of baseline_records)for(const i of r.record.visit.screenshots)addImage(i);
   for(const entry of config.batches){
     if(entry.enabled===false)continue;
     if(!/^batches\/[A-Za-z0-9_-]+\.json$/.test(entry.path))throw Error('无效批次路径');
@@ -35,23 +47,18 @@ function buildContent(root=path.join(__dirname,'..')){
       if(assess(r,config).length)continue;
       for(const i of r.visit.screenshots||[]){
         if(!validScreenshot(r,i))continue;
-        const file=path.join(root,i.path),bytes=fs.readFileSync(file),sha256=hash(bytes);
-        if(sha256!==i.sha256)throw Error('截图哈希不一致：'+i.path);
-        const ext=path.extname(file).slice(1),type='image/'+(ext==='jpg'?'jpeg':ext);
-        const signatures={jpeg:bytes[0]===255&&bytes[1]===216,png:bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])),webp:bytes.toString('ascii',0,4)==='RIFF'&&bytes.toString('ascii',8,12)==='WEBP'};
-        if(!signatures[type.slice(6)])throw Error('图片文件内容无效：'+i.path);
-        assets['/'+i.path]={sha256,type,base64:bytes.toString('base64')};
+        addImage(i);
       }
     }
   }
   batches.sort((a,b)=>a.batch_id.localeCompare(b.batch_id));
   const runtimeConfig={creator_uids:[...new Set(config.creator_uids)].sort(),store_aliases:Object.fromEntries(aliases.sort())};
-  const version=batches.map(b=>b.batch_id+':'+b.version).join(',')+'@'+hash(JSON.stringify({batches,config:runtimeConfig})).slice(0,16);
-  const snapshot={version,config:runtimeConfig,batches};
+  const version=batches.map(b=>b.batch_id+':'+b.version).join(',')+'@'+hash(JSON.stringify({batches,config:runtimeConfig,baseline_records})).slice(0,16);
+  const snapshot={version,config:runtimeConfig,batches,baseline_records};
   const state=createContentState(snapshot,assets);
   fs.writeFileSync(path.join(root,'content/public-assets.json'),JSON.stringify(assets,null,2)+'\n');
   fs.writeFileSync(path.join(root,'content/compiled.json'),JSON.stringify(snapshot,null,2)+'\n');
-  return {version,batches:state.batches,approved:state.catalog.visits.length,shops:state.catalog.shops.length,public_images:Object.keys(assets).length};
+  return {version,batches:state.batches,approved:state.catalog.visits.length,shops:state.catalog.shops.length,baseline_images:baseline_records.length,public_images:Object.keys(assets).length};
 }
 if(require.main===module)console.log(JSON.stringify(buildContent()));
 module.exports={buildContent};

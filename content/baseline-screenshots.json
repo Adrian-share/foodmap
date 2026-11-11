@@ -1,0 +1,202 @@
+[
+  {
+    "visit_id": "visit-beijing-1",
+    "store_id": "beijing-1",
+    "bvid": "BV1CB4y147BG",
+    "part": 1,
+    "duration_seconds": 243,
+    "screenshot": {
+      "path": "content/images/BV1CB4y147BG-p1-170100.jpg",
+      "source_video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+      "part": 1,
+      "timestamp_ms": 170100,
+      "sha256": "358eebc2485365b4ac738d0fdf715bf491e8c908eaed51528f705efa6abc389e",
+      "alt": "特厨隋卞在泰丰楼用筷子夹起食物试吃的原视频画面",
+      "frame_verified": true,
+      "capture_method": "official-player-video-element",
+      "captured_at": "2026-11-11T06:35:26.937Z",
+      "reviewed_by": "macnimicodex",
+      "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+    }
+  },
+  {
+    "visit_id": "visit-beijing-10",
+    "store_id": "beijing-10",
+    "bvid": "BV1LY4y1k7LX",
+    "part": 1,
+    "duration_seconds": 126,
+    "screenshot": {
+      "path": "content/images/BV1LY4y1k7LX-p1-88200.jpg",
+      "source_video": "https://www.bilibili.com/video/BV1LY4y1k7LX/",
+      "part": 1,
+      "timestamp_ms": 88200,
+      "sha256": "c4bfca9fbf2cefac88059bc814add79e367e1035713aaa26e4f259e796402be6",
+      "alt": "洪福亮酒家探店视频中的焦熘肥肠近景，保留原片菜名字幕",
+      "frame_verified": true,
+      "capture_method": "official-player-video-element",
+      "captured_at": "2026-11-11T06:36:05.642Z",
+      "reviewed_by": "macnimicodex",
+      "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+    }
+  },
+  {
+    "visit_id": "visit-beijing-2",
+    "store_id": "beijing-2",
+    "bvid": "BV1wT1WYxEjC",
+    "part": 1,
+    "duration_seconds": 359,
+    "screenshot": {
+      "path": "content/images/BV1wT1WYxEjC-p1-161600.jpg",
+      "source_video": "https://www.bilibili.com/video/BV1wT1WYxEjC/",
+      "part": 1,
+      "timestamp_ms": 161600,
+      "sha256": "11fd9888979f74d85301cc308a15b6033f4593ec297747e40d1d0a6d8976cbb5",
+      "alt": "厨者王波在宜宾招待所夹起白肉，桌上摆有切片白肉",
+      "frame_verified": true,
+      "capture_method": "official-player-video-element",
+      "captured_at": "2026-11-11T06:35:24.190Z",
+      "reviewed_by": "macnimicodex",
+      "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+    }
+  },
+  {
+    "visit_id": "visit-beijing-3",
+    "store_id": "beijing-3",
+    "bvid": "BV1Lh4y1d7U5",
+    "part": 1,
+    "duration_seconds": 173,
+    "screenshot": {
+      "path": "content/images/BV1Lh4y1d7U5-p1-121100.jpg",
+      "source_video": "https://www.bilibili.com/video/BV1Lh4y1d7U5/",
+      "part": 1,
+      "timestamp_ms": 121100,
+      "sha256": "ccca5da6e67fe4ad50a67491b64853772cd6c5fb234d48cf4b5b9d363f5969e5",
+      "alt": "潇湘阁探店视频中的鸡爪菜品近景，保留原片菜名字幕",
+      "frame_verified": true,
+      "capture_method": "official-player-video-element",
+      "captured_at": "2026-11-11T06:35:36.076Z",
+      "reviewed_by": "macnimicodex",
+      "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+    }
+  },
+  {
+    "visit_id": "visit-beijing-4",
+    "store_id": "beijing-4",
+    "bvid": "BV1D64y1K7uj",
+    "part": 1,
+    "duration_seconds": 232,
+    "screenshot": {
+      "path": "content/images/BV1D64y1K7uj-p1-162400.jpg",
+      "source_video": "https://www.bilibili.com/video/BV1D64y1K7uj/",
+      "part": 1,
+      "timestamp_ms": 162400,
+      "sha256": "5f19222e502320e4296e7421c57cefba1e6cdbaee986deb2cf09c5bad9a23e4e",
+      "alt": "老吉堂探店视频中盛有汤品的白碗近景",
+      "frame_verified": true,
+      "capture_method": "official-player-video-element",
+      "captured_at": "2026-11-11T06:35:36.462Z",
+      "reviewed_by": "macnimicodex",
+      "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+    }
+  },
+  {
+    "visit_id": "visit-beijing-5",
+    "store_id": "beijing-5",
+    "bvid": "BV1144y1G7Fo",
+    "part": 1,
+    "duration_seconds": 317,
+    "screenshot": {
+      "path": "content/images/BV1144y1G7Fo-p1-63400.jpg",
+      "source_video": "https://www.bilibili.com/video/BV1144y1G7Fo/",
+      "part": 1,
+      "timestamp_ms": 63400,
+      "sha256": "6ef58a98d5b9cb610870a3ceaa5cf4d84d7f1e4f5aaaf4053248d87c7cc91935",
+      "alt": "富春居探店视频中的盘中雕花摆盘与筷子近景",
+      "frame_verified": true,
+      "capture_method": "official-player-video-element",
+      "captured_at": "2026-11-11T06:35:42.244Z",
+      "reviewed_by": "macnimicodex",
+      "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+    }
+  },
+  {
+    "visit_id": "visit-beijing-6",
+    "store_id": "beijing-6",
+    "bvid": "BV1Dg411j73k",
+    "part": 1,
+    "duration_seconds": 228,
+    "screenshot": {
+      "path": "content/images/BV1Dg411j73k-p1-159600.jpg",
+      "source_video": "https://www.bilibili.com/video/BV1Dg411j73k/",
+      "part": 1,
+      "timestamp_ms": 159600,
+      "sha256": "37eb3f0f123af7d46bca43eff5bfc01030f1356aa28aa2ea341c66d660f54ef1",
+      "alt": "同和居探店视频中手持烤制肉食的近景",
+      "frame_verified": true,
+      "capture_method": "official-player-video-element",
+      "captured_at": "2026-11-11T06:35:45.750Z",
+      "reviewed_by": "macnimicodex",
+      "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+    }
+  },
+  {
+    "visit_id": "visit-beijing-7",
+    "store_id": "beijing-7",
+    "bvid": "BV1ma411v7V1",
+    "part": 1,
+    "duration_seconds": 176,
+    "screenshot": {
+      "path": "content/images/BV1ma411v7V1-p1-35200.jpg",
+      "source_video": "https://www.bilibili.com/video/BV1ma411v7V1/",
+      "part": 1,
+      "timestamp_ms": 35200,
+      "sha256": "4217babbcfa39b9652b029c5cfcead2aac95f4dad10fb9929848ba98158c980b",
+      "alt": "寂川探店视频中博主用餐，桌上摆有红油菜肴",
+      "frame_verified": true,
+      "capture_method": "official-player-video-element",
+      "captured_at": "2026-11-11T06:35:51.945Z",
+      "reviewed_by": "macnimicodex",
+      "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+    }
+  },
+  {
+    "visit_id": "visit-beijing-8",
+    "store_id": "beijing-8",
+    "bvid": "BV1aj411A7Bg",
+    "part": 1,
+    "duration_seconds": 460,
+    "screenshot": {
+      "path": "content/images/BV1aj411A7Bg-p1-207000.jpg",
+      "source_video": "https://www.bilibili.com/video/BV1aj411A7Bg/",
+      "part": 1,
+      "timestamp_ms": 207000,
+      "sha256": "2e93196de190409dea16e0e091ffe4e1bd981a30e327151eb1e44e16d7a9c6a4",
+      "alt": "聚德楼探店视频中筷子夹起裹酱菜品的近景",
+      "frame_verified": true,
+      "capture_method": "official-player-video-element",
+      "captured_at": "2026-11-11T06:35:55.252Z",
+      "reviewed_by": "macnimicodex",
+      "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+    }
+  },
+  {
+    "visit_id": "visit-beijing-9",
+    "store_id": "beijing-9",
+    "bvid": "BV1ka411n7Nd",
+    "part": 1,
+    "duration_seconds": 221.833,
+    "screenshot": {
+      "path": "content/images/BV1ka411n7Nd-p1-44400.jpg",
+      "source_video": "https://www.bilibili.com/video/BV1ka411n7Nd/",
+      "part": 1,
+      "timestamp_ms": 44400,
+      "sha256": "a25af87162f2d602977f7a35bd3abff60ab4cc7ede85bd2967765497f4c7a83f",
+      "alt": "砂锅居探店视频中盘装肉食的近景",
+      "frame_verified": true,
+      "capture_method": "official-player-video-element",
+      "captured_at": "2026-11-11T06:36:01.367Z",
+      "reviewed_by": "macnimicodex",
+      "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+    }
+  }
+]
