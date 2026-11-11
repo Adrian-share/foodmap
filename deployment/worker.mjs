@@ -5,9 +5,12 @@ import prototype from '../beijing-food-map/prototype.js?raw';
 import contentHtml from '../content/index.html';
 import contentScript from '../content/app.js?raw';
 import contentStyle from '../content/style.css?raw';
+import homeCards from '../content/home-cards.js?raw';
+import homeStyles from '../content/home-cards.css?raw';
 
 const assets = {'index.html': html, 'samples.js': samples, 'prototype.js': prototype};
 Object.assign(assets,{'content/index.html':contentHtml,'content/app.js':contentScript,'content/style.css':contentStyle});
+Object.assign(assets,{'content/home-cards.js':homeCards,'content/home-cards.css':homeStyles});
 const release = typeof FOODMAP_RELEASE === 'string' ? FOODMAP_RELEASE : 'development';
 
 export default {

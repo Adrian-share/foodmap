@@ -1,10 +1,11 @@
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
-const {assess}=require('../content/catalog.cjs');
+const {assess,validScreenshot}=require('../content/catalog.cjs');
 const batch=require('../content/batches/beijing-pilot-001.json');
 const root=path.join(__dirname,'..'),assets={};
 for(const r of batch.records){
   if(assess(r).length)continue;
   for(const i of r.visit.screenshots){
+    if(!validScreenshot(r,i))throw Error('截图与探店片段不一致：'+i.path);
     const file=path.join(root,i.path);
     const bytes=fs.readFileSync(file),hash=crypto.createHash('sha256').update(bytes).digest('hex');
     if(hash!==i.sha256)throw Error('截图哈希不一致：'+i.path);

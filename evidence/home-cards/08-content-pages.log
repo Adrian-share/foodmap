@@ -1,0 +1,12 @@
+
+> dual-city-food-map@1.0.0 test:content:page
+> playwright test --config playwright.content.config.cjs
+
+
+Running 3 tests using 1 worker
+
+  ✓  1 tests/content.spec.cjs:4:3 › desktop：九条候选、站内播放参数、失败保留出处 (4.1s)
+  ✓  2 tests/content.spec.cjs:4:3 › mobile：九条候选、站内播放参数、失败保留出处 (2.5s)
+  ✓  3 tests/content.spec.cjs:23:1 › 正式列表只有分店已核准的卡片，旧门店原视频仍可在站内打开 (697ms)
+
+  3 passed (12.0s)

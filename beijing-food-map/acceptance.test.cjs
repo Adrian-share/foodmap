@@ -50,6 +50,7 @@ test('提交三个地名，离线页面均显示起点、三个图钉和三条�
   class Element {
     constructor(tag = '') {
       this.tag = tag;
+      this.dataset = {};
       this.children = [];
       this.listeners = {};
       this.namespaceURI = 'http://www.w3.org/2000/svg';
@@ -60,7 +61,7 @@ test('提交三个地名，离线页面均显示起点、三个图钉和三条�
     setAttribute() {}
   }
 
-  const ids = ['query', 'status', 'results', 'candidates', 'preview', 'map', 'search', 'map-status', 'retry-search', 'retry-map', 'fit-map'];
+  const ids = ['query', 'status', 'results', 'candidates', 'preview', 'map', 'search', 'map-status', 'retry-search', 'retry-map', 'fit-map', 'result-count'];
   const elements = Object.fromEntries(ids.map(id => [id, new Element()]));
   const document = {
     getElementById: id => elements[id],
@@ -69,7 +70,8 @@ test('提交三个地名，离线页面均显示起点、三个图钉和三条�
     createElementNS: (_, tag) => new Element(tag)
   };
   const context = vm.createContext({document});
-  for (const script of ['samples.js', 'prototype.js']) {
+  context.window=context;
+  for (const script of ['samples.js', '../content/home-cards.js', 'prototype.js']) {
     vm.runInContext(readFileSync(join(__dirname, script), 'utf8'), context);
   }
 

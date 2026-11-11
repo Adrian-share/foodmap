@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-11-11T03:36:38.896Z",
+  "via": "https://shareworld-foodmap.yzxpg95.chatgpt.site/api/amap/search?q=蓉亭食贝",
+  "status": 200,
+  "data": {
+    "matches": [
+      {
+        "name": "樂川·蓉亭食贝(亚运村店)",
+        "address": "朝阳区 · 大屯街道大屯北路华悦国际公寓",
+        "lng": 116.413218,
+        "lat": 40.006234,
+        "type": "050100"
+      }
+    ]
+  }
+}

@@ -10,15 +10,18 @@ function assess(r){
   if(s.city!=='北京市'||!s.branch_name||!s.district||!s.address||!s.store_id||!s.amap_poi_id||s.amap_url!==`https://ditu.amap.com/place/${s.amap_poi_id}`)reasons.push('北京具体分店未核准');
   if(!s.gcj02||!Number.isFinite(s.gcj02.lng)||!Number.isFinite(s.gcj02.lat)||s.gcj02.lng<115.4||s.gcj02.lng>117.6||s.gcj02.lat<39.4||s.gcj02.lat>41.1)reasons.push('GCJ-02 点位未核准');
   if(!s.evidence?.some(e=>e.type==='branch'&&e.status==='verified'&&e.url===v.url&&Number.isFinite(e.seconds))||!s.evidence?.some(e=>e.type==='amap'&&e.status==='verified'&&e.url===s.amap_url))reasons.push('缺少原视频分店及高德对应证据');
-  if(s.business_status!=='open')reasons.push('当前营业状态待核或已关闭');
+  if(['closed','moved'].includes(s.business_status))reasons.push('门店已关闭或迁移');
   if(!Number.isFinite(s.start_seconds)||!Number.isFinite(s.end_seconds)||s.start_seconds<0||s.end_seconds<=s.start_seconds||s.end_seconds>v.duration_seconds)reasons.push('到访片段时间未核准');
   if([...(s.opinions||[]),...(s.dishes||[])].some(x=>!x.text?.trim()||x.source_video!==v.url||!Number.isFinite(x.seconds)||x.seconds<s.start_seconds||x.seconds>s.end_seconds))reasons.push('观点或菜品缺少对应时间点证据');
-  const images=s.screenshots||[];
-  if(!images.length||images.some(i=>!IMAGE.test(i.path)||i.source_video!==v.url||i.part!==v.part||!Number.isFinite(i.timestamp_ms)||i.timestamp_ms<s.start_seconds*1000||i.timestamp_ms>s.end_seconds*1000||!i.alt?.trim()||!i.usage_basis?.trim()||i.rights_status!=='approved'||i.frame_verified!==true||! /^[a-f0-9]{64}$/.test(i.sha256||'')))reasons.push('待补对应片段的真实截图及使用依据');
   if(r.review?.status!=='approved')reasons.push('尚未审核通过');
   return reasons;
 }
-function publicRecords(records,assetAvailable=()=>false){return records.filter(r=>!assess(r).length&&r.visit.screenshots.every(assetAvailable));}
+// 2026-11-11 规格：分店关系核准即可收录，缺图显示待补；图片独立校验来源。
+function publicRecords(records){return records.filter(r=>!assess(r).length);}
+function validScreenshot(r,i){
+  const s=r.visit,v=r.video;
+  return IMAGE.test(i.path)&&i.source_video===v.url&&i.part===v.part&&Number.isFinite(i.timestamp_ms)&&i.timestamp_ms>=s.start_seconds*1000&&i.timestamp_ms<=s.end_seconds*1000&&!!i.alt?.trim()&&i.frame_verified===true&&/^[a-f0-9]{64}$/.test(i.sha256||'');
+}
 function playerUrl(r){
   if(!BV.test(r.video?.bvid)||!Number.isInteger(r.video.part)||r.video.part<1)throw Error('无效原视频');
   const t=r.visit?.start_seconds??0;if(!Number.isFinite(t)||t<0)throw Error('无效时间点');
@@ -39,4 +42,4 @@ function buildCatalog(batches,assetAvailable){
   }
   return {version:[...versions].sort().map(([k,v])=>k+':'+v).join(','),creators:[...creators.values()],videos:[...videos.values()],shops:[...shops.values()],visits:[...visits.values()]};
 }
-module.exports={assess,publicRecords,buildCatalog,playerUrl,videoSource,IMAGE};
+module.exports={assess,publicRecords,validScreenshot,buildCatalog,playerUrl,videoSource,IMAGE};

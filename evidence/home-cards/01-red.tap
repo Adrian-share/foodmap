@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: A02 首页实际目录包含原十家之外的亚运村分店，能从普通起点距离排序找到
+not ok 1 - A02 首页实际目录包含原十家之外的亚运村分店，能从普通起点距离排序找到
+  ---
+  duration_ms: 130.193833
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-8-8b3dc7b7fc9a/workdir/foodmap/home-cards.acceptance.test.cjs:4:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    404 !== 200
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 200
+  actual: 404
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-8-8b3dc7b7fc9a/workdir/foodmap/home-cards.acceptance.test.cjs:6:10)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: A05 分店按 POI 去重，保留多个探店关系，重导同批不增点位
+not ok 2 - A05 分店按 POI 去重，保留多个探店关系，重导同批不增点位
+  ---
+  duration_ms: 8.51725
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-8-8b3dc7b7fc9a/workdir/foodmap/home-cards.acceptance.test.cjs:13:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-8-8b3dc7b7fc9a/workdir/foodmap/home-cards.acceptance.test.cjs:15:92)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 623.912166

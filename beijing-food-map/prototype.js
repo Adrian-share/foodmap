@@ -1,6 +1,7 @@
 (() => {
   'use strict';
-  const {restaurants, normalize, resolveFixture, closest} = samples;
+  const {normalize, resolveFixture, closest} = samples;
+  let restaurants=samples.restaurants;
   const byId = id => document.getElementById(id);
   const query = byId('query'), status = byId('status'), list = byId('results');
   const candidates = byId('candidates'), preview = byId('preview'), mapElement = byId('map');
@@ -41,19 +42,8 @@
     infoWindow.open(map, markers[index + 1].getPosition());
   }
   function showList(shops) {
-    shops.forEach((shop, index) => {
-      const item = document.createElement('li');
-      const title = document.createElement('button');
-      title.type = 'button';
-      title.className = 'shop-select';
-      title.textContent = shop.name + ' · ' + (shop.meters / 1000).toFixed(2) + ' km';
-      title.addEventListener('click', () => selectShop(index));
-      const address = document.createElement('p');
-      address.textContent = shop.address;
-      item.append(title, address, link('探店记录', '/content/?bvid=' + (shop.video?.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
-      if (shop.video) item.append(link('相关 B 站视频', '/content/?bvid=' + (shop.video.match(/BV[0-9A-Za-z]{10}/)?.[0] || '')));
-      list.append(item);
-    });
+    shops.forEach((shop,index)=>list.append(FoodmapHomeCards.render(shop,index,()=>selectShop(index))));
+    byId('result-count').textContent=shops.length+' 家 · 按直线距离排序';
   }
   function showSketch(origin, shops) {
     preview.replaceChildren();
@@ -112,6 +102,7 @@
       content.className = 'map-pin' + (index ? '' : ' origin');
       content.textContent = index ? String(index) : '起';
       content.setAttribute('data-marker-index', String(index));
+      content.dataset.storeId=item.id||item.name;
       content.setAttribute('aria-label', (index ? index + ' · ' : '起点 · ') + item.name);
       const marker = new AMap.Marker({position: [item.lng, item.lat], content, anchor: 'center', title: item.name});
       if (index) {
@@ -137,7 +128,7 @@
     else showSketch(origin, shops);
     status.textContent = (config.searchEnabled ? '高德地点检索 · ' : '离线固定样本 · ')
       + origin.name + (origin.address ? ' · ' + origin.address : '')
-      + ' · 十家样本中直线距离最近的三家';
+      + ' · 已收录 '+restaurants.length+' 家门店中直线距离最近的三家';
   }
   function validOrigin(item) {
     return item && typeof item.name === 'string' && Number.isFinite(item.lng) && Number.isFinite(item.lat)
@@ -241,6 +232,12 @@
       const response = await fetch('/api/amap/config', {signal: AbortSignal.timeout(12000)});
       if (!response.ok) throw Error('配置不可用');
       config = await response.json();
+      const catalogResponse=await fetch('/api/home/catalog', {signal:AbortSignal.timeout(12000)});
+      if(!catalogResponse.ok)throw Error('门店目录不可用');
+      const catalog=await catalogResponse.json();
+      if(!Array.isArray(catalog.shops)||!catalog.shops.every(validOrigin))throw Error('门店目录无效');
+      restaurants=catalog.shops;
+      document.body.dataset.catalogVersion=catalog.version;
       search(lastInput);
       await connectMap();
     } catch {

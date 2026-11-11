@@ -1,6 +1,6 @@
 {
   "batch_id": "beijing-pilot-001",
-  "version": "beijing-pilot-001.2026-11-10.1",
+  "version": "beijing-pilot-001.2026-11-11.2",
   "created_at": "2026-11-10T05:33:35.206072+00:00",
   "source_list": "附件 首批来源.json",
   "records": [
@@ -109,11 +109,10 @@
         }
       ],
       "review": {
-        "status": "missing_screenshot",
+        "status": "pending",
         "reasons": [
-          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
-          "已有带时间点的播放器实截图，公开使用依据仍待补",
-          "营业状态待确认"
+          "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+          "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
         ],
         "suggested_capture": {
           "part": 1,
@@ -388,11 +387,10 @@
         }
       ],
       "review": {
-        "status": "missing_screenshot",
+        "status": "pending",
         "reasons": [
-          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
-          "已有带时间点的播放器实截图，公开使用依据仍待补",
-          "营业状态待确认"
+          "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+          "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
         ],
         "suggested_capture": {
           "part": 1,
@@ -667,11 +665,10 @@
         }
       ],
       "review": {
-        "status": "missing_screenshot",
+        "status": "pending",
         "reasons": [
-          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
-          "已有带时间点的播放器实截图，公开使用依据仍待补",
-          "营业状态待确认"
+          "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+          "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
         ],
         "suggested_capture": {
           "part": 1,
@@ -759,18 +756,21 @@
         "playback_evidence": "evidence/content/live/results.json"
       },
       "visit": {
-        "id": "candidate:BV1AdqYYNEDM:p1",
-        "start_seconds": null,
-        "end_seconds": null,
-        "store_id": null,
+        "id": "BV1AdqYYNEDM:p1:B0FFGCY5QP",
+        "start_seconds": 0,
+        "end_seconds": 298,
+        "store_id": "amap:B0FFGCY5QP",
         "store_name": "蓉亭食贝",
-        "branch_name": null,
+        "branch_name": "亚运村店",
         "city": "北京市",
-        "district": null,
-        "address": null,
-        "amap_poi_id": null,
-        "amap_url": null,
-        "gcj02": null,
+        "district": "朝阳区",
+        "address": "北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）",
+        "amap_poi_id": "B0FFGCY5QP",
+        "amap_url": "https://ditu.amap.com/place/B0FFGCY5QP",
+        "gcj02": {
+          "lng": 116.413218,
+          "lat": 40.006234
+        },
         "business_status": "unknown",
         "evidence": [
           {
@@ -793,11 +793,50 @@
             "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
             "seconds": 5,
             "note": "作者在餐厅门外介绍；未见完整门牌和地址；与高德候选尚不能唯一对应。"
+          },
+          {
+            "type": "branch",
+            "status": "verified",
+            "url": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+            "seconds": 12,
+            "note": "原视频必吃榜牌匾清晰写明“蓉亭食贝（北京亚运村店）”。"
+          },
+          {
+            "type": "amap",
+            "status": "verified",
+            "url": "https://ditu.amap.com/place/B0FFGCY5QP",
+            "checked_at": "2026-11-11",
+            "note": "高德 POI B0FFGCY5QP：樂川·蓉亭食贝(亚运村店)，朝阳区大屯北路华悦国际公寓；与牌匾分店一致。证据见 content/sources/amap-蓉亭食贝-followup.json。"
+          },
+          {
+            "type": "address_corroboration",
+            "status": "verified",
+            "url": "https://www.visitbeijing.com.cn/article/4OYENbN2xPz?device=amp",
+            "note": "北京旅游网对应蓉亭食贝地址：大屯北路312号金泉美食宫1楼；高德使用园区名称华悦国际公寓。"
           }
         ],
-        "opinions": [],
+        "opinions": [
+          {
+            "text": "试吃肉丝，并提到肉丝吃起来很嫩。",
+            "seconds": 30,
+            "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/"
+          }
+        ],
         "dishes": [],
-        "screenshots": []
+        "screenshots": [
+          {
+            "path": "content/images/BV1AdqYYNEDM-p1-30000.png",
+            "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+            "part": 1,
+            "timestamp_ms": 30000,
+            "alt": "厨者王波探店原视频：肉丝近景，字幕提到肉丝吃起来很嫩",
+            "frame_verified": true,
+            "sha256": "e102cb1bb50fa24b9342519b3afd10ea0fa7489f8555ecd48e11a33e3e6a91ca",
+            "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+            "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+            "rights_status": "not_recorded"
+          }
+        ]
       },
       "reference_images": [
         {
@@ -829,18 +868,9 @@
         }
       ],
       "review": {
-        "status": "missing_screenshot",
-        "reasons": [
-          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
-          "已有带时间点的播放器实截图，公开使用依据仍待补",
-          "营业状态待确认"
-        ],
-        "suggested_capture": {
-          "part": 1,
-          "start_seconds": 5,
-          "end_seconds": 5,
-          "target": "作者在餐厅门外介绍；未见完整门牌和地址；现有实截图可回查，待补完整地址画面及公开使用依据。"
-        }
+        "status": "approved",
+        "reasons": [],
+        "conclusion": "P1 12秒分店牌匾 + 高德对应 POI 核准；P1 30秒截图与描述对应同一次探店。营业状态未实时保证。"
       },
       "review_frames": [
         {
@@ -897,7 +927,19 @@
           "alt": "蓉亭食贝 原视频 295.0 秒画面；待补公开使用依据",
           "frame_verified": true
         }
-      ]
+      ],
+      "branch_frame": {
+        "path": "content/images/BV1AdqYYNEDM-p1-12000.png",
+        "source_video": "https://www.bilibili.com/video/BV1AdqYYNEDM/",
+        "part": 1,
+        "timestamp_ms": 12000,
+        "alt": "原视频店内牌匾：蓉亭食贝（北京亚运村店）",
+        "frame_verified": true,
+        "sha256": "06db93e60863e73d459adcff7f01167fda3b08872144c02be45b6b328bb53f33",
+        "capture_method": "浏览器对 B 站官方播放器指定时间的 video 元素截图；视频未落盘",
+        "usage_basis": "按本轮附件验收规格在本站展示原视频真实截帧，保留署名和水印；不表示取得创作者授权",
+        "rights_status": "not_recorded"
+      }
     },
     {
       "batch_id": "beijing-pilot-001",
@@ -1108,11 +1150,10 @@
         }
       ],
       "review": {
-        "status": "missing_screenshot",
+        "status": "pending",
         "reasons": [
-          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
-          "已有带时间点的播放器实截图，公开使用依据仍待补",
-          "营业状态待确认"
+          "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+          "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
         ],
         "suggested_capture": {
           "part": 1,
@@ -1387,11 +1428,10 @@
         }
       ],
       "review": {
-        "status": "missing_screenshot",
+        "status": "pending",
         "reasons": [
-          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
-          "已有带时间点的播放器实截图，公开使用依据仍待补",
-          "营业状态待确认"
+          "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+          "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
         ],
         "suggested_capture": {
           "part": 1,
@@ -1575,11 +1615,10 @@
         }
       ],
       "review": {
-        "status": "missing_screenshot",
+        "status": "pending",
         "reasons": [
-          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
-          "已有带时间点的播放器实截图，公开使用依据仍待补",
-          "营业状态待确认"
+          "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+          "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
         ],
         "suggested_capture": {
           "part": 1,
@@ -1802,11 +1841,10 @@
         }
       ],
       "review": {
-        "status": "missing_screenshot",
+        "status": "pending",
         "reasons": [
-          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
-          "已有带时间点的播放器实截图，公开使用依据仍待补",
-          "营业状态待确认"
+          "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+          "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图"
         ],
         "suggested_capture": {
           "part": 1,
@@ -2068,13 +2106,11 @@
         }
       ],
       "review": {
-        "status": "missing_screenshot",
+        "status": "pending",
         "reasons": [
-          "待核具体到访分店与原视频时间点；高德同名结果不等于到访证据",
-          "已有带时间点的播放器实截图，公开使用依据仍待补",
-          "营业状态待确认",
-          "官方元数据无 first_frame；需用户或创作者提供原视频对应截图",
-          "城市仅来自附件候选口径，原画面未补齐北京证据"
+          "尚未将原视频画面中的实际到访分店与高德唯一 POI 对应",
+          "已有审核画面；具体分店确认后再选取能对应该次探店的首页截图",
+          "城市需补原视频证据"
         ],
         "suggested_capture": {
           "part": 1,
@@ -2145,7 +2181,7 @@
     {
       "uid": "3546888255048212",
       "name": "特厨隋坡",
-      "scope": "仅附件三条候选；尝试官方主页与投稿列表第一页",
+      "scope": "附件三条候选；官方账号投稿列表第一页被限制",
       "candidate_count": 3,
       "processed_count": 3,
       "published_count": 0,
@@ -2153,31 +2189,37 @@
       "last_accessible_bvid": "BV1fzhM6iE5k",
       "oldest_candidate_date": "2026-03-22T11:30:00+08:00",
       "newest_candidate_date": "2026-08-25T11:30:00+08:00",
-      "history_stop": "官方投稿列表第一页 HTTP 412；未获得完整视频列表与分页游标，未到末尾；浏览器主页 弹出登录",
+      "history_stop": "官方账号投稿列表仍受 412/-403/-352 限制；合集末尾不代表账号全部历史。",
       "profile_url": "https://space.bilibili.com/3546888255048212",
       "history_evidence": "content/sources/history-3546888255048212.json",
-      "profile_evidence": "content/sources/profile-inventory.json"
+      "profile_evidence": "content/sources/profile-inventory.json",
+      "discovered_count": 3,
+      "pending_count": 3,
+      "account_history_complete": false
     },
     {
       "uid": "3546728118618546",
       "name": "厨者王波",
-      "scope": "仅附件三条候选；尝试官方主页与投稿列表第一页",
+      "scope": "官方北京探店合集 5780378 返回全部 61 条，另核对附件候选",
       "candidate_count": 3,
       "processed_count": 3,
-      "published_count": 0,
+      "published_count": 1,
       "reached_end": false,
-      "last_accessible_bvid": "BV1gkxKefEfW",
+      "last_accessible_bvid": "BV1AcnN66EsM",
       "oldest_candidate_date": "2024-09-28T13:26:23+08:00",
       "newest_candidate_date": "2025-01-03T11:50:16+08:00",
-      "history_stop": "官方投稿列表第一页 HTTP 200，接口 code=-352；未获得完整视频列表与分页游标，未到末尾；浏览器主页 显示投稿总数但视频列表为空，不能据此认定没有视频",
+      "history_stop": "官方账号投稿列表仍受 412/-403/-352 限制；合集末尾不代表账号全部历史。",
       "profile_url": "https://space.bilibili.com/3546728118618546",
       "history_evidence": "content/sources/history-3546728118618546.json",
-      "profile_evidence": "content/sources/profile-inventory.json"
+      "profile_evidence": "content/sources/profile-inventory.json",
+      "discovered_count": 61,
+      "pending_count": 60,
+      "account_history_complete": false
     },
     {
       "uid": "544336675",
       "name": "真探唐仁杰",
-      "scope": "仅附件三条候选；尝试官方主页与投稿列表第一页",
+      "scope": "附件三条候选；官方账号投稿列表第一页被限制",
       "candidate_count": 3,
       "processed_count": 3,
       "published_count": 0,
@@ -2185,10 +2227,14 @@
       "last_accessible_bvid": "BV1ao4y1k75R",
       "oldest_candidate_date": "2021-06-16T20:15:31+08:00",
       "newest_candidate_date": "2023-01-31T11:30:00+08:00",
-      "history_stop": "官方投稿列表第一页 HTTP 412；未获得完整视频列表与分页游标，未到末尾；浏览器主页 弹出登录",
+      "history_stop": "官方账号投稿列表仍受 412/-403/-352 限制；合集末尾不代表账号全部历史。",
       "profile_url": "https://space.bilibili.com/544336675",
       "history_evidence": "content/sources/history-544336675.json",
-      "profile_evidence": "content/sources/profile-inventory.json"
+      "profile_evidence": "content/sources/profile-inventory.json",
+      "discovered_count": 3,
+      "pending_count": 3,
+      "account_history_complete": false
     }
-  ]
+  ],
+  "inventory_latest": "content/inventory/creators-2026-11-11.json"
 }

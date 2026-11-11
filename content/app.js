@@ -33,7 +33,7 @@
     for(const r of found){
       const card=el('article',null,'card');card.dataset.bvid=r.video.bvid;card.dataset.published=String(r.published);
       if(r.published&&r.visit.screenshots.length){const i=r.visit.screenshots[0],img=el('img');img.src='/'+i.path;img.alt=i.alt;img.loading='lazy';card.append(img);}
-      else{const ph=el('div',null,'placeholder');ph.append(el('strong','待补截图'),el('span','仅供界面验证 · 未发布'));card.append(ph);}
+      else{const ph=el('div',null,'placeholder');ph.append(el('strong','截图待补'),el('span',r.published?'分店已核对':'待核记录 · 未收录'));card.append(ph);}
       const body=el('div',null,'card-body');body.append(el('span',r.published?'已收录':'待核分店 · 待补截图','tag'),el('p',r.creator.name,'creator'),el('h2',r.visit.store_name),el('p',r.video.title,'title'),el('p',r.visit.branch_name?`${r.visit.district} · ${r.visit.address}`:'具体分店与地址待核实'),el('p',r.video.bvid+' · P'+r.video.part+' · '+r.video.published_at.slice(0,10),'bvid'));
       if(r.published){const i=r.visit.screenshots[0];body.append(el('p','画面：'+i.alt+' · '+(i.timestamp_ms/1000)+' 秒 · 来源 '+r.video.bvid));}
       if(r.published){

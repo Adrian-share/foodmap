@@ -6,7 +6,7 @@ for(const [name,size] of [['desktop',{width:1440,height:1000}],['mobile',{width:
     // 只验证自有界面的播放器协议与降级；真实播放由独立的联网记录验收。
     await page.route('https://player.bilibili.com/**',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><p>官方播放器测试替身 · 不代表真实播放成功</p>'}));
     await page.goto('/content/?review=1');await expect(page.locator('.card')).toHaveCount(9);
-    await expect(page.locator('#review-note')).toBeVisible();await expect(page.locator('.card img')).toHaveCount(0);
+    await expect(page.locator('#review-note')).toBeVisible();await expect(page.locator('.card img')).toHaveCount(1);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
     await page.locator('.card button').first().click();await expect(page.locator('#video-dialog')).toBeVisible();
     await expect(page.locator('iframe')).toHaveCount(0);await page.getByRole('button',{name:'在本站打开视频',exact:true}).click();
@@ -20,7 +20,7 @@ for(const [name,size] of [['desktop',{width:1440,height:1000}],['mobile',{width:
     await page.locator('#content-query').fill('不存在的店');await expect(page.locator('.empty')).toBeVisible();
   });
 }
-test('正式列表没有未准用卡片，旧门店原视频仍可在站内打开',async({page})=>{
-  await page.goto('/content/');await expect(page.locator('.card')).toHaveCount(0);await expect(page.locator('.empty')).toBeVisible();
+test('正式列表只有分店已核准的卡片，旧门店原视频仍可在站内打开',async({page})=>{
+  await page.goto('/content/');await expect(page.locator('.card')).toHaveCount(1);await expect(page.locator('.card')).toContainText('蓉亭食贝');
   await page.goto('/content/?bvid=BV1ka411n7Nd');await expect(page.locator('#video-dialog')).toBeVisible();await expect(page.locator('#video-source')).toContainText('BV1ka411n7Nd');expect(new URL(page.url()).pathname).toBe('/content/');
 });

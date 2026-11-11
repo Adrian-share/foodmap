@@ -1,0 +1,8 @@
+
+Running 3 tests using 1 worker
+
+  ✓  1 tests/home-cards.spec.cjs:11:3 › A02/A03 desktop：正常首页搜索显示新分店的图文卡和一致编号 (1.9s)
+  ✓  2 tests/home-cards.spec.cjs:11:3 › A02/A03 mobile：正常首页搜索显示新分店的图文卡和一致编号 (1.6s)
+  ✓  3 tests/home-cards.spec.cjs:23:1 › A04 图片加载失败与无图门店都保留名称距离并显示截图待补 (632ms)
+
+  3 passed (7.7s)
