@@ -1,0 +1,14 @@
+
+Running 9 tests using 1 worker
+
+  ✓  1 tests/page.spec.cjs:66:43 › 王府井：同屏四个图钉、编号排序、分店地址距离与出处 (2.4s)
+  ✓  2 tests/page.spec.cjs:66:43 › 东坝：同屏四个图钉、编号排序、分店地址距离与出处 (2.2s)
+  ✓  3 tests/page.spec.cjs:66:43 › 大钟寺：同屏四个图钉、编号排序、分店地址距离与出处 (2.3s)
+  ✓  4 tests/page.spec.cjs:72:1 › 望府井纠错与切换起点清除旧图钉及详情 (2.8s)
+  ✓  5 tests/page.spec.cjs:81:1 › 切换起点取消旧请求并保留最新起点 (2.7s)
+  ✓  6 tests/page.spec.cjs:102:1 › 歧义地点先选择再绘图，地址可区分 (1.2s)
+  ✓  7 tests/page.spec.cjs:118:1 › 无结果、接口失败清空旧结果，可重新搜索 (2.7s)
+  ✓  8 tests/page.spec.cjs:134:1 › 高德脚本失败明确提示并可重试连接 (1.1s)
+  ✓  9 tests/page.spec.cjs:149:1 › 缺少凭据明确展示离线状态，未知起点不残留 (925ms)
+
+  9 passed (22.5s)

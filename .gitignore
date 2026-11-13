@@ -22,3 +22,6 @@ content/review-frames/screenshots/
 content/reference-images/*.jpg
 evidence/content/live*/*.png
 evidence/content/hosted/*-playing.png
+
+# Browser encoder intermediates; the review recording is delivered as MP4.
+/evidence/desktop/live/*.webm

@@ -42,7 +42,7 @@ test('识别王府井的口述误写，未知地点不回退到旧结果', () =>
   assert.equal(resolveFixture('未知位置'), undefined);
 });
 
-test('提交三个地名，页面读取共享查询并显示四个图钉和三条结果', async () => {
+test('提交三个地名，页面读取共享查询并显示七个图钉和六条结果', async () => {
   const vm = require('node:vm');
   const {readFileSync} = require('node:fs');
   const {join} = require('node:path');
@@ -53,15 +53,19 @@ test('提交三个地名，页面读取共享查询并显示四个图钉和三�
       this.children = [];
       this.listeners = {};
       this.dataset = {};
+      this.selectedOptions = [];
+      this.value = '';
+      this.disabled = false;
       this.namespaceURI = 'http://www.w3.org/2000/svg';
     }
     addEventListener(event, listener) { this.listeners[event] = listener; }
     replaceChildren(...items) { this.children = items; }
     append(...items) { this.children.push(...items); }
     setAttribute() {}
+    add(item) {this.children.push(item);}
   }
 
-  const ids = ['query', 'status', 'results', 'candidates', 'preview', 'map', 'search', 'map-status', 'retry-search', 'retry-map', 'fit-map'];
+  const ids = ['query', 'status', 'results', 'candidates', 'preview', 'map', 'search', 'map-status', 'retry-search', 'retry-map', 'fit-map', 'load-more', 'creator-filter', 'empty-state', 'current-origin', 'list-end', 'result-count', 'empty-message', 'clear-filter', 'filter-state'];
   const elements = Object.fromEntries(ids.map(id => [id, new Element()]));
   const document = {
     body: new Element(),
@@ -71,7 +75,7 @@ test('提交三个地名，页面读取共享查询并显示四个图钉和三�
     createElementNS: (_, tag) => new Element(tag)
   };
   const service=require('../nearby.cjs').createNearbyService({dataset:'verified'});
-  const context = vm.createContext({window:{},document, URLSearchParams, AbortSignal, location:{protocol:'file:'},
+  const context = vm.createContext({window:{},document, URLSearchParams, AbortSignal, AbortController, Option: class {constructor(text,value){this.textContent=text;this.value=value;}}, location:{protocol:'file:'},
     fetch:async url=>({ok:true,json:()=>service.query(Object.fromEntries(new URL(url,'http://test').searchParams))})});
   context.window=context;
   const settle=()=>new Promise(resolve=>setImmediate(resolve));
@@ -83,9 +87,9 @@ test('提交三个地名，页面读取共享查询并显示四个图钉和三�
     elements.query.value = input;
     elements.search.listeners.submit({preventDefault() {}});
     await settle();
-    assert.equal(elements.results.children.length, 3);
+    assert.equal(elements.results.children.length, 6);
     const [svg] = elements.preview.children;
-    assert.equal(svg.children.filter(node => node.tag === 'circle').length, 4);
+    assert.equal(svg.children.filter(node => node.tag === 'circle').length, 7);
   }
   elements.query.value = '未知位置';
   elements.search.listeners.submit({preventDefault() {}});

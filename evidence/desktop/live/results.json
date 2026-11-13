@@ -1,0 +1,132 @@
+[
+  {
+    "width": 1280,
+    "origin": {
+      "id": "BV10006496",
+      "name": "王府井地铁站",
+      "lng": 116.411571,
+      "lat": 39.908069,
+      "city": "北京",
+      "district": "东城区",
+      "address": "北京 · 东城区 · 1号线/八通线;8号线",
+      "source": "https://ditu.amap.com/place/BV10006496",
+      "coordinate_source": "amap_live"
+    },
+    "version": "dual-city-2026-11-10.1+beijing-pilot-001:beijing-pilot-001.2026-11-11.2@f893d0c3b5aa11b6",
+    "total": 11,
+    "initial": [
+      {
+        "id": "beijing-5",
+        "name": "富春居（北京璞瑄酒店店）",
+        "meters": 1724.6128727144674,
+        "visit": "visit-beijing-5"
+      },
+      {
+        "id": "beijing-1",
+        "name": "泰丰楼",
+        "meters": 1918.4093711252954,
+        "visit": "visit-beijing-1"
+      },
+      {
+        "id": "beijing-2",
+        "name": "北京宜宾招待所·餐厅",
+        "meters": 2823.1637692697195,
+        "visit": "visit-beijing-2"
+      },
+      {
+        "id": "beijing-9",
+        "name": "砂锅居（西四店）",
+        "meters": 3505.2674355217823,
+        "visit": "visit-beijing-9"
+      },
+      {
+        "id": "beijing-3",
+        "name": "潇湘阁（三里屯SOHO店）",
+        "meters": 4491.440021732946,
+        "visit": "visit-beijing-3"
+      },
+      {
+        "id": "beijing-4",
+        "name": "老吉堂·吉来（正大中心店）",
+        "meters": 4872.476637848809,
+        "visit": "visit-beijing-4"
+      }
+    ],
+    "real_map": true
+  },
+  {
+    "width": 1440,
+    "origin": {
+      "id": "BV10006496",
+      "name": "王府井地铁站",
+      "lng": 116.411571,
+      "lat": 39.908069,
+      "city": "北京",
+      "district": "东城区",
+      "address": "北京 · 东城区 · 1号线/八通线;8号线",
+      "source": "https://ditu.amap.com/place/BV10006496",
+      "coordinate_source": "amap_live"
+    },
+    "version": "dual-city-2026-11-10.1+beijing-pilot-001:beijing-pilot-001.2026-11-11.2@f893d0c3b5aa11b6",
+    "total": 11,
+    "initial": [
+      {
+        "id": "beijing-5",
+        "name": "富春居（北京璞瑄酒店店）",
+        "meters": 1724.6128727144674,
+        "visit": "visit-beijing-5"
+      },
+      {
+        "id": "beijing-1",
+        "name": "泰丰楼",
+        "meters": 1918.4093711252954,
+        "visit": "visit-beijing-1"
+      },
+      {
+        "id": "beijing-2",
+        "name": "北京宜宾招待所·餐厅",
+        "meters": 2823.1637692697195,
+        "visit": "visit-beijing-2"
+      },
+      {
+        "id": "beijing-9",
+        "name": "砂锅居（西四店）",
+        "meters": 3505.2674355217823,
+        "visit": "visit-beijing-9"
+      },
+      {
+        "id": "beijing-3",
+        "name": "潇湘阁（三里屯SOHO店）",
+        "meters": 4491.440021732946,
+        "visit": "visit-beijing-3"
+      },
+      {
+        "id": "beijing-4",
+        "name": "老吉堂·吉来（正大中心店）",
+        "meters": 4872.476637848809,
+        "visit": "visit-beijing-4"
+      }
+    ],
+    "real_map": true,
+    "appended": 11,
+    "filtered": [
+      {
+        "id": "beijing-2",
+        "visit": "visit-beijing-2",
+        "text": "查看探店详情 ↗\n1\n北京宜宾招待所·餐厅\n2.82 km\n\n厨者王波 · B 站探店\n\n探店丨厨者王波•去学去看 宜宾招待所 李庄白肉太棒了！整体很棒啊！\n\n西城区 · 宣武门 · 西中胡同28号(宁波宾馆南门斜对面)"
+      },
+      {
+        "id": "amap:B0FFGCY5QP",
+        "visit": "BV1AdqYYNEDM:1:BV1AdqYYNEDM:p1:B0FFGCY5QP",
+        "text": "查看探店详情 ↗\n2\n蓉亭食贝（亚运村店）\n10.92 km\n\n厨者王波 · B 站探店\n\n试吃肉丝，并提到肉丝吃起来很嫩。\n\n北京市朝阳区大屯北路华悦国际公寓（金泉美食宫1楼）"
+      }
+    ],
+    "dongba_first": "beijing-7",
+    "player_url": "https://player.bilibili.com/player.html?bvid=BV1AdqYYNEDM&p=1&t=0&autoplay=0&danmaku=0",
+    "playback": {
+      "time": 0.717201,
+      "readyState": 4,
+      "paused": false
+    }
+  }
+]

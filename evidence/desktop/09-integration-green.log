@@ -1,0 +1,11 @@
+
+> dual-city-food-map@1.0.0 test:content:integration
+> playwright test --config playwright.integration.config.cjs
+
+
+Running 2 tests using 1 worker
+
+  ✓  1 tests/content-integration.spec.cjs:6:3 › desktop：托管首页读取新门店、同访图文、编号与精确详情 (5.5s)
+  ✓  2 tests/content-integration.spec.cjs:6:3 › mobile：托管首页读取新门店、同访图文、编号与精确详情 (3.5s)
+
+  2 passed (13.0s)

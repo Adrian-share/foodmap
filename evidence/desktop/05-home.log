@@ -1,0 +1,50 @@
+
+> dual-city-food-map@1.0.0 test:home
+> playwright test --config playwright.home.config.cjs && playwright test --config playwright.desktop.config.cjs
+
+
+Running 3 tests using 1 worker
+
+  ✓  1 tests/home-cards.spec.cjs:10:3 › A02/A03 desktop：正常首页搜索显示新分店的图文卡和一致编号 (3.2s)
+  ✓  2 tests/home-cards.spec.cjs:10:3 › A02/A03 mobile：正常首页搜索显示新分店的图文卡和一致编号 (2.5s)
+  ✓  3 tests/home-cards.spec.cjs:22:1 › A04 图片加载失败与无图门店都保留名称距离并显示截图待补 (778ms)
+
+  3 passed (10.4s)
+
+Running 4 tests using 1 worker
+
+  ✓  1 tests/desktop.spec.cjs:10:32 › U1/U2 1280: desktop layout, image fields, distance and two-way selection (3.3s)
+  ✓  2 tests/desktop.spec.cjs:10:32 › U1/U2 1440: desktop layout, image fields, distance and two-way selection (2.4s)
+  ✓  3 tests/desktop.spec.cjs:27:1 › U3: append, filter and clear retain origin; Dongba updates results (1.4s)
+  ✘  4 tests/desktop.spec.cjs:36:1 › U4: exact visit opens in-site Bilibili player; empty state and image failure (7.4s)
+
+
+  1) tests/desktop.spec.cjs:36:1 › U4: exact visit opens in-site Bilibili player; empty state and image failure 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: locator('#results>li').first()
+    Expected substring: "截图待补"
+    Received string:    "查看探店详情 ↗1富春居（北京璞瑄酒店店）1.72 km真探唐仁杰 · B 站探店富春居  厨子请客¥？？？东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" locator('#results>li').first() with timeout 5000ms
+      - waiting for locator('#results>li').first()
+        12 × locator resolved to <li aria-current="false" data-store-id="beijing-5" data-visit-id="visit-beijing-5">…</li>
+           - unexpected value "查看探店详情 ↗1富春居（北京璞瑄酒店店）1.72 km真探唐仁杰 · B 站探店富春居  厨子请客¥？？？东城区 · 灯市口 · 王府井大街1号璞瑄酒店3层"
+
+
+      40 |   await page.getByRole('button',{name:'在本站打开视频',exact:true}).click();await expect(page.locator('#video-slot iframe')).toHaveAttribute('src',/player.bilibili.com\/player.html\?.*bvid=BV/);
+      41 |   await page.goto('/');await page.locator('#query').fill('不存在的固定地点');await page.locator('#search button[type=submit]').click();await expect(page.locator('#empty-state')).toBeVisible();await expect(page.locator('#results>li')).toHaveCount(0);
+    > 42 |   await page.route('**/content/images/**',r=>r.abort());await page.getByRole('button',{name:'王府井',exact:true}).click();await expect(page.locator('#results>li').first()).toContainText('截图待补');await expect(page.locator('#results>li').first().locator('.straight-distance')).toBeVisible();
+         |                                                                                                                                                                          ^
+      43 | });
+      44 |
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-11-b85d530088ae/workdir/foodmap/tests/desktop.spec.cjs:42:170
+
+    Error Context: test-results/desktop/desktop-U4-exact-visit-ope-1dc54-pty-state-and-image-failure/error-context.md
+
+  1 failed
+    tests/desktop.spec.cjs:36:1 › U4: exact visit opens in-site Bilibili player; empty state and image failure 
+  3 passed (17.9s)

@@ -30,7 +30,7 @@ async function setup(page) {
 }
 async function search(page, query) {
   await page.getByLabel('起点', {exact: true}).fill(query);
-  await page.getByRole('button', {name: '查最近三家', exact: true}).click();
+  await page.getByRole('button', {name: '搜索附近', exact: true}).click();
 }
 async function verify(page, name) {
   const {names, km} = expected[name];
@@ -67,7 +67,7 @@ for (const name of Object.keys(expected)) test(`${name}：同屏四个图钉、�
   await setup(page);
   await search(page, name);
   await verify(page, name);
-  await page.screenshot({path: `test-results/fixture-${name}.png`, fullPage: true});
+  await page.screenshot({path: `../evidence/desktop/beijing-fixture-${name}.png`, fullPage: true});
 });
 test('望府井纠错与切换起点清除旧图钉及详情', async ({page}) => {
   await setup(page);
@@ -78,7 +78,7 @@ test('望府井纠错与切换起点清除旧图钉及详情', async ({page}) =>
   await verify(page, '东坝');
   await expect(page.locator('#results')).not.toContainText('富春居');
 });
-test('旧请求晚返回时只保留最新起点', async ({page}) => {
+test('切换起点取消旧请求并保留最新起点', async ({page}) => {
   await setup(page);
   let release;
   const held = new Promise(resolve => { release = resolve; });
@@ -91,11 +91,11 @@ test('旧请求晚返回时只保留最新起点', async ({page}) => {
   });
   await search(page, '王府井');
   await started;
+  const cancelled = page.waitForEvent('requestfailed', request => request.url().includes('location=%E7%8E%8B'));
   await search(page, '东坝');
+  await cancelled;
   await verify(page, '东坝');
-  const late = page.waitForResponse(response => response.url().includes('location=%E7%8E%8B'));
   release();
-  await late;
   await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   await verify(page, '东坝');
 });
@@ -149,7 +149,7 @@ test('高德脚本失败明确提示并可重试连接', async ({page}) => {
 test('缺少凭据明确展示离线状态，未知起点不残留', async ({page}) => {
   await page.goto('/');
   await expect(page.locator('#map-status')).toContainText('待验证');
-  await expect(page.locator('#results > li')).toHaveCount(3);
+  await expect(page.locator('#results > li')).toHaveCount(6);
   await search(page, '未知位置');
   await expect(page.locator('#results > li')).toHaveCount(0);
   await expect(page.locator('#preview .map-pin')).toHaveCount(0);

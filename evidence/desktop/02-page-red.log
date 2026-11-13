@@ -1,0 +1,36 @@
+
+Running 1 test using 1 worker
+
+  ✘  1 tests/desktop.spec.cjs:10:32 › U1/U2 1280: desktop layout, image fields, distance and two-way selection (5.1s)
+
+
+  1) tests/desktop.spec.cjs:10:32 › U1/U2 1280: desktop layout, image fields, distance and two-way selection 
+
+    Test timeout of 5000ms exceeded.
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator: locator('#current-origin')
+    Expected: "王府井地铁站"
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveText" locator('#current-origin') with timeout 5000ms
+      - waiting for locator('#current-origin')
+      - Test timeout of 5000ms exceeded.
+
+
+       6 |   await page.route('https://webapi.amap.com/maps?**',r=>r.fulfill({contentType:'text/javascript',body:fs.readFileSync('tests/mock-sdk.js','utf8')}));
+       7 |   await page.goto('/');await expect(page.locator('#map')).toHaveAttribute('data-ready','true');
+    >  8 |   await expect(page.locator('#current-origin')).toHaveText('王府井地铁站');
+         |                                                 ^
+       9 | }
+      10 | for(const width of [1280,1440])test(`U1/U2 ${width}: desktop layout, image fields, distance and two-way selection`,async({page})=>{
+      11 |   await page.setViewportSize({width,height:960});await setup(page);
+        at setup (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-11-b85d530088ae/workdir/foodmap/tests/desktop.spec.cjs:8:49)
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-11-b85d530088ae/workdir/foodmap/tests/desktop.spec.cjs:11:50
+
+    Error Context: test-results/desktop/desktop-U1-U2-1280-desktop-4f3b9-tance-and-two-way-selection/error-context.md
+
+  1 failed
+    tests/desktop.spec.cjs:10:32 › U1/U2 1280: desktop layout, image fields, distance and two-way selection 

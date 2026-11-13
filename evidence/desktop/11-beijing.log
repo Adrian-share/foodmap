@@ -1,0 +1,86 @@
+
+Running 9 tests using 1 worker
+
+  ✓  1 tests/page.spec.cjs:66:43 › 王府井：同屏四个图钉、编号排序、分店地址距离与出处 (3.3s)
+  ✓  2 tests/page.spec.cjs:66:43 › 东坝：同屏四个图钉、编号排序、分店地址距离与出处 (2.2s)
+  ✓  3 tests/page.spec.cjs:66:43 › 大钟寺：同屏四个图钉、编号排序、分店地址距离与出处 (2.2s)
+  ✓  4 tests/page.spec.cjs:72:1 › 望府井纠错与切换起点清除旧图钉及详情 (2.6s)
+  ✘  5 tests/page.spec.cjs:81:1 › 旧请求晚返回时只保留最新起点 (15.4s)
+  ✓  6 tests/page.spec.cjs:102:1 › 歧义地点先选择再绘图，地址可区分 (1.5s)
+  ✓  7 tests/page.spec.cjs:118:1 › 无结果、接口失败清空旧结果，可重新搜索 (2.4s)
+  ✓  8 tests/page.spec.cjs:134:1 › 高德脚本失败明确提示并可重试连接 (1.2s)
+  ✘  9 tests/page.spec.cjs:149:1 › 缺少凭据明确展示离线状态，未知起点不残留 (3.9s)
+
+
+  1) tests/page.spec.cjs:81:1 › 旧请求晚返回时只保留最新起点 ─────────────────────────────────────────────────────
+
+    Test timeout of 15000ms exceeded.
+
+    Error: page.waitForResponse: Test timeout of 15000ms exceeded.
+
+      94 |   await search(page, '东坝');
+      95 |   await verify(page, '东坝');
+    > 96 |   const late = page.waitForResponse(response => response.url().includes('location=%E7%8E%8B'));
+         |                     ^
+      97 |   release();
+      98 |   await late;
+      99 |   await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-11-b85d530088ae/workdir/foodmap/beijing-food-map/tests/page.spec.cjs:96:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-旧请求晚返回时只保留最新起点/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-旧请求晚返回时只保留最新起点/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-旧请求晚返回时只保留最新起点/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-旧请求晚返回时只保留最新起点/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/page.spec.cjs:149:1 › 缺少凭据明确展示离线状态，未知起点不残留 ──────────────────────────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('#results > li')
+    Expected: 3
+    Received: 6
+    Timeout:  3000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('#results > li') with timeout 3000ms
+      - waiting for locator('#results > li')
+        10 × locator resolved to 6 elements
+           - unexpected value "6"
+
+
+      150 |   await page.goto('/');
+      151 |   await expect(page.locator('#map-status')).toContainText('待验证');
+    > 152 |   await expect(page.locator('#results > li')).toHaveCount(3);
+          |                                               ^
+      153 |   await search(page, '未知位置');
+      154 |   await expect(page.locator('#results > li')).toHaveCount(0);
+      155 |   await expect(page.locator('#preview .map-pin')).toHaveCount(0);
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-11-b85d530088ae/workdir/foodmap/beijing-food-map/tests/page.spec.cjs:152:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/browser/page-缺少凭据明确展示离线状态，未知起点不残留/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/browser/page-缺少凭据明确展示离线状态，未知起点不残留/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/browser/page-缺少凭据明确展示离线状态，未知起点不残留/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/browser/page-缺少凭据明确展示离线状态，未知起点不残留/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/page.spec.cjs:81:1 › 旧请求晚返回时只保留最新起点 ──────────────────────────────────────────────────────
+    tests/page.spec.cjs:149:1 › 缺少凭据明确展示离线状态，未知起点不残留 ───────────────────────────────────────────────
+  7 passed (41.6s)

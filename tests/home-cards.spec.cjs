@@ -4,7 +4,7 @@ async function setup(page){
   await page.route('**/api/amap/config',r=>r.fulfill({json:{jsKey:'fixture',serviceHost:'/_AMapService',mapEnabled:true,searchEnabled:true}}));
   await page.route('https://webapi.amap.com/maps?**',r=>r.fulfill({contentType:'text/javascript',body:readFileSync(join(__dirname,'mock-sdk.js'),'utf8')}));
   await page.goto('/');
-  await page.locator('#query').fill('安立路地铁站');await page.getByRole('button',{name:'查最近三家',exact:true}).click();await expect(page.locator('#map')).toHaveAttribute('data-ready','true');await expect(page.locator('body')).toHaveAttribute('data-catalog-version',/2026-11-11/);
+  await page.locator('#query').fill('安立路地铁站');await page.getByRole('button',{name:'搜索附近',exact:true}).click();await expect(page.locator('#map')).toHaveAttribute('data-ready','true');await expect(page.locator('body')).toHaveAttribute('data-catalog-version',/2026-11-11/);
 }
 for(const [device,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{width:390,height:844}]]){
   test(`A02/A03 ${device}：正常首页搜索显示新分店的图文卡和一致编号`,async({page})=>{
@@ -15,7 +15,7 @@ for(const [device,viewport] of [['desktop',{width:1440,height:1000}],['mobile',{
     await expect(card.locator('.pin-number')).toHaveText('1');await expect(page.locator('#map [data-marker-index="1"]')).toHaveAttribute('data-store-id','amap:B0FFGCY5QP');expect(await page.evaluate(()=>window.sdkMap.markers[1].position)).toEqual([116.413218,40.006234]);
     await expect(card.getByRole('link')).toHaveCount(1);await expect(card.getByRole('link')).toHaveAttribute('href',/visit_id=BV1AdqYYNEDM/);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-    await page.screenshot({path:`evidence/home-cards/${device}-fixture.png`,fullPage:true});
+    await page.screenshot({path:`evidence/desktop/home-cards/${device}-fixture.png`,fullPage:true});
     await card.getByRole('link').click();await expect(page.locator('#video-dialog')).toBeVisible();await expect(page.locator('#video-source')).toContainText('BV1AdqYYNEDM');
   });
 }

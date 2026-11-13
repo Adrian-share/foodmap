@@ -1,0 +1,21 @@
+
+> dual-city-food-map@1.0.0 test:home
+> playwright test --config playwright.home.config.cjs && playwright test --config playwright.desktop.config.cjs
+
+
+Running 3 tests using 1 worker
+
+  ✓  1 tests/home-cards.spec.cjs:10:3 › A02/A03 desktop：正常首页搜索显示新分店的图文卡和一致编号 (4.9s)
+  ✓  2 tests/home-cards.spec.cjs:10:3 › A02/A03 mobile：正常首页搜索显示新分店的图文卡和一致编号 (2.8s)
+  ✓  3 tests/home-cards.spec.cjs:22:1 › A04 图片加载失败与无图门店都保留名称距离并显示截图待补 (1.4s)
+
+  3 passed (13.5s)
+
+Running 4 tests using 1 worker
+
+  ✓  1 tests/desktop.spec.cjs:10:32 › U1/U2 1280: desktop layout, image fields, distance and two-way selection (2.8s)
+  ✓  2 tests/desktop.spec.cjs:10:32 › U1/U2 1440: desktop layout, image fields, distance and two-way selection (2.5s)
+  ✓  3 tests/desktop.spec.cjs:27:1 › U3: append, filter and clear retain origin; Dongba updates results (2.3s)
+  ✓  4 tests/desktop.spec.cjs:36:1 › U4: exact visit opens in-site Bilibili player; empty state and image failure (1.8s)
+
+  4 passed (13.6s)
