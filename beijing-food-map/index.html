@@ -3,66 +3,42 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>北京探店地图</title>
-<style>
-  :root{font:16px/1.55 system-ui,sans-serif;color:#102624;background:#f4f7f3}
-  *{box-sizing:border-box}body{max-width:1320px;margin:auto;padding:24px}
-  h1{margin:0 0 6px;font-size:clamp(26px,5vw,38px)}p{margin:5px 0 12px}
-  form,.chips,.map-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
-  input,button{font:inherit;border:1px solid #a8bab1;border-radius:8px;background:#fff;color:inherit;padding:8px 12px}
-  input{min-width:200px}button{cursor:pointer}button[type=submit]{background:#0f6758;color:white;border-color:#0f6758}
-  button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #d88c32;outline-offset:3px}
-  button:disabled{opacity:.55;cursor:wait}[hidden]{display:none!important}
-  .layout{display:grid;grid-template-columns:minmax(0,3fr) minmax(340px,2fr);gap:20px;align-items:start}
-  #map,#preview{width:100%;height:530px;background:#e8f1e9;border-radius:12px;overflow:hidden;position:relative}
-  #map-status{font-size:.9rem;color:#49675f;margin:0;flex:1;min-width:220px}
-  #status{min-height:26px}#candidates:empty{display:none}
-  ol{margin:0;padding-left:30px}li{padding:12px 8px;border-bottom:1px solid #d8e2db;border-radius:6px}
-  li[aria-current=true]{background:#dcece1;box-shadow:inset 3px 0 #137664}
-  li p{font-size:.9em;margin:5px 0}a{color:#075f71;margin-right:10px}
-  .shop-select{border:0;background:transparent;padding:0;text-align:left;font-weight:700}
-  .map-pin{display:block;min-width:36px;height:36px;border:2px solid white;background:#137664;color:white;border-radius:50%;padding:0 7px;box-shadow:0 2px 8px #0005;font-weight:700}
-  .map-pin.origin{background:#173d6b}.shop-info{max-width:300px;padding:8px;color:#102624;font:14px/1.5 system-ui,sans-serif;background:white;border-radius:8px}
-  .shop-info p{margin:6px 0}.mock-watermark{padding:12px;color:#5a4130;background:#fff4de}
-  #map[data-sdk-mock] .shop-info{position:absolute;bottom:12px;right:12px;max-width:245px;box-shadow:0 3px 12px #0002;pointer-events:none}
-  svg{width:100%;height:100%}.legend{font-size:.88rem;color:#49675f;margin:8px 0}
-  footer{margin-top:24px;border-top:1px solid #d8e2db;padding-top:12px;font-size:.85rem;color:#49675f}
-  @media(max-width:760px){body{padding:14px}.layout{grid-template-columns:1fr}#map,#preview{height:380px}.layout ol{padding-left:28px}}
-</style>
+<meta name="description" content="从北京的一个地点出发，在地图上发现博主探过的餐厅，查看原视频截图与探店记录。">
+<title>北京探店地图 · 发现附近好味道</title>
 <link rel="stylesheet" href="/content/home-cards.css">
 </head>
 <body>
-<header><h1>北京探店地图</h1><p>输入北京地铁站、酒店或地标，从已收录的北京门店中找最近三家。</p></header>
-<form id="search">
-  <label for="query">起点</label>
-  <input id="query" required placeholder="例如 王府井" autocomplete="off" maxlength="80">
-  <button type="submit">查最近三家</button>
-  <button id="retry-search" type="button" hidden>重试搜索</button>
-</form>
-<div class="chips" aria-label="预设起点">
-  <button type="button" data-origin="王府井">王府井</button>
-  <button type="button" data-origin="东坝">东坝</button>
-  <button type="button" data-origin="大钟寺">大钟寺</button>
+<header class="site-header">
+  <a class="brand" href="/" aria-label="北京探店地图首页"><span class="brand-mark" aria-hidden="true">探</span>探店地图<span class="city-label">北京</span></a>
+  <nav aria-label="主导航"><a href="/" aria-current="page">探索附近</a><a href="/content/">探店记录 <span aria-hidden="true">↗</span></a></nav>
+  <span class="header-note">跟着视频，发现一座城的好味道</span>
+</header>
+<div class="search-bar">
+  <form id="search">
+    <div class="search-field"><label for="query">起点</label><span aria-hidden="true">⌕</span><input id="query" required placeholder="搜索地铁站、酒店或地标" autocomplete="off" maxlength="80"><button type="submit">搜索附近</button></div>
+    <div class="creator-field"><label for="creator-filter">博主</label><select id="creator-filter"><option value="">全部博主</option></select></div>
+    <button id="clear-filter" type="button" hidden>清除筛选</button>
+    <button id="retry-search" type="button" hidden>重试搜索</button>
+  </form>
+  <div class="search-context"><p class="origin-label"><span class="origin-dot" aria-hidden="true"></span>当前起点 <strong id="current-origin">正在定位…</strong><span id="filter-state">全部博主</span></p><div class="chips" aria-label="预设起点"><span>试试</span><button type="button" data-origin="王府井">王府井</button><button type="button" data-origin="东坝">东坝</button><button type="button" data-origin="大钟寺">大钟寺</button></div></div>
+  <p id="status" role="status" aria-live="polite"></p>
+  <div id="candidates" class="chips" aria-label="请选择准确的起点"></div>
 </div>
-<p id="status" role="status" aria-live="polite"></p>
-<div id="candidates" class="chips" aria-label="请选择准确的起点"></div>
 <main class="layout">
-  <section aria-label="起点和门店位置">
-    <div id="preview" aria-label="离线位置示意图"></div>
-    <div id="map" hidden aria-label="高德交互式地图"></div>
-    <p class="legend">蓝色「起」为起点，绿色 1–3 对应右侧门店。点击图钉查看分店详情。</p>
-    <div class="map-toolbar">
-      <p id="map-status" role="status" aria-live="polite">正在检查地图配置…</p>
-      <button id="fit-map" type="button" hidden>显示全部图钉</button>
-      <button id="retry-map" type="button" hidden>重试地图</button>
-    </div>
+  <section class="map-panel" aria-label="起点和门店位置">
+    <div class="map-frame"><div id="preview" aria-label="离线位置示意图"></div><div id="map" hidden aria-label="高德交互式地图"></div><div class="map-caption"><span class="origin-dot"></span>起点<span class="shop-dot"></span>探店门店</div><button id="fit-map" type="button" hidden>⌖ 显示全部图钉</button></div>
+    <div class="map-toolbar"><p id="map-status" role="status" aria-live="polite">正在加载地图…</p><button id="retry-map" type="button" hidden>重试地图</button></div>
+    <p class="map-note">从一个地点出发，让好味道带路。<br><span>距离为直线距离，出发前请核实营业状态。</span></p>
   </section>
-  <section class="result-panel" aria-label="附近探店"><div class="results-heading"><h2>附近探店</h2><span id="result-count">按直线距离排序</span></div><ol id="results" aria-label="最近三家门店"></ol></section>
+  <section class="result-panel" aria-label="附近探店">
+    <div class="results-heading"><div><p class="eyebrow">EXPLORE BEIJING</p><h1>附近，值得一探</h1></div><span class="sort-label">↗ 由近到远</span></div>
+    <p id="result-count">正在查找附近探店…</p>
+    <ol id="results" aria-label="附近门店，按直线距离排序"></ol>
+    <div id="empty-state" hidden><span aria-hidden="true">⌕</span><h2>这里还没有匹配的探店</h2><p id="empty-message">试试其他地点，或清除博主筛选。</p></div>
+    <div class="more-row"><button id="load-more" type="button" hidden>查看更多</button><p id="list-end" hidden>已展示全部收录门店</p></div>
+    <footer>只呈现已收录的探店记录 · 图片来自对应原视频<br>GCJ-02 坐标 · 直线距离不代表步行或驾车距离</footer>
+  </section>
 </main>
-<p><a href="/content/">查看探店内容</a> · <a href="/content/?review=1">本批候选核对</a></p>
-<footer>对当前版本已收录北京门店排序 · 原视频记录为历史探店，出发前请核实营业状态 · 地点与门店统一采用 GCJ-02 坐标 · 直线距离不代表步行或驾车距离</footer>
-<script src="samples.js"></script>
-<script src="/content/home-cards.js"></script>
-<script src="prototype.js"></script>
+<script src="samples.js"></script><script src="/content/home-cards.js"></script><script src="prototype.js"></script>
 </body>
 </html>

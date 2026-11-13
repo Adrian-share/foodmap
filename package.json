@@ -21,7 +21,8 @@
     "test:screenshots": "node --test screenshots.test.cjs",
     "test:content:page": "playwright test --config playwright.content.config.cjs",
     "start:home": "node beijing-food-map/amap-server.cjs",
-    "test:home": "playwright test --config playwright.home.config.cjs",
+    "test:home": "playwright test --config playwright.home.config.cjs && playwright test --config playwright.desktop.config.cjs",
+    "test:desktop": "node --test desktop.acceptance.test.cjs && playwright test --config playwright.desktop.config.cjs",
     "test:content:integration": "playwright test --config playwright.integration.config.cjs"
   },
   "devDependencies": {

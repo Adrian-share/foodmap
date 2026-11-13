@@ -1,0 +1,2 @@
+const {defineConfig}=require('@playwright/test');
+module.exports=defineConfig({testDir:'./tests',testMatch:'desktop.spec.cjs',timeout:25000,workers:1,reporter:[['list']],outputDir:'test-results/desktop',use:{baseURL:'http://127.0.0.1:8782',viewport:{width:1440,height:960}},webServer:{command:'node beijing-food-map/amap-server.cjs',url:'http://127.0.0.1:8782',env:{PORT:'8782',AMAP_WEB_SERVICE_KEY:'',AMAP_JS_KEY:'',AMAP_JS_SECURITY_CODE:''},reuseExistingServer:false}});

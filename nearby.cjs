@@ -73,12 +73,20 @@ function createNearbyService({mode='fixture',dataset='fixture',serviceKey,reques
     const {shops,visits:allVisits}=catalogData(dataset,contentCatalog);
     const eligible=shops.filter(s=>s.city===origin.city&&validPoint(s,origin.city)
       &&(s.verification==='verified'||dataset==='fixture'&&s.fixture_eligible));
-    const results=eligible.flatMap(shop=>{
-      const visits=allVisits.filter(v=>v.shop_id===shop.id);
+    const creatorKey=v=>String(v.uid||v.creator);
+    const creators=[...new Map(allVisits.filter(v=>eligible.some(s=>s.id===v.shop_id)&&v.creator)
+      .map(v=>[creatorKey(v),{id:creatorKey(v),name:v.creator}])).values()].sort((a,b)=>a.name.localeCompare(b.name,'zh-CN'));
+    // Keep the default top-three contract for existing Web/MCP callers.
+    const integer=(value,fallback,max)=>/^\d+$/.test(String(value))?Math.min(max,Number(value)):fallback;
+    const limit=Math.max(1,integer(input.limit,3,50)),offset=integer(input.offset,0,100000);
+    const ranked=eligible.flatMap(shop=>{
+      const visits=allVisits.filter(v=>v.shop_id===shop.id&&(!input.creator||creatorKey(v)===input.creator));
       if(!visits.length)return [];
       return [{...shop,video:visits[0].video,visits,meters:airDistance(origin,shop)}];
-    }).sort((a,b)=>a.meters-b.meters||a.id.localeCompare(b.id)).slice(0,3);
-    return {...base,status:'ok',origin,results,sample_count:eligible.length,
+    }).sort((a,b)=>a.meters-b.meters||a.id.localeCompare(b.id));
+    const results=ranked.slice(offset,offset+limit);
+    return {...base,status:'ok',origin,results,sample_count:eligible.length,creators,total:ranked.length,
+      next_offset:offset+limit<ranked.length?offset+limit:null,
       scope:dataset==='fixture'?`排名仅限 ${eligible.length} 家 ${origin.city} 固定样本；${origin.city==='上海'?'上海候选未完成分店和营业状态核对，和平饭店采用酒店点位。':'沿用已验收北京门店。'}`:base.scope,
       message:`${origin.city} ${origin.district} ${origin.name}；${mode==='fixture'?'固定样本起点，非实时定位':'高德实时地点检索'}；按直线距离排序。`};
   }

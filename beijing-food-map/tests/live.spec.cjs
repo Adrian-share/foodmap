@@ -13,7 +13,7 @@ for (const name of Object.keys(expected)) test(`真实高德地图：${name}`, a
   await expect(page.locator('#map')).toHaveAttribute('data-ready', 'true');
   await page.getByLabel('起点', {exact: true}).fill(name);
   const searchResponse = page.waitForResponse(response => response.url().includes('/api/nearby?'));
-  await page.getByRole('button', {name: '查最近三家', exact: true}).click();
+  await page.getByRole('button', {name: '搜索附近', exact: true}).click();
   const result = await (await searchResponse).json();
   expect(result.status).toBe('ok');
   const origin = result.origin;
