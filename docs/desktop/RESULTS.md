@@ -21,9 +21,10 @@
 | npm run test:content:integration | 2 / 2 同次到访/分 P/多分店详情通过 |
 | beijing-food-map 中 npx playwright test --config playwright.config.cjs | 9 / 9 北京地图基线回归通过 |
 | npm run build:hosted | 成功 |
+| FOODMAP_DEPLOYMENT_URL=线上地址 npx playwright test --config playwright.hosted.config.cjs（beijing-food-map 目录） | 3 / 3 真实高德地图（王府井、东坝、大钟寺）通过 |
 | node scripts/verify-desktop-hosted.cjs | 1280 / 1440 真实高德地图、分页/筛选/东坝切换、原视频播放全部通过 |
 
-90 项基础检查 + 3 项新增接口检查；浏览器去重共 30 项。完整日志与先红后绿证据在 evidence/desktop。mock SDK 仅用于固定数据测试；live 目录截图来自真实线上页面。
+90 项基础检查 + 3 项新增接口检查；固定数据浏览器去重共 30 项，另有 3 项真实高德回归。完整日志与先红后绿证据在 evidence/desktop。mock SDK 仅用于固定数据测试；live 目录截图来自真实线上页面。
 
 线上王府井地铁站：高德 POI BV10006496，GCJ-02 116.411571,39.908069。前三富春居 1.72 km、泰丰楼 1.92 km、北京宜宾招待所 2.82 km。查看更多追加到 11 家，无重复；厨者王波筛选为 2 家，清除恢复，东坝首家为寂川。
 
@@ -31,4 +32,4 @@
 
 交付截图：live/wangfujing-1280.png、live/wangfujing-1440.png；录屏：live/search-filter.mp4；原页面截图与行为记录：before/。源码与证据通过任务附件交付，工作目录不是下载入口。
 
-GitHub 管理 API / 本机 keyring 均返回凭据失效，无法自动创建 PR。站点发布不依赖 GitHub 管理 API。
+GitHub 管理 API / 本机 keyring 均返回凭据失效，无法自动创建 PR。代码已推送分支 agent/macnimicodex/b85d530088ae。站点发布不依赖 GitHub 管理 API。
