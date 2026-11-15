@@ -1,7 +1,7 @@
 const {assess,buildCatalog,visitKey,detailUrl,playerUrl,validScreenshot}=require('./catalog.cjs');
 
 // A single compiled snapshot supplies both Node and Worker. Never read batches at request time.
-function createContentState({batches,config,version,baseline_records=[]},images){
+function createContentState({batches,config,version,baseline_records=[],ledger},images){
   const assetAvailable=i=>images['/'+i.path]?.sha256===i.sha256;
   const catalog=buildCatalog(batches,assetAvailable,config);
   if(version)catalog.version=version;
@@ -30,7 +30,7 @@ function createContentState({batches,config,version,baseline_records=[]},images)
       }});
     }
   }
-  return {catalog,images,version:catalog.version,batches:batches.filter(b=>b.enabled!==false).map(b=>({batch_id:b.batch_id,version:b.version})),
+  return {catalog,images,ledger,version:catalog.version,batches:batches.filter(b=>b.enabled!==false).map(b=>({batch_id:b.batch_id,version:b.version})),
     records:[...records.values()].map(r=>({...r.value,batch_ids:[...new Set(r.batch_ids)].sort()}))};
 }
 module.exports={createContentState};

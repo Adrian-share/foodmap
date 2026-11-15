@@ -1,6 +1,7 @@
 const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');
 const frozen=require('./fixtures/desktop-catalog.json');
+const expectedIds=new Set([...frozen.shops.map(s=>s.id),'amap:B0FFLI74FK','amap:B0G1PUL2XB']);
 async function setup(page){
   await page.route('**/api/amap/config',r=>r.fulfill({json:{jsKey:'fixture',serviceHost:'/_AMapService',mapEnabled:true,searchEnabled:false}}));
   await page.route('https://webapi.amap.com/maps?**',r=>r.fulfill({contentType:'text/javascript',body:fs.readFileSync('tests/mock-sdk.js','utf8')}));
@@ -15,7 +16,7 @@ for(const width of [1280,1440])test(`U1/U2 ${width}: desktop layout, image field
   const input=await page.locator('#query').boundingBox(),filter=await page.locator('#creator-filter').boundingBox();expect(Math.abs(input.y-filter.y)).toBeLessThan(12);
   for(const c of await cards.all()){
     await expect(c.locator('.shop-select')).not.toBeEmpty();await expect(c.locator('.video-byline')).not.toBeEmpty();await expect(c.locator('.video-note')).not.toBeEmpty();
-    const id=await c.getAttribute('data-store-id');expect(frozen.shops.some(s=>s.id===id)).toBe(true);
+    const id=await c.getAttribute('data-store-id');expect(expectedIds.has(id)).toBe(true);
     await expect.poll(()=>c.locator('img').evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true);
   }
   const distances=await cards.locator('.straight-distance').allTextContents();const values=distances.map(parseFloat);expect(values).toEqual([...values].sort((a,b)=>a-b));
@@ -26,7 +27,8 @@ for(const width of [1280,1440])test(`U1/U2 ${width}: desktop layout, image field
 });
 test('U3: append, filter and clear retain origin; Dongba updates results',async({page})=>{
   await setup(page);const first=await page.locator('#results>li').evaluateAll(xs=>xs.map(x=>x.dataset.storeId));
-  await page.getByRole('button',{name:'查看更多',exact:true}).click();await expect(page.locator('#results>li')).toHaveCount(frozen.shops.length);
+  while(await page.getByRole('button',{name:'查看更多',exact:true}).isVisible()){await page.getByRole('button',{name:'查看更多',exact:true}).click();await expect(page.locator('#results')).toHaveAttribute('aria-busy','false');}
+  await expect(page.locator('#results>li')).toHaveCount(expectedIds.size);
   const all=await page.locator('#results>li').evaluateAll(xs=>xs.map(x=>x.dataset.storeId));expect(new Set(all).size).toBe(all.length);expect(all.slice(0,6)).toEqual(first);
   await page.getByLabel('博主',{exact:true}).selectOption({label:'厨者王波'});await expect(page.locator('#results>li')).toHaveCount(2);await expect(page.locator('#current-origin')).toHaveText('王府井地铁站');
   await expect(page.locator('#results')).toContainText('厨者王波');await expect(page.locator('#map .map-pin')).toHaveCount(3);

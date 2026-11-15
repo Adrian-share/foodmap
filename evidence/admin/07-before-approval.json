@@ -1,0 +1,20 @@
+{
+  "version": "beijing-admin-002:beijing-admin-002.2026-11-15.1,beijing-pilot-001:beijing-pilot-001.2026-11-11.2@01b165ae88c61452",
+  "published": 11,
+  "pending_new_batch": [
+    {
+      "bvid": "BV1ytEE6rE2s",
+      "published": false,
+      "reasons": [
+        "尚未审核通过"
+      ]
+    },
+    {
+      "bvid": "BV1ZF411x7Wo",
+      "published": false,
+      "reasons": [
+        "尚未审核通过"
+      ]
+    }
+  ]
+}

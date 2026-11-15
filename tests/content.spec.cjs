@@ -5,8 +5,8 @@ for(const [name,size] of [['desktop',{width:1440,height:1000}],['mobile',{width:
     await page.setViewportSize(size);
     // 只验证自有界面的播放器协议与降级；真实播放由独立的联网记录验收。
     await page.route('https://player.bilibili.com/**',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><p>官方播放器测试替身 · 不代表真实播放成功</p>'}));
-    await page.goto('/content/?review=1');await expect(page.locator('.card')).toHaveCount(19);
-    await expect(page.locator('#review-note')).toBeVisible();await expect(page.locator('.card img')).toHaveCount(11);
+    await page.goto('/content/?review=1');await expect(page.locator('.card')).toHaveCount(21);
+    await expect(page.locator('#review-note')).toBeVisible();await expect(page.locator('.card img')).toHaveCount(13);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
     await page.locator('.card[data-bvid="BV1k1KN6BEvw"] button').click();await expect(page.locator('#video-dialog')).toBeVisible();
     await expect(page.locator('iframe')).toHaveCount(0);await page.getByRole('button',{name:'在本站打开视频',exact:true}).click();
@@ -21,8 +21,8 @@ for(const [name,size] of [['desktop',{width:1440,height:1000}],['mobile',{width:
   });
 }
 test('正式列表只有分店已核准的卡片，旧门店原视频仍可在站内打开',async({page})=>{
-  await page.goto('/content/');await expect(page.locator('.card')).toHaveCount(11);await expect(page.locator('.card[data-bvid="BV1AdqYYNEDM"]')).toContainText('蓉亭食贝');
-  const images=page.locator('.card img');await expect(images).toHaveCount(11);
+  await page.goto('/content/');await expect(page.locator('.card')).toHaveCount(13);await expect(page.locator('.card[data-bvid="BV1AdqYYNEDM"]')).toContainText('蓉亭食贝');
+  const images=page.locator('.card img');await expect(images).toHaveCount(13);
   for(const image of await images.all()){await image.scrollIntoViewIfNeeded();await expect.poll(()=>image.evaluate(i=>i.complete&&i.naturalWidth>0)).toBe(true);}
   await page.goto('/content/?bvid=BV1ka411n7Nd');await expect(page.locator('#video-dialog')).toBeVisible();await expect(page.locator('#video-source')).toContainText('BV1ka411n7Nd');expect(new URL(page.url()).pathname).toBe('/content/');
 });

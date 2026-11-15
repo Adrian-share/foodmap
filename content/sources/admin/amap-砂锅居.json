@@ -1,0 +1,126 @@
+{
+  "checked_at": "2026-11-15T14:50:24.642Z",
+  "query": "砂锅居",
+  "coordinate_system": "GCJ-02",
+  "distance_type": "straight_line",
+  "dataset": "verified",
+  "data_version": "dual-city-2026-11-10.1+beijing-pilot-001:beijing-pilot-001.2026-11-11.2@f893d0c3b5aa11b6",
+  "mode": "live",
+  "sample_count": 10,
+  "scope": "排名仅限当前城市已核实收录门店。",
+  "results": [],
+  "status": "ambiguous",
+  "message": "请选择城市、行政区和准确起点。",
+  "candidates": [
+    {
+      "id": "B000A84Y6Y",
+      "name": "砂锅居(西四店)",
+      "lng": 116.373788,
+      "lat": 39.920467,
+      "city": "北京",
+      "district": "西城区",
+      "address": "北京 · 西城区 · 北京城区西四南大街60号(西四地铁站D西南口步行340米)",
+      "source": "https://ditu.amap.com/place/B000A84Y6Y",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0L6RMRP3M",
+      "name": "砂锅居(万丰路店)",
+      "lng": 116.293784,
+      "lat": 39.871526,
+      "city": "北京",
+      "district": "丰台区",
+      "address": "北京 · 丰台区 · 北京城区万丰路306号(七里庄地铁站B东北口步行420米)",
+      "source": "https://ditu.amap.com/place/B0L6RMRP3M",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0G3TCNYB8",
+      "name": "砂锅居",
+      "lng": 116.857566,
+      "lat": 40.390527,
+      "city": "北京",
+      "district": "密云区",
+      "address": "北京 · 密云区 · 北京市北京城区北京市北京城区鼓楼街道沙河路五条1号梧桐苑西门斜对面",
+      "source": "https://ditu.amap.com/place/B0G3TCNYB8",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0FFIWS5L6",
+      "name": "大台砂锅居",
+      "lng": 115.940636,
+      "lat": 39.965058,
+      "city": "北京",
+      "district": "门头沟区",
+      "address": "北京 · 门头沟区 · 大台煤矿邮政储蓄所对面",
+      "source": "https://ditu.amap.com/place/B0FFIWS5L6",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0JG1C8RKY",
+      "name": "海子角砂锅居",
+      "lng": 116.315223,
+      "lat": 39.712368,
+      "city": "北京",
+      "district": "大兴区",
+      "address": "北京 · 大兴区 · 兴华大街三段67号院5号楼1层110(东门西南50米)",
+      "source": "https://ditu.amap.com/place/B0JG1C8RKY",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0ID6XCV7J",
+      "name": "砂锅居·家常菜",
+      "lng": 116.209379,
+      "lat": 39.821445,
+      "city": "北京",
+      "district": "丰台区",
+      "address": "北京 · 丰台区 · 东三坡三里58号(周口店路长辛店祠堂口51号)",
+      "source": "https://ditu.amap.com/place/B0ID6XCV7J",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0KGY9SAQJ",
+      "name": "南城外砂锅居(五和万科长阳天地店)",
+      "lng": 116.185348,
+      "lat": 39.766971,
+      "city": "北京",
+      "district": "房山区",
+      "address": "北京 · 房山区 · 长兴东街9号院五和万科长阳天地长兴东街9号院",
+      "source": "https://ditu.amap.com/place/B0KGY9SAQJ",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0JB5U48LP",
+      "name": "砂锅居(机场店)",
+      "lng": 116.411477,
+      "lat": 39.527642,
+      "city": "北京",
+      "district": "大兴区",
+      "address": "北京 · 大兴区 · 苑景西一路与天兴五街交叉口",
+      "source": "https://ditu.amap.com/place/B0JB5U48LP",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0FFHMOU18",
+      "name": "鑫源砂锅居炸串铺",
+      "lng": 116.516175,
+      "lat": 39.910225,
+      "city": "北京",
+      "district": "朝阳区",
+      "address": "北京 · 朝阳区 · 高碑店四惠东康家沟村68号(四惠东地铁站B北口步行350米)",
+      "source": "https://ditu.amap.com/place/B0FFHMOU18",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B000A7WFPP",
+      "name": "东临砂锅居(谷丰东路)",
+      "lng": 117.11854,
+      "lat": 40.153343,
+      "city": "北京",
+      "district": "平谷区",
+      "address": "北京 · 平谷区 · 兴谷街道谷丰路四号西侧鑫座宾馆往南",
+      "source": "https://ditu.amap.com/place/B000A7WFPP",
+      "coordinate_source": "amap_live"
+    }
+  ]
+}

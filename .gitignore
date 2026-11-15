@@ -25,3 +25,6 @@ evidence/content/hosted/*-playing.png
 
 # Browser encoder intermediates; the review recording is delivered as MP4.
 /evidence/desktop/live/*.webm
+
+# 候选采样画面随任务证据包交付，核准帧另存 content/images。
+/evidence/admin/frames/*.jpg

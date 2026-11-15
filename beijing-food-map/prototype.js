@@ -178,12 +178,14 @@
     if (!append) {clear(); currentOrigin.textContent = '正在定位…'; byId('result-count').textContent = '正在查找附近探店…';}
     byId('clear-filter').hidden = !creator.value;
     byId('filter-state').textContent = creator.selectedOptions[0]?.textContent || '全部博主';
+    byId('creator-collection').href = '/creators/' + (creator.value ? '?uid='+encodeURIComponent(creator.value) : '');
     if (!name) {status.textContent = '请输入地点名称。'; currentOrigin.textContent = '未选择地点'; emptyState('输入北京的地铁站、酒店或地标开始探索。'); return;}
     status.textContent = append ? '正在加载更多探店…' : '正在搜索地点与附近探店…';
     list.setAttribute('aria-busy', 'true');
     more.disabled = true;
     try {
-      const params = new URLSearchParams({location: name, city: '北京', limit: '6', offset: String(offset)});
+      const focusStore=new URLSearchParams(location.search).get('store_id');
+      const params = new URLSearchParams({location: name, city: '北京', limit: focusStore ? '50' : '6', offset: String(offset)});
       if (originId) params.set('origin_id', originId);
       if (creator.value) params.set('creator', creator.value);
       const response = await fetch('/api/nearby?' + params, {signal: AbortSignal.any([controller.signal, AbortSignal.timeout(12000)])});
@@ -194,7 +196,9 @@
         if (!validOrigin(result.origin) || !result.results.every(s => validOrigin(s) && Number.isFinite(s.meters))) throw Error('搜索失败');
         // A changed catalog cannot safely be appended to an older ordering.
         if (append && result.data_version !== list.dataset.version) {more.disabled = false; return search(input, originId);}
-        render(result, version, append); return;
+        render(result, version, append);
+        if(focusStore){const target=list.querySelector('[data-store-id="'+CSS.escape(focusStore)+'"] .shop-select');target?.click();}
+        return;
       }
       status.textContent = result.message;
       currentOrigin.textContent = result.candidates?.length ? '请选择准确起点' : '未找到地点';
@@ -294,6 +298,8 @@
   more.addEventListener('click', () => search(lastInput, current?.origin.id, true));
   creator.addEventListener('change', () => search(lastInput, current?.origin.id));
   byId('clear-filter').addEventListener('click', () => {creator.value = ''; search(lastInput, current?.origin.id);});
+  const initial=new URLSearchParams(location.search);
+  if(/^\d+$/.test(initial.get('creator')||''))creator.add(new Option(initial.get('creator'),initial.get('creator'),true,true));
   query.value = '王府井';
   mapStatus.textContent = '真实地图待验证：当前为离线固定样本与位置示意。';
   search();

@@ -1,0 +1,2 @@
+const {defineConfig}=require('@playwright/test');
+module.exports=defineConfig({testDir:'./tests',testMatch:'creators.spec.cjs',workers:1,timeout:20000,reporter:[['list']],outputDir:'test-results/creators',use:{baseURL:'http://127.0.0.1:18913',viewport:{width:1440,height:1000},screenshot:'only-on-failure'},webServer:{command:'node tests/fixtures/creator-server.cjs',url:'http://127.0.0.1:18913/creators/',reuseExistingServer:false}});

@@ -5,11 +5,11 @@ const {targets,checkFrame}=require('./scripts/screenshots.cjs');
 const {baselineRecords}=require('./content/baseline.cjs');
 const {createHandler}=require('./beijing-food-map/amap-handler.cjs');
 const entries=require('./content/baseline-screenshots.json'),base=require('./data/catalog.json');
-test('11 家公开门店均有对应到访的真实截图，图片字节、详情来源与时间一致',async()=>{
+test('13 家公开门店均有对应到访的真实截图，图片字节、详情来源与时间一致',async()=>{
   const handler=createHandler();
   const catalog=await(await handler(new Request('https://test/api/home/catalog'))).json();
-  assert.equal(catalog.shops.length,11);
-  assert.equal(new Set(catalog.shops.map(s=>s.image.url)).size,11);
+  assert.equal(catalog.shops.length,13);
+  assert.equal(new Set(catalog.shops.map(s=>s.image.url)).size,13);
   for(const s of catalog.shops){
     assert.equal(s.image.kind,'video_screenshot');assert.equal(s.image.source,s.video);assert.ok(s.image.frame_verified);
     const response=await handler(new Request(new URL(s.image.url,'https://test')));assert.equal(response.status,200);

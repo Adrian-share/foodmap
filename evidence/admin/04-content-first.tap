@@ -1,0 +1,155 @@
+TAP version 13
+# Subtest: C01 九条有可回查结论，三位实际作者 UID 与候选匹配
+ok 1 - C01 九条有可回查结论，三位实际作者 UID 与候选匹配
+  ---
+  duration_ms: 24.824958
+  type: 'test'
+  ...
+# Subtest: C02 未核准分店、异地、停业不发布；已核准者可入库
+ok 2 - C02 未核准分店、异地、停业不发布；已核准者可入库
+  ---
+  duration_ms: 13.876958
+  type: 'test'
+  ...
+# Subtest: C03 分店与图片独立：缺图仍收录，错视频/分P/时间的图不可展示
+ok 3 - C03 分店与图片独立：缺图仍收录，错视频/分P/时间的图不可展示
+  ---
+  duration_ms: 4.239583
+  type: 'test'
+  ...
+# Subtest: C04 官方播放器携带 BV、分 P、时间点，默认不自动播放
+ok 4 - C04 官方播放器携带 BV、分 P、时间点，默认不自动播放
+  ---
+  duration_ms: 10.607084
+  type: 'test'
+  ...
+# Subtest: C05 本批一条分店核准，未核分店不进入公开列表
+ok 5 - C05 本批一条分店核准，未核分店不进入公开列表
+  ---
+  duration_ms: 4.916959
+  type: 'test'
+  ...
+# Subtest: C06 重导幂等：UID/BV/探店和高德门店去重；撤批不残留
+ok 6 - C06 重导幂等：UID/BV/探店和高德门店去重；撤批不残留
+  ---
+  duration_ms: 68.454917
+  type: 'test'
+  ...
+# Subtest: C07 本批不包含视频/音轨，公开图片必须走自有路径
+ok 7 - C07 本批不包含视频/音轨，公开图片必须走自有路径
+  ---
+  duration_ms: 51.677333
+  type: 'test'
+  ...
+# Subtest: C06 新的已核准记录在同一份网页及 MCP 搜索服务中入榜；待核项不入榜
+ok 8 - C06 新的已核准记录在同一份网页及 MCP 搜索服务中入榜；待核项不入榜
+  ---
+  duration_ms: 90.952583
+  type: 'test'
+  ...
+# Subtest: 公开内容与审核清单分离，未准用参考图永不下发
+not ok 9 - 公开内容与审核清单分离，未准用参考图永不下发
+  ---
+  duration_ms: 127.416
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-13-e96a76905982/workdir/foodmap/content.http.test.cjs:6:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'length')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-13-e96a76905982/workdir/foodmap/content.http.test.cjs:8:121)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: Node 与 Worker 共用内容路由，页面、脚本、CSS 可读取且只读
+ok 10 - Node 与 Worker 共用内容路由，页面、脚本、CSS 可读取且只读
+  ---
+  duration_ms: 52.522375
+  type: 'test'
+  ...
+# Subtest: 内容入口保持本站，部署只允许官方播放器而不代理视频
+ok 11 - 内容入口保持本站，部署只允许官方播放器而不代理视频
+  ---
+  duration_ms: 31.737584
+  type: 'test'
+  ...
+# Subtest: 两个批次与新增 UID 实际构建、重导、撤批、哈希损坏和冲突
+ok 12 - 两个批次与新增 UID 实际构建、重导、撤批、哈希损坏和冲突
+  ---
+  duration_ms: 193.727375
+  type: 'test'
+  ...
+# Subtest: 旧门店按显式 POI 映射合并，保留旧到访和两个新到访
+ok 13 - 旧门店按显式 POI 映射合并，保留旧到访和两个新到访
+  ---
+  duration_ms: 17.095042
+  type: 'test'
+  ...
+# Subtest: Worker、Node HTTP、真实 MCP 协议的版本、店序、距离和到访一致
+not ok 14 - Worker、Node HTTP、真实 MCP 协议的版本、店序、距离和到访一致
+  ---
+  duration_ms: 817.785
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-13-e96a76905982/workdir/foodmap/content.integration.test.cjs:48:1'
+  failureType: 'testCodeFailure'
+  error: "Cannot read properties of undefined (reading 'length')"
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-13-e96a76905982/workdir/foodmap/content.integration.test.cjs:72:129)
+    process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 未启用 UID、无 ID、无时长不收录；缺图只保留已核准到访
+ok 15 - 未启用 UID、无 ID、无时长不收录；缺图只保留已核准到访
+  ---
+  duration_ms: 9.30575
+  type: 'test'
+  ...
+# Subtest: A02 首页实际目录包含原十家之外的亚运村分店，能从普通起点距离排序找到
+ok 16 - A02 首页实际目录包含原十家之外的亚运村分店，能从普通起点距离排序找到
+  ---
+  duration_ms: 235.971584
+  type: 'test'
+  ...
+# Subtest: A05 新店在共享 HTTP 与 MCP 结果中保持分店、原视频和截帧一致
+ok 17 - A05 新店在共享 HTTP 与 MCP 结果中保持分店、原视频和截帧一致
+  ---
+  duration_ms: 1436.243708
+  type: 'test'
+  ...
+# Subtest: A05 分店按 POI 去重，保留多个探店关系，重导同批不增点位
+ok 18 - A05 分店按 POI 去重，保留多个探店关系，重导同批不增点位
+  ---
+  duration_ms: 15.894417
+  type: 'test'
+  ...
+# Subtest: 11 家公开门店均有对应到访的真实截图，图片字节、详情来源与时间一致
+ok 19 - 11 家公开门店均有对应到访的真实截图，图片字节、详情来源与时间一致
+  ---
+  duration_ms: 778.717375
+  type: 'test'
+  ...
+# Subtest: 导入拒绝错 BV、错分 P、越界时间、坏哈希及未解码画面
+ok 20 - 导入拒绝错 BV、错分 P、越界时间、坏哈希及未解码画面
+  ---
+  duration_ms: 33.793166
+  type: 'test'
+  ...
+# Subtest: 补图不能新增门店、篡改到访归属、重复导入或提升未核准分店
+ok 21 - 补图不能新增门店、篡改到访归属、重复导入或提升未核准分店
+  ---
+  duration_ms: 4.772958
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 19
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2527.23125

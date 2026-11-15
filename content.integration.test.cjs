@@ -69,7 +69,7 @@ test('Worker、Node HTTP、真实 MCP 协议的版本、店序、距离和到访
   const player=new URL(exact.records[0].player_url);assert.equal(player.searchParams.get('p'),'2');assert.equal(player.searchParams.get('t'),'50');
   const image=await worker(new Request(shop.image.url));assert.equal(image.status,200);assert.deepEqual(Buffer.from(await image.arrayBuffer()),f.bytes);
   assert.equal((await worker(new Request('https://preview.test/api/content?visit_id=missing'))).status,404);
-  const review=await(await worker(new Request('https://preview.test/api/content?review=1'))).json();assert.equal(review.batches.length,2);assert.ok(review.records.every(r=>r.visit.screenshots.length===1));
+  const review=await(await worker(new Request('https://preview.test/api/content?review=1',{headers:{'oai-authenticated-user-id':'integration-user'}}))).json();assert.equal(review.batches.length,2);assert.ok(review.records.every(r=>r.visit.screenshots.length===1));
   assert.equal((await worker(new Request('https://preview.test/mcp',{method:'POST'}))).status,405);
 });
 

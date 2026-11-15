@@ -1,0 +1,54 @@
+[
+  {
+    "bvid": "BV1ytEE6rE2s",
+    "store_id": "amap:B0FFLI74FK",
+    "frame": {
+      "bvid": "BV1ytEE6rE2s",
+      "part": 1,
+      "source_video": "https://www.bilibili.com/video/BV1ytEE6rE2s/",
+      "timestamp_ms": 240000,
+      "file": "evidence/admin/frames/BV1ytEE6rE2s-p1-240000.jpg",
+      "sha256": "0fa1f9aab7ee1bfd4adad6588316b26da2182ea49674cd240eb4827a6833ca01",
+      "current_seconds": 240,
+      "readyState": 4,
+      "video_width": 640,
+      "video_height": 360,
+      "duration_seconds": 557,
+      "captured_at": "2026-11-15T14:52:41.187Z",
+      "capture_method": "official-player-video-element"
+    },
+    "review": {
+      "status": "approved",
+      "reasons": [],
+      "reviewed_at": "2026-11-15T14:53:58.801951+00:00",
+      "reviewed_by": "macnimicodex",
+      "conclusion": "官方原视频简介明确分店/门牌；与高德POI地址、GCJ-02对应。真实原视频帧已查看，图片、描述和到访一致。当前营业状态未知。"
+    }
+  },
+  {
+    "bvid": "BV1ZF411x7Wo",
+    "store_id": "amap:B0G1PUL2XB",
+    "frame": {
+      "bvid": "BV1ZF411x7Wo",
+      "part": 1,
+      "source_video": "https://www.bilibili.com/video/BV1ZF411x7Wo/",
+      "timestamp_ms": 50000,
+      "file": "evidence/admin/frames/BV1ZF411x7Wo-p1-50000.jpg",
+      "sha256": "50629b45a4abb625d5b1c9598af936c730b198eb1e47ed1acfc10e9e01ded9ea",
+      "current_seconds": 50,
+      "readyState": 4,
+      "video_width": 640,
+      "video_height": 360,
+      "duration_seconds": 160,
+      "captured_at": "2026-11-15T14:52:31.117Z",
+      "capture_method": "official-player-video-element"
+    },
+    "review": {
+      "status": "approved",
+      "reasons": [],
+      "reviewed_at": "2026-11-15T14:53:58.801951+00:00",
+      "reviewed_by": "macnimicodex",
+      "conclusion": "官方原视频简介明确分店/门牌；与高德POI地址、GCJ-02对应。真实原视频帧已查看，图片、描述和到访一致。当前营业状态未知。"
+    }
+  }
+]

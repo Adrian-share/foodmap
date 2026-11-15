@@ -1,0 +1,16 @@
+
+> dual-city-food-map@1.0.0 test:content:page
+> playwright test --config playwright.content.config.cjs
+
+[WebServer] (node:40853) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:40874) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/content.spec.cjs:4:3 › desktop：已收录与候选、站内播放参数、失败保留出处 (4.5s)
+  ✓  2 tests/content.spec.cjs:4:3 › mobile：已收录与候选、站内播放参数、失败保留出处 (3.4s)
+  ✓  3 tests/content.spec.cjs:23:1 › 正式列表只有分店已核准的卡片，旧门店原视频仍可在站内打开 (2.6s)
+
+  3 passed (15.5s)

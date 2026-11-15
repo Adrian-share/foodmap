@@ -10,7 +10,7 @@
 <body>
 <header class="site-header">
   <a class="brand" href="/" aria-label="北京探店地图首页"><span class="brand-mark" aria-hidden="true">探</span>探店地图<span class="city-label">北京</span></a>
-  <nav aria-label="主导航"><a href="/" aria-current="page">探索附近</a><a href="/content/">探店记录 <span aria-hidden="true">↗</span></a></nav>
+  <nav aria-label="主导航"><a href="/" aria-current="page">探索附近</a><a href="/creators/">博主</a><a href="/content/">探店记录 <span aria-hidden="true">↗</span></a></nav>
   <span class="header-note">跟着视频，发现一座城的好味道</span>
 </header>
 <div class="search-bar">
@@ -18,6 +18,7 @@
     <div class="search-field"><label for="query">起点</label><span aria-hidden="true">⌕</span><input id="query" required placeholder="搜索地铁站、酒店或地标" autocomplete="off" maxlength="80"><button type="submit">搜索附近</button></div>
     <div class="creator-field"><label for="creator-filter">博主</label><select id="creator-filter"><option value="">全部博主</option></select></div>
     <button id="clear-filter" type="button" hidden>清除筛选</button>
+    <a id="creator-collection" href="/creators/">查看博主合集 ↗</a>
     <button id="retry-search" type="button" hidden>重试搜索</button>
   </form>
   <div class="search-context"><p class="origin-label"><span class="origin-dot" aria-hidden="true"></span>当前起点 <strong id="current-origin">正在定位…</strong><span id="filter-state">全部博主</span></p><div class="chips" aria-label="预设起点"><span>试试</span><button type="button" data-origin="王府井">王府井</button><button type="button" data-origin="东坝">东坝</button><button type="button" data-origin="大钟寺">大钟寺</button></div></div>

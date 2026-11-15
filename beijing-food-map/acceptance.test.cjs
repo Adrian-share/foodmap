@@ -66,6 +66,7 @@ test('提交三个地名，页面读取共享查询并显示七个图钉和六�
   }
 
   const ids = ['query', 'status', 'results', 'candidates', 'preview', 'map', 'search', 'map-status', 'retry-search', 'retry-map', 'fit-map', 'load-more', 'creator-filter', 'empty-state', 'current-origin', 'list-end', 'result-count', 'empty-message', 'clear-filter', 'filter-state'];
+  ids.push('creator-collection');
   const elements = Object.fromEntries(ids.map(id => [id, new Element()]));
   const document = {
     body: new Element(),

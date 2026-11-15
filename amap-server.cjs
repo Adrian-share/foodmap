@@ -41,8 +41,8 @@ function createServer(options = {}) {
   return http.createServer(async (req, res) => {
     try {
       const url = new URL(req.url, 'http://127.0.0.1');
-      if(url.pathname.startsWith('/content/')||url.pathname==='/api/content'||url.pathname==='/api/home/catalog'){
-        const response=await content(new Request(url,{method:req.method}));
+      const response=await content(new Request(url,{method:req.method,headers:options.acceptanceIdentity?{'oai-authenticated-user-id':options.acceptanceIdentity}:{}}));
+      if(response){
         res.writeHead(response.status,Object.fromEntries(response.headers));
         return res.end(Buffer.from(await response.arrayBuffer()));
       }

@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: C1 全部17个UID和90条线索可对账，统计由唯一BV/分店重新计算
+ok 1 - C1 全部17个UID和90条线索可对账，统计由唯一BV/分店重新计算
+  ---
+  duration_ms: 22.824666
+  type: 'test'
+  ...
+# Subtest: C1/C3 当前批次覆盖快照旧状态，重复来源不增加计数
+ok 2 - C1/C3 当前批次覆盖快照旧状态，重复来源不增加计数
+  ---
+  duration_ms: 16.453167
+  type: 'test'
+  ...
+# Subtest: C1 后续访问失败保留已有发现及成功覆盖范围，重盘不改首次登记时间
+ok 3 - C1 后续访问失败保留已有发现及成功覆盖范围，重盘不改首次登记时间
+  ---
+  duration_ms: 356.586958
+  type: 'test'
+  ...
+# Subtest: C2 后台页面跳登录，API拒绝匿名，review参数不能绕过；私有响应禁止缓存
+ok 4 - C2 后台页面跳登录，API拒绝匿名，review参数不能绕过；私有响应禁止缓存
+  ---
+  duration_ms: 49.484083
+  type: 'test'
+  ...
+# Subtest: C4 公开合集只含已公开北京视频、按B站发稿倒序、保留未知日期及所有分店
+ok 5 - C4 公开合集只含已公开北京视频、按B站发稿倒序、保留未知日期及所有分店
+  ---
+  duration_ms: 50.745375
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1170.118042

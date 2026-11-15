@@ -1,0 +1,180 @@
+{
+  "coordinate_system": "GCJ-02",
+  "distance_type": "straight_line",
+  "dataset": "verified",
+  "data_version": "dual-city-2026-11-10.1+beijing-pilot-001:beijing-pilot-001.2026-11-11.2@f893d0c3b5aa11b6",
+  "mode": "live",
+  "sample_count": 11,
+  "scope": "排名仅限当前城市已核实收录门店。",
+  "results": [
+    {
+      "name": "泰丰楼",
+      "address": "西城区 · 大栅栏 · 前门西大街2号楼",
+      "lng": 116.391816,
+      "lat": 39.899823,
+      "source": "https://www.bilibili.com/video/BV1CB4y147BG/",
+      "id": "beijing-1",
+      "city": "北京",
+      "verification": "verified",
+      "coordinate_note": "沿用 FACT-4/5 已验收北京样本",
+      "video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+      "visits": [
+        {
+          "id": "visit-beijing-1",
+          "shop_id": "beijing-1",
+          "video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+          "creator": "特厨隋卞",
+          "verification": "baseline_accepted",
+          "source_scope": "inherited_beijing_outside_requested_creators",
+          "creator_id": "1462401621",
+          "title": "北京八大楼快来一遍了，今天看泰丰楼怎么样！竟然一进门被厨师长当场逮捕？！",
+          "bvid": "BV1CB4y147BG",
+          "uid": "1462401621",
+          "record": {
+            "creator": {
+              "name": "特厨隋卞",
+              "uid": "1462401621"
+            },
+            "video": {
+              "bvid": "BV1CB4y147BG",
+              "url": "https://www.bilibili.com/video/BV1CB4y147BG/",
+              "title": "北京八大楼快来一遍了，今天看泰丰楼怎么样！竟然一进门被厨师长当场逮捕？！",
+              "part": 1,
+              "duration_seconds": 243,
+              "metadata_status": "baseline_accepted"
+            },
+            "visit": {
+              "id": "visit-beijing-1",
+              "store_id": "beijing-1",
+              "store_name": "泰丰楼",
+              "branch_name": "泰丰楼",
+              "city": "北京",
+              "district": "西城区",
+              "address": "西城区 · 大栅栏 · 前门西大街2号楼",
+              "gcj02": {
+                "lng": 116.391816,
+                "lat": 39.899823
+              },
+              "start_seconds": 0,
+              "end_seconds": 243,
+              "screenshots": [
+                {
+                  "path": "content/images/BV1CB4y147BG-p1-170100.jpg",
+                  "source_video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+                  "part": 1,
+                  "timestamp_ms": 170100,
+                  "sha256": "358eebc2485365b4ac738d0fdf715bf491e8c908eaed51528f705efa6abc389e",
+                  "alt": "特厨隋卞在泰丰楼用筷子夹起食物试吃的原视频画面",
+                  "frame_verified": true,
+                  "capture_method": "official-player-video-element",
+                  "captured_at": "2026-11-11T06:35:26.937Z",
+                  "reviewed_by": "macnimicodex",
+                  "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。"
+                }
+              ],
+              "opinions": [],
+              "dishes": []
+            },
+            "review": {
+              "status": "approved",
+              "basis": "沿用已验收的门店与到访关系；本次仅补充对应视频截图"
+            }
+          },
+          "detail_url": "/content/?visit_id=visit-beijing-1"
+        }
+      ],
+      "meters": 1856.3018755381229,
+      "featured_visit_id": "visit-beijing-1",
+      "detail_url": "/content/?visit_id=visit-beijing-1",
+      "image": {
+        "path": "content/images/BV1CB4y147BG-p1-170100.jpg",
+        "source_video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+        "part": 1,
+        "timestamp_ms": 170100,
+        "sha256": "358eebc2485365b4ac738d0fdf715bf491e8c908eaed51528f705efa6abc389e",
+        "alt": "特厨隋卞在泰丰楼用筷子夹起食物试吃的原视频画面",
+        "frame_verified": true,
+        "capture_method": "official-player-video-element",
+        "captured_at": "2026-11-11T06:35:26.937Z",
+        "reviewed_by": "macnimicodex",
+        "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。",
+        "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1CB4y147BG-p1-170100.jpg",
+        "kind": "video_screenshot",
+        "source": "https://www.bilibili.com/video/BV1CB4y147BG/",
+        "mime_type": "image/jpeg"
+      },
+      "card": {
+        "visit_id": "visit-beijing-1",
+        "store_id": "beijing-1",
+        "creator": {
+          "name": "特厨隋卞",
+          "uid": "1462401621"
+        },
+        "description": null,
+        "image": {
+          "path": "content/images/BV1CB4y147BG-p1-170100.jpg",
+          "source_video": "https://www.bilibili.com/video/BV1CB4y147BG/",
+          "part": 1,
+          "timestamp_ms": 170100,
+          "sha256": "358eebc2485365b4ac738d0fdf715bf491e8c908eaed51528f705efa6abc389e",
+          "alt": "特厨隋卞在泰丰楼用筷子夹起食物试吃的原视频画面",
+          "frame_verified": true,
+          "capture_method": "official-player-video-element",
+          "captured_at": "2026-11-11T06:35:26.937Z",
+          "reviewed_by": "macnimicodex",
+          "review_note": "逐张查看原尺寸截图；核对同一到访的 BV、P1 与实际 seek 时间，画面非黑帧、主体可辨认，保留视频内原有字幕及水印；只隐藏播放器 HTML 控件。门店关系沿用已验收目录。",
+          "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site/content/images/BV1CB4y147BG-p1-170100.jpg",
+          "kind": "video_screenshot",
+          "source": "https://www.bilibili.com/video/BV1CB4y147BG/",
+          "mime_type": "image/jpeg"
+        },
+        "detail_url": "/content/?visit_id=visit-beijing-1",
+        "player_url": "https://player.bilibili.com/player.html?bvid=BV1CB4y147BG&p=1&t=0&autoplay=0&danmaku=0",
+        "video": {
+          "bvid": "BV1CB4y147BG",
+          "url": "https://www.bilibili.com/video/BV1CB4y147BG/",
+          "title": "北京八大楼快来一遍了，今天看泰丰楼怎么样！竟然一进门被厨师长当场逮捕？！",
+          "part": 1,
+          "duration_seconds": 243,
+          "metadata_status": "baseline_accepted"
+        }
+      },
+      "creator": "特厨隋卞",
+      "note": null,
+      "note_seconds": null
+    }
+  ],
+  "status": "ok",
+  "origin": {
+    "id": "B0G1PUL2XB",
+    "name": "缘赵记(珍贝大厦店)",
+    "lng": 116.411348,
+    "lat": 39.892465,
+    "city": "北京",
+    "district": "东城区",
+    "address": "北京 · 东城区 · 珠市口东大街6号珍贝大厦F1层",
+    "source": "https://ditu.amap.com/place/B0G1PUL2XB",
+    "coordinate_source": "amap_live"
+  },
+  "creators": [
+    {
+      "id": "3546728118618546",
+      "name": "厨者王波"
+    },
+    {
+      "id": "1462401621",
+      "name": "特厨隋卞"
+    },
+    {
+      "id": "3493080560830654",
+      "name": "真探高文麒"
+    },
+    {
+      "id": "544336675",
+      "name": "真探唐仁杰"
+    }
+  ],
+  "total": 11,
+  "next_offset": 1,
+  "message": "北京 东城区 缘赵记(珍贝大厦店)；高德实时地点检索；按直线距离排序。"
+}

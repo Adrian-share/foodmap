@@ -1,0 +1,50 @@
+{
+  "build": {
+    "version": "beijing-admin-002:beijing-admin-002.2026-11-15.1,beijing-pilot-001:beijing-pilot-001.2026-11-11.2@4a12202f14eb7c92",
+    "batches": [
+      {
+        "batch_id": "beijing-admin-002",
+        "version": "beijing-admin-002.2026-11-15.1"
+      },
+      {
+        "batch_id": "beijing-pilot-001",
+        "version": "beijing-pilot-001.2026-11-11.2"
+      }
+    ],
+    "approved": 3,
+    "shops": 3,
+    "baseline_images": 10,
+    "public_images": 13,
+    "creators": 17,
+    "discovered_videos": 90
+  },
+  "repeat_import_identical": true,
+  "published_videos": 13,
+  "unique_beijing_stores": 13,
+  "new_stores": [
+    {
+      "id": "amap:B0FFLI74FK",
+      "name": "聚首堂（什刹海德胜门店）",
+      "city": "北京",
+      "district": "西城区",
+      "address": "北京 · 西城区 · 德胜门内大街38号40号44号",
+      "lng": 116.380064,
+      "lat": 39.947007,
+      "verification": "verified",
+      "source": "https://www.bilibili.com/video/BV1ytEE6rE2s/",
+      "amap_poi_id": "B0FFLI74FK"
+    },
+    {
+      "id": "amap:B0G1PUL2XB",
+      "name": "缘赵记（珠市口店（高德现名：珍贝大厦店））",
+      "city": "北京",
+      "district": "东城区",
+      "address": "北京 · 东城区 · 珠市口东大街6号珍贝大厦F1层",
+      "lng": 116.411348,
+      "lat": 39.892465,
+      "verification": "verified",
+      "source": "https://www.bilibili.com/video/BV1ZF411x7Wo/",
+      "amap_poi_id": "B0G1PUL2XB"
+    }
+  ]
+}

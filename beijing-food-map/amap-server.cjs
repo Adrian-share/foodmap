@@ -7,7 +7,9 @@ function createServer(options = {}) {
   if (typeof options === 'string') options = {serviceKey: options};
   const handle = createHandler({...options, readAsset: file => readFile(join(__dirname, file.startsWith('content/')?'..':'', file))});
   return http.createServer(async (req, res) => {
-    const response = await handle(new Request(new URL(req.url, 'http://' + req.headers.host), {method: req.method}));
+    // Node is directly reachable: never trust client-supplied Sites identity headers.
+    // A server-owned identity is injected only by the loopback acceptance fixture.
+    const response = await handle(new Request(new URL(req.url, 'http://' + req.headers.host), {method: req.method,headers:options.acceptanceIdentity?{'oai-authenticated-user-id':options.acceptanceIdentity}:{}}));
     res.writeHead(response.status, Object.fromEntries(response.headers));
     res.end(Buffer.from(await response.arrayBuffer()));
   });

@@ -1,0 +1,71 @@
+{
+  "checked_at": "2026-11-15T14:50:24.024Z",
+  "query": "砂锅居(西四店)",
+  "coordinate_system": "GCJ-02",
+  "distance_type": "straight_line",
+  "dataset": "verified",
+  "data_version": "dual-city-2026-11-10.1+beijing-pilot-001:beijing-pilot-001.2026-11-11.2@f893d0c3b5aa11b6",
+  "mode": "live",
+  "sample_count": 10,
+  "scope": "排名仅限当前城市已核实收录门店。",
+  "results": [],
+  "status": "ambiguous",
+  "message": "请选择城市、行政区和准确起点。",
+  "candidates": [
+    {
+      "id": "B000A84Y6Y",
+      "name": "砂锅居(西四店)",
+      "lng": 116.373788,
+      "lat": 39.920467,
+      "city": "北京",
+      "district": "西城区",
+      "address": "北京 · 西城区 · 北京城区西四南大街60号(西四地铁站D西南口步行340米)",
+      "source": "https://ditu.amap.com/place/B000A84Y6Y",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B000A83LE8",
+      "name": "砂锅居西四店停车场",
+      "lng": 116.373732,
+      "lat": 39.9204,
+      "city": "北京",
+      "district": "西城区",
+      "address": "北京 · 西城区 · 西四南大街60号(西四地铁站D西南口步行350米)",
+      "source": "https://ditu.amap.com/place/B000A83LE8",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0H3HUZGEP",
+      "name": "砂锅居西四店停车场(出入口)",
+      "lng": 116.373615,
+      "lat": 39.920304,
+      "city": "北京",
+      "district": "西城区",
+      "address": "北京 · 西城区 · 西四南大街与大院胡同交叉口南60米",
+      "source": "https://ditu.amap.com/place/B0H3HUZGEP",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0FFFYTU94",
+      "name": "肥肥伊人",
+      "lng": 116.373663,
+      "lat": 39.921364,
+      "city": "北京",
+      "district": "西城区",
+      "address": "北京 · 西城区 · 北京城区西四南大街48号(砂锅居北侧)",
+      "source": "https://ditu.amap.com/place/B0FFFYTU94",
+      "coordinate_source": "amap_live"
+    },
+    {
+      "id": "B0JGR79G4P",
+      "name": "DAHON大行自行车(西单店)",
+      "lng": 116.373732,
+      "lat": 39.920674,
+      "city": "北京",
+      "district": "西城区",
+      "address": "北京 · 西城区 · 西四南大街52号(西四地铁站D口出来往南200米路东砂锅居旁边)",
+      "source": "https://ditu.amap.com/place/B0JGR79G4P",
+      "coordinate_source": "amap_live"
+    }
+  ]
+}

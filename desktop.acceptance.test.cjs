@@ -9,10 +9,10 @@ test('U2/U3: preserve top-three default; page the same distance order without du
   const old=await service.query(query),first=await service.query({...query,limit:'6'});
   assert.equal(old.results.length,3);assert.equal(first.results.length,6);
   assert.deepEqual(first.results.slice(0,3).map(s=>s.id),old.results.map(s=>s.id));
-  const next=await service.query({...query,limit:'6',offset:first.next_offset});
-  const all=[...first.results,...next.results];
+  const all=[...first.results];let page=first;
+  while(page.next_offset!==null){page=await service.query({...query,limit:'6',offset:page.next_offset});all.push(...page.results);}
   assert.equal(new Set(all.map(s=>s.id)).size,first.total);
-  assert.equal(all.length,first.total);assert.equal(next.next_offset,null);
+  assert.equal(all.length,first.total);assert.equal(page.next_offset,null);
   assert.ok(all.every((s,i)=>!i||s.meters>=all[i-1].meters));
 });
 test('U3/U4: filter before pagination; attribution, screenshot and exact visit follow selected creator',async()=>{

@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-11-15T14:48:52.794Z",
+  "query": "缘赵记(珠市口店)",
+  "response": {
+    "info": "USERKEY_PLAT_NOMATCH",
+    "infocode": "10009",
+    "status": "0",
+    "sec_code_debug": "d41d8cd98f00b204e9800998ecf8427e",
+    "key": "b3ec748fea2d73720700b74977c484ab",
+    "sec_code": "bce7a6878b3f61ef1b6e91780fa6a7ce"
+  }
+}

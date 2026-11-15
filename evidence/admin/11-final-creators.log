@@ -1,0 +1,51 @@
+
+> dual-city-food-map@1.0.0 test:creators
+> node --test creator.acceptance.test.cjs && playwright test --config playwright.creators.config.cjs
+
+TAP version 13
+# Subtest: C1 全部17个UID和90条线索可对账，统计由唯一BV/分店重新计算
+ok 1 - C1 全部17个UID和90条线索可对账，统计由唯一BV/分店重新计算
+  ---
+  duration_ms: 31.005833
+  type: 'test'
+  ...
+# Subtest: C1/C3 当前批次覆盖快照旧状态，重复来源不增加计数
+ok 2 - C1/C3 当前批次覆盖快照旧状态，重复来源不增加计数
+  ---
+  duration_ms: 16.567375
+  type: 'test'
+  ...
+# Subtest: C2 后台页面跳登录，API拒绝匿名，review参数不能绕过；私有响应禁止缓存
+ok 3 - C2 后台页面跳登录，API拒绝匿名，review参数不能绕过；私有响应禁止缓存
+  ---
+  duration_ms: 127.958166
+  type: 'test'
+  ...
+# Subtest: C4 公开合集只含已公开北京视频、按B站发稿倒序、保留未知日期及所有分店
+ok 4 - C4 公开合集只含已公开北京视频、按B站发稿倒序、保留未知日期及所有分店
+  ---
+  duration_ms: 49.609042
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1011.225
+[WebServer] (node:39732) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 4 tests using 1 worker
+
+(node:39750) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 tests/creators.spec.cjs:4:1 › C2 匿名页面先登录，伪造浏览器身份头无法访问Node后台 (849ms)
+  ✓  2 tests/creators.spec.cjs:8:1 › C1/C2 已登录台账：王波61条明细、待核原因和候选样例 (2.6s)
+  ✓  3 tests/creators.spec.cjs:16:69 › C4 公开合集、站内播放及地图定位 1440 (4.2s)
+  ✓  4 tests/creators.spec.cjs:16:69 › C4 公开合集、站内播放及地图定位 390 (2.4s)
+
+  4 passed (17.2s)

@@ -1,0 +1,201 @@
+{
+  "batch_id": "beijing-admin-002",
+  "version": "beijing-admin-002.2026-11-15.1",
+  "enabled": true,
+  "created_at": "2026-11-15T14:53:05.074758+00:00",
+  "source_list": [
+    "video-inventory-2026-11-12.json",
+    "B站官方原视频简介",
+    "高德现有搜索代理"
+  ],
+  "inventory": {
+    "scope": "从已提供候选中核准两条有明确分店说明的视频；账号投稿第一页访问受限",
+    "account_history_complete": false
+  },
+  "records": [
+    {
+      "creator": {
+        "uid": "613814196",
+        "name": "船长觅食记",
+        "profile_url": "https://space.bilibili.com/613814196"
+      },
+      "video": {
+        "bvid": "BV1ytEE6rE2s",
+        "url": "https://www.bilibili.com/video/BV1ytEE6rE2s/",
+        "title": "北京老炮儿开的胡同小馆，以为我是进店来找茬儿的，误会解除后没想到老板如此热情",
+        "published_at": "2026-06-09T17:28:14+08:00",
+        "included_at": "2026-11-15T14:53:05.074758+00:00",
+        "part": 1,
+        "cid": 38977998735,
+        "duration_seconds": 557,
+        "owner_uid": "613814196",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/admin/BV1ytEE6rE2s.json"
+      },
+      "visit": {
+        "id": "BV1ytEE6rE2s:p1:B0FFLI74FK",
+        "store_id": "amap:B0FFLI74FK",
+        "store_name": "聚首堂",
+        "branch_name": "什刹海德胜门店",
+        "city": "北京市",
+        "district": "西城区",
+        "address": "北京 · 西城区 · 德胜门内大街38号40号44号",
+        "amap_poi_id": "B0FFLI74FK",
+        "amap_url": "https://ditu.amap.com/place/B0FFLI74FK",
+        "gcj02": {
+          "lng": 116.380064,
+          "lat": 39.947007
+        },
+        "business_status": "unknown",
+        "start_seconds": 0,
+        "end_seconds": 557,
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1ytEE6rE2s",
+            "checked_at": "2026-11-15T14:53:05.074758+00:00"
+          },
+          {
+            "type": "branch",
+            "status": "verified",
+            "url": "https://www.bilibili.com/video/BV1ytEE6rE2s/",
+            "seconds": 0,
+            "note": "分店依据为原视频简介（非第0秒画面）：饭馆名称：聚首堂·特色小吃·肘子·炙子烤肉烤串(什刹海德胜门店)"
+          },
+          {
+            "type": "amap",
+            "status": "verified",
+            "url": "https://ditu.amap.com/place/B0FFLI74FK",
+            "checked_at": "2026-11-15T14:53:05.074758+00:00",
+            "source_file": "content/sources/admin/amap-聚首堂 什刹海德胜门店.json",
+            "note": "原视频明确分店/地址与本次高德检索对应；营业状态未实时核准。"
+          }
+        ],
+        "opinions": [
+          {
+            "text": "博主展示带骨肉菜，并谈到卤香没有盖住肉香。",
+            "source_video": "https://www.bilibili.com/video/BV1ytEE6rE2s/",
+            "seconds": 240.0
+          }
+        ],
+        "dishes": [],
+        "screenshots": [
+          {
+            "path": "content/images/BV1ytEE6rE2s-p1-240000.jpg",
+            "source_video": "https://www.bilibili.com/video/BV1ytEE6rE2s/",
+            "part": 1,
+            "timestamp_ms": 240000,
+            "sha256": "0fa1f9aab7ee1bfd4adad6588316b26da2182ea49674cd240eb4827a6833ca01",
+            "alt": "聚首堂原视频中的一盘带骨肉菜近景，保留船长觅食记署名和原片字幕",
+            "frame_verified": true,
+            "capture_method": "official-player-video-element",
+            "captured_at": "2026-11-15T14:52:41.187Z",
+            "reviewed_by": "macnimicodex",
+            "review_note": "查看原尺寸画面，核对同一原视频/分P/实际seek时间；非黑屏或广告，保留原片水印及字幕；未改动视频像素。"
+          }
+        ]
+      },
+      "review": {
+        "status": "approved",
+        "reasons": [],
+        "reviewed_at": "2026-11-15T14:53:58.801951+00:00",
+        "reviewed_by": "macnimicodex",
+        "conclusion": "官方原视频简介明确分店/门牌；与高德POI地址、GCJ-02对应。真实原视频帧已查看，图片、描述和到访一致。当前营业状态未知。"
+      }
+    },
+    {
+      "creator": {
+        "uid": "12613385",
+        "name": "北京妞小鸽贼",
+        "profile_url": "https://space.bilibili.com/12613385"
+      },
+      "video": {
+        "bvid": "BV1ZF411x7Wo",
+        "url": "https://www.bilibili.com/video/BV1ZF411x7Wo/",
+        "title": "北京人必吃早点：他们家的包子炒肝是真好吃！",
+        "published_at": "2022-03-06T12:07:17+08:00",
+        "included_at": "2026-11-15T14:53:05.074758+00:00",
+        "part": 1,
+        "cid": 542832503,
+        "duration_seconds": 160,
+        "owner_uid": "12613385",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/admin/BV1ZF411x7Wo.json"
+      },
+      "visit": {
+        "id": "BV1ZF411x7Wo:p1:B0G1PUL2XB",
+        "store_id": "amap:B0G1PUL2XB",
+        "store_name": "缘赵记",
+        "branch_name": "珠市口店（高德现名：珍贝大厦店）",
+        "city": "北京市",
+        "district": "东城区",
+        "address": "北京 · 东城区 · 珠市口东大街6号珍贝大厦F1层",
+        "amap_poi_id": "B0G1PUL2XB",
+        "amap_url": "https://ditu.amap.com/place/B0G1PUL2XB",
+        "gcj02": {
+          "lng": 116.411348,
+          "lat": 39.892465
+        },
+        "business_status": "unknown",
+        "start_seconds": 0,
+        "end_seconds": 160,
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1ZF411x7Wo",
+            "checked_at": "2026-11-15T14:53:05.074758+00:00"
+          },
+          {
+            "type": "branch",
+            "status": "verified",
+            "url": "https://www.bilibili.com/video/BV1ZF411x7Wo/",
+            "seconds": 0,
+            "note": "分店依据为原视频简介（非第0秒画面）：?《北京味道》Vlog系列·第16期\n?探店：缘赵记（珠市口店）\n?具体地址：珠市口东大街6号6-5\n?营业时间：06:30-20:00"
+          },
+          {
+            "type": "amap",
+            "status": "verified",
+            "url": "https://ditu.amap.com/place/B0G1PUL2XB",
+            "checked_at": "2026-11-15T14:53:05.074758+00:00",
+            "source_file": "content/sources/admin/amap-缘赵记(珠市口店).json",
+            "note": "原视频明确分店/地址与本次高德检索对应；营业状态未实时核准。"
+          }
+        ],
+        "opinions": [
+          {
+            "text": "博主把炒肝和包子作为吃早点的搭配。",
+            "source_video": "https://www.bilibili.com/video/BV1ZF411x7Wo/",
+            "seconds": 50.0
+          }
+        ],
+        "dishes": [],
+        "screenshots": [
+          {
+            "path": "content/images/BV1ZF411x7Wo-p1-50000.jpg",
+            "source_video": "https://www.bilibili.com/video/BV1ZF411x7Wo/",
+            "part": 1,
+            "timestamp_ms": 50000,
+            "sha256": "50629b45a4abb625d5b1c9598af936c730b198eb1e47ed1acfc10e9e01ded9ea",
+            "alt": "博主在缘赵记店内端着炒肝与包子，保留原片水印及早餐搭配字幕",
+            "frame_verified": true,
+            "capture_method": "official-player-video-element",
+            "captured_at": "2026-11-15T14:52:31.117Z",
+            "reviewed_by": "macnimicodex",
+            "review_note": "查看原尺寸画面，核对同一原视频/分P/实际seek时间；非黑屏或广告，保留原片水印及字幕；未改动视频像素。"
+          }
+        ]
+      },
+      "review": {
+        "status": "approved",
+        "reasons": [],
+        "reviewed_at": "2026-11-15T14:53:58.801951+00:00",
+        "reviewed_by": "macnimicodex",
+        "conclusion": "官方原视频简介明确分店/门牌；与高德POI地址、GCJ-02对应。真实原视频帧已查看，图片、描述和到访一致。当前营业状态未知。"
+      }
+    }
+  ]
+}

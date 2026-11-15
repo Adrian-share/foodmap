@@ -1,7 +1,20 @@
 {
   "batches": [
-    {"path": "batches/beijing-pilot-001.json", "enabled": true}
+    {
+      "path": "batches/beijing-pilot-001.json",
+      "enabled": true
+    },
+    {
+      "path": "batches/beijing-admin-002.json",
+      "enabled": true
+    }
   ],
-  "creator_uids": ["3546888255048212", "3546728118618546", "544336675"],
+  "creator_uids": [
+    "3546888255048212",
+    "3546728118618546",
+    "544336675",
+    "613814196",
+    "12613385"
+  ],
   "store_aliases": {}
 }

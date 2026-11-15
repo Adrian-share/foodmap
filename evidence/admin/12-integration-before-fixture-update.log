@@ -1,0 +1,82 @@
+
+> dual-city-food-map@1.0.0 test:content:integration
+> playwright test --config playwright.integration.config.cjs
+
+[WebServer] (node:39888) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:39910) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/content-integration.spec.cjs:6:3 › desktop：托管首页读取新门店、同访图文、编号与精确详情 (13.9s)
+(node:40064) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/content-integration.spec.cjs:6:3 › mobile：托管首页读取新门店、同访图文、编号与精确详情 (18.9s)
+
+
+  1) tests/content-integration.spec.cjs:6:3 › desktop：托管首页读取新门店、同访图文、编号与精确详情 ───────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.card')
+    Expected: 3
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.card') with timeout 5000ms
+      - waiting for locator('.card')
+        9 × locator resolved to 0 elements
+          - unexpected value "0"
+
+
+      27 |     await page.goto('/content/?bvid='+other.video.bvid);await expect(page.locator('#video-dialog')).not.toBeVisible();await expect(page.locator('.card')).toHaveCount(2);await expect(page.locator('#summary')).toContainText('多次到访');
+      28 |     await page.goto('/content/?visit_id=withdrawn&bvid='+other.video.bvid);await expect(page.locator('#video-dialog')).not.toBeVisible();await expect(page.locator('#summary')).toContainText('已撤回');
+    > 29 |     await page.goto('/content/?review=1');await expect(page.locator('.card')).toHaveCount(3);await expect(page.locator('.card img')).toHaveCount(3);await expect(page.locator('#summary')).toContainText('2 位 UP 主');
+         |                                                                               ^
+      30 |   });
+      31 | }
+      32 |
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-13-e96a76905982/workdir/foodmap/tests/content-integration.spec.cjs:29:79
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/content-integration/content-integration-desktop：托管首页读取新门店、同访图文、编号与精确详情/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/content-integration/content-integration-desktop：托管首页读取新门店、同访图文、编号与精确详情/error-context.md
+
+  2) tests/content-integration.spec.cjs:6:3 › mobile：托管首页读取新门店、同访图文、编号与精确详情 ────────────────────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('.card')
+    Expected: 3
+    Received: 0
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('.card') with timeout 5000ms
+      - waiting for locator('.card')
+        14 × locator resolved to 0 elements
+           - unexpected value "0"
+
+
+      27 |     await page.goto('/content/?bvid='+other.video.bvid);await expect(page.locator('#video-dialog')).not.toBeVisible();await expect(page.locator('.card')).toHaveCount(2);await expect(page.locator('#summary')).toContainText('多次到访');
+      28 |     await page.goto('/content/?visit_id=withdrawn&bvid='+other.video.bvid);await expect(page.locator('#video-dialog')).not.toBeVisible();await expect(page.locator('#summary')).toContainText('已撤回');
+    > 29 |     await page.goto('/content/?review=1');await expect(page.locator('.card')).toHaveCount(3);await expect(page.locator('.card img')).toHaveCount(3);await expect(page.locator('#summary')).toContainText('2 位 UP 主');
+         |                                                                               ^
+      30 |   });
+      31 | }
+      32 |
+        at /Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-13-e96a76905982/workdir/foodmap/tests/content-integration.spec.cjs:29:79
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/content-integration/content-integration-mobile：托管首页读取新门店、同访图文、编号与精确详情/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/content-integration/content-integration-mobile：托管首页读取新门店、同访图文、编号与精确详情/error-context.md
+
+  2 failed
+    tests/content-integration.spec.cjs:6:3 › desktop：托管首页读取新门店、同访图文、编号与精确详情 ────────────────────────
+    tests/content-integration.spec.cjs:6:3 › mobile：托管首页读取新门店、同访图文、编号与精确详情 ─────────────────────────

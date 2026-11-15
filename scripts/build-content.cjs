@@ -2,6 +2,7 @@ const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypt
 const {assess,validScreenshot}=require('../content/catalog.cjs');
 const {createContentState}=require('../content/state.cjs');
 const {baselineRecords}=require('../content/baseline.cjs');
+const {buildLedger}=require('../content/ledger.cjs');
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
 function buildContent(root=path.join(__dirname,'..')){
   const config=JSON.parse(fs.readFileSync(path.join(root,'content/config.json'),'utf8'));
@@ -53,12 +54,21 @@ function buildContent(root=path.join(__dirname,'..')){
   }
   batches.sort((a,b)=>a.batch_id.localeCompare(b.batch_id));
   const runtimeConfig={creator_uids:[...new Set(config.creator_uids)].sort(),store_aliases:Object.fromEntries(aliases.sort())};
-  const version=batches.map(b=>b.batch_id+':'+b.version).join(',')+'@'+hash(JSON.stringify({batches,config:runtimeConfig,baseline_records})).slice(0,16);
-  const snapshot={version,config:runtimeConfig,batches,baseline_records};
+  const readOptional=(file,fallback)=>fs.existsSync(path.join(root,file))?JSON.parse(fs.readFileSync(path.join(root,file),'utf8')):fallback;
+  const csv=file=>{
+    if(!fs.existsSync(path.join(root,file)))return [];
+    const lines=fs.readFileSync(path.join(root,file),'utf8').trim().split(/\r?\n/);
+    const cells=line=>(line.match(/("(?:[^"]|"")*"|[^,]*)(,|$)/g)||[]).filter((v,i,a)=>i<a.length-1||v).map(v=>v.replace(/,$/,'').replace(/^"|"$/g,'').replace(/""/g,'"'));
+    const headers=cells(lines.shift());return lines.map(line=>Object.fromEntries(cells(line).map((v,i)=>[headers[i],v])));
+  };
+  const snapshot={config:runtimeConfig,batches,baseline_records};
   const state=createContentState(snapshot,assets);
+  snapshot.ledger=buildLedger({snapshot:readOptional('content/inventory/video-inventory-2026-11-12.json',{as_of:'2026-11-12',creators:[],videos:[]}),records:state.records,access:readOptional('content/inventory/access-2026-11-15.json',{}),historical:readOptional('content/inventory/creators-2026-11-11.json',{}),accounts:csv('data/creators-beijing-source.csv'),samples:csv('data/creators-beijing-samples-source.csv')});
+  const version=batches.map(b=>b.batch_id+':'+b.version).join(',')+'@'+hash(JSON.stringify(snapshot)).slice(0,16);
+  snapshot.version=version;
   fs.writeFileSync(path.join(root,'content/public-assets.json'),JSON.stringify(assets,null,2)+'\n');
   fs.writeFileSync(path.join(root,'content/compiled.json'),JSON.stringify(snapshot,null,2)+'\n');
-  return {version,batches:state.batches,approved:state.catalog.visits.length,shops:state.catalog.shops.length,baseline_images:baseline_records.length,public_images:Object.keys(assets).length};
+  return {version,batches:state.batches,approved:state.catalog.visits.length,shops:state.catalog.shops.length,baseline_images:baseline_records.length,public_images:Object.keys(assets).length,creators:snapshot.ledger.creators.length,discovered_videos:snapshot.ledger.videos.length};
 }
 if(require.main===module)console.log(JSON.stringify(buildContent()));
 module.exports={buildContent};
