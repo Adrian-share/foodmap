@@ -1,0 +1,10 @@
+{
+  "version": 9,
+  "url": "https://shareworld-foodmap.yzxpg95.chatgpt.site",
+  "status": "succeeded",
+  "source_commit": "f7999a9dcae315401469e1ca70367e280836431e",
+  "deployment_id": "appgdep_6af9cb5fc2e08191bd0896e1da208558",
+  "version_id": "appgprj_6af1f6bc10bc8191aec4fc7519a2d793~appgver_5cd653d93a0c81918654b6884d01a4da",
+  "release": "b95d97ad77baad30",
+  "data_version": "beijing-admin-002:beijing-admin-002.2026-11-15.1,beijing-pilot-001:beijing-pilot-001.2026-11-11.2@594bed8cd596dd9b"
+}

@@ -1,6 +1,6 @@
 {
   "transport": "configured-proxy",
-  "checked_at": "2026-11-15T15:03:35.240Z",
+  "checked_at": "2026-11-15T15:11:30.311Z",
   "stations": [
     {
       "location": "王府井",
@@ -129,14 +129,14 @@
   "playback": [
     {
       "bvid": "BV1ytEE6rE2s",
-      "currentTime": 0.768,
+      "currentTime": 1.066667,
       "readyState": 4,
       "paused": false,
       "player_url": "https://player.bilibili.com/player.html?bvid=BV1ytEE6rE2s&p=1&t=0&autoplay=0&danmaku=0"
     },
     {
       "bvid": "BV1ZF411x7Wo",
-      "currentTime": 0.499328,
+      "currentTime": 0.904662,
       "readyState": 4,
       "paused": false,
       "player_url": "https://player.bilibili.com/player.html?bvid=BV1ZF411x7Wo&p=1&t=0&autoplay=0&danmaku=0"
@@ -145,7 +145,7 @@
   "health": {
     "status": "ok",
     "application": "beijing-food-map",
-    "release": "b0955f8936b84f6f"
+    "release": "b95d97ad77baad30"
   },
   "anonymous_login_redirect": "/signin-with-chatgpt?returnTo=%2Fadmin%2Fcreators%2F%3Fuid%3D3546728118618546",
   "auth_api_and_spoof_rejected": true,

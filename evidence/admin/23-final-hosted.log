@@ -1,0 +1,200 @@
+{
+  "transport": "configured-proxy",
+  "checked_at": "2026-11-15T15:11:30.311Z",
+  "stations": [
+    {
+      "location": "王府井",
+      "origin": {
+        "id": "BV10006496",
+        "name": "王府井地铁站",
+        "lng": 116.411571,
+        "lat": 39.908069,
+        "city": "北京",
+        "district": "东城区",
+        "address": "北京 · 东城区 · 1号线/八通线;8号线",
+        "source": "https://ditu.amap.com/place/BV10006496",
+        "coordinate_source": "amap_live"
+      },
+      "public_videos": 13,
+      "unique_stores": 13,
+      "net_new_stores": [
+        "amap:B0G1PUL2XB",
+        "amap:B0FFLI74FK"
+      ],
+      "net_new_videos": [
+        "BV1ZF411x7Wo",
+        "BV1ytEE6rE2s"
+      ],
+      "top3": [
+        {
+          "id": "beijing-5",
+          "name": "富春居（北京璞瑄酒店店）",
+          "meters": 1724.6128727144674
+        },
+        {
+          "id": "amap:B0G1PUL2XB",
+          "name": "缘赵记（珠市口店（高德现名：珍贝大厦店））",
+          "meters": 1735.1899127272443
+        },
+        {
+          "id": "beijing-1",
+          "name": "泰丰楼",
+          "meters": 1918.4093711252954
+        }
+      ]
+    },
+    {
+      "location": "东坝",
+      "origin": {
+        "id": "BV09269671",
+        "name": "东坝地铁站",
+        "lng": 116.547126,
+        "lat": 39.965732,
+        "city": "北京",
+        "district": "朝阳区",
+        "address": "北京 · 朝阳区 · 3号线",
+        "source": "https://ditu.amap.com/place/BV09269671",
+        "coordinate_source": "amap_live"
+      },
+      "public_videos": 13,
+      "unique_stores": 13,
+      "net_new_stores": [
+        "amap:B0G1PUL2XB",
+        "amap:B0FFLI74FK"
+      ],
+      "net_new_videos": [
+        "BV1ZF411x7Wo",
+        "BV1ytEE6rE2s"
+      ],
+      "top3": [
+        {
+          "id": "beijing-7",
+          "name": "寂川（西大望路店）",
+          "meters": 8114.673742756054
+        },
+        {
+          "id": "beijing-3",
+          "name": "潇湘阁（三里屯SOHO店）",
+          "meters": 8813.968076108411
+        },
+        {
+          "id": "beijing-4",
+          "name": "老吉堂·吉来（正大中心店）",
+          "meters": 8929.685497238459
+        }
+      ]
+    },
+    {
+      "location": "大钟寺",
+      "origin": {
+        "id": "BV10001016",
+        "name": "大钟寺地铁站",
+        "lng": 116.345139,
+        "lat": 39.966612,
+        "city": "北京",
+        "district": "海淀区",
+        "address": "北京 · 海淀区 · 12号线;13号线",
+        "source": "https://ditu.amap.com/place/BV10001016",
+        "coordinate_source": "amap_live"
+      },
+      "public_videos": 13,
+      "unique_stores": 13,
+      "net_new_stores": [
+        "amap:B0FFLI74FK",
+        "amap:B0G1PUL2XB"
+      ],
+      "net_new_videos": [
+        "BV1ytEE6rE2s",
+        "BV1ZF411x7Wo"
+      ],
+      "top3": [
+        {
+          "id": "amap:B0FFLI74FK",
+          "name": "聚首堂（什刹海德胜门店）",
+          "meters": 3689.6670997086608
+        },
+        {
+          "id": "beijing-10",
+          "name": "洪福亮酒家（南草厂街店）",
+          "meters": 3736.0809700745353
+        },
+        {
+          "id": "beijing-9",
+          "name": "砂锅居（西四店）",
+          "meters": 5683.178550501599
+        }
+      ]
+    }
+  ],
+  "playback": [
+    {
+      "bvid": "BV1ytEE6rE2s",
+      "currentTime": 1.066667,
+      "readyState": 4,
+      "paused": false,
+      "player_url": "https://player.bilibili.com/player.html?bvid=BV1ytEE6rE2s&p=1&t=0&autoplay=0&danmaku=0"
+    },
+    {
+      "bvid": "BV1ZF411x7Wo",
+      "currentTime": 0.904662,
+      "readyState": 4,
+      "paused": false,
+      "player_url": "https://player.bilibili.com/player.html?bvid=BV1ZF411x7Wo&p=1&t=0&autoplay=0&danmaku=0"
+    }
+  ],
+  "health": {
+    "status": "ok",
+    "application": "beijing-food-map",
+    "release": "b95d97ad77baad30"
+  },
+  "anonymous_login_redirect": "/signin-with-chatgpt?returnTo=%2Fadmin%2Fcreators%2F%3Fuid%3D3546728118618546",
+  "auth_api_and_spoof_rejected": true,
+  "version": "beijing-admin-002:beijing-admin-002.2026-11-15.1,beijing-pilot-001:beijing-pilot-001.2026-11-11.2@594bed8cd596dd9b",
+  "public_creators": [
+    {
+      "uid": "3546728118618546",
+      "name": "厨者王波",
+      "profile_url": "https://space.bilibili.com/3546728118618546",
+      "video_count": 2,
+      "store_count": 2
+    },
+    {
+      "uid": "544336675",
+      "name": "真探唐仁杰",
+      "profile_url": "https://space.bilibili.com/544336675",
+      "video_count": 3,
+      "store_count": 3
+    },
+    {
+      "uid": "613814196",
+      "name": "船长觅食记",
+      "profile_url": "https://space.bilibili.com/613814196",
+      "video_count": 1,
+      "store_count": 1
+    },
+    {
+      "uid": "3493080560830654",
+      "name": "真探高文麒",
+      "profile_url": "https://space.bilibili.com/3493080560830654",
+      "video_count": 1,
+      "store_count": 1
+    },
+    {
+      "uid": "12613385",
+      "name": "北京妞小鸽贼",
+      "profile_url": "https://space.bilibili.com/12613385",
+      "video_count": 1,
+      "store_count": 1
+    },
+    {
+      "uid": "1462401621",
+      "name": "特厨隋卞",
+      "profile_url": "https://space.bilibili.com/1462401621",
+      "video_count": 5,
+      "store_count": 5
+    }
+  ],
+  "city_unique_stores": 13,
+  "city_public_videos": 13,
+  "result": "passed"
+}
