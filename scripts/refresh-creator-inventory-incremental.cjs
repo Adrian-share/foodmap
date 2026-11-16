@@ -28,8 +28,10 @@ function resolveFetch(customFetch){
   return (url,init={})=>fetch(url,dispatcher?{...init,dispatcher}:init);
 }
 
-async function fetchJson(fetchImpl,url){
-  const r=await fetchImpl(url,{signal:AbortSignal.timeout(REQUEST_TIMEOUT_MS)});
+async function fetchJson(fetchImpl,url,signal){
+  signal?.throwIfAborted();
+  const timeout=AbortSignal.timeout(REQUEST_TIMEOUT_MS);
+  const r=await fetchImpl(url,{signal:signal?AbortSignal.any([signal,timeout]):timeout});
   let body;
   if(typeof r.text==='function')body=await r.text();
   else if(typeof r.json==='function')body=JSON.stringify(await r.json());
@@ -339,6 +341,7 @@ async function runIncremental(options={}){
     return report;
   }
 
+  options.signal?.throwIfAborted();
   const lock=acquireLock(statePath+'.lock');
   if(!lock.held){
     if(lock.error?.code&&lock.error.code!=='EEXIST')throw lock.error;
@@ -353,6 +356,7 @@ async function runIncremental(options={}){
   }
 
   try{
+    options.signal?.throwIfAborted();
     const state=loadState(statePath,root);
     const known=buildKnownBvids({seed,ledger,discoveries:state.discoveries});
     const plan=planSources({seed,ledger,state});
@@ -361,11 +365,13 @@ async function runIncremental(options={}){
     let ok=0,restricted=0,failed=0,deferred=0,skipped=0,requests=0;
     const errors=[];
     for(const src of plan.sources){
+      options.signal?.throwIfAborted();
       if(isDeferred(state,src.key,checked_at)){deferred++;continue;}
       if(requests>=maxRequests){skipped++;continue;}
       try{
         requests++;
-        const r=await fetchJson(fetchImpl,src.url);
+        const r=await fetchJson(fetchImpl,src.url,options.signal);
+        options.signal?.throwIfAborted();
         const successful=successfulEvidence(r);
         if(src.type==='posts'){
           const posts=r.data?.data?.list?.vlist;
@@ -435,6 +441,7 @@ async function runIncremental(options={}){
           }
         }
       }catch(e){
+        options.signal?.throwIfAborted();
         failed++;errors.push({source:src.key,error:errorString(e)});
         recordFailure(state,src.key,checked_at);
         if(src.type==='posts'){
@@ -449,6 +456,7 @@ async function runIncremental(options={}){
         }
       }
     }
+    options.signal?.throwIfAborted();
     const attempted=ok+restricted+failed;
     const newCandidates=new Map();
     let duplicateCount=0;

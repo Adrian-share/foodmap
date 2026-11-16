@@ -174,6 +174,24 @@ test('辅助函数：已知集、合并与结果分类',()=>{
   assert.equal(classifyOutcome({locked:false,attempted:2,failed:0,restricted:0,newCount:0}),'no_new');
 });
 
+test('取消中止正在等待的来源，释放自己的锁且保持原状态，可立即重跑',async t=>{
+  const dir=tmp();t.after(()=>fs.rmSync(dir,{recursive:true,force:true}));
+  writeJson(stateFile(dir),emptyState());const before=fs.readFileSync(stateFile(dir),'utf8');
+  const controller=new AbortController();let start;
+  const started=new Promise(resolve=>{start=resolve;});
+  const fetch=(url,{signal})=>new Promise((resolve,reject)=>{
+    const timer=setTimeout(()=>reject(new Error('fixture did not receive cancellation')),150);
+    signal.addEventListener('abort',()=>{clearTimeout(timer);reject(signal.reason);},{once:true});start();
+  });
+  const options={root:dir,state:stateFile(dir),runsDir:runsDir(dir),seed:tinySeed(['111']),ledger:tinyLedger(['111'])};
+  const result=runIncremental({...options,fetch,signal:controller.signal});
+  await started;controller.abort();await assert.rejects(result,/abort/i);
+  assert.equal(fs.existsSync(stateFile(dir)+'.lock'),false);
+  assert.equal(fs.readFileSync(stateFile(dir),'utf8'),before);
+  const retry=await runIncremental({...options,fetch:postsMock(()=>[])});
+  assert.equal(retry.sources_ok,1);
+});
+
 const runOptions=(t,uids=[])=>({root:t,state:stateFile(t),runsDir:runsDir(t),seed:tinySeed(uids),ledger:tinyLedger(uids)});
 const jsonResponse=(data,status=200)=>({status,text:async()=>JSON.stringify(data)});
 test('每轮上传快照独立，下一轮采集不能覆盖上一轮证据',async t=>{

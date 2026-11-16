@@ -1,0 +1,8 @@
+(version 1)
+(allow default)
+(deny file-write*)
+(allow file-write*
+  (subpath "/Users/adrian/foodmap-agent-state")
+  (literal "/Users/adrian/foodmap-agent-runtime/foodmap/content/inventory/incremental-state.json")
+  (literal "/Users/adrian/foodmap-agent-runtime/foodmap/content/inventory/incremental-state.json.tmp")
+  (literal "/dev/null"))

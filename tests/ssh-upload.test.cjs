@@ -86,6 +86,22 @@ test('SSH 失败消息保留退出状态并隐藏stderr凭据',async t=>{
   });
 });
 
+test('取消SSH上传后等待SSH进程退出再返回失败',async t=>{
+  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'foodmap-ssh-cancel-'));
+  const pidFile=path.join(dir,'pid');
+  fs.writeFileSync(path.join(dir,'ssh'),`#!${process.execPath}\nconst fs=require('fs');process.stdin.resume();process.stdin.on('end',()=>{fs.writeFileSync(${JSON.stringify(pidFile)},String(process.pid));setInterval(()=>{},1000);});\n`,{mode:0o755});
+  const saved=process.env.PATH;process.env.PATH=dir+path.delimiter+saved;
+  let pid;
+  t.after(()=>{process.env.PATH=saved;if(pid)try{process.kill(pid,'SIGKILL');}catch{}fs.rmSync(dir,{recursive:true,force:true});});
+  const controller=new AbortController();
+  const done=uploadInventory(payload,{url:'https://foodmap.shareworld.fun',token,sshHost:'foodmap-uploader',signal:controller.signal}).then(()=>null,error=>error);
+  for(let n=0;n<150&&!fs.existsSync(pidFile);n++)await new Promise(resolve=>setTimeout(resolve,20));
+  assert.ok(fs.existsSync(pidFile));pid=Number(fs.readFileSync(pidFile));controller.abort();
+  const error=await Promise.race([done,new Promise(resolve=>setTimeout(()=>resolve(null),300))]);
+  assert.ok(error,'取消后上传仍未结束');
+  assert.throws(()=>process.kill(pid,0),{code:'ESRCH'});
+});
+
 test('远程CLI能读取带真实换行的配置，然后核对持久状态',t=>{
   const dir=fs.mkdtempSync(path.join(os.tmpdir(),'foodmap-config-test-'));
   const state=path.join(dir,'state');fs.mkdirSync(state);

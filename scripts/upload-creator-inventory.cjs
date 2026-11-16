@@ -26,25 +26,37 @@ function buildPayload(snapshot, report) {
     new_count: report.new_candidates.length
   }};
 }
-function sshTransport(host) {
+function sshTransport(host, {signal} = {}) {
   if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,99}$/.test(host)) throw new Error('SSH目标无效');
   return request => new Promise((resolve, reject) => {
+    signal?.throwIfAborted();
     const child = spawn('ssh', ['-T', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=10', host], {
       stdio: ['pipe', 'pipe', 'pipe']
     });
     let output = '', oversized = false;
-    const timeout = setTimeout(() => child.kill('SIGTERM'), 50000);
+    let forceKill;
+    const stop = () => {
+      child.kill('SIGTERM');
+      forceKill ||= setTimeout(() => child.kill('SIGKILL'), 500);
+    };
+    const timeout = setTimeout(stop, 50000);
+    signal?.addEventListener('abort', stop, {once: true});
+    const cleanup = () => {
+      clearTimeout(timeout);clearTimeout(forceKill);
+      signal?.removeEventListener('abort', stop);
+    };
     child.stdout.on('data', chunk => {
       output += chunk;
-      if (output.length > 3 * 1024 * 1024) { oversized = true; child.kill('SIGTERM'); }
+      if (output.length > 3 * 1024 * 1024) { oversized = true; stop(); }
     });
     child.stderr.resume();
     child.once('error', () => {
-      clearTimeout(timeout);
+      cleanup();
       reject(new Error('SSH上传程序无法启动'));
     });
     child.once('close', code => {
-      clearTimeout(timeout);
+      cleanup();
+      if (signal?.aborted) return reject(new Error('SSH上传已取消'));
       if (oversized) return reject(new Error('SSH上传回执超过大小限制'));
       if (code !== 0) return reject(new Error('SSH上传通道失败，退出状态 ' + code));
       try { resolve(JSON.parse(output)); } catch { reject(new Error('SSH上传响应格式无效')); }
@@ -54,6 +66,7 @@ function sshTransport(host) {
   });
 }
 async function uploadInventory(payload, options = {}) {
+  options.signal?.throwIfAborted();
   const site = new URL(options.url || process.env.FOODMAP_SITE_URL || '');
   if (site.protocol !== 'https:' || site.username || site.password) throw new Error('候选上传必须使用 HTTPS 站点');
   const token = options.token || process.env.FOODMAP_INGEST_TOKEN;
@@ -62,10 +75,10 @@ async function uploadInventory(payload, options = {}) {
   if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password) throw new Error('候选上传必须使用 HTTPS 接口');
   const url = endpoint.href;
   const sshHost = options.sshHost || process.env.FOODMAP_UPLOAD_SSH_HOST;
-  const transport = options.transport || (sshHost ? sshTransport(sshHost) : async request => {
+  const transport = options.transport || (sshHost ? sshTransport(sshHost, {signal: options.signal}) : async request => {
     const response = await fetch(request.url, {method: request.method,
       headers: {'Authorization': 'Bearer ' + request.token, 'Content-Type': 'application/json'},
-      body: request.body, redirect: 'error', signal: AbortSignal.timeout(25000)});
+      body: request.body, redirect: 'error', signal: options.signal ? AbortSignal.any([options.signal, AbortSignal.timeout(25000)]) : AbortSignal.timeout(25000)});
     return {status: response.status, body: await response.text()};
   });
   async function send(method, body) {
