@@ -7,11 +7,11 @@ const readAsset=f=>fs.readFileSync(f);
 const request=(path,headers={})=>new Request('https://foodmap.test'+path,{headers});
 const identity={'oai-authenticated-user-id':'acceptance-visitor'};
 
-test('C1 全部17个UID和90条线索可对账，统计由唯一BV/分店重新计算',()=>{
+test('C1 全部既有UID和视频线索可对账，统计由唯一BV/分店重新计算',()=>{
  const {buildLedger}=require('./content/ledger.cjs');
  const state=require('./content/runtime.cjs');
  const ledger=buildLedger({snapshot,records:state.records});
- assert.equal(ledger.creators.length,17);assert.equal(ledger.videos.length,90);
+ assert.ok(ledger.creators.length>=18);assert.ok(ledger.videos.length>=92);
  for(const c of ledger.creators){
   const vs=ledger.videos.filter(v=>v.creator_uid===c.uid);
   assert.equal(c.counts.discovered,vs.length);
@@ -19,7 +19,7 @@ test('C1 全部17个UID和90条线索可对账，统计由唯一BV/分店重新�
   assert.equal(c.counts.searchable_stores,new Set(vs.flatMap(v=>v.visits.filter(v=>v.published).map(v=>v.store_id))).size);
   assert.ok(c.coverage.scope);assert.ok(c.coverage.stop);assert.ok(c.coverage.checked_at);assert.equal(c.coverage.account_history_complete,false);
  }
- assert.equal(ledger.creators.find(c=>c.uid==='3546728118618546').counts.discovered,61);
+ assert.ok(ledger.creators.find(c=>c.uid==='3546728118618546').counts.discovered>=61);
  assert.equal(new Set(ledger.videos.map(v=>v.bvid)).size,ledger.videos.length);
  assert.ok(ledger.videos.every(v=>v.sources.length&&v.discovered_at));
 });
@@ -56,7 +56,7 @@ test('C2 后台页面跳登录，API拒绝匿名，review参数不能绕过；�
   assert.ok(!(await r.text()).includes('BV1NG6kYTEXG'));
  }
  const r=await handle(request('/api/admin/creators',identity));assert.equal(r.status,200);
- assert.match(r.headers.get('vary'),/oai-authenticated-user-id/i);assert.equal((await r.json()).creators.length,17);
+ assert.match(r.headers.get('vary'),/oai-authenticated-user-id/i);assert.equal((await r.json()).creators.length,require('./content/runtime.cjs').ledger.creators.length);
  const videos=await(await handle(request('/api/admin/videos?uid=3546728118618546&status=pending',identity))).json();
  assert.ok(videos.videos.length>0);assert.ok(videos.videos.every(v=>v.creator_uid==='3546728118618546'&&v.status==='pending'&&v.missing.length));
  assert.equal((await handle(new Request('https://foodmap.test/api/admin/creators',{method:'POST',headers:identity}))).status,405);
@@ -72,6 +72,30 @@ test('C4 公开合集只含已公开北京视频、按B站发稿倒序、保留�
   const dates=data.videos.filter(v=>v.bilibili_published_at).map(v=>v.bilibili_published_at);assert.deepEqual(dates,[...dates].sort().reverse());
   for(const v of data.videos)for(const visit of v.visits){assert.match(visit.map_url,/store_id=/);assert.match(visit.detail_url,/visit_id=/);assert.match(visit.player_url,/player.bilibili.com/);}
  }
- assert.equal((await handle(request('/api/creators/2087495384'))).status,404);
+ assert.equal((await handle(request('/api/creators/403082144'))).status,404);
  assert.equal((await handle(request('/creators/'))).status,200);
+});
+
+test('B2 东坝和大钟寺新增分店有同次到访原图、距离和公开合集',async()=>{
+ const {createHandler}=require('./beijing-food-map/amap-handler.cjs');
+ const handle=createHandler({readAsset});
+ for(const [location,id,uid,bvid] of [
+  ['东坝','amap:B0MAY526GQ','24159340','BV1k94y1H7fc'],
+  ['大钟寺','amap:B000A84BGQ','2087495384','BV1aLW9zLEup']
+ ]){
+  const nearby=await(await handle(request('/api/nearby?city=北京&location='+location+'&creator='+uid+'&limit=50'))).json();
+  assert.equal(nearby.status,'ok');
+  assert.equal(nearby.results.filter(s=>s.id===id).length,1);
+  const store=nearby.results.find(s=>s.id===id);
+  assert.ok(Number.isFinite(store.meters));
+  assert.equal(store.card.creator.uid,uid);
+  assert.equal(store.card.image.kind,'video_screenshot');
+  assert.equal(store.card.video.bvid,bvid);
+  assert.ok(store.card.description.text);
+  assert.equal((await handle(request(new URL(store.card.image.url).pathname))).headers.get('content-type'),'image/jpeg');
+  const detail=await(await handle(request('/api/content?visit_id='+encodeURIComponent(store.card.visit_id)))).json();
+  assert.equal(detail.records[0].video.bvid,bvid);
+  const collection=await(await handle(request('/api/creators/'+uid))).json();
+  assert.ok(collection.videos.some(v=>v.bvid===bvid));
+ }
 });

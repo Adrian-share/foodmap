@@ -1,0 +1,17 @@
+{
+  "source": "https://restapi.amap.com/v5/place/text",
+  "checked_at": "2026-11-16T06:07:24+00:00",
+  "query": "玉勇餐厅 牡丹园",
+  "status": "1",
+  "infocode": "10000",
+  "pois": [
+    {
+      "id": "B000A84BGQ",
+      "name": "玉勇家常菜(计一厂宿舍店)",
+      "adname": "海淀区",
+      "address": "花园北路丙28号",
+      "location": "116.372686,39.979966",
+      "typecode": "050100"
+    }
+  ]
+}

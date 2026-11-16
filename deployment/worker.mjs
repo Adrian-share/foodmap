@@ -1,4 +1,5 @@
 import handler from '../beijing-food-map/amap-handler.cjs';
+import ingestion from '../content/ingestion.cjs';
 import html from '../beijing-food-map/index.html';
 import samples from '../beijing-food-map/samples.js?raw';
 import prototype from '../beijing-food-map/prototype.js?raw';
@@ -15,6 +16,7 @@ const assets = {'index.html': html, 'samples.js': samples, 'prototype.js': proto
 Object.assign(assets,{'content/index.html':contentHtml,'content/app.js':contentScript,'content/style.css':contentStyle});
 Object.assign(assets,{'content/home-cards.js':homeCards,'content/home-cards.css':homeStyles});
 Object.assign(assets,{'content/creators.html':creatorsHtml,'content/creators.js':creatorsScript,'content/creators.css':creatorsStyle});
+const updates = ingestion.createIngestionService();
 const release = typeof FOODMAP_RELEASE === 'string' ? FOODMAP_RELEASE : 'development';
 
 export default {
@@ -24,7 +26,16 @@ export default {
         headers: {'Cache-Control': 'no-store'}
       });
     }
+    const ingestResponse = await updates.handle(request, env);
+    if (ingestResponse) return ingestResponse;
+    const path = new URL(request.url).pathname;
+    let contentState;
+    if (['/api/admin/creators', '/api/admin/videos'].includes(path) && request.method === 'GET' && request.headers.get('oai-authenticated-user-id')) {
+      try { contentState = await updates.privateState(env); }
+      catch { return ingestion.unavailable(); }
+    }
     return handler.createHandler({
+      contentState,
       serviceKey: env.AMAP_WEB_SERVICE_KEY,
       jsKey: env.AMAP_JS_KEY,
       securityCode: env.AMAP_JS_SECURITY_CODE,

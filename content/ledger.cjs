@@ -21,11 +21,14 @@ function buildLedger({snapshot,records=[],access={},historical={},accounts=[],sa
   for(const v of snapshot.videos){video(v.bvid,v.creator_uid,'snapshot:2026-11-12',{title:v.label||v.bvid,bilibili_published_at:v.bilibili_published_on||null,date_source:v.date_source||null,missing:[v.review_reason||'实际北京分店、POI、点位、片段与截图待核'],historical_status:v.status}).sources.push(...(v.sources||[]));}
   for(const v of historical.records||[]){const x=video(v.bvid,v.creator_uid,'inventory:2026-11-11');x.title=v.title||x.title;x.bilibili_published_at=v.published_at||x.bilibili_published_at;x.date_source='官方视频盘点 2026-11-11';}
   for(const s of samples){const c=accounts.find(c=>c.creator_id===s.creator_id);if(c?.uid)video(s.video_id,c.uid,'candidate-samples:5d996faa');}
+  // Register release creators before discoveries; they may be absent from the frozen seed.
+  for(const r of records){if(!r.visit.city||r.visit.city.replace(/市$/,'')==='北京')creator(r.creator);}
   for(const d of access.discoveries||[]){
     if(!creators.has(d.creator_uid)||d.owner_verified!==true)continue;
     const known=videos.has(d.bvid),v=video(d.bvid,d.creator_uid,d.source);
     v.title=d.title||v.title;v.bilibili_published_at=d.published_at||v.bilibili_published_at;
     if(!known){v.discovered_at=d.discovered_at||asOf;v.discovery_time_precision='recorded';v.missing=['北京合集/投稿为线索；实际北京分店、POI、片段及截图待核'];}
+    else if(d.discovered_at&&Date.parse(d.discovered_at)<Date.parse(v.discovered_at)){v.discovered_at=d.discovered_at;v.discovery_time_precision='recorded';}
   }
   for(const v of access.videos||[]){if(v.code!==0||!v.owner_uid)continue;let x=videos.get(v.bvid);if(!x)continue;
     x.title=v.title||x.title;x.bilibili_published_at=v.published_at||x.bilibili_published_at;x.date_source=v.url;x.sources.push(v.url);
@@ -51,7 +54,10 @@ function buildLedger({snapshot,records=[],access={},historical={},accounts=[],sa
   for(const c of creators.values()){
     const prev=(historical.creators||[]).find(x=>x.uid===c.uid),a=(access.accounts||[]).find(x=>x.uid===c.uid);
     if(prev)c.coverage={...c.coverage,scope:prev.scope,stop:prev.last_bvid,last_success_at:historical.checked_at,reached_source_end:prev.reached_list_end,source_total:prev.discovered};
-    if(a)c.coverage={...c.coverage,checked_at:a.checked_at,status:a.code===0?'partial':'restricted',restriction:a.restriction,next_step:a.next_step,last_attempt_url:a.url,last_attempt_page:a.last_page};
+    if(a){
+      c.coverage={...c.coverage,checked_at:a.checked_at,status:a.code===0?'partial':'restricted',restriction:a.restriction,next_step:a.next_step,last_attempt_url:a.url,last_attempt_page:a.last_page};
+      if(a.last_success_range){const range=a.last_success_range;c.coverage={...c.coverage,last_success_at:a.last_success_at,last_success_range:range,scope:range.scope||c.coverage.scope,stop:range.last_bvid||`投稿第${range.last_page||1}页`,reached_source_end:range.reached_end,source_total:range.obtained};}
+    }
     const seasons=(access.seasons||[]).filter(s=>s.uid===c.uid);
     if(seasons.length)c.coverage={...c.coverage,ranges:seasons,scope:seasons.map(s=>`官方${s.title}合集 ${s.id}：${s.obtained}/${s.total} 条`).join('；')+'；公开投稿第1页受限',stop:seasons.map(s=>`合集末条 ${s.last_bvid}`).join('；')+'；投稿第1页入口',reached_source_end:seasons.every(s=>s.reached_end)};
     c.coverage.account_history_complete=false;

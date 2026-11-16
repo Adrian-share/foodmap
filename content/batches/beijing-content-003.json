@@ -1,0 +1,445 @@
+{
+  "batch_id": "beijing-content-003",
+  "version": "beijing-content-003.2026-11-16.2",
+  "enabled": true,
+  "created_at": "2026-11-16T05:53:55.138977+00:00",
+  "source_list": [
+    "B站官方原视频元数据（api.bilibili.com/x/web-interface/view）",
+    "FACT-18 接手评论提供的北京线索",
+    "原视频标题/简介",
+    "高德地点搜索 Web 服务官方响应",
+    "现有 Chrome 中 B 站官方播放器第1P"
+  ],
+  "inventory": {
+    "scope": "6 条已知北京候选逐条核对元数据。四川饭店东坝店及玉勇家常菜两条通过分店、地图点位和到访截图复核，其余 4 条保留待核。",
+    "account_history_complete": false
+  },
+  "records": [
+    {
+      "creator": {
+        "uid": "24159340",
+        "name": "天亮道远方",
+        "profile_url": "https://space.bilibili.com/24159340"
+      },
+      "video": {
+        "bvid": "BV1k94y1H7fc",
+        "url": "https://www.bilibili.com/video/BV1k94y1H7fc/",
+        "title": "大名鼎鼎的四川饭店在北京东坝万达广场开新店啦，这味道真可以！",
+        "published_at": "2023-11-19T22:40:53+08:00",
+        "part": 1,
+        "cid": 1337652287,
+        "duration_seconds": 99,
+        "owner_uid": "24159340",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/admin/BV1k94y1H7fc.json",
+        "included_at": "2026-11-16T06:07:24+00:00"
+      },
+      "visit": {
+        "id": "BV1k94y1H7fc:p1:B0MAY526GQ",
+        "start_seconds": 0,
+        "end_seconds": 99,
+        "store_id": "amap:B0MAY526GQ",
+        "store_name": "四川饭店",
+        "branch_name": "东坝万达广场店",
+        "city": "北京市",
+        "district": "朝阳区",
+        "address": "北京 · 朝阳区 · 东坝中路25号万达广场4层",
+        "amap_poi_id": "B0MAY526GQ",
+        "amap_url": "https://ditu.amap.com/place/B0MAY526GQ",
+        "gcj02": {
+          "lng": 116.547793,
+          "lat": 39.962509
+        },
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1k94y1H7fc",
+            "checked_at": "2026-11-16T05:53:55.138977+00:00",
+            "note": "UID、标题、发布日期、分 P、时长来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "branch",
+            "status": "verified",
+            "url": "https://www.bilibili.com/video/BV1k94y1H7fc/",
+            "seconds": 0,
+            "note": "B站原视频标题明确说四川饭店在北京东坝万达广场开新店。高德同名唯一匹配定位到该商场四层。"
+          },
+          {
+            "type": "amap",
+            "status": "verified",
+            "url": "https://ditu.amap.com/place/B0MAY526GQ",
+            "checked_at": "2026-11-16T06:07:24+00:00",
+            "source_file": "content/sources/admin/amap-B0MAY526GQ.json",
+            "note": "B站原视频标题明确说四川饭店在北京东坝万达广场开新店。高德同名唯一匹配定位到该商场四层。"
+          }
+        ],
+        "opinions": [
+          {
+            "text": "天亮道远方探访东坝万达广场新开的四川饭店，展示了店内的川菜与用餐画面。",
+            "source_video": "https://www.bilibili.com/video/BV1k94y1H7fc/",
+            "seconds": 18.895
+          }
+        ],
+        "dishes": [],
+        "screenshots": [
+          {
+            "path": "content/images/BV1k94y1H7fc-p1-18895.jpg",
+            "source_video": "https://www.bilibili.com/video/BV1k94y1H7fc/",
+            "part": 1,
+            "timestamp_ms": 18895,
+            "sha256": "f57ad4072e8f0a186fccb53e42081210e084687b443900986421118951929ae3",
+            "alt": "天亮道远方在四川饭店东坝万达店的原视频画面，桌前有一盘川菜",
+            "frame_verified": true,
+            "capture_method": "official-player-visible-frame-crop",
+            "captured_at": "2026-11-16T06:02:03+00:00",
+            "reviewed_by": "Codex",
+            "review_note": "B站官方播放器第1P画面，取当前播放时间并裁掉网页播放器控件；保留页面对原视频和博主的归属，未在站内存储视频。"
+          }
+        ]
+      },
+      "review": {
+        "status": "approved",
+        "reasons": [],
+        "reviewed_at": "2026-11-16T06:07:24+00:00",
+        "reviewed_by": "Codex",
+        "conclusion": "B站原视频标题明确说四川饭店在北京东坝万达广场开新店。高德同名唯一匹配定位到该商场四层。 已核原片和截图。当前营业状态待核。"
+      }
+    },
+    {
+      "creator": {
+        "uid": "2087495384",
+        "name": "井盖小分队",
+        "profile_url": "https://space.bilibili.com/2087495384"
+      },
+      "video": {
+        "bvid": "BV1aLW9zLEup",
+        "url": "https://www.bilibili.com/video/BV1aLW9zLEup/",
+        "title": "隐藏在居民楼缝里的便民小馆，堪比酒楼厨艺？！",
+        "published_at": "2025-10-22T11:00:00+08:00",
+        "part": 1,
+        "cid": 33266143075,
+        "duration_seconds": 643,
+        "owner_uid": "2087495384",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/admin/BV1aLW9zLEup.json",
+        "included_at": "2026-11-16T06:07:24+00:00"
+      },
+      "visit": {
+        "id": "BV1aLW9zLEup:p1:B000A84BGQ",
+        "start_seconds": 0,
+        "end_seconds": 643,
+        "store_id": "amap:B000A84BGQ",
+        "store_name": "玉勇餐厅",
+        "branch_name": "计一厂宿舍店",
+        "city": "北京市",
+        "district": "海淀区",
+        "address": "北京 · 海淀区 · 花园北路丙28号",
+        "amap_poi_id": "B000A84BGQ",
+        "amap_url": "https://ditu.amap.com/place/B000A84BGQ",
+        "gcj02": {
+          "lng": 116.372686,
+          "lat": 39.979966
+        },
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1aLW9zLEup",
+            "checked_at": "2026-11-16T05:53:55.138977+00:00",
+            "note": "UID、标题、发布日期、分 P、时长来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "branch",
+            "status": "verified",
+            "url": "https://www.bilibili.com/video/BV1aLW9zLEup/",
+            "seconds": 0,
+            "note": "原视频简介写明牡丹园附近、居民楼便民小馆及玉勇餐厅。高德以「玉勇餐厅 牡丹园」检索唯一返回同商圈住宅区内的玉勇家常菜（计一厂宿舍店）。"
+          },
+          {
+            "type": "amap",
+            "status": "verified",
+            "url": "https://ditu.amap.com/place/B000A84BGQ",
+            "checked_at": "2026-11-16T06:07:24+00:00",
+            "source_file": "content/sources/admin/amap-B000A84BGQ.json",
+            "note": "原视频简介写明牡丹园附近、居民楼便民小馆及玉勇餐厅。高德以「玉勇餐厅 牡丹园」检索唯一返回同商圈住宅区内的玉勇家常菜（计一厂宿舍店）。"
+          }
+        ],
+        "opinions": [
+          {
+            "text": "井盖小分队探访牡丹园附近居民楼里的玉勇餐厅。原视频简介提到茄丁面、水煮肉片和京酱肉丝。",
+            "source_video": "https://www.bilibili.com/video/BV1aLW9zLEup/",
+            "seconds": 298.785
+          }
+        ],
+        "dishes": [],
+        "screenshots": [
+          {
+            "path": "content/images/BV1aLW9zLEup-p1-298785.jpg",
+            "source_video": "https://www.bilibili.com/video/BV1aLW9zLEup/",
+            "part": 1,
+            "timestamp_ms": 298785,
+            "sha256": "6eeb68e82455e35c14d578acdc769143ba3aefcf612df63c60656c925e008fa4",
+            "alt": "井盖小分队探访牡丹园玉勇餐厅的原视频画面，一碟肉丝端上餐桌",
+            "frame_verified": true,
+            "capture_method": "official-player-visible-frame-crop",
+            "captured_at": "2026-11-16T06:04:15+00:00",
+            "reviewed_by": "Codex",
+            "review_note": "B站官方播放器第1P画面，取当前播放时间并裁掉网页播放器控件；保留页面对原视频和博主的归属，未在站内存储视频。"
+          }
+        ]
+      },
+      "review": {
+        "status": "approved",
+        "reasons": [],
+        "reviewed_at": "2026-11-16T06:07:24+00:00",
+        "reviewed_by": "Codex",
+        "conclusion": "原视频简介写明牡丹园附近、居民楼便民小馆及玉勇餐厅。高德以「玉勇餐厅 牡丹园」检索唯一返回同商圈住宅区内的玉勇家常菜（计一厂宿舍店）。 已核原片和截图。当前营业状态待核。"
+      }
+    },
+    {
+      "creator": {
+        "uid": "403082144",
+        "name": "JASON刘雨鑫",
+        "profile_url": "https://space.bilibili.com/403082144"
+      },
+      "video": {
+        "bvid": "BV1wG4y1h7Jk",
+        "url": "https://www.bilibili.com/video/BV1wG4y1h7Jk/",
+        "title": "网传北京烤鸭天花板「晟永兴」，我又又又来了…",
+        "published_at": "2022-10-27T18:30:00+08:00",
+        "part": 1,
+        "cid": 873402506,
+        "duration_seconds": 209,
+        "owner_uid": "403082144",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/admin/BV1wG4y1h7Jk.json"
+      },
+      "visit": {
+        "id": "candidate:BV1wG4y1h7Jk:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "晟永兴",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1wG4y1h7Jk",
+            "checked_at": "2026-11-16T05:53:55.138977+00:00",
+            "note": "UID、标题、发布日期、分 P、时长来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "branch",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1wG4y1h7Jk/",
+            "seconds": 0,
+            "note": "标题仅给店名「晟永兴」；分店需从原片核证。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "review": {
+        "status": "pending",
+        "reasons": [
+          "标题仅给店名「晟永兴」；具体分店、高德 POI/GCJ-02 与到访截图待从原片核证。"
+        ]
+      }
+    },
+    {
+      "creator": {
+        "uid": "3546728118618546",
+        "name": "厨者王波",
+        "profile_url": "https://space.bilibili.com/3546728118618546"
+      },
+      "video": {
+        "bvid": "BV1M8cTe8E2j",
+        "url": "https://www.bilibili.com/video/BV1M8cTe8E2j/",
+        "title": "探店丨厨者王波•去学去看 九顺斋清真菜 咸淡口把握的真好，糊饼很好吃啊！",
+        "published_at": "2025-01-12T11:57:30+08:00",
+        "part": 1,
+        "cid": 27824949971,
+        "duration_seconds": 292,
+        "owner_uid": "3546728118618546",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/admin/BV1M8cTe8E2j.json"
+      },
+      "visit": {
+        "id": "candidate:BV1M8cTe8E2j:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "九顺斋",
+        "branch_name": "清真菜",
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1M8cTe8E2j",
+            "checked_at": "2026-11-16T05:53:55.138977+00:00",
+            "note": "UID、标题、发布日期、分 P、时长来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "branch",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1M8cTe8E2j/",
+            "seconds": 0,
+            "note": "标题给店名「九顺斋清真菜」；具体分店与高德 POI 待核。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "review": {
+        "status": "pending",
+        "reasons": [
+          "标题可定位店名「九顺斋」，但缺具体分店、高德 POI/GCJ-02 与到访截图。"
+        ]
+      }
+    },
+    {
+      "creator": {
+        "uid": "3546728118618546",
+        "name": "厨者王波",
+        "profile_url": "https://space.bilibili.com/3546728118618546"
+      },
+      "video": {
+        "bvid": "BV1SP6gYHEZp",
+        "url": "https://www.bilibili.com/video/BV1SP6gYHEZp/",
+        "title": "探店丨厨者王波•去学去看 庆云楼 后厨制汤有高人！菜品就。。。",
+        "published_at": "2024-12-30T12:24:30+08:00",
+        "part": 1,
+        "cid": 27604943391,
+        "duration_seconds": 339,
+        "owner_uid": "3546728118618546",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/admin/BV1SP6gYHEZp.json"
+      },
+      "visit": {
+        "id": "candidate:BV1SP6gYHEZp:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "庆云楼",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1SP6gYHEZp",
+            "checked_at": "2026-11-16T05:53:55.138977+00:00",
+            "note": "UID、标题、发布日期、分 P、时长来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "branch",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV1SP6gYHEZp/",
+            "seconds": 0,
+            "note": "标题给店名「庆云楼」；具体分店与高德 POI 待核。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "review": {
+        "status": "pending",
+        "reasons": [
+          "标题可定位店名「庆云楼」，但缺具体分店、高德 POI/GCJ-02 与到访截图。"
+        ]
+      }
+    },
+    {
+      "creator": {
+        "uid": "3546728118618546",
+        "name": "厨者王波",
+        "profile_url": "https://space.bilibili.com/3546728118618546"
+      },
+      "video": {
+        "bvid": "BV15ckLY2EwA",
+        "url": "https://www.bilibili.com/video/BV15ckLY2EwA/",
+        "title": "探店丨厨者王波•去学去看 穆塞菲林新疆餐厅 拌面实惠量大！椒麻鸡也不错，这个羊蹄吧。。。",
+        "published_at": "2024-12-17T11:30:38+08:00",
+        "part": 1,
+        "cid": 27380417262,
+        "duration_seconds": 285,
+        "owner_uid": "3546728118618546",
+        "metadata_status": "verified",
+        "playback_status": "playable",
+        "metadata_evidence": "content/sources/admin/BV15ckLY2EwA.json"
+      },
+      "visit": {
+        "id": "candidate:BV15ckLY2EwA:p1",
+        "start_seconds": null,
+        "end_seconds": null,
+        "store_id": null,
+        "store_name": "穆塞菲林新疆餐厅",
+        "branch_name": null,
+        "city": "北京市",
+        "district": null,
+        "address": null,
+        "amap_poi_id": null,
+        "amap_url": null,
+        "gcj02": null,
+        "business_status": "unknown",
+        "evidence": [
+          {
+            "type": "metadata",
+            "status": "verified",
+            "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV15ckLY2EwA",
+            "checked_at": "2026-11-16T05:53:55.138977+00:00",
+            "note": "UID、标题、发布日期、分 P、时长来自 B 站官方元数据；不证明到访分店。"
+          },
+          {
+            "type": "branch",
+            "status": "pending",
+            "url": "https://www.bilibili.com/video/BV15ckLY2EwA/",
+            "seconds": 0,
+            "note": "标题给店名「穆塞菲林新疆餐厅」；具体分店与高德 POI 待核。"
+          }
+        ],
+        "opinions": [],
+        "dishes": [],
+        "screenshots": []
+      },
+      "review": {
+        "status": "pending",
+        "reasons": [
+          "标题可定位店名「穆塞菲林新疆餐厅」，但缺具体分店、高德 POI/GCJ-02 与到访截图。"
+        ]
+      }
+    }
+  ]
+}

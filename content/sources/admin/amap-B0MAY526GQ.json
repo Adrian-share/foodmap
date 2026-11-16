@@ -1,0 +1,17 @@
+{
+  "source": "https://restapi.amap.com/v5/place/text",
+  "checked_at": "2026-11-16T06:07:24+00:00",
+  "query": "四川饭店东坝万达广场店",
+  "status": "1",
+  "infocode": "10000",
+  "pois": [
+    {
+      "id": "B0MAY526GQ",
+      "name": "四川饭店(东坝店)",
+      "adname": "朝阳区",
+      "address": "东坝中路25号万达广场4层",
+      "location": "116.547793,39.962509",
+      "typecode": "050102"
+    }
+  ]
+}

@@ -24,7 +24,9 @@
     "test:home": "playwright test --config playwright.home.config.cjs && playwright test --config playwright.desktop.config.cjs",
     "test:desktop": "node --test desktop.acceptance.test.cjs && playwright test --config playwright.desktop.config.cjs",
     "test:content:integration": "playwright test --config playwright.integration.config.cjs",
-    "test:creators": "node --test creator.acceptance.test.cjs && playwright test --config playwright.creators.config.cjs"
+    "test:creators": "node --test creator.acceptance.test.cjs && playwright test --config playwright.creators.config.cjs",
+    "content:refresh": "node scripts/refresh-and-upload.cjs",
+    "test:refresh": "node --test tests/incremental-refresh.test.cjs tests/content-ingestion.test.cjs tests/content-upload.test.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.0",

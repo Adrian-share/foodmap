@@ -3,7 +3,31 @@ const {assess,validScreenshot}=require('../content/catalog.cjs');
 const {createContentState}=require('../content/state.cjs');
 const {baselineRecords}=require('../content/baseline.cjs');
 const {buildLedger}=require('../content/ledger.cjs');
+const {mergeAccounts,mergeVideoMetadata}=require('./refresh-creator-inventory-incremental.cjs');
 const hash=value=>crypto.createHash('sha256').update(value).digest('hex');
+// Merge incremental refresh evidence into the frozen access evidence (frozen file stays untouched).
+// discoveries dedup by creator_uid:bvid:source (earliest discovered_at wins); accounts by uid and
+// seasons by id (newest checked_at wins); videos retain the newest successful metadata.
+function mergeAccess(base,inc){
+  const discoveries=new Map();
+  for(const v of [...(base.discoveries||[]),...(inc.discoveries||[])]){
+    if(!v?.bvid||!v?.creator_uid)continue;
+    const key=[v.creator_uid,v.bvid,v.source].join(':');
+    const old=discoveries.get(key);
+    discoveries.set(key,{...old,...v,discovered_at:old?.discovered_at||v.discovered_at});
+  }
+  const newer=(a,b)=>!a?false:!b?true:Date.parse(a)>=Date.parse(b);
+  const accounts=mergeAccounts(base.accounts,inc.accounts);
+  const seasons=new Map();
+  for(const s of [...(base.seasons||[]),...(inc.seasons||[])]){
+    if(!s?.id)continue;
+    const old=seasons.get(s.id);
+    if(!old||newer(s.checked_at,old.checked_at))seasons.set(s.id,s);
+  }
+  const videos=mergeVideoMetadata(base.videos,inc.videos);
+  const checked_at=newer(inc.updated_at,base.checked_at)?inc.updated_at:base.checked_at;
+  return {...base,checked_at,discoveries:[...discoveries.values()],accounts,seasons:[...seasons.values()],videos};
+}
 function buildContent(root=path.join(__dirname,'..')){
   const config=JSON.parse(fs.readFileSync(path.join(root,'content/config.json'),'utf8'));
   if(!Array.isArray(config.batches)||!Array.isArray(config.creator_uids)||config.creator_uids.some(uid=>!/^\d+$/.test(uid)))throw Error('批次或 UID 配置无效');
@@ -63,7 +87,8 @@ function buildContent(root=path.join(__dirname,'..')){
   };
   const snapshot={config:runtimeConfig,batches,baseline_records};
   const state=createContentState(snapshot,assets);
-  snapshot.ledger=buildLedger({snapshot:readOptional('content/inventory/video-inventory-2026-11-12.json',{as_of:'2026-11-12',creators:[],videos:[]}),records:state.records,access:readOptional('content/inventory/access-2026-11-15.json',{}),historical:readOptional('content/inventory/creators-2026-11-11.json',{}),accounts:csv('data/creators-beijing-source.csv'),samples:csv('data/creators-beijing-samples-source.csv')});
+  const access=mergeAccess(readOptional('content/inventory/access-2026-11-15.json',{}),readOptional('content/inventory/incremental-state.json',{}));
+  snapshot.ledger=buildLedger({snapshot:readOptional('content/inventory/video-inventory-2026-11-12.json',{as_of:'2026-11-12',creators:[],videos:[]}),records:state.records,access,historical:readOptional('content/inventory/creators-2026-11-11.json',{}),accounts:csv('data/creators-beijing-source.csv'),samples:csv('data/creators-beijing-samples-source.csv')});
   const version=batches.map(b=>b.batch_id+':'+b.version).join(',')+'@'+hash(JSON.stringify(snapshot)).slice(0,16);
   snapshot.version=version;
   fs.writeFileSync(path.join(root,'content/public-assets.json'),JSON.stringify(assets,null,2)+'\n');

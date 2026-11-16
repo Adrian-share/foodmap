@@ -1,3 +1,4 @@
+const creatorCount=require('../content/runtime.cjs').ledger.creators.length;
 const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');const state=require('../content/runtime.cjs');
 const wangbo=state.ledger.creators.find(c=>c.uid==='3546728118618546');
@@ -6,7 +7,7 @@ test('C2 匿名页面先登录，伪造浏览器身份头无法访问Node后台'
  const api=await request.get('http://127.0.0.1:18914/api/admin/creators',{headers:{'oai-authenticated-user-id':'spoof'}});expect(api.status()).toBe(401);
 });
 test('C1/C2 已登录台账：王波61条明细、待核原因和候选样例',async({page})=>{
- await page.goto('/admin/creators/');await expect(page.locator('tbody tr')).toHaveCount(17);
+ await page.goto('/admin/creators/');await expect(page.locator('tbody tr')).toHaveCount(creatorCount);
  await page.getByRole('link',{name:'厨者王波',exact:true}).click();await expect(page.locator('tbody tr')).toHaveCount(61);await expect(page.locator('#account')).toContainText('5780378');await expect(page.locator('#account')).toContainText('访问受限');
  await page.getByLabel('审核状态').selectOption('pending');await expect(page.locator('tbody tr')).toHaveCount(wangbo.counts.pending);await expect(page.locator('tbody tr').first()).toContainText('待核');
  await page.getByLabel('搜索视频').fill('BV1NG6kYTEXG');await expect(page.locator('tbody tr')).toHaveCount(1);await expect(page.locator('tbody tr')).toContainText('分店');

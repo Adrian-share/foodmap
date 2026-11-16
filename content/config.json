@@ -7,6 +7,10 @@
     {
       "path": "batches/beijing-admin-002.json",
       "enabled": true
+    },
+    {
+      "path": "batches/beijing-content-003.json",
+      "enabled": true
     }
   ],
   "creator_uids": [
@@ -14,7 +18,9 @@
     "3546728118618546",
     "544336675",
     "613814196",
-    "12613385"
+    "12613385",
+    "24159340",
+    "2087495384"
   ],
   "store_aliases": {}
 }
