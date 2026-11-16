@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "city": "北京",
+  "sources": [
+    {
+      "uid": "3546888255048212",
+      "name": "特厨隋坡",
+      "profile_url": "https://space.bilibili.com/3546888255048212",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "3546728118618546",
+      "name": "厨者王波",
+      "profile_url": "https://space.bilibili.com/3546728118618546",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": [
+        "5780378"
+      ]
+    },
+    {
+      "uid": "544336675",
+      "name": "真探唐仁杰",
+      "profile_url": "https://space.bilibili.com/544336675",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "2087495384",
+      "name": "井盖小分队",
+      "profile_url": "https://space.bilibili.com/2087495384",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "613814196",
+      "name": "船长觅食记",
+      "profile_url": "https://space.bilibili.com/613814196",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "124458240",
+      "name": "真吃货老白",
+      "profile_url": "https://space.bilibili.com/124458240",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "79980672",
+      "name": "卡门姐Carmen",
+      "profile_url": "https://space.bilibili.com/79980672",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "403082144",
+      "name": "JASON刘雨鑫",
+      "profile_url": "https://space.bilibili.com/403082144",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "1781681364",
+      "name": "特厨魏味-",
+      "profile_url": "https://space.bilibili.com/1781681364",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "3493080560830654",
+      "name": "真探高文麒",
+      "profile_url": "https://space.bilibili.com/3493080560830654",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "3325087",
+      "name": "任芸丽",
+      "profile_url": "https://space.bilibili.com/3325087",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "12613385",
+      "name": "北京妞小鸽贼",
+      "profile_url": "https://space.bilibili.com/12613385",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "36688806",
+      "name": "老孟七喜美食评测",
+      "profile_url": "https://space.bilibili.com/36688806",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "3546971182729637",
+      "name": "丸子狗富贵日常吃货版",
+      "profile_url": "https://space.bilibili.com/3546971182729637",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "379509857",
+      "name": "台湾好A在北京",
+      "profile_url": "https://space.bilibili.com/379509857",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "3546672569256789",
+      "name": "跟着老高吃东西",
+      "profile_url": "https://space.bilibili.com/3546672569256789",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "1462401621",
+      "name": "特厨隋卞",
+      "profile_url": "https://space.bilibili.com/1462401621",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    },
+    {
+      "uid": "24159340",
+      "name": "天亮道远方",
+      "profile_url": "https://space.bilibili.com/24159340",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
+    }
+  ],
+  "video_links": []
+}

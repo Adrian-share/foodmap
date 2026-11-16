@@ -1,0 +1,168 @@
+{
+  "checked_at": "2026-11-16T14:31:34.323199+00:00",
+  "commit": "21e0aafe1e50849ab4ca70cee083a1dee4138777",
+  "integration_branch": "fact-18/beijing-content-003",
+  "runtime_clone_commit": "21e0aafe1e50849ab4ca70cee083a1dee4138777",
+  "counts": {
+    "creators": 18,
+    "bvids": 92,
+    "pending": 77,
+    "beijing_shops": 15,
+    "compiled_images": 15
+  },
+  "runtime": {
+    "node": "v22.16.0",
+    "pi_on_path": null,
+    "local_mcp_8767": "connection_refused",
+    "production_http": "403",
+    "source_report_run": "d75010c8-d2be-46ca-b016-c5025baa4cdd",
+    "candidate_revision": 10,
+    "sources_ok": 1,
+    "sources_deferred": 18,
+    "new_candidates": 0
+  },
+  "files": [
+    {
+      "path": "deployment/worker.mjs",
+      "sha256": "8bb7f5fd5f4e5293ef30d0f9ce9a59e16e5221ccc301c8247e5552916ac0c00f"
+    },
+    {
+      "path": "content/runtime.cjs",
+      "sha256": "69084e72bfdef0c851ce78cd44f1df68a408dbaea56f703bcfb920f0763cbc1f"
+    },
+    {
+      "path": "content/compiled.json",
+      "sha256": "54c7ed29b1c01957ace609bd6e3a1003cf92325a242b8132298c59401e2a5827"
+    },
+    {
+      "path": "content/public-assets.json",
+      "sha256": "ca28b7a0551511385dea53b6a82f3ce60aa6856a31d4a01dc79bec2f7b10f03e"
+    },
+    {
+      "path": "content/catalog.cjs",
+      "sha256": "67febb2911ee139213d00937e546db294e067637263fcff2bbc853d6cdcf191e"
+    },
+    {
+      "path": "content/state.cjs",
+      "sha256": "45b96617c7fe0e6e38cea03cb27a936e3161d590631c0a7e2ae77f2afe631d18"
+    },
+    {
+      "path": "content/home.cjs",
+      "sha256": "4440058a3f76187466bb5d595f469e9df19c323b7a3977bd33f6eec243a72a7f"
+    },
+    {
+      "path": "content/http.cjs",
+      "sha256": "2d4d97852185081b7234cfd2bd72ffbbc0dee7f1560b4958f68c943928227b89"
+    },
+    {
+      "path": "content/ledger.cjs",
+      "sha256": "8f870933d822ec85ea2be3fb97aca75990c048efd4fb1609d6f3d6a0b39e5f54"
+    },
+    {
+      "path": "content/ingestion.cjs",
+      "sha256": "2915e99f78345a9163704703830f1475e4920909dda0509656f41727ad2e7b0f"
+    },
+    {
+      "path": "content/presentation.cjs",
+      "sha256": "d11ba9c40f1e62609f458851a5378410d993212478188dadcf8ce754387209c3"
+    },
+    {
+      "path": "nearby.cjs",
+      "sha256": "a27df1a2b4a8c73efe5e64d82e8b4d39c6f1fd1685b5469f65ce437b671d06a8"
+    },
+    {
+      "path": "amap-server.cjs",
+      "sha256": "cc58272f4f7b7e736deacc32291c7478ad93e31cd0d201203717b7d7ce505f14"
+    },
+    {
+      "path": "mcp-server.cjs",
+      "sha256": "bd9ab99bb205f9641d4ea50f1a15857ebbbe7271a1729053853510287dcbbcf9"
+    },
+    {
+      "path": "config/workbuddy/mcp.json",
+      "sha256": "74453c02186d8fb43d90f5bbfc3568f9cac3e6222acec16bc71a36cb2eb26007"
+    },
+    {
+      "path": "beijing-food-map/amap-handler.cjs",
+      "sha256": "e296628a0eb5bb187df189ce4a254fb4948fbeef32faeb9df02b03fe84062e9b"
+    },
+    {
+      "path": "scripts/build-content.cjs",
+      "sha256": "9f4f1207de485ca9b7a839bfea069ac0f8daaca506dec6b4fceb1e6763f801be"
+    },
+    {
+      "path": "scripts/screenshots.cjs",
+      "sha256": "e213bd9fb84d8e2769217a11f92926b5820d56ad69d8cebcf65962a548638208"
+    },
+    {
+      "path": "scripts/refresh-creator-inventory-incremental.cjs",
+      "sha256": "8005b91c9251b3d8402fb92c6e06d2a91eb949363a26231ee7947cbc11422135"
+    },
+    {
+      "path": "scripts/upload-creator-inventory.cjs",
+      "sha256": "0e2482c4ddb2e2dd4056ec83af6ad8760f9c45009124484b78fb98abfe4cc64b"
+    },
+    {
+      "path": "scripts/refresh-and-upload.cjs",
+      "sha256": "e230b5da2248643f963d41f350506941ff3578c30928e42e3addd3c78f36dba2"
+    },
+    {
+      "path": "scripts/multica-foodmap-runtime.cjs",
+      "sha256": "5f83c49b58db8c0e81ecac5aecb9901fe3cf1f8c76a88f1c7c4950212b19b944"
+    },
+    {
+      "path": "deployment/foodmap-sync/upload.py",
+      "sha256": "e9ee120b0b0e6fd32abe9207e0c282c495c8a6c9bda3d1bba7bba2ce845ead13"
+    },
+    {
+      "path": "deployment/foodmap-sync/README.md",
+      "sha256": "b3ebb33f51618da8f86222dde4d0210755d7d8f326201f1c0859a72b53586bc3"
+    }
+  ],
+  "pi_source": [
+    {
+      "path": "dist/config.js",
+      "sha256": "8d84a58d53f1bd4360188f787b56b16444c20e00452d075cdc77056054387926"
+    },
+    {
+      "path": "dist/main.js",
+      "sha256": "29d5564f1a397eeb8a9c771b8e42c4fb88420e676bddbd096854a3ad84f4d49e"
+    },
+    {
+      "path": "docs/cli.md",
+      "sha256": "d3b719dafaa11c93841059eb02d0167403e26a19d8845ca54aad3443c58952fc"
+    },
+    {
+      "path": "docs/rpc.md",
+      "sha256": "54e29df00e080c962df4fbb516dc441a9ce6805287bea61d45f3c99f92078446"
+    },
+    {
+      "path": "docs/json.md",
+      "sha256": "f103191816fdcf3627dfc98b89acad8a28eee737697130ddaeb2581131213543"
+    },
+    {
+      "path": "docs/rpc-commands.md",
+      "sha256": "4deeee367852f4633ef594bc079f9e9fb14640a4e3ba8a69b7c89b6f54740838"
+    },
+    {
+      "path": "dist/core/resource-loader.js",
+      "sha256": "57ece4ebd0ef6429bf45e1a22a7c581813251a988afa67bf2d3158eb752cdecc"
+    },
+    {
+      "path": "dist/cli/args.js",
+      "sha256": "6c1a82465ba2e809068e84605c650cbe44cbff700ab691e79bfe390360817f35"
+    },
+    {
+      "path": "dist/modes/rpc/rpc-types.d.ts",
+      "sha256": "68b6dc2e47a3969c09c961a40d0462473407b6786f3bd02715fa035e816e2af1"
+    },
+    {
+      "path": "dist/modes/rpc/rpc-mode.js",
+      "sha256": "505297dba2df1de3003c0399b3312fd581359a4e27a5e9262b274b6cb5cb4ef3"
+    },
+    {
+      "path": "dist/core/extensions/types.d.ts",
+      "sha256": "ac8610b705f18c95f2efb8665293cbca0f6efaa6c000f4247a3b965022d46b3f"
+    }
+  ]
+}

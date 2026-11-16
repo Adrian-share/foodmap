@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: A1: four sections, offline readable, responsive, protected image dependency
+ok 1 - A1: four sections, offline readable, responsive, protected image dependency
+  ---
+  duration_ms: 1.127291
+  type: 'test'
+  ...
+# Subtest: A2: copy succeeds, offline failure, null blob and denied clipboard have visible feedback
+ok 2 - A2: copy succeeds, offline failure, null blob and denied clipboard have visible feedback
+  ---
+  duration_ms: 4.193125
+  type: 'test'
+  ...
+# Subtest: A3: evidence table and protocol are delivered
+ok 3 - A3: evidence table and protocol are delivered
+  ---
+  duration_ms: 0.716875
+  type: 'test'
+  ...
+# Subtest: A4: frozen schema examples validate and unknown operations / tools fail closed
+ok 4 - A4: frozen schema examples validate and unknown operations / tools fail closed
+  ---
+  duration_ms: 140.828292
+  type: 'test'
+  ...
+# Subtest: A5: each evidence file reference exists at baseline and initial watchlist preserves 18 UIDs
+ok 5 - A5: each evidence file reference exists at baseline and initial watchlist preserves 18 UIDs
+  ---
+  duration_ms: 14.784292
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 253.72425

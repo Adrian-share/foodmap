@@ -1,0 +1,84 @@
+TAP version 13
+# Subtest: A1: four sections, offline readable, responsive, protected image dependency
+ok 1 - A1: four sections, offline readable, responsive, protected image dependency
+  ---
+  duration_ms: 1.092833
+  type: 'test'
+  ...
+# Subtest: A2: copy succeeds, offline failure, null blob and denied clipboard have visible feedback
+ok 2 - A2: copy succeeds, offline failure, null blob and denied clipboard have visible feedback
+  ---
+  duration_ms: 4.35375
+  type: 'test'
+  ...
+# Subtest: A3: evidence table and protocol are delivered
+not ok 3 - A3: evidence table and protocol are delivered
+  ---
+  duration_ms: 0.427667
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-31-c155721f27ff/workdir/verify-architecture.cjs:34:1'
+  failureType: 'testCodeFailure'
+  error: 'evidence.md'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-31-c155721f27ff/workdir/verify-architecture.cjs:35:117)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: A4: frozen schema examples validate and unknown operations / tools fail closed
+not ok 4 - A4: frozen schema examples validate and unknown operations / tools fail closed
+  ---
+  duration_ms: 35.916458
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-31-c155721f27ff/workdir/verify-architecture.cjs:40:1'
+  failureType: 'testCodeFailure'
+  error: "ENOENT: no such file or directory, open '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-31-c155721f27ff/workdir/foodmap/docs/architecture/FACT-31/schemas.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.openSync (node:fs:562:18)
+    Object.readFileSync (node:fs:446:35)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-31-c155721f27ff/workdir/verify-architecture.cjs:43:29)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: A5: each evidence file reference exists at baseline and initial watchlist preserves 18 UIDs
+not ok 5 - A5: each evidence file reference exists at baseline and initial watchlist preserves 18 UIDs
+  ---
+  duration_ms: 0.279833
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-31-c155721f27ff/workdir/verify-architecture.cjs:56:1'
+  failureType: 'testCodeFailure'
+  error: "ENOENT: no such file or directory, open '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-31-c155721f27ff/workdir/foodmap/docs/architecture/FACT-31/source-evidence.json'"
+  code: 'ENOENT'
+  stack: |-
+    Object.openSync (node:fs:562:18)
+    Object.readFileSync (node:fs:446:35)
+    TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-31-c155721f27ff/workdir/verify-architecture.cjs:57:30)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 2
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 129.517792
