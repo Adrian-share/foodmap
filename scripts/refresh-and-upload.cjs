@@ -1,10 +1,19 @@
 'use strict';
 const fs = require('node:fs');
 const path = require('node:path');
+const os = require('node:os');
 const {runIncremental} = require('./refresh-creator-inventory-incremental.cjs');
 const {buildPayload, uploadInventory} = require('./upload-creator-inventory.cjs');
 
 async function refreshAndUpload() {
+  const config = process.env.FOODMAP_AGENT_ENV_FILE || path.join(os.homedir(), '.config/foodmap/ingest.env');
+  if (fs.existsSync(config)) {
+    for (const line of fs.readFileSync(config, 'utf8').split(/\r?\n/)) {
+      const match = line.match(/^(FOODMAP_(?:SITE_URL|INGEST_TOKEN|AGENT_STATE_DIR|INGEST_URL))=(.*)$/);
+      if (match && !process.env[match[1]]) process.env[match[1]] = match[2];
+    }
+  }
+  if (!process.env.FOODMAP_INGEST_TOKEN) throw new Error('FOODMAP_INGEST_TOKEN 未配置');
   const report = await runIncremental();
   if (report.outcome === 'locked') {
     console.log(JSON.stringify({outcome: 'locked', uploaded: false}));
