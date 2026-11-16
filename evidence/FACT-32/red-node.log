@@ -29,9 +29,9 @@ not ok 2 - W2 registry CAS activates ingestion and catalog, preserves old identi
   failureType: 'testCodeFailure'
   error: |-
     Expected values to be strictly equal:
-    
+
     400 !== 200
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: 200
