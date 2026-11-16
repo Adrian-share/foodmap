@@ -15,6 +15,9 @@ const outputSchema = z.object({
   origin:z.object({name:z.string(),city:z.string(),district:z.string(),lng:z.number(),lat:z.number(),
     source:z.url(),coordinate_source:z.enum(['sample_fixture','amap_live'])}).passthrough().optional(),
   candidates:z.array(z.object({id:z.string(),name:z.string(),city:z.string(),district:z.string()}).passthrough()).optional(),
+  creators:z.array(z.object({id:z.string(),name:z.string()})).optional(),
+  total:z.number().int().nonnegative().optional(),
+  next_offset:z.number().int().nonnegative().nullable().optional(),
   cards_markdown:z.string().optional()
 });
 function createMcpServer(audit, baseUrl, service, assets) {
