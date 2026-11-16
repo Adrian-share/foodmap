@@ -1,0 +1,60 @@
+test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi (test_cleanup_failure.CleanupFailure.test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi) ... 
+  test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi (test_cleanup_failure.CleanupFailure.test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi) (body='raise SystemExit(1)') ... ERROR
+  test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi (test_cleanup_failure.CleanupFailure.test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi) (body='import time;time.sleep(2)') ... ERROR
+  test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi (test_cleanup_failure.CleanupFailure.test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi) (body='print("not json")') ... ERROR
+
+======================================================================
+ERROR: test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi (test_cleanup_failure.CleanupFailure.test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi) (body='raise SystemExit(1)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_cleanup_failure.py", line 20, in test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi
+    rpc.close()
+    ~~~~~~~~~^^
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/foodmap_agent/pi_rpc.py", line 267, in close
+    raise ProtocolError('daemon_identity_unavailable')
+foodmap_agent.pi_rpc.ProtocolError: daemon_identity_unavailable
+
+======================================================================
+ERROR: test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi (test_cleanup_failure.CleanupFailure.test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi) (body='import time;time.sleep(2)')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_cleanup_failure.py", line 20, in test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi
+    rpc.close()
+    ~~~~~~~~~^^
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/foodmap_agent/pi_rpc.py", line 268, in close
+    if json.loads(result.stdout).get('pid') == pid:
+       ~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+======================================================================
+ERROR: test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi (test_cleanup_failure.CleanupFailure.test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi) (body='print("not json")')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_cleanup_failure.py", line 20, in test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi
+    rpc.close()
+    ~~~~~~~~~^^
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/foodmap_agent/pi_rpc.py", line 268, in close
+    if json.loads(result.stdout).get('pid') == pid:
+       ~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "/usr/local/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py", line 363, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+----------------------------------------------------------------------
+Ran 1 test in 4.790s
+
+FAILED (errors=3)

@@ -1,0 +1,15 @@
+test_close_reaps_own_adapter_group_even_if_child_ignores_term (test_process_group.ProcessGroup.test_close_reaps_own_adapter_group_even_if_child_ignores_term) ... FAIL
+
+======================================================================
+FAIL: test_close_reaps_own_adapter_group_even_if_child_ignores_term (test_process_group.ProcessGroup.test_close_reaps_own_adapter_group_even_if_child_ignores_term)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_process_group.py", line 33, in test_close_reaps_own_adapter_group_even_if_child_ignores_term
+    self.assertTrue(not result.stdout.strip() or result.stdout.strip().startswith('Z'), 'adapter child still running')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : adapter child still running
+
+----------------------------------------------------------------------
+Ran 1 test in 3.269s
+
+FAILED (failures=1)

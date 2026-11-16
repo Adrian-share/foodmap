@@ -1,0 +1,15 @@
+test_removed_season_and_its_pending_views_stop_without_deleting_history (test_source_removal.SourceRemoval.test_removed_season_and_its_pending_views_stop_without_deleting_history) ... FAIL
+
+======================================================================
+FAIL: test_removed_season_and_its_pending_views_stop_without_deleting_history (test_source_removal.SourceRemoval.test_removed_season_and_its_pending_views_stop_without_deleting_history)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_source_removal.py", line 33, in test_removed_season_and_its_pending_views_stop_without_deleting_history
+    self.assertFalse(any(s['id'] in ('456',BV) for s in plan))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.021s
+
+FAILED (failures=1)

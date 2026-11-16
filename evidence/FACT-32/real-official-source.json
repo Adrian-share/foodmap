@@ -1,0 +1,30 @@
+{
+  "scope": "actual Bilibili official sources, diagnostic only; no upload",
+  "checked_at": "2026-11-16T15:10:28.693Z",
+  "sources": [
+    {
+      "source": {
+        "uid": "3546728118618546",
+        "type": "season",
+        "id": "5780378"
+      },
+      "error_code": "official_source_unavailable"
+    },
+    {
+      "source": {
+        "uid": "3546728118618546",
+        "type": "view",
+        "id": "BV1NG6kYTEXG"
+      },
+      "url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1NG6kYTEXG",
+      "reached_end": true,
+      "items": [
+        {
+          "bvid": "BV1NG6kYTEXG",
+          "uid": "3546728118618546",
+          "title": "探店丨厨者王波•去学去看 峨嵋酒家 宫保鸡丁不愧是头牌菜！今日收获了个烧排骨"
+        }
+      ]
+    }
+  ]
+}

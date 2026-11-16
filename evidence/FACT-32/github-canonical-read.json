@@ -1,0 +1,17 @@
+{
+  "scope": "actual default GitHub repo/ref/path; no upload/production mutation",
+  "http_status": 200,
+  "github": {
+    "repo": "Adrian-share/foodmap",
+    "ref": "fact-18/beijing-content-003",
+    "path": "content/watchlists/beijing.json",
+    "commit_sha": "593cfc7fde12520f1f5ba35ed92b765bb5d9d59f",
+    "sha256": "0536b860b001660f555fce9b201740c73a8b72738c87a56331a4fb514a57a3c8",
+    "observed_at": "2026-11-16T15:09:02.995151Z"
+  },
+  "etag": "\"a57f0f62d23b1dd20a8d66b8851654003ce3101d\"",
+  "sources": 18,
+  "enabled": 18,
+  "second_read_status": 304,
+  "hash_matches_frozen_initial": true
+}

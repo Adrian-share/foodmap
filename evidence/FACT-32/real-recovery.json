@@ -1,0 +1,49 @@
+{
+  "scope": "isolated real Pi/Python crash and session recovery; no production writes",
+  "task_id": "0636ba69-fbac-4eb8-9277-91322480f74f",
+  "first_start": {
+    "phase": "started",
+    "python_pid": 48169,
+    "pi_pid": 48172,
+    "task_id": "0636ba69-fbac-4eb8-9277-91322480f74f"
+  },
+  "first_bound": {
+    "phase": "bound",
+    "session_id": "01a1e4e5-2528-70e7-8020-7830f023d69f",
+    "session_file": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/.agent-state/recovery-probe/pi/sessions/2026-11-16T15-06-24-936Z_01a1e4e5-2528-70e7-8020-7830f023d69f.jsonl"
+  },
+  "killed_python_pid": 48169,
+  "killed_pi_group": 48172,
+  "restart_events": [
+    {
+      "phase": "started",
+      "python_pid": 48204,
+      "pi_pid": 48208,
+      "task_id": "0636ba69-fbac-4eb8-9277-91322480f74f"
+    },
+    {
+      "phase": "bound",
+      "session_id": "01a1e4e5-2528-70e7-8020-7830f023d69f",
+      "session_file": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/.agent-state/recovery-probe/pi/sessions/2026-11-16T15-06-24-936Z_01a1e4e5-2528-70e7-8020-7830f023d69f.jsonl"
+    },
+    {
+      "phase": "finished",
+      "task_id": "0636ba69-fbac-4eb8-9277-91322480f74f",
+      "session_id": "01a1e4e5-2528-70e7-8020-7830f023d69f",
+      "settled": {
+        "type": "agent_settled",
+        "aborted": false
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "id": "0636ba69-fbac-4eb8-9277-91322480f74f",
+      "stage": "verifying",
+      "attempt": 2,
+      "lease_owner": null,
+      "session_id": "01a1e4e5-2528-70e7-8020-7830f023d69f"
+    }
+  ],
+  "passed": true
+}

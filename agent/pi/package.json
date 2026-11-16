@@ -1,0 +1,10 @@
+{
+  "name": "foodmap-pi-runtime",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@earendil-works/pi-coding-agent": "1.5.2",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1"
+  }
+}

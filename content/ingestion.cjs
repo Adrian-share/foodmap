@@ -1,5 +1,6 @@
 'use strict';
 const {buildLedger}=require('./ledger.cjs');
+const {readRegistry,registryKnown,operation}=require('./registry.cjs');
 const KEY='private/content-incremental-v1.json';
 const MAX_BODY_BYTES=2*1024*1024;
 const MAX_CONFLICT_RETRIES=3;
@@ -157,7 +158,7 @@ async function readPayload(request){
     while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>MAX_BODY_BYTES){await reader.cancel();fail('采集载荷超过2MiB',413);}chunks.push(value);}
   }finally{reader.releaseLock();}
   const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.byteLength;}
-  try{return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));}catch{fail('采集载荷不是有效JSON');}
+  try{const raw=new TextDecoder('utf-8',{fatal:true}).decode(bytes);return {payload:JSON.parse(raw),raw};}catch{fail('采集载荷不是有效JSON');}
 }
 function receipt(value){
   const counts={discoveries:new Set((value?.discoveries||[]).map(d=>d.bvid)).size,accounts:value?.accounts?.length||0,seasons:value?.seasons?.length||0,videos:value?.videos?.length||0};
@@ -178,10 +179,14 @@ function createIngestionService({state=require('./runtime.cjs'),evidence=frozenE
       if(!env.CONTENT_UPDATES)return json({error:'候选持久存储未配置'},503);
       if(!['GET','POST'].includes(request.method))return json({error:'仅支持GET和POST'},405);
       try{
-        if(request.method==='GET')return json(receipt((await readObject(env.CONTENT_UPDATES,known)).value));
-        const {snapshot,run}=validatePayload(await readPayload(request),known);
+        const registry=(await readRegistry(env.CONTENT_UPDATES)).value;
+        const activeKnown=registryKnown(known,registry);
+        if(request.method==='GET')return json({...receipt((await readObject(env.CONTENT_UPDATES,activeKnown)).value),capabilities:['watchlist.sync','receipt.get'],registry_revision:registry?.registry_revision||0});
+        const {payload,raw}=await readPayload(request);
+        if(payload?.operation!==undefined)return json(await operation(env.CONTENT_UPDATES,payload,raw));
+        const {snapshot,run}=validatePayload(payload,activeKnown);
         for(let attempt=0;attempt<=MAX_CONFLICT_RETRIES;attempt++){
-          const previous=await readObject(env.CONTENT_UPDATES,known);
+          const previous=await readObject(env.CONTENT_UPDATES,activeKnown);
           const merged=mergeEvidence(previous.value||{},snapshot,baseOwners);
           const last_run=run&&(!previous.value?.last_run||newer(run.checked_at,previous.value.last_run.checked_at))?run:previous.value?.last_run||null;
           const value={...merged,revision:(previous.value?.revision||0)+1,last_run};
@@ -194,8 +199,10 @@ function createIngestionService({state=require('./runtime.cjs'),evidence=frozenE
     },
     async privateState(env={}){
       if(!env.CONTENT_UPDATES)return state;
-      const {value}=await readObject(env.CONTENT_UPDATES,known);if(!value)return state;
-      const access=mergeEvidence(evidence.access,value);
+      const registry=(await readRegistry(env.CONTENT_UPDATES)).value;
+      const activeKnown=registryKnown(known,registry);
+      const {value}=await readObject(env.CONTENT_UPDATES,activeKnown);if(!value&&!registry)return state;
+      const access=mergeEvidence(evidence.access,value||{});
       // Official metadata can be newer than frozen approved records; only metadata changes.
       const metadata=new Map(access.videos.map(v=>[v.bvid,v]));
       const records=state.records.map(record=>{
@@ -203,7 +210,8 @@ function createIngestionService({state=require('./runtime.cjs'),evidence=frozenE
         if(!latest||latest.owner_uid!==String(record.creator.uid))return record;
         return {...record,video:{...record.video,...(latest.title?{title:latest.title}:{}),...(latest.published_at?{published_at:latest.published_at}:{})}};
       });
-      const ledger=buildLedger({...evidence,records,access:{...access,checked_at:access.updated_at}});
+      const accounts=[...new Map([...(evidence.accounts||[]),...(registry?.accepted_sources||[])].map(c=>[c.uid,c])).values()];
+      const ledger=buildLedger({...evidence,accounts,records,access:{...access,checked_at:access.updated_at}});
       return {...state,ledger};
     }
   };

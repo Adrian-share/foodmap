@@ -1,0 +1,24 @@
+test_P1_singleton_heartbeat_idle_no_model (test_acceptance.Acceptance.test_P1_singleton_heartbeat_idle_no_model) ... ok
+test_P2_waits_settled_not_accept_or_agent_end (test_acceptance.Acceptance.test_P2_waits_settled_not_accept_or_agent_end) ... ok
+test_P3_leases_receipts_and_sessions_survive_restart (test_acceptance.Acceptance.test_P3_leases_receipts_and_sessions_survive_restart) ... ok
+test_P4_environment_and_framing (test_acceptance.Acceptance.test_P4_environment_and_framing) ... ok
+test_P5_budgets_exclusive_claim_cancel_retry (test_acceptance.Acceptance.test_P5_budgets_exclusive_claim_cancel_retry) ... ok
+test_W1_initial_migration_preserves_baseline (test_acceptance.Acceptance.test_W1_initial_migration_preserves_baseline) ... ok
+test_W2_registration_before_activation_and_once (test_acceptance.Acceptance.test_W2_registration_before_activation_and_once) ... ok
+test_W3_bad_versions_keep_last_good_and_backoff (test_acceptance.Acceptance.test_W3_bad_versions_keep_last_good_and_backoff) ... ok
+test_W4_independent_pagination_and_wrong_owner (test_acceptance.Acceptance.test_W4_independent_pagination_and_wrong_owner) ... ok
+test_W5_disabled_history_and_failure_isolation (test_acceptance.Acceptance.test_W5_disabled_history_and_failure_isolation) ... ok
+test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi (test_cleanup_failure.CleanupFailure.test_unrelated_cli_failure_timeout_or_non_json_never_leaks_owned_pi) ... ok
+test_close_reaps_own_adapter_group_even_if_child_ignores_term (test_process_group.ProcessGroup.test_close_reaps_own_adapter_group_even_if_child_ignores_term) ... ok
+test_aborted_settlement_never_completes (test_rpc_transport.Transport.test_aborted_settlement_never_completes) ... ok
+test_missing_settled_times_out_even_after_agent_end (test_rpc_transport.Transport.test_missing_settled_times_out_even_after_agent_end) ... ok
+test_model_error_settles_as_blocked_model (test_rpc_transport.Transport.test_model_error_settles_as_blocked_model) ... ok
+test_request_ids_are_checked_and_events_preserved (test_rpc_transport.Transport.test_request_ids_are_checked_and_events_preserved) ... ok
+test_old_python_rejected_before_touching_existing_venv (test_service_health.ServiceHealth.test_old_python_rejected_before_touching_existing_venv) ... ok
+test_restart_failures_back_off_without_queue_or_model_activity (test_service_health.ServiceHealth.test_restart_failures_back_off_without_queue_or_model_activity) ... ok
+test_removed_season_and_its_pending_views_stop_without_deleting_history (test_source_removal.SourceRemoval.test_removed_season_and_its_pending_views_stop_without_deleting_history) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 2.858s
+
+OK

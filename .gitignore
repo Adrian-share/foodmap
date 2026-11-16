@@ -28,3 +28,8 @@ evidence/content/hosted/*-playing.png
 
 # 候选采样画面随任务证据包交付，核准帧另存 content/images。
 /evidence/admin/frames/*.jpg
+
+# Project-local runtimes and private preview state
+/tools/
+/.agent-state/
+__pycache__/

@@ -1,0 +1,103 @@
+test_P1_singleton_heartbeat_idle_no_model (test_acceptance.Acceptance.test_P1_singleton_heartbeat_idle_no_model) ... ERROR
+test_P2_waits_settled_not_accept_or_agent_end (test_acceptance.Acceptance.test_P2_waits_settled_not_accept_or_agent_end) ... ERROR
+test_P3_leases_receipts_and_sessions_survive_restart (test_acceptance.Acceptance.test_P3_leases_receipts_and_sessions_survive_restart) ... ERROR
+test_P4_environment_and_framing (test_acceptance.Acceptance.test_P4_environment_and_framing) ... ERROR
+test_P5_budgets_exclusive_claim_cancel_retry (test_acceptance.Acceptance.test_P5_budgets_exclusive_claim_cancel_retry) ... ERROR
+test_W1_initial_migration_preserves_baseline (test_acceptance.Acceptance.test_W1_initial_migration_preserves_baseline) ... ERROR
+test_W2_registration_before_activation_and_once (test_acceptance.Acceptance.test_W2_registration_before_activation_and_once) ... ERROR
+test_W3_bad_versions_keep_last_good_and_backoff (test_acceptance.Acceptance.test_W3_bad_versions_keep_last_good_and_backoff) ... ERROR
+test_W4_independent_pagination_and_wrong_owner (test_acceptance.Acceptance.test_W4_independent_pagination_and_wrong_owner) ... ERROR
+test_W5_disabled_history_and_failure_isolation (test_acceptance.Acceptance.test_W5_disabled_history_and_failure_isolation) ... ERROR
+
+======================================================================
+ERROR: test_P1_singleton_heartbeat_idle_no_model (test_acceptance.Acceptance.test_P1_singleton_heartbeat_idle_no_model)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 142, in test_P1_singleton_heartbeat_idle_no_model
+    from foodmap_agent.service import Service, Singleton
+ModuleNotFoundError: No module named 'foodmap_agent'
+
+======================================================================
+ERROR: test_P2_waits_settled_not_accept_or_agent_end (test_acceptance.Acceptance.test_P2_waits_settled_not_accept_or_agent_end)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 157, in test_P2_waits_settled_not_accept_or_agent_end
+    from foodmap_agent.pi_rpc import RunTracker, ProtocolError
+ModuleNotFoundError: No module named 'foodmap_agent'
+
+======================================================================
+ERROR: test_P3_leases_receipts_and_sessions_survive_restart (test_acceptance.Acceptance.test_P3_leases_receipts_and_sessions_survive_restart)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 175, in test_P3_leases_receipts_and_sessions_survive_restart
+    q = self.store()
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 29, in store
+    from foodmap_agent.queue import Store
+ModuleNotFoundError: No module named 'foodmap_agent'
+
+======================================================================
+ERROR: test_P4_environment_and_framing (test_acceptance.Acceptance.test_P4_environment_and_framing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 192, in test_P4_environment_and_framing
+    from foodmap_agent.pi_rpc import child_environment, JsonLines, ProtocolError, literal_prompt
+ModuleNotFoundError: No module named 'foodmap_agent'
+
+======================================================================
+ERROR: test_P5_budgets_exclusive_claim_cancel_retry (test_acceptance.Acceptance.test_P5_budgets_exclusive_claim_cancel_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 208, in test_P5_budgets_exclusive_claim_cancel_retry
+    q = self.store()
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 29, in store
+    from foodmap_agent.queue import Store
+ModuleNotFoundError: No module named 'foodmap_agent'
+
+======================================================================
+ERROR: test_W1_initial_migration_preserves_baseline (test_acceptance.Acceptance.test_W1_initial_migration_preserves_baseline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 41, in test_W1_initial_migration_preserves_baseline
+    q = self.store()
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 29, in store
+    from foodmap_agent.queue import Store
+ModuleNotFoundError: No module named 'foodmap_agent'
+
+======================================================================
+ERROR: test_W2_registration_before_activation_and_once (test_acceptance.Acceptance.test_W2_registration_before_activation_and_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 53, in test_W2_registration_before_activation_and_once
+    q = self.store()
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 29, in store
+    from foodmap_agent.queue import Store
+ModuleNotFoundError: No module named 'foodmap_agent'
+
+======================================================================
+ERROR: test_W3_bad_versions_keep_last_good_and_backoff (test_acceptance.Acceptance.test_W3_bad_versions_keep_last_good_and_backoff)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 77, in test_W3_bad_versions_keep_last_good_and_backoff
+    from foodmap_agent.watchlist import WatchlistSync
+ModuleNotFoundError: No module named 'foodmap_agent'
+
+======================================================================
+ERROR: test_W4_independent_pagination_and_wrong_owner (test_acceptance.Acceptance.test_W4_independent_pagination_and_wrong_owner)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 93, in test_W4_independent_pagination_and_wrong_owner
+    from foodmap_agent.scheduler import Scanner
+ModuleNotFoundError: No module named 'foodmap_agent'
+
+======================================================================
+ERROR: test_W5_disabled_history_and_failure_isolation (test_acceptance.Acceptance.test_W5_disabled_history_and_failure_isolation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/tests/agent/test_acceptance.py", line 116, in test_W5_disabled_history_and_failure_isolation
+    from foodmap_agent.scheduler import Scanner
+ModuleNotFoundError: No module named 'foodmap_agent'
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.008s
+
+FAILED (errors=10)
