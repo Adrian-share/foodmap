@@ -20,6 +20,7 @@ class ProtocolError(RuntimeError):
 class JsonLines:
     def __init__(self, limit=MAX_LINE):
         self.limit, self.buffer = limit, bytearray()
+        self.max_seen = 0
 
     def feed(self, data):
         self.buffer.extend(data)
@@ -27,6 +28,7 @@ class JsonLines:
         while b'\n' in self.buffer:
             line, _, rest = self.buffer.partition(b'\n')
             self.buffer = bytearray(rest)
+            self.max_seen = max(self.max_seen, len(line))
             if len(line) > self.limit:
                 raise ProtocolError('rpc_line_too_large')
             try:
@@ -123,6 +125,8 @@ class PiRPC:
         self.closed = False
         self.error_code = None
         self.model_requests = 0
+        self.max_line_bytes = 0
+        self.tool_image_blocks = 0
         self.on_poll = None
         self.last_state = {}
         self.threads = [threading.Thread(target=self._read, daemon=True), threading.Thread(target=self._stderr, daemon=True)]
@@ -137,6 +141,9 @@ class PiRPC:
                 if not data:
                     raise ProtocolError('pi_exited')
                 for value in framing.feed(data):
+                    self.max_line_bytes = max(self.max_line_bytes, framing.max_seen)
+                    if value.get('type') == 'tool_execution_end':
+                        self.tool_image_blocks += sum(c.get('type') == 'image' for c in value.get('result', {}).get('content', []))
                     self.messages.put(value, timeout=2)
         except Exception as error:
             self.error_code = type(error).__name__

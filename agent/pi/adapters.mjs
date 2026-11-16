@@ -1,20 +1,27 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import {spawn,execFile} from 'node:child_process';
+import {execFile} from 'node:child_process';
 import {promisify} from 'node:util';
 import {fileURLToPath} from 'node:url';
 const projectRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const runFile=promisify(execFile);
+import {decodeFrameFromStream} from './stream-frame.mjs';
+import {createModelPreview} from './model-preview.mjs';
+import {readPublicPoi} from './public-http.mjs';
 import httpIdentity from '../../content/http-identity.cjs';
 import {imageInfo} from '../../content/publication.cjs';
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const video=c=>'https://www.bilibili.com/video/'+c.bvid+'/';
 function allowed(url,kind){const u=new URL(url);if(u.protocol!=='https:'||u.username||u.password||u.port)throw Error('invalid_source');const host=u.hostname;const valid=kind==='metadata'?host==='api.bilibili.com':kind==='subtitle'?/(^|\.)hdslb\.com$/.test(host):kind==='stream'?/(^|\.)bilivideo\.(com|cn)$/.test(host):kind==='poi'?u.origin==='https://foodmap.shareworld.fun'&&u.pathname==='/api/content/poi':false;if(!valid)throw Error('invalid_source');return u;}
-export async function fetchBounded(url,kind,{signal,max=512*1024,request=fetch}={}){
+export async function openAllowedResponse(url,kind,{signal,request=fetch,timeoutMs=15000}={}){
  let u=allowed(url,kind);let response;
- for(let i=0;i<4;i++){response=await request(u,{redirect:'manual',signal:signal?AbortSignal.any([signal,AbortSignal.timeout(15000)]):AbortSignal.timeout(15000),headers:{...httpIdentity,Referer:'https://www.bilibili.com/'}});if([301,302,303,307,308].includes(response.status)){u=allowed(new URL(response.headers.get('location'),u),kind);continue;}break;}
+ for(let i=0;i<4;i++){response=await request(u,{redirect:'manual',signal:signal?AbortSignal.any([signal,AbortSignal.timeout(timeoutMs)]):AbortSignal.timeout(timeoutMs),headers:{...httpIdentity,Referer:'https://www.bilibili.com/'}});if([301,302,303,307,308].includes(response.status)){u=allowed(new URL(response.headers.get('location'),u),kind);continue;}break;}
  if(!response?.ok)throw Error('source_unavailable');
+ return response;
+}
+export async function fetchBounded(url,kind,{signal,max=512*1024,request=fetch}={}){
+ const response=await openAllowedResponse(url,kind,{signal,request});
  const reader=response.body.getReader();let length=0;const chunks=[];
  try{while(true){const {value,done}=await reader.read();if(done)break;length+=value.length;if(length>max){await reader.cancel();throw Error('source_too_large');}chunks.push(value);}}finally{reader.releaseLock();}
  return Buffer.concat(chunks);
@@ -51,28 +58,27 @@ export async function metadata(context,args,signal){
  }
  return result;
 }
-export async function searchPoi(context,args,signal){
- try{const url='https://foodmap.shareworld.fun/api/content/poi?'+new URLSearchParams({q:args.query});const data=JSON.parse(await fetchBounded(url,'poi',{signal}));if(data.status!=='1'||!Array.isArray(data.pois))throw Error('poi_unavailable');return await register(context,'poi:'+sha(Buffer.from(args.query)).slice(0,16),'poi',data,'https://restapi.amap.com/v5/place/text');}catch{return {status:'pending',reason:'poi_source_unavailable'};}
+export async function searchPoi(context,args,signal,{readPoi=readPublicPoi}={}){
+ try{const data=await readPoi(args.query,signal);const result=await register(context,'poi:'+sha(Buffer.from(args.query)).slice(0,16),'poi',data,'https://restapi.amap.com/v5/place/text');return {...result,...(data._transport?{transport:data._transport}:{})};}
+ catch(error){if(signal?.aborted)throw error;const code=/^public_[a-z0-9_]+$/.test(error.message)?error.message:'public_transport_failed';return {status:'pending_transport',reason:'poi_source_unavailable',error_code:code};}
 }
+export function playbackURL(bvid,cid,quality=64){if(![16,32,64].includes(quality))throw Error('invalid_quality');return 'https://api.bilibili.com/x/player/playurl?'+new URLSearchParams({bvid,cid:String(cid),qn:String(quality),fnval:'0',fnver:'0',fourk:'0'});}
 export async function captureFrame(context,args,signal){
  try{
   // Inputs are BV/P/timestamp only. The signed stream URL comes from the official API.
   const meta=await metadata(context,{include_subtitles:false},signal),page=meta.payload.data.pages.find(p=>p.page===context.part);
   if(args.timestamp_ms<0||args.timestamp_ms>page.duration*1000)throw Error('timestamp_outside_video');
-  const endpoint='https://api.bilibili.com/x/player/playurl?'+new URLSearchParams({bvid:context.bvid,cid:String(page.cid),qn:'16',fnval:'0',fnver:'0',fourk:'0'});
+  const requested_quality=context.adapters?.quality??64;
+  const endpoint=playbackURL(context.bvid,page.cid,requested_quality);
   const playable=JSON.parse(await fetchBounded(endpoint,'metadata',{signal}));
   if(playable.code!==0||playable.data?.is_preview||playable.data?.durl?.length!==1)throw Error('stream_unavailable');
   const url=allowed(playable.data.durl[0].url,'stream');
-  const bytes=await fetchBounded(url,'stream',{signal,max:128*1024*1024});
-  // Media bytes exist only in bounded memory and pipe:0. stdout is a single PNG.
   const ffmpeg=context.adapters?.ffmpeg||'/usr/local/bin/ffmpeg';
   if(!['/usr/local/bin/ffmpeg','/opt/homebrew/bin/ffmpeg'].includes(ffmpeg))throw Error('unapproved_encoder');
-  const child=spawn(ffmpeg,['-hide_banner','-loglevel','info','-protocol_whitelist','pipe','-i','pipe:0','-an','-vf',`select=gte(t\\,${args.timestamp_ms/1000}),showinfo,signalstats,metadata=print`,'-frames:v','1','-f','image2pipe','-vcodec','png','pipe:1'],{stdio:['pipe','pipe','pipe'],env:{PATH:'/usr/bin:/bin'},signal:signal?AbortSignal.any([signal,AbortSignal.timeout(40000)]):AbortSignal.timeout(40000)});
-  const output=[],logs=[];let outputSize=0,logSize=0;
-  child.stdout.on('data',b=>{outputSize+=b.length;if(outputSize>8*1024*1024)child.kill();else output.push(b);});child.stderr.on('data',b=>{logSize+=b.length;if(logSize<=128*1024)logs.push(b);});child.stdin.on('error',()=>{});
-  const completion=new Promise((resolve,reject)=>{child.once('error',reject);child.once('close',code=>code===0?resolve():reject(Error('capture_failed')));});
-  child.stdin.end(bytes);await completion;
-  const image=Buffer.concat(output),info=imageInfo(image,'image/png'),log=Buffer.concat(logs).toString();
+  const captureSignal=signal?AbortSignal.any([signal,AbortSignal.timeout(40000)]):AbortSignal.timeout(40000);
+  const response=await openAllowedResponse(url,'stream',{signal:captureSignal,timeoutMs:40000});
+  const {image,log,downloaded_bytes}=await decodeFrameFromStream(response,args.timestamp_ms,ffmpeg,captureSignal);
+  const info=imageInfo(image,'image/png');
   const actual=Number(log.match(/pts_time:([\d.]+)/)?.[1])*1000;
   // signalstats reports luma range; showinfo reports stdev before any scaling/cropping.
   const mean=Number(log.match(/mean:\[([\d.]+)/)?.[1]),stddev=Number(log.match(/stdev:\[([\d.]+)/)?.[1]);
@@ -80,7 +86,7 @@ export async function captureFrame(context,args,signal){
   await safeRoot(context);
   const hash=sha(image),file='frame-'+hash+'.png';await fs.writeFile(path.join(context.root,file),image,{mode:0o600,flag:'wx'}).catch(e=>{if(e.code!=='EEXIST')throw e;});
   if((await fs.lstat(path.join(context.root,file))).isSymbolicLink()||sha(await fs.readFile(path.join(context.root,file)))!==hash)throw Error('frame_hash_mismatch');
-  const payload={bvid:context.bvid,part:context.part,cid:page.cid,timestamp_ms:args.timestamp_ms,actual_timestamp_ms:Math.round(actual),sha256:hash,capture_method:'official-stream-pipe',mime_type:'image/png',bytes:image.length,...info,mean,stddev};
+  const payload={bvid:context.bvid,part:context.part,cid:page.cid,timestamp_ms:args.timestamp_ms,actual_timestamp_ms:Math.round(actual),sha256:hash,capture_method:'official-stream-pipe',mime_type:'image/png',bytes:image.length,...info,mean,stddev,downloaded_bytes,requested_quality,actual_quality:playable.data.quality};
   const result=await register(context,'frame:'+args.timestamp_ms,'frame',payload,video(context));
   context.frame_files||={};context.frame_files[hash]={file,sha256:hash};
   let ocr=null;
@@ -89,6 +95,7 @@ export async function captureFrame(context,args,signal){
    const recognized=JSON.parse(native.stdout);if(recognized.engine!=='apple-vision-v1'||!Array.isArray(recognized.lines)||recognized.lines.length>1000)throw Error('invalid_ocr');
    ocr=await register(context,'ocr:'+args.timestamp_ms,'branch',{bvid:context.bvid,part:context.part,cid:page.cid,timestamp_ms:payload.actual_timestamp_ms,image_sha256:hash,...recognized},video(context));
   }catch{}
-  return {...result,status:'captured',artifact_id:result.evidence_id,ocr};
- }catch(error){if(signal?.aborted)throw error;return {status:'blocked_capture',reason:'official_stream_or_frame_unavailable'};}
+  let preview=null;try{preview=await createModelPreview(context,image,hash,ffmpeg,signal);}catch(error){if(signal?.aborted)throw error;}
+  return {...result,status:'captured',artifact_id:result.evidence_id,ocr,preview};
+ }catch(error){if(signal?.aborted)throw error;const known=['source_unavailable','source_too_large','timestamp_outside_video','stream_unavailable','unusable_frame','invalid_image','invalid_source'];return {status:'blocked_capture',reason:'official_stream_or_frame_unavailable',error_code:known.includes(error.message)?error.message:error.name};}
 }

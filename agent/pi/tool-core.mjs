@@ -33,7 +33,7 @@ async function artifact(context,id){
  const handle=await fs.open(file,constants.O_RDONLY|constants.O_NOFOLLOW);
  try{const stat=await handle.stat();if(!stat.isFile()||stat.size>512*1024)error('evidence_too_large');const bytes=await handle.readFile();if(bytes.length>512*1024||sha(bytes)!==item.sha256)error('evidence_hash_mismatch');return bytes;}finally{await handle.close();}
 }
-export async function executeTool(name,args,context,signal){
+export async function executeTool(name,args,context,signal,adapters={}){
  if(!check({name,arguments:args}))error('invalid_tool_arguments');
  if(args.task_id!==context.task_id)error('wrong_task');
  if(args.bvid&&(args.bvid!==context.bvid||args.part!==context.part))error('wrong_video');
@@ -49,18 +49,18 @@ export async function executeTool(name,args,context,signal){
  }
  if(name==='content_fetch_metadata')return metadata(context,args,signal);
  if(name==='content_capture_frame')return captureFrame(context,args,signal);
- if(name==='content_search_poi')return searchPoi(context,args,signal);
+ if(name==='content_search_poi')return searchPoi(context,args,signal,adapters);
  error('unknown_tool');
 }
 // Pi may execute a batch of tool calls concurrently. Serialize the entire read /
 // execute / rename transaction so a slow network result cannot erase another tool.
 const pendingTasks=new Map();
-export async function executeTask(file,proposal_file,name,args,signal){
+export async function executeTask(file,proposal_file,name,args,signal,adapters={}){
  const previous=pendingTasks.get(file)||Promise.resolve();
  const next=previous.catch(()=>{}).then(async()=>{
   signal?.throwIfAborted();
   const context=JSON.parse(await fs.readFile(file,'utf8'));context.proposal_file=proposal_file;
-  const result=await executeTool(name,args,context,signal);
+  const result=await executeTool(name,args,context,signal,adapters);
   const {proposal_file:unused,...persisted}=context;
   await fs.writeFile(file+'.tmp',JSON.stringify(persisted),{mode:0o600});await fs.rename(file+'.tmp',file);
   return {result,context};

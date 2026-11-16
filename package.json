@@ -29,7 +29,7 @@
     "test:refresh": "node --test tests/incremental-refresh.test.cjs tests/content-ingestion.test.cjs tests/content-upload.test.cjs tests/ssh-upload.test.cjs tests/collector-cancellation.test.cjs && python3 -B tests/test_ssh_upload.py",
     "test:agent": "node --test tests/multica-fixed-runtime.test.cjs",
     "test:content-agent": "tools/venv/bin/python -m unittest discover -s tests/agent -v && node --test tests/watchlist-registry.test.cjs tests/source-page.test.cjs tests/pi-content-tools.test.cjs",
-    "test:publication": "node --test tests/content-verification.test.cjs tests/content-publication.test.cjs tests/content-release-integration.test.cjs tests/content-version.test.cjs tests/worker-publication.test.cjs tests/pi-content-tools.test.cjs",
+    "test:publication": "node --test tests/content-verification.test.cjs tests/content-publication.test.cjs tests/content-release-integration.test.cjs tests/content-version.test.cjs tests/worker-publication.test.cjs tests/pi-content-tools.test.cjs tests/public-http-bridge.test.cjs tests/frame-preview.test.cjs tests/stream-frame.test.cjs",
     "test:publication:live": "node --test tests/stage3-live-gates.test.cjs"
   },
   "devDependencies": {

@@ -1,6 +1,5 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import crypto from 'node:crypto';
+import {previewImageBlock} from './model-preview.mjs';
 import {executeTask,tools} from './tool-core.mjs';
 
 export default function(pi:any){
@@ -34,12 +33,7 @@ export default function(pi:any){
    const {result,context}=await executeTask(file,process.env.FOODMAP_PROPOSAL_FILE,tool.name,args,signal);
    const content:any[]=[{type:'text',text:JSON.stringify(result)}];
    if(tool.name==='content_capture_frame'&&result.status==='captured'){
-    const entry=context.frame_files[result.payload.sha256],file=path.resolve(context.root,entry.file),real=fs.realpathSync(file);
-    if(fs.lstatSync(file).isSymbolicLink()||real!==file||!file.startsWith(fs.realpathSync(context.root)+path.sep))throw Error('outside_evidence_root');
-    const bytes=fs.readFileSync(file);
-    if(crypto.createHash('sha256').update(bytes).digest('hex')!==entry.sha256)throw Error('frame_hash_mismatch');
-    // Keep each JSONL event below the frozen 1MiB framing limit.
-    if(bytes.length<=512*1024)content.push({type:'image',mimeType:result.payload.mime_type,data:bytes.toString('base64')});
+    const block=await previewImageBlock(result,context);if(block)content.push(block);
    }
    return {content,details:{}};
   }
