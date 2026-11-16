@@ -32,7 +32,7 @@
 
 ## 持久性和边界
 
-SQLite 保存视频实体、独立任务、来源游标、租约、证据索引和操作回执；Pi会话单独在 `pi/sessions`。业务键为 `(bvid,part,rules_version)`，BV跨来源合并证据，不能用Pi会话代替业务台账。先对账未确认操作，再回收过期租约。正在使用的 lease 默认300秒，重启不能抢活跃租约。
+SQLite 保存视频实体、独立任务、来源游标、租约、证据索引和操作回执；Pi会话单独在 `pi/sessions`。业务键为 `(bvid,part,rules_version)`，BV跨来源合并证据，不能用Pi会话代替业务台账。启动及每次处理循环均先对账未确认操作，再回收过期租约；对账失败保持租约并暂停领取，心跳显示 `receipt_recovery_failed`。正在使用的 lease 默认300秒，重启不能抢活跃租约；到期后由同一服务循环恢复，无需再次重启。
 
 名单固定读取 `Adrian-share/foodmap` / `fact-18/beijing-content-003` / `content/watchlists/beijing.json`，先解析commit再按commit读取正文；保存原始字节哈希与ETag。注册操作持久预备后发送，收到服务端 `committed` 才激活；403/429/超时/损坏名单保留最后有效版本。首次注册若 Worker 尚无新协议会阻止激活，不假装成功。新UID同时进入服务端 ingestion 和 catalog 的有效registry；禁用/移除保留接受过的历史身份。
 

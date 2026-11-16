@@ -188,6 +188,14 @@ class Service:
             self.store.db.execute("UPDATE jobs SET stage='blocked_model',error_code='blocked_model' WHERE stage='discovered'")
             self.last_error = 'blocked_model'
             return
+        # A supervisor may restart us before the crashed worker's lease expires.
+        # Reconcile writes and reclaim expired leases on each processing cycle,
+        # rather than requiring another restart after the expiry timestamp.
+        try:
+            self.store.recover(self.operator.lookup)
+        except Exception:
+            self.last_error = 'receipt_recovery_failed'
+            return
         job = self.store.claim(self.instance_id)
         if not job:
             return
