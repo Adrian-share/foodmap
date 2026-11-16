@@ -1,7 +1,5 @@
 'use strict';
 const fs = require('node:fs');
-const path = require('node:path');
-const {spawn} = require('node:child_process');
 
 const fields = {
   discoveries: ['bvid','creator_uid','title','published_at','discovered_at','owner_verified','source','checked_at'],
@@ -27,35 +25,15 @@ function buildPayload(snapshot, report) {
     new_count: report.new_candidates.length
   }};
 }
-function pythonTransport(python) {
-  return request => new Promise((resolve, reject) => {
-    const child = spawn(python, [path.join(__dirname, 'site-http.py')], {stdio: ['pipe', 'pipe', 'pipe']});
-    let output = '', tooLarge = false;
-    const timer = setTimeout(() => child.kill('SIGTERM'), 30000);
-    child.stdout.on('data', chunk => {
-      output += chunk;
-      if (output.length > 3 * 1024 * 1024) { tooLarge = true; child.kill('SIGTERM'); }
-    });
-    // Error output can contain third-party response text. Report a bounded transport error.
-    child.stderr.resume();
-    child.once('error', () => { clearTimeout(timer); reject(new Error('候选上传的 HTTP 运行环境不可用')); });
-    child.once('close', code => {
-      clearTimeout(timer);
-      if (code !== 0 || tooLarge) return reject(new Error('候选上传的 HTTPS 请求失败'));
-      try { resolve(JSON.parse(output)); } catch { reject(new Error('候选上传响应格式无效')); }
-    });
-    child.stdin.on('error', () => {});
-    child.stdin.end(JSON.stringify(request));
-  });
-}
 async function uploadInventory(payload, options = {}) {
   const site = new URL(options.url || process.env.FOODMAP_SITE_URL || '');
   if (site.protocol !== 'https:' || site.username || site.password) throw new Error('候选上传必须使用 HTTPS 站点');
   const token = options.token || process.env.FOODMAP_INGEST_TOKEN;
   if (!token) throw new Error('FOODMAP_INGEST_TOKEN 未配置');
-  const url = new URL('/api/admin/content-ingest', site).href;
-  const python = options.python || process.env.FOODMAP_HTTP_PYTHON;
-  const transport = options.transport || (python ? pythonTransport(python) : async request => {
+  const endpoint = new URL(options.endpoint || process.env.FOODMAP_INGEST_URL || '/api/admin/content-ingest', site);
+  if (endpoint.protocol !== 'https:' || endpoint.username || endpoint.password) throw new Error('候选上传必须使用 HTTPS 接口');
+  const url = endpoint.href;
+  const transport = options.transport || (async request => {
     const response = await fetch(request.url, {method: request.method,
       headers: {'Authorization': 'Bearer ' + request.token, 'Content-Type': 'application/json'},
       body: request.body, redirect: 'error', signal: AbortSignal.timeout(25000)});
