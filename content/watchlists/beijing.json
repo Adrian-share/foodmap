@@ -147,7 +147,20 @@
       "enabled": true,
       "collection_scope": "beijing",
       "season_ids": []
+    },
+    {
+      "uid": "490775325",
+      "name": "鲁菜行者",
+      "profile_url": "https://space.bilibili.com/490775325",
+      "enabled": true,
+      "collection_scope": "beijing",
+      "season_ids": []
     }
   ],
-  "video_links": []
+  "video_links": [
+    {
+      "uid": "490775325",
+      "url": "https://www.bilibili.com/video/BV1GC4y1B7Cj/"
+    }
+  ]
 }
