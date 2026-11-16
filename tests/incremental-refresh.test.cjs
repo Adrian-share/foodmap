@@ -176,6 +176,22 @@ test('辅助函数：已知集、合并与结果分类',()=>{
 
 const runOptions=(t,uids=[])=>({root:t,state:stateFile(t),runsDir:runsDir(t),seed:tinySeed(uids),ledger:tinyLedger(uids)});
 const jsonResponse=(data,status=200)=>({status,text:async()=>JSON.stringify(data)});
+test('每轮上传快照独立，下一轮采集不能覆盖上一轮证据',async t=>{
+  const dir=tmp();t.after(()=>fs.rmSync(dir,{recursive:true,force:true}));
+  const posts=[{bvid:'BVAAAAAAAAAA',title:'第一条',created:1700000000,mid:'111'}];
+  const options={...runOptions(dir,['111']),fetch:postsMock(()=>posts)};
+  writeJson(stateFile(dir),emptyState());
+  const first=await runIncremental(options);
+  assert.equal(typeof first.run_snapshot_file,'string');
+  const initial=fs.readFileSync(first.run_snapshot_file,'utf8');
+  posts.push({bvid:'BVBBBBBBBBBB',title:'第二条',created:1700000001,mid:'111'});
+  const second=await runIncremental(options);
+  assert.notEqual(first.run_snapshot_file,second.run_snapshot_file);
+  assert.equal(fs.readFileSync(first.run_snapshot_file,'utf8'),initial);
+  assert.equal(JSON.parse(initial).discoveries.length,1);
+  assert.equal(JSON.parse(fs.readFileSync(second.run_snapshot_file)).discoveries.length,2);
+  assert.equal(JSON.parse(fs.readFileSync(path.join(first.run_dir,'report.json'))).run_id,first.run_id);
+});
 const priorSuccess=()=>({uid:'111',code:0,http_status:200,checked_at:'2026-11-10T00:00:00.000Z',scope:'公开投稿列表第1页',last_page:1,reached_end:false,url:'posts:111'});
 
 for(const [status,code] of [[412,-403],[200,-403]]){

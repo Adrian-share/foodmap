@@ -26,7 +26,8 @@
     "test:content:integration": "playwright test --config playwright.integration.config.cjs",
     "test:creators": "node --test creator.acceptance.test.cjs && playwright test --config playwright.creators.config.cjs",
     "content:refresh": "node scripts/refresh-and-upload.cjs",
-    "test:refresh": "node --test tests/incremental-refresh.test.cjs tests/content-ingestion.test.cjs tests/content-upload.test.cjs"
+    "test:refresh": "node --test tests/incremental-refresh.test.cjs tests/content-ingestion.test.cjs tests/content-upload.test.cjs tests/ssh-upload.test.cjs && python3 -B tests/test_ssh_upload.py",
+    "test:agent": "node --test tests/multica-fixed-runtime.test.cjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.0",

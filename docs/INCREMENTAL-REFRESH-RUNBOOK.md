@@ -24,13 +24,19 @@
 | --- | --- |
 | `$FOODMAP_AGENT_STATE_DIR/incremental-state.json` | 持久状态，包含 `schema`、`updated_at`、`discoveries`、`accounts`、`seasons`、`videos`、`failures`。在锁内读取和原子写入。首次初始化先导入仓库已有增量快照；没有快照则从冻结 access 文件播种。 |
 | `$FOODMAP_AGENT_STATE_DIR/incremental-state.json.lock` | 写入运行 PID 的互斥锁。父目录不存在时自动创建；用 `openSync(...,"wx")` 获取。只有锁超过 10 分钟且 PID 已不存活时才清理重试；仍被占用则返回 `locked`，不读取或改写状态。 |
-| `$FOODMAP_AGENT_STATE_DIR/runs/<checked_at 净化>/report.json` | 运行报告，含 `run_id`、`outcome`、`partial`、`sources_*` 计数、`new_candidates`、`duplicate_count`、`pending_total`、`last_success_ranges`、`errors`。保留在运行机，不提交仓库。 |
+| `$FOODMAP_AGENT_STATE_DIR/runs/<checked_at 净化>-<run_id>/` | 每轮独立目录。report.json含来源统计与进度，snapshot.json固定该轮上传证据，upload-receipt.json保存持久读回。目录带run_id，避免同毫秒运行冲突。保留在运行机，不提交仓库。 |
 | `content/inventory/incremental-state.json` | 可构建的增量快照，只含 `schema`、`updated_at`、`discoveries`、`accounts`、`seasons`、`videos`。不含 `failures`、锁或运行报告。视频只保留 BV、作者 UID、标题、发布日期、时长、合集 ID、官方接口来源和核对时间，不保存原始响应、凭据或媒体流地址。 |
 | `content/inventory/access-2026-11-15.json`、`content/inventory/video-inventory-2026-11-12.json` | **冻结文件，永远不要修改**。前者是历史证据与首播种子，后者是种子台账。 |
 
 ## 3. 命令
 
 ```sh
+# 采集并通过配置的通道上传候选，stdout 输出 JSON
+node scripts/refresh-and-upload.cjs
+
+# 帮助入口不读取凭据或触发采集
+node scripts/refresh-and-upload.cjs --help
+
 # 正式运行（写状态、写报告、按默认上限 60 次请求）
 node scripts/refresh-creator-inventory-incremental.cjs
 
@@ -61,6 +67,7 @@ node scripts/refresh-creator-inventory-incremental.cjs --state <path> --runs-dir
 ## 4. 候选如何进入私有台账（待核）与发布边界
 
 - 刷新只产出「发现」证据，写入 `incremental-state.json`，**不直接改公开内容**。
+- `refresh-and-upload.cjs` 在锁内取得的本轮固定快照 `run_snapshot_file` 上构造载荷，经认证接口写入 R2，随后读取持久回执。下一轮采集不会覆盖上一轮上传输入。后台下一次请求直接读取 R2，无需重新部署；公开内容仍来自核准批次。SSH 配置与权限见 `deployment/foodmap-sync/README.md`。
 - `npm run content:build` 时，`scripts/build-content.cjs` 会把快照中的 `discoveries`、`accounts`、`seasons`、`videos` 合并进 `access`（冻结文件本身不动），再由 `buildLedger` 生成台账。成功 view 的标题和发布日期通过 `access.videos` 进入同一后台台账；较新的失败响应不会覆盖成功元数据。
 - `buildLedger` 只把「UID 已知 + `owner_verified === true`」的发现登记为待核（pending）视频；它们只出现在登录后台（`/admin/creators/`、`/api/admin/*`），**公开数量不变**。
 - 只有走批次审核（`content/batches/*.json`）核准分店、POI、截图等证据并重新构建后，视频才进入公开列表，公开数才增加。所以：**新候选停在待核，等批次批准后再公开**。
@@ -70,6 +77,9 @@ node scripts/refresh-creator-inventory-incremental.cjs --state <path> --runs-dir
 ```sh
 # 增量脚本的单元测试（mock 抓取，无网络、无需 undici）
 node --test tests/incremental-refresh.test.cjs
+
+# 增量、认证导入、SSH传输及中文正文回归
+npm run test:refresh
 
 # 重建台账（不依赖 node_modules，只用 Node 内置模块）
 npm run content:build

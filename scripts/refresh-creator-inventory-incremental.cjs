@@ -292,7 +292,7 @@ function sanitizeCheckedAt(iso){
 }
 
 function writeReport(report,runsDir,checkedAt){
-  const dir=path.join(runsDir,sanitizeCheckedAt(checkedAt));
+  const dir=report.run_dir||path.join(runsDir,sanitizeCheckedAt(checkedAt));
   fs.mkdirSync(dir,{recursive:true});
   const file=path.join(dir,'report.json');
   fs.writeFileSync(file,JSON.stringify(report,null,2)+'\n');
@@ -489,9 +489,13 @@ async function runIncremental(options={}){
       pending_total,last_success_ranges:lastSuccessRanges(state),errors,
     };
 
+    report.run_dir=path.join(runsDir,sanitizeCheckedAt(checked_at)+'-'+run_id);
+    report.run_snapshot_file=path.join(report.run_dir,'snapshot.json');
+
     saveState(statePath,state);
     const {schema,updated_at,discoveries,accounts,seasons,videos}=state;
     saveState(snapshotPath,{schema,updated_at,discoveries,accounts,seasons,videos});
+    saveState(report.run_snapshot_file,{schema,updated_at,discoveries,accounts,seasons,videos});
     writeReport(report,runsDir,checked_at);
     return report;
   }finally{

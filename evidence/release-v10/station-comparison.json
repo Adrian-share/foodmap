@@ -1,0 +1,180 @@
+{
+  "checked_at": "2026-11-16T07:10:27.468Z",
+  "coordinate_system": "GCJ-02",
+  "distance_type": "straight_line",
+  "baseline_stores": 13,
+  "current_stores": 15,
+  "stations": [
+    {
+      "location": "王府井",
+      "before": {
+        "total": 13,
+        "within_2km": 3,
+        "nearest": [
+          {
+            "id": "beijing-5",
+            "name": "富春居（北京璞瑄酒店店）",
+            "meters": 1725
+          },
+          {
+            "id": "amap:B0G1PUL2XB",
+            "name": "缘赵记（珠市口店（高德现名：珍贝大厦店））",
+            "meters": 1735
+          },
+          {
+            "id": "beijing-1",
+            "name": "泰丰楼",
+            "meters": 1918
+          }
+        ]
+      },
+      "after": {
+        "total": 15,
+        "within_2km": 3,
+        "nearest": [
+          {
+            "id": "beijing-5",
+            "name": "富春居（北京璞瑄酒店店）",
+            "meters": 1725
+          },
+          {
+            "id": "amap:B0G1PUL2XB",
+            "name": "缘赵记（珠市口店（高德现名：珍贝大厦店））",
+            "meters": 1735
+          },
+          {
+            "id": "beijing-1",
+            "name": "泰丰楼",
+            "meters": 1918
+          }
+        ]
+      },
+      "new_stores": [
+        {
+          "id": "amap:B000A84BGQ",
+          "name": "玉勇餐厅（计一厂宿舍店）",
+          "meters": 8655
+        },
+        {
+          "id": "amap:B0MAY526GQ",
+          "name": "四川饭店（东坝万达广场店）",
+          "meters": 13097
+        }
+      ]
+    },
+    {
+      "location": "东坝",
+      "before": {
+        "total": 13,
+        "within_2km": 0,
+        "nearest": [
+          {
+            "id": "beijing-7",
+            "name": "寂川（西大望路店）",
+            "meters": 8115
+          },
+          {
+            "id": "beijing-3",
+            "name": "潇湘阁（三里屯SOHO店）",
+            "meters": 8814
+          },
+          {
+            "id": "beijing-4",
+            "name": "老吉堂·吉来（正大中心店）",
+            "meters": 8930
+          }
+        ]
+      },
+      "after": {
+        "total": 15,
+        "within_2km": 1,
+        "nearest": [
+          {
+            "id": "amap:B0MAY526GQ",
+            "name": "四川饭店（东坝万达广场店）",
+            "meters": 363
+          },
+          {
+            "id": "beijing-7",
+            "name": "寂川（西大望路店）",
+            "meters": 8115
+          },
+          {
+            "id": "beijing-3",
+            "name": "潇湘阁（三里屯SOHO店）",
+            "meters": 8814
+          }
+        ]
+      },
+      "new_stores": [
+        {
+          "id": "amap:B0MAY526GQ",
+          "name": "四川饭店（东坝万达广场店）",
+          "meters": 363
+        },
+        {
+          "id": "amap:B000A84BGQ",
+          "name": "玉勇餐厅（计一厂宿舍店）",
+          "meters": 14949
+        }
+      ]
+    },
+    {
+      "location": "大钟寺",
+      "before": {
+        "total": 13,
+        "within_2km": 0,
+        "nearest": [
+          {
+            "id": "amap:B0FFLI74FK",
+            "name": "聚首堂（什刹海德胜门店）",
+            "meters": 3690
+          },
+          {
+            "id": "beijing-10",
+            "name": "洪福亮酒家（南草厂街店）",
+            "meters": 3736
+          },
+          {
+            "id": "beijing-9",
+            "name": "砂锅居（西四店）",
+            "meters": 5683
+          }
+        ]
+      },
+      "after": {
+        "total": 15,
+        "within_2km": 0,
+        "nearest": [
+          {
+            "id": "amap:B000A84BGQ",
+            "name": "玉勇餐厅（计一厂宿舍店）",
+            "meters": 2778
+          },
+          {
+            "id": "amap:B0FFLI74FK",
+            "name": "聚首堂（什刹海德胜门店）",
+            "meters": 3690
+          },
+          {
+            "id": "beijing-10",
+            "name": "洪福亮酒家（南草厂街店）",
+            "meters": 3736
+          }
+        ]
+      },
+      "new_stores": [
+        {
+          "id": "amap:B000A84BGQ",
+          "name": "玉勇餐厅（计一厂宿舍店）",
+          "meters": 2778
+        },
+        {
+          "id": "amap:B0MAY526GQ",
+          "name": "四川饭店（东坝万达广场店）",
+          "meters": 17277
+        }
+      ]
+    }
+  ]
+}
