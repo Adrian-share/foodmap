@@ -1,5 +1,7 @@
 import fs from 'node:fs';
-import {executeTool,tools} from './tool-core.mjs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {executeTask,tools} from './tool-core.mjs';
 
 export default function(pi:any){
  let providerRequests=0;
@@ -29,10 +31,17 @@ export default function(pi:any){
   async execute(_id:string,args:any,signal:AbortSignal){
    const file=process.env.FOODMAP_TASK_FILE!;
    if(!file||!fs.existsSync(file))throw Error('no_bound_task');
-   const context=JSON.parse(fs.readFileSync(file,'utf8'));
-   context.proposal_file=process.env.FOODMAP_PROPOSAL_FILE;
-   const result=await executeTool(tool.name,args,context,signal);
-   return {content:[{type:'text',text:JSON.stringify(result)}],details:{}};
+   const {result,context}=await executeTask(file,process.env.FOODMAP_PROPOSAL_FILE,tool.name,args,signal);
+   const content:any[]=[{type:'text',text:JSON.stringify(result)}];
+   if(tool.name==='content_capture_frame'&&result.status==='captured'){
+    const entry=context.frame_files[result.payload.sha256],file=path.resolve(context.root,entry.file),real=fs.realpathSync(file);
+    if(fs.lstatSync(file).isSymbolicLink()||real!==file||!file.startsWith(fs.realpathSync(context.root)+path.sep))throw Error('outside_evidence_root');
+    const bytes=fs.readFileSync(file);
+    if(crypto.createHash('sha256').update(bytes).digest('hex')!==entry.sha256)throw Error('frame_hash_mismatch');
+    // Keep each JSONL event below the frozen 1MiB framing limit.
+    if(bytes.length<=512*1024)content.push({type:'image',mimeType:result.payload.mime_type,data:bytes.toString('base64')});
+   }
+   return {content,details:{}};
   }
  });
  pi.on('session_start',()=>audit());

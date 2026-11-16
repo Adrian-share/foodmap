@@ -186,6 +186,7 @@
     try {
       const focusStore=new URLSearchParams(location.search).get('store_id');
       const params = new URLSearchParams({location: name, city: '北京', limit: focusStore ? '50' : '6', offset: String(offset)});
+      if (append && list.dataset.version) params.set('data_version', list.dataset.version);
       if (originId) params.set('origin_id', originId);
       if (creator.value) params.set('creator', creator.value);
       const response = await fetch('/api/nearby?' + params, {signal: AbortSignal.any([controller.signal, AbortSignal.timeout(12000)])});

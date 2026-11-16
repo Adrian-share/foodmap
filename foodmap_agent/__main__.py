@@ -10,6 +10,7 @@ def main():
     parser.add_argument('--state', type=Path, required=True, help='Dedicated state directory; use an isolated path for tests')
     parser.add_argument('--node', type=Path)
     parser.add_argument('--model-config', type=Path, help='Explicit private 0600 project model JSON')
+    parser.add_argument('--mode',choices=('preview','production','draining'),default='preview',help='Only production publishes; coordinator must first pause the legacy scheduler')
     parser.add_argument('--upload-config', type=Path, help='Explicit private ingest.env; never passed to Pi')
     sub = parser.add_subparsers(dest='command', required=True)
     serve = sub.add_parser('serve')
@@ -24,7 +25,7 @@ def main():
     try:
         if args.command == 'serve':
             Service(store, root, args.node, args.model_config, args.upload_config,
-                    os.environ.get('FOODMAP_GITHUB_TOKEN')).serve(offline=args.offline, duration=args.duration)
+                    os.environ.get('FOODMAP_GITHUB_TOKEN'),mode=args.mode).serve(offline=args.offline, duration=args.duration)
         elif args.command == 'run-once':
             store.set('run_once_requested', True)
             print(json.dumps({'state': 'enqueued', 'scheduler_started': False}))

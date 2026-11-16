@@ -27,9 +27,10 @@ function createMcpServer(audit, baseUrl, service, assets) {
     outputSchema,
     annotations:{readOnlyHint:true, destructiveHint:false, idempotentHint:true, openWorldHint:true}
   }, async input => {
-    const data = decorate(await service.query(input), baseUrl, assets);
+    const captured=service.queryWithState?await service.queryWithState(input):{data:await service.query(input),assets};
+    const data = decorate(captured.data, baseUrl, captured.assets);
     audit({event:'tool_result', tool:'find_nearby_food', ...input, result:data});
-    return {content:[{type:'text', text:JSON.stringify(data)}, ...imageContent(data.results,assets)], structuredContent:data};
+    return {content:[{type:'text', text:JSON.stringify(data)}, ...imageContent(data.results,captured.assets)], structuredContent:data};
   });
   return server;
 }
@@ -66,7 +67,8 @@ function createMcpHandler({audit=()=>{},publicBaseUrl,service,contentState}) {
 function createFoodServer(options={}){return require('./amap-server.cjs').createServer(options);}
 if(require.main===module){
   const port=Number(process.env.PORT||8767);
-  const server=createFoodServer({mode:process.env.LOCATION_MODE||'fixture',dataset:process.env.DATASET||'fixture',
+  const server=createFoodServer({mode:process.env.LOCATION_MODE||'live',dataset:process.env.DATASET||'verified',
+    contentOrigin:process.env.FOODMAP_CONTENT_ORIGIN||'https://foodmap.shareworld.fun',
     serviceKey:process.env.AMAP_WEB_SERVICE_KEY,jsKey:process.env.AMAP_JS_KEY,securityCode:process.env.AMAP_JS_SECURITY_CODE,
     publicBaseUrl:process.env.PUBLIC_BASE_URL});
   server.listen(port,'127.0.0.1',()=>console.log(`双城探店 http://127.0.0.1:${port}/ (MCP /mcp)`));

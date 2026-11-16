@@ -101,7 +101,7 @@ class Scanner:
                         continue
                     report['new'] += bool(self.store.discover(source['uid'], item['bvid'], source.get('part', 1), result['url'], item.get('title', '')[:4096], revision))
                 end = result['reached_end']
-                cursor.update(page=1 if end else page + 1, next_retry_at=next_daily() if end else 0,
+                cursor.update(source=source,checked_at=now_iso(),page=1 if end else page + 1, next_retry_at=next_daily() if end else 0,
                               last_success=dict(at=now_iso(), page=page, obtained=len(result['items']), reached_end=end, url=result['url']),
                               failures=0, error_code=None)
                 self.store.save_cursor(key, cursor)
@@ -110,7 +110,7 @@ class Scanner:
                     work.append(source)
             except Exception as error:
                 failures = cursor['failures'] + 1
-                cursor.update(failures=failures, error_code=type(error).__name__,
+                cursor.update(source=source,checked_at=now_iso(),failures=failures, error_code=type(error).__name__,
                               next_retry_at=now + min(21600, 60 * 2 ** min(failures, 8)))
                 self.store.save_cursor(key, cursor)
                 report['failed'] += 1

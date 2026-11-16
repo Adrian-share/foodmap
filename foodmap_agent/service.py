@@ -12,6 +12,8 @@ from .queue import STAGES
 from .watchlist import WatchlistSync, GitHub, now_iso
 from .scheduler import Scanner, NodeCollector, next_daily
 from .pi_rpc import PiRPC, cancel_rpc
+from .pipeline import Pipeline
+from .publisher import Publisher
 
 class Singleton:
     def __init__(self, state):
@@ -55,8 +57,11 @@ class OperationClient:
         return self(dict(schema_version=1, operation='receipt.get', request_id=str(uuid.uuid4()), target_request_id=request_id))
 
 class Service:
-    def __init__(self, store, root, node=None, model_config=None, upload_config=None, github_token=None):
+    def __init__(self, store, root, node=None, model_config=None, upload_config=None, github_token=None, mode='preview'):
         self.store, self.root = store, Path(root).resolve()
+        if mode not in ('preview','production','draining'):
+            raise ValueError('invalid_service_mode')
+        self.mode=mode
         self.node = Path(node or self.root / 'tools/node-v22.23.5-darwin-arm64/bin/node').resolve()
         self.instance_id = str(uuid.uuid4())
         self.pi = None
@@ -68,7 +73,7 @@ class Service:
         self.operator = OperationClient(self.root, self.node, upload_config)
         self.sync = WatchlistSync(store, self.operator)
         self.github = GitHub(github_token)
-        self.scanner = Scanner(store, NodeCollector(self.root, self.node), on_progress=lambda: self.heartbeat(query_pi=False))
+        self.scanner = Scanner(store, NodeCollector(self.root, self.node), on_progress=self.progress)
         self.next_source_at = next_daily()
         self.next_watchlist_at = 0
         self.last_model_probe = 0
@@ -78,6 +83,10 @@ class Service:
         self.pi_restart_failures = 0
         self.model_config = Path(model_config).resolve() if model_config else None
         self.load_model()
+        commit = subprocess.run(['git','rev-parse','HEAD'],cwd=self.root,capture_output=True,text=True,timeout=5)
+        self.source_commit = commit.stdout.strip() if commit.returncode == 0 else None
+        self.pipeline = Pipeline(store,self.root,self.node,self.operator,self.source_commit)
+        self.last_status_upload = 0
 
     def load_model(self):
         # Read only the explicitly supplied private project file. Never inspect DSH/Codex.
@@ -135,7 +144,7 @@ class Service:
                         model=self.model['model'] if self.model else None, model_env=self.model_env)
         try:
             self.pi.audit()
-            self.pi.on_poll = lambda: self.heartbeat(query_pi=False) if time.time() - self.last_heartbeat > 5 else None
+            self.pi.on_poll = self.progress
         except Exception:
             self.pi.close()
             self.pi = None
@@ -155,6 +164,12 @@ class Service:
             self.pi_restart_failures += 1
             self.pi_restart_at = time.time() + min(300, 15 * 2 ** min(self.pi_restart_failures, 5))
             self.last_error = 'pi_restart_backoff'
+
+    def progress(self):
+        if time.time()-self.last_heartbeat>5:
+            self.heartbeat(query_pi=False)
+            if not getattr(self,'offline',True):
+                self.upload_heartbeat()
 
     def heartbeat(self, query_pi=True):
         self.last_heartbeat = time.time()
@@ -176,14 +191,60 @@ class Service:
         except (OSError, ValueError, KeyError):
             provider_requests = 0
         self.store.set('service', dict(instance_id=self.instance_id, pid=os.getpid(), heartbeat_at=now_iso(),
-                      scheduler_owner='legacy', mode='preview', pi_restart_at=self.pi_restart_at, pi_restart_failures=self.pi_restart_failures, next_watchlist_at=self.next_watchlist_at,
+                      scheduler_owner='python' if self.mode=='production' else 'legacy', mode=self.mode, pi_restart_at=self.pi_restart_at, pi_restart_failures=self.pi_restart_failures, next_watchlist_at=self.next_watchlist_at,
                       next_source_at=self.next_source_at, last_error_code=self.last_error,
                       model_requests=provider_requests, model_jobs_started=self.model_requests + (self.pi.model_requests if self.pi else 0),
                       pi=dict(state=pi_state, pid=self.pi.proc.pid if self.pi else None, version='1.5.2' if self.pi else None,
                               session_id=session_id, provider=self.model['provider'] if self.model else None,
                               model=self.model['model'] if self.model else None), queue=counts))
 
+    def advance_pipeline(self):
+        for job in self.store.jobs():
+            if job['stage'] not in ('verifying','staged') or job['next_retry_at'] > time.time():
+                continue
+            try:
+                if job['stage'] == 'staged':
+                    if self.mode!='production':
+                        continue
+                    self.pipeline.resume(job)
+                else:
+                    saved=self.store.get('extraction:'+job['id'])
+                    if not saved:
+                        self.store.db.execute("UPDATE jobs SET stage='discovered',error_code='missing_extraction_context' WHERE id=?",(job['id'],))
+                        return True
+                    self.pipeline.advance(job,saved['result'],saved['context'],saved['model'],publish=self.mode=='production')
+            except Exception:
+                self.last_error='publication_or_verification_failed'
+                self.store.db.execute('UPDATE jobs SET error_code=?,next_retry_at=? WHERE id=?',('publication_or_verification_failed',time.time()+60,job['id']))
+            return True
+        return False
+
+    def upload_heartbeat(self):
+        if not self.operator.config or time.time()-self.last_status_upload < 60 or not self.source_commit:
+            return
+        from datetime import datetime, timezone
+        status=self.store.get('service')
+        iso=lambda ts: datetime.fromtimestamp(ts,timezone.utc).isoformat() if ts else None
+        body=dict(schema_version=1,operation='service.heartbeat',request_id=str(uuid.uuid4()),instance_id=self.instance_id,
+                  owner=status['scheduler_owner'],mode=status['mode'],source_commit=self.source_commit,heartbeat_at=status['heartbeat_at'],
+                  next_watchlist_at=iso(self.next_watchlist_at),next_source_at=iso(self.next_source_at),
+                  pi={k:status['pi'][k] for k in ('state','version','session_id')},queue=status['queue'],last_error_code=self.last_error)
+        try:
+            receipt=self.operator(body)
+            if receipt.get('status')!='committed':
+                raise RuntimeError('heartbeat_not_committed')
+            from .status import snapshot
+            if self.store.get('watchlist'):
+                self.operator(snapshot(self.store))
+            self.last_status_upload=time.time()
+        except Exception:
+            self.last_error='heartbeat_upload_failed'
+
     def process_one(self):
+        if self.mode=='draining':
+            return
+        if self.advance_pipeline():
+            return
         if not self.model:
             self.store.db.execute("UPDATE jobs SET stage='blocked_model',error_code='blocked_model' WHERE stage='discovered'")
             self.last_error = 'blocked_model'
@@ -196,6 +257,7 @@ class Service:
         except Exception:
             self.last_error = 'receipt_recovery_failed'
             return
+        self.store.db.execute("UPDATE jobs SET stage='discovered' WHERE stage IN ('pending','blocked_capture') AND next_retry_at>0 AND next_retry_at<=? AND attempt<3",(time.time(),))
         job = self.store.claim(self.instance_id)
         if not job:
             return
@@ -209,11 +271,12 @@ class Service:
             (evidence_root / 'discovery.json').write_bytes(raw)
             context = dict(task_id=job['id'], creator_uid=job['uid'], bvid=job['bvid'], part=job['part'], root=str(evidence_root),
                            evidence={'discovery': dict(file='discovery.json', sha256=hashlib.sha256(raw).hexdigest())},
-                           prompt={'instruction': 'Read registered evidence, fetch official metadata, propose extraction with cited evidence. Submit via content_submit_extraction. Missing facts stay uncertain. Never approve or publish.',
+                           prompt={'instruction': 'Read registered evidence, fetch official metadata with subtitles, capture original frames, search POIs for each exact Beijing branch. Description must be an exact quote within the visit segment from registered official subtitles or registered original-frame apple-vision-v1 OCR, citing the actual evidence and timestamp. If neither is available mark description missing; never invent subtitles, evaluations or prices. Propose extraction with registered evidence IDs. Submit via content_submit_extraction. Missing facts stay uncertain. Never approve or publish.',
                                    'task_id': job['id'], 'bvid': job['bvid'], 'part': job['part'], 'creator_uid': job['uid'], 'evidence_ids': ['discovery']})
             def bound(state):
                 self.store.save_session(job['id'], state.get('sessionFile'), state['sessionId'])
             result = self.pi.run(job, context, on_bound=bound)
+            self.store.set('extraction:'+job['id'],dict(result=result,context=context,model=self.model))
             self.store.release(job['id'], self.instance_id, 'verifying', proposal=result)
         except Exception as error:
             try:
@@ -227,6 +290,7 @@ class Service:
             self.current_job = None
 
     def serve(self, *, offline=False, duration=None):
+        self.offline=offline
         end = time.monotonic() + duration if duration is not None else None
         with Singleton(self.store.root):
             self.store.seed(self.root)
@@ -247,7 +311,7 @@ class Service:
                             self.load_model()
                             if self.model and self.pi:
                                 self.pi.close()
-                    if not offline:
+                    if not offline and self.mode!='draining':
                         if now >= self.next_watchlist_at or self.store.get('sync_requested'):
                             self.sync.poll(self.github)
                             self.store.set('sync_requested', False)
@@ -259,6 +323,8 @@ class Service:
                             self.next_source_at = min([next_daily()] + [c['next_retry_at'] for c in self.store.cursors() if c['next_retry_at'] > now])
                         self.process_one()
                     self.heartbeat()
+                    if not offline:
+                        self.upload_heartbeat()
                     # Bounded interruptible idle; no calls to prompt in this loop.
                     for _ in range(10):
                         if self.stop_requested or (end is not None and time.monotonic() >= end):

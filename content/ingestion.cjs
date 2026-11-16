@@ -180,10 +180,16 @@ function createIngestionService({state=require('./runtime.cjs'),evidence=frozenE
       if(!['GET','POST'].includes(request.method))return json({error:'仅支持GET和POST'},405);
       try{
         const registry=(await readRegistry(env.CONTENT_UPDATES)).value;
+        const publication=require('./publication.cjs').createPublicationService({bucket:env.CONTENT_UPDATES});
         const activeKnown=registryKnown(known,registry);
-        if(request.method==='GET')return json({...receipt((await readObject(env.CONTENT_UPDATES,activeKnown)).value),capabilities:['watchlist.sync','receipt.get'],registry_revision:registry?.registry_revision||0});
+        if(request.method==='GET')return json({...receipt((await readObject(env.CONTENT_UPDATES,activeKnown)).value),capabilities:['watchlist.sync','receipt.get','blob.chunk','release.stage','release.commit','release.rollback','service.heartbeat'],registry_revision:registry?.registry_revision||0,current_publication:await publication.current()});
         const {payload,raw}=await readPayload(request);
-        if(payload?.operation!==undefined)return json(await operation(env.CONTENT_UPDATES,payload,raw));
+        if(payload?.operation!==undefined){
+          if(payload.operation==='watchlist.sync'){if(await env.CONTENT_UPDATES.get('private/requests/'+payload.request_id+'.json'))fail('idempotency_conflict',409);return json(await operation(env.CONTENT_UPDATES,payload,raw));}
+          if(payload.operation!=='receipt.get'&&registry?.requests?.[payload.request_id])fail('idempotency_conflict',409);
+          if(payload.operation==='receipt.get'){require('./protocol.cjs').validate('operation',payload);const found=await publication.lookup(payload.target_request_id);if(found)return json(found);return json(await operation(env.CONTENT_UPDATES,payload,raw));}
+          return json(await publication.operation(payload,raw));
+        }
         const {snapshot,run}=validatePayload(payload,activeKnown);
         for(let attempt=0;attempt<=MAX_CONFLICT_RETRIES;attempt++){
           const previous=await readObject(env.CONTENT_UPDATES,activeKnown);
@@ -197,7 +203,7 @@ function createIngestionService({state=require('./runtime.cjs'),evidence=frozenE
         return json({error:'同时采集产生写入冲突，请重试上传'},409);
       }catch(error){return error.status?json({error:error.message},error.status):unavailable();}
     },
-    async privateState(env={}){
+    async privateState(env={},publicState=state){
       if(!env.CONTENT_UPDATES)return state;
       const registry=(await readRegistry(env.CONTENT_UPDATES)).value;
       const activeKnown=registryKnown(known,registry);
@@ -205,14 +211,14 @@ function createIngestionService({state=require('./runtime.cjs'),evidence=frozenE
       const access=mergeEvidence(evidence.access,value||{});
       // Official metadata can be newer than frozen approved records; only metadata changes.
       const metadata=new Map(access.videos.map(v=>[v.bvid,v]));
-      const records=state.records.map(record=>{
+      const records=publicState.records.map(record=>{
         const latest=metadata.get(record.video.bvid);
         if(!latest||latest.owner_uid!==String(record.creator.uid))return record;
         return {...record,video:{...record.video,...(latest.title?{title:latest.title}:{}),...(latest.published_at?{published_at:latest.published_at}:{})}};
       });
       const accounts=[...new Map([...(evidence.accounts||[]),...(registry?.accepted_sources||[])].map(c=>[c.uid,c])).values()];
       const ledger=buildLedger({...evidence,accounts,records,access:{...access,checked_at:access.updated_at}});
-      return {...state,ledger};
+      return {...publicState,ledger};
     }
   };
 }

@@ -31,7 +31,7 @@ function resolveFetch(customFetch){
 async function fetchJson(fetchImpl,url,signal){
   signal?.throwIfAborted();
   const timeout=AbortSignal.timeout(REQUEST_TIMEOUT_MS);
-  const r=await fetchImpl(url,{redirect:'error',signal:signal?AbortSignal.any([signal,timeout]):timeout});
+  const r=await fetchImpl(url,{headers:require('../content/http-identity.cjs'),redirect:'error',signal:signal?AbortSignal.any([signal,timeout]):timeout});
   let body;
   if(r.body?.getReader){
     const reader=r.body.getReader(),chunks=[];let size=0;

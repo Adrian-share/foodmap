@@ -31,4 +31,7 @@ subprocess.run([str(tools/'venv/bin/python'),'-m','pip','install','-r',str(root/
 env={**os.environ,'PATH':str(node.parent)+os.pathsep+os.environ.get('PATH','')}
 subprocess.run([str(node),str(node.parent/'npm'),'ci','--ignore-scripts','--prefix',str(root/'agent/pi'),'--registry','https://registry.npmjs.org'],env=env,check=True)
 subprocess.run([str(node),str(node.parent/'npm'),'ci','--ignore-scripts','--prefix',str(root),'--registry','https://registry.npmjs.org'],env=env,check=True)
+# Native OCR is optional. Source access/clear text are still required by verification.
+ocr=subprocess.run(['/usr/bin/xcrun','swiftc','-O',str(root/'agent/pi/frame-ocr.swift'),'-o',str(tools/'frame-ocr')],capture_output=True,check=False)
+if ocr.returncode:print('Native frame OCR unavailable; subtitle/frame evidence remains pending when text cannot be verified.')
 print('Project tools installed. Production scheduler and launchd unchanged.')

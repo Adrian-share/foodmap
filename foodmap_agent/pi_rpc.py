@@ -249,6 +249,11 @@ class PiRPC:
             proposal = validate('extraction', json.loads(self.proposal_file.read_text()))
             if any(proposal[k] != context[k] for k in ('task_id', 'creator_uid', 'bvid', 'part')):
                 raise ProtocolError('proposal_identity_mismatch')
+            registered = json.loads(self.task_file.read_text())
+            if any(registered[k] != context[k] for k in ('task_id', 'creator_uid', 'bvid', 'part', 'root')):
+                raise ProtocolError('tool_context_identity_mismatch')
+            context['evidence'] = registered['evidence']
+            context['frame_files'] = registered.get('frame_files', {})
             if any(e not in context['evidence'] for e in proposal['evidence_ids']):
                 raise ProtocolError('unknown_evidence')
             return dict(proposal=proposal, settled=tracker.settled, session_id=state['sessionId'], generation=self.generation)

@@ -39,7 +39,7 @@ class GitHub:
             return error.code, b'', dict(error.headers)
 
     def read(self, previous=None):
-        headers = {'Accept': 'application/vnd.github+json', 'User-Agent': 'foodmap-agent/1'}
+        headers = {'Accept': 'application/vnd.github+json', 'User-Agent': 'FoodmapContentAgent/1.0 (+https://github.com/Adrian-share/foodmap)'}
         url = f'https://api.github.com/repos/{REPO}/commits/{quote(REF, safe="")}'
         status, raw, _ = self.transport(url, headers, 256 * 1024)
         if status != 200:

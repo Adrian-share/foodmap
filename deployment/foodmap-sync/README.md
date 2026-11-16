@@ -88,3 +88,35 @@ node scripts/multica-foodmap-runtime.cjs --list-models
 ```
 
 停用与恢复：对上述Autopilot执行`multica autopilot update <id> --status paused`或`--status active`。查询用`autopilot get`、`trigger-list`和`runs`。删除临时触发器的语法为`autopilot trigger-delete <autopilot-id> <trigger-id>`。CLI返回正在执行的session时先等待完成再解析JSON；写操作回执缺失时先核对平台状态，避免重复提交。
+
+## FACT-33 内容版本操作
+
+同一固定接口现在有已实现但待协调者部署的新 operation；不要在旧v10上将404解释为没有内容。客户端显式发送真实项目 User-Agent 与 Accept，403/404均失败。上传器仍只允许原目标 GET/POST，正文≤2MiB；未增加 SSH shell 或任意 URL。
+
+详细运行与验收边界见 `docs/verification/FACT-33/README.md`。新操作可以用原私有配置通过 `scripts/agent-operation.cjs` 发送 UTF-8 JSON 文件；文件中只填冻结 operation 字段，不放 token：
+
+```sh
+# operation.json 是 receipt.get 或经核对的 release.rollback 请求；配置只传文件路径
+# 使用项目绝对 Node；凭据由客户端读取，不出现在 argv 或报告
+./tools/node-v22.23.5-darwin-arm64/bin/node scripts/agent-operation.cjs "$HOME/.config/foodmap/ingest.env" < operation.json
+```
+
+回退请求必须带已有完整旧 `data_version`、当前 `expected_parent_version`、当前指针原始 ETag、新 UUID 和真实 reason。先 GET/receipt.get 对账，不能自动更新 expected 值覆盖别人的新版。回退增加 generation，保留清单和图片。
+
+Python生产服务由父协调者安装。默认 preview 只形成私有 staged 计划；显式 `--mode production` 才发布。模型私有配置只进入 Pi 子进程，上传配置绝不传给 Pi。
+
+```sh
+# 仅渲染可审阅生产托管文件，尚不加载；先确认旧生产调度已暂停并排空
+./tools/venv/bin/python deployment/foodmap-agent/render-launchd.py /Users/adrian/foodmap-agent-state/python \
+  --mode production --online \
+  --model-config /Users/adrian/foodmap-agent-state/pi/model-private.json \
+  --upload-config "$HOME/.config/foodmap/ingest.env" > foodmap-agent.plist
+
+./tools/venv/bin/python -m foodmap_agent --state /Users/adrian/foodmap-agent-state/python status --json
+./tools/venv/bin/python -m foodmap_agent --state /Users/adrian/foodmap-agent-state/python run-once --json
+./tools/venv/bin/python -m foodmap_agent --state /Users/adrian/foodmap-agent-state/python sync-watchlist --json
+```
+
+协调者将渲染文件放入用户 LaunchAgents 后使用 `launchctl bootstrap gui/$(id -u) <已核对plist>` 启动。停止用 `launchctl bootout gui/$(id -u)/com.adrian.foodmap-agent`；检查自建 Pi/适配器退出、租约/在途回执核对后，才用 `"$MULTICA_CLI_PATH" autopilot update 9d7d3391-9e85-4a55-baae-8294bc33e15e --status active` 恢复旧触发。切换时同一命令的 status 为 paused，且须先排空旧运行。不要按进程名杀服务或 Multica daemon。
+
+本次开发没有执行上述安装或切换。MCP仍是既有本地 Node `/mcp`；将客户端机器更新为相同源码，用 `FOODMAP_CONTENT_ORIGIN=https://foodmap.shareworld.fun`、`DATASET=verified` 运行，模型地点模式按该机器既有高德配置。它每次调用读取公开 current/snapshot，不在云端新建 MCP。

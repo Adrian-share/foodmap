@@ -30,12 +30,12 @@ async function operation(bucket,op,raw){
  object(op,['schema_version','operation','request_id','github','watchlist','expected_registry_revision']);
  if(op.schema_version!==1||!Number.isSafeInteger(op.expected_registry_revision)||op.expected_registry_revision<0)fail('invalid_registry_revision');
  validateGithub(op.github);validateWatchlist(op.watchlist);
- if(previous?.github.commit_sha===op.github.commit_sha&&previous.github.sha256===op.github.sha256){
+ const unchanged=previous?.github.commit_sha===op.github.commit_sha&&previous.github.sha256===op.github.sha256;
+ if(unchanged){
   if(JSON.stringify(previous.watchlist)!==JSON.stringify(op.watchlist))fail('idempotency_conflict',409);
-  return receipt(op,previous.registry_revision);
  }
  if((previous?.registry_revision||0)!==op.expected_registry_revision)fail('registry_revision_conflict',409);
- const revision=(previous?.registry_revision||0)+1;
+ const revision=(previous?.registry_revision||0)+(unchanged?0:1);
  const accepted=new Map((previous?.accepted_sources||[]).map(s=>[s.uid,s]));
  for(const source of op.watchlist.sources)if(source.enabled||accepted.has(source.uid))accepted.set(source.uid,source);
  const result=receipt(op,revision);

@@ -77,7 +77,7 @@ async function uploadInventory(payload, options = {}) {
   const sshHost = options.sshHost || process.env.FOODMAP_UPLOAD_SSH_HOST;
   const transport = options.transport || (sshHost ? sshTransport(sshHost, {signal: options.signal}) : async request => {
     const response = await fetch(request.url, {method: request.method,
-      headers: {'Authorization': 'Bearer ' + request.token, 'Content-Type': 'application/json'},
+      headers: {...require('../content/http-identity.cjs'), 'Authorization': 'Bearer ' + request.token, 'Content-Type': 'application/json'},
       body: request.body, redirect: 'error', signal: options.signal ? AbortSignal.any([options.signal, AbortSignal.timeout(25000)]) : AbortSignal.timeout(25000)});
     return {status: response.status, body: await response.text()};
   });

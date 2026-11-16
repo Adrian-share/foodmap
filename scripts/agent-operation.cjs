@@ -10,7 +10,7 @@ async function sendOperation(op,config,transport){
  const response=await send({url,method:op===null?'GET':'POST',token:config.FOODMAP_INGEST_TOKEN,body});
  if(response.status!==200)throw Error('operation_http_'+response.status);
  const value=JSON.parse(response.body);
- if(op!==null&&(!value.status||!value.request_id))throw Error('invalid_operation_receipt');
+ if(op!==null&&op.operation!==undefined&&(!value.status||!value.request_id))throw Error('invalid_operation_receipt');
  return value;
 }
 if(require.main===module){

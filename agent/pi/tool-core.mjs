@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
+import {metadata,captureFrame,searchPoi} from './adapters.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 export const schema=JSON.parse(await fs.readFile(path.join(root,'docs/architecture/FACT-31/schemas.json'),'utf8'));
 const ajv=new Ajv2020({strict:false,allErrors:false});addFormats(ajv);
@@ -46,19 +47,24 @@ export async function executeTool(name,args,context,signal){
   if(context.proposal_file){const temp=context.proposal_file+'.tmp';await fs.writeFile(temp,bytes,{mode:0o600});await fs.rename(temp,context.proposal_file);}
   return {status:'proposed',sha256:sha(bytes)};
  }
- if(name==='content_fetch_metadata'){
-  const url='https://api.bilibili.com/x/web-interface/view?'+new URLSearchParams({bvid:context.bvid});
-  const response=await fetch(url,{redirect:'error',signal:signal?AbortSignal.any([signal,AbortSignal.timeout(15000)]):AbortSignal.timeout(15000)});
-  if(!response.ok)error('source_unavailable');
-  const reader=response.body.getReader();const chunks=[];let length=0;
-  try{while(true){const {value,done}=await reader.read();if(done)break;length+=value.length;if(length>512*1024){await reader.cancel();error('metadata_too_large');}chunks.push(value);}}finally{reader.releaseLock();}
-  const data=JSON.parse(Buffer.concat(chunks)).data;
-  if(String(data?.owner?.mid)!==context.creator_uid||data?.bvid!==context.bvid)error('wrong_official_owner');
-  if(!data.pages?.some(p=>p.page===context.part))error('wrong_part');
-  return {bvid:data.bvid,owner_uid:String(data.owner.mid),title:data.title,description:data.desc,duration_seconds:data.duration,source:url,subtitles_status:args.include_subtitles?'pending_adapter':'not_requested'};
- }
- // Stage 3 supplies capture/POI evidence adapters. Missing capabilities stay explicit.
- if(name==='content_capture_frame')return {status:'blocked_capture',reason:'capture_adapter_not_installed'};
- if(name==='content_search_poi')return {status:'pending',reason:'poi_adapter_not_installed'};
+ if(name==='content_fetch_metadata')return metadata(context,args,signal);
+ if(name==='content_capture_frame')return captureFrame(context,args,signal);
+ if(name==='content_search_poi')return searchPoi(context,args,signal);
  error('unknown_tool');
+}
+// Pi may execute a batch of tool calls concurrently. Serialize the entire read /
+// execute / rename transaction so a slow network result cannot erase another tool.
+const pendingTasks=new Map();
+export async function executeTask(file,proposal_file,name,args,signal){
+ const previous=pendingTasks.get(file)||Promise.resolve();
+ const next=previous.catch(()=>{}).then(async()=>{
+  signal?.throwIfAborted();
+  const context=JSON.parse(await fs.readFile(file,'utf8'));context.proposal_file=proposal_file;
+  const result=await executeTool(name,args,context,signal);
+  const {proposal_file:unused,...persisted}=context;
+  await fs.writeFile(file+'.tmp',JSON.stringify(persisted),{mode:0o600});await fs.rename(file+'.tmp',file);
+  return {result,context};
+ });
+ pendingTasks.set(file,next);
+ try{return await next;}finally{if(pendingTasks.get(file)===next)pendingTasks.delete(file);}
 }

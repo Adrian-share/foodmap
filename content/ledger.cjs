@@ -32,6 +32,7 @@ function buildLedger({snapshot,records=[],access={},historical={},accounts=[],sa
   }
   for(const v of access.videos||[]){if(v.code!==0||!v.owner_uid)continue;let x=videos.get(v.bvid);if(!x)continue;
     x.title=v.title||x.title;x.bilibili_published_at=v.published_at||x.bilibili_published_at;x.date_source=v.url;x.sources.push(v.url);
+    if(v.error){try{const p=JSON.parse(v.error);if(p.schema_version===1&&p.kind==='pipeline_status'&&['discovered','cleaning','verifying','pending','staged','published','blocked_model','blocked_capture','deferred_budget','failed'].includes(p.stage))x.pipeline_status={stage:p.stage,result:p.result,missing:Array.isArray(p.missing)?p.missing:[],data_version:p.data_version,error_code:p.error_code};}catch{}}
     if(x.creator_uid!==v.owner_uid)x.identity_warning=`当前官方 owner UID ${v.owner_uid} 与历史 UID ${x.creator_uid} 不一致，待复核`;
   }
   for(const r of records){
@@ -48,6 +49,7 @@ function buildLedger({snapshot,records=[],access={},historical={},accounts=[],sa
     const published=v.visits.filter(v=>v.published);
     v.status=published.length?'published':v.visits.length&&v.visits.every(v=>v.review_status==='excluded')?'excluded':'pending';
     v.missing=v.status==='published'?[]:[...new Set(v.visits.length?v.visits.flatMap(v=>v.missing):v.missing)];
+    if(v.status==='pending'&&v.pipeline_status){v.missing=v.pipeline_status.missing.length?v.pipeline_status.missing:[v.pipeline_status.error_code||v.pipeline_status.stage];if(v.pipeline_status.result==='excluded')v.status='excluded';}
     if(v.status==='pending'&&!v.missing.length)v.missing=['实际北京分店、POI、点位、片段和原视频截图待核'];
     if(v.status==='excluded')v.missing=['审核排除；保留原视频线索及审核记录'];
   }
@@ -60,6 +62,7 @@ function buildLedger({snapshot,records=[],access={},historical={},accounts=[],sa
     }
     const seasons=(access.seasons||[]).filter(s=>s.uid===c.uid);
     if(seasons.length)c.coverage={...c.coverage,ranges:seasons,scope:seasons.map(s=>`官方${s.title}合集 ${s.id}：${s.obtained}/${s.total} 条`).join('；')+'；公开投稿第1页受限',stop:seasons.map(s=>`合集末条 ${s.last_bvid}`).join('；')+'；投稿第1页入口',reached_source_end:seasons.every(s=>s.reached_end)};
+    if(a?.error){try{const report=JSON.parse(a.error);if(report.schema_version===1&&report.kind==='source_status'&&Array.isArray(report.cursors))c.coverage.source_cursors=report.cursors;}catch{}}
     c.coverage.account_history_complete=false;
     const vs=[...videos.values()].filter(v=>v.creator_uid===c.uid),published=vs.filter(v=>v.status==='published').sort(sortVideos);
     c.counts={discovered:vs.length,published:published.length,pending:vs.filter(v=>v.status==='pending').length,excluded:vs.filter(v=>v.status==='excluded').length,searchable_stores:new Set(published.flatMap(v=>v.visits.filter(v=>v.published).map(v=>v.store_id))).size};
