@@ -8,6 +8,8 @@ def source_url(source):
     if source['type']=='posts':
         return 'https://api.bilibili.com/x/space/wbi/arc/search?'+urlencode(dict(mid=uid,pn=1,ps=30))
     if source['type']=='season':
+        if source.get('anchor_bvid'):
+            return 'https://api.bilibili.com/x/web-interface/view?'+urlencode(dict(bvid=source['anchor_bvid']))
         return 'https://api.bilibili.com/x/polymer/web-space/seasons_archives_list?'+urlencode(dict(mid=uid,season_id=source['id'],page_num=1,page_size=30))
     return 'https://api.bilibili.com/x/web-interface/view?'+urlencode(dict(bvid=source['id']))
 
