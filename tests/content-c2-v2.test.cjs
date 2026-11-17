@@ -47,7 +47,7 @@ test('C2 v2 offline publication re-verifies proofs, retains v1 records and expos
  const service=createPublicationService({bucket,probe:async()=>true});
  const op=(operation,fields)=>({schema_version:1,operation,request_id:crypto.randomUUID(),...fields});
  const upload=async(kind,b)=>{const h=sha(b);await service.operation(op('blob.chunk',{blob_kind:kind,blob_sha256:h,mime_type:kind==='image'?'image/png':'application/json',total_bytes:b.length,chunk_index:0,chunk_count:1,chunk_sha256:h,data_base64:b.toString('base64')}));return h;};
- const v2=candidate(),v1=input();
+ const v2=candidate(),v1=input();Object.assign(v2.proposal.visits[0],{start_seconds:1,end_seconds:3});
  for(const x of [v1,v2]){
   const frame=x.sources.find(s=>s.kind==='frame');change(x,frame.id,p=>Object.assign(p,{sha256:hash,bytes:bytes.length,width:64,height:64}));
   if(x===v2)change(x,'ocr:2000',p=>p.image_sha256=hash);

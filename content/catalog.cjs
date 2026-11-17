@@ -18,7 +18,7 @@ function assess(r,options=config){
   if(!s.evidence?.some(e=>e.type==='branch'&&e.status==='verified'&&(e.url===v.url||officialDescription&&e.url==='https://api.bilibili.com/x/web-interface/view?bvid='+v.bvid)&&Number.isFinite(e.seconds))||!s.evidence?.some(e=>e.type==='amap'&&e.status==='verified'&&e.url===s.amap_url))reasons.push('缺少原视频分店及高德对应证据');
   if(['closed','moved'].includes(s.business_status))reasons.push('门店已关闭或迁移');
   if(!Number.isFinite(v.duration_seconds)||!Number.isFinite(s.start_seconds)||!Number.isFinite(s.end_seconds)||s.start_seconds<0||s.end_seconds<=s.start_seconds||s.end_seconds>v.duration_seconds)reasons.push('到访片段时间未核准');
-  if([...(s.opinions||[]),...(s.dishes||[])].some(x=>!x.text?.trim()||x.source_video!==v.url||!Number.isFinite(x.seconds)||x.seconds<s.start_seconds||x.seconds>s.end_seconds))reasons.push('观点或菜品缺少对应时间点证据');
+  if([...(s.opinions||[]),...(s.dishes||[])].some(x=>!x.text?.trim()||x.source_video!==v.url||!Number.isFinite(x.seconds)||(!(officialDescription&&x.source_kind==='official_description')&&(x.seconds<s.start_seconds||x.seconds>s.end_seconds))))reasons.push('观点或菜品缺少对应时间点证据');
   if(r.review?.status!=='approved')reasons.push('尚未审核通过');
   return reasons;
 }
