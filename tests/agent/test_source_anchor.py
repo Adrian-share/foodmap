@@ -25,7 +25,7 @@ class AnchoredSource(unittest.TestCase):
   r=scanner.run();self.assertEqual(r['new'],1);self.assertEqual(r['ok'],1)
   self.assertEqual(len(q.jobs()),1);self.assertEqual(q.jobs()[0]['bvid'],NEW)
   cursor=q.cursor(Scanner.key(target));self.assertEqual(cursor['last_success']['collection']['read_count'],2)
-  self.assertEqual(snapshot(q)['accounts'][0]['url'],'https://api.bilibili.com/x/web-interface/view?bvid='+ANCHOR)
+  self.assertEqual(snapshot(q)['snapshot']['accounts'][0]['url'],'https://api.bilibili.com/x/web-interface/view?bvid='+ANCHOR)
   self.assertEqual(q.cursor(Scanner.key(old))['page'],4)
   self.assertEqual(scanner.run()['deferred'],1);self.assertEqual(len(calls),1);self.assertEqual(q.cursor(Scanner.key(target)),cursor)
   self.assertEqual(snapshot(q)['run']['outcome'],'backoff_unchecked')
