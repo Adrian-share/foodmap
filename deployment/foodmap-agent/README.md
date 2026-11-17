@@ -38,6 +38,12 @@ SQLite 保存视频实体、独立任务、来源游标、租约、证据索引�
 
 投稿、任意合集及指定BV各有游标。满页和旧/置顶BV都不能停止下一页。合集列表缺作者字段时，先建立受当前有效来源约束的官方view核对任务；只有view作者核对后才入业务队列。删除一个合集不删除其历史游标，但立即失去调度资格；该合集派生的待核view也停止，仍被其他有效来源引用的view可继续。
 
+经复核的 `content/source-anchors.json` 绑定账号、合集和官方锚点。仅账号启用且合集仍在有效名单时，采集器才消费该锚点公开view响应内的完整 `ugc_season` 列表，核对外层BV/作者、合集ID/作者、总集数及每集作者；单条metadata不算合集成功。当前核准绑定为厨者王波/5780378/BV1NG6kYTEXG，复用旧采集器的合法官方来源，不先请求受限接口，也不自动尝试其他入口。其他合集仍用原通用列表接口。
+
+锚点合集每次最多返回100项，响应限2MiB、总项数限10000；大合集按独立页游标继续。新游标键包含核准锚点，原通用合集游标及历史退避保留，停用来源立即撤销调度资格。上游拒绝保留HTTP与业务码并记restricted；transport/格式失败记failed；退避不请求；只有成功且完整的当前范围才能记无新增。
+
+`env -i HOME="$HOME" PATH=/usr/bin:/bin ./tools/venv/bin/python scripts/stage3-source-readiness.py` 从当前preview SQLite做一致备份，仅在隔离副本复验一个实际规划中的核准合集，保留官方原始JSON、哈希、61集清单及重跑游标；不启动Pi/服务、不修改运行状态、不发布内容。该诊断不是生产自然周期，不把其SQLite整体替换运行状态。
+
 Pi实际启动使用绝对Node路径、`--no-builtin-tools`、显式扩展、五工具白名单和所有自动发现禁用参数。每次session切换/恢复重新审计active/all工具。只有 `content_read_evidence/content_fetch_metadata/content_capture_frame/content_search_poi/content_submit_extraction`。后两种来源适配器在阶段3接入，目前明确返回blocked_capture/pending，不伪造图或POI。
 
 受限工具拒绝错task/BV/UID、额外字段、任意路径与symlink；只接受登记artifact ID并复算文件哈希。内容和名单永不成为shell、RPC type或slash命令。最终 `agent_settled(aborted=false)` 之后才校验结构化提案和身份，进入 `verifying` 仍不代表内容获准发布。

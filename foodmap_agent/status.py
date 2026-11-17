@@ -22,7 +22,7 @@ def snapshot(store):
         if not checked:
             continue
         success=latest.get('last_success')
-        rows=[{k:c.get(k) for k in ('key','page','next_retry_at','failures','error_code','last_success','checked_at')} for c in cursors[:20]]
+        rows=[{k:c.get(k) for k in ('key','page','next_retry_at','failures','error_code','http_status','business_code','last_success','checked_at')} for c in cursors[:20]]
         error=json.dumps(dict(schema_version=1,kind='source_status',cursors=rows),separators=(',',':'))
         while len(error.encode())>4000 and rows:
             rows.pop();error=json.dumps(dict(schema_version=1,kind='source_status',cursors=rows),separators=(',',':'))
@@ -63,8 +63,9 @@ def snapshot(store):
     scan=store.get('last_scan')
     if not scan:
         return value
-    partial=bool(scan['failed'] or scan['deferred'] or scan['skipped_limit'])
-    outcome='backoff_unchecked' if not scan['checked'] and scan['deferred'] else 'source_failed' if scan['failed'] else 'new_candidates' if scan['new'] else 'partial_no_new' if partial else 'no_new'
+    restricted=scan.get('restricted',0)
+    partial=bool(scan['failed'] or restricted or scan['deferred'] or scan['skipped_limit'])
+    outcome='backoff_unchecked' if not scan['checked'] and scan['deferred'] else 'no_sources_checked' if not scan['checked'] else 'source_failed' if scan['failed'] else 'source_restricted' if restricted else 'new_candidates' if scan['new'] else 'partial_no_new' if partial else 'no_new'
     run=dict(run_id='python:'+scan['checked_at'],checked_at=scan['checked_at'],outcome=outcome,partial=partial,
-             sources_checked=scan['checked'],sources_ok=scan['ok'],sources_restricted=0,sources_failed=scan['failed'],new_count=scan['new'])
+             sources_checked=scan['checked'],sources_ok=scan['ok'],sources_restricted=restricted,sources_failed=scan['failed'],new_count=scan['new'])
     return dict(snapshot=value,run=run)
