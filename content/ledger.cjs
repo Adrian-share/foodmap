@@ -32,7 +32,7 @@ function buildLedger({snapshot,records=[],access={},historical={},accounts=[],sa
   }
   for(const v of access.videos||[]){if(v.code!==0||!v.owner_uid)continue;let x=videos.get(v.bvid);if(!x)continue;
     x.title=v.title||x.title;x.bilibili_published_at=v.published_at||x.bilibili_published_at;x.date_source=v.url;x.sources.push(v.url);
-    if(v.error){try{const p=JSON.parse(v.error);if(p.schema_version===1&&p.kind==='pipeline_status'&&['discovered','cleaning','verifying','pending','staged','published','blocked_model','blocked_capture','deferred_budget','failed'].includes(p.stage))x.pipeline_status={stage:p.stage,result:p.result,missing:Array.isArray(p.missing)?p.missing:[],data_version:p.data_version,error_code:p.error_code};}catch{}}
+    if(v.error){try{const p=JSON.parse(v.error);if(p.schema_version===1&&p.kind==='pipeline_status'&&['discovered','cleaning','verifying','pending','staged','published','blocked_model','blocked_capture','deferred_budget','failed'].includes(p.stage))x.pipeline_status={stage:p.stage,result:p.result,missing:Array.isArray(p.missing)?p.missing:[],data_version:p.data_version,error_code:p.error_code,rules_version:p.rules_version,provenance:Array.isArray(p.provenance)?p.provenance:[],history:Array.isArray(p.history)?p.history:[]};}catch{}}
     if(x.creator_uid!==v.owner_uid)x.identity_warning=`当前官方 owner UID ${v.owner_uid} 与历史 UID ${x.creator_uid} 不一致，待复核`;
   }
   for(const r of records){

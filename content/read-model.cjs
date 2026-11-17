@@ -4,7 +4,7 @@ const {createContentState}=require('./state.cjs');
 const {createPublicationService,VERSION,readBytes}=require('./publication.cjs');
 const {sha}=require('./protocol.cjs');
 const {buildLedger}=require('./ledger.cjs');
-const cleanRecord=r=>({...r,review:{status:'approved'}});
+const cleanRecord=r=>({...r,review:{status:'approved',...(r.review.rules_version?{rules_version:r.review.rules_version}:{})}});
 function sanitize(state){
  const record=r=>({...r,review:{status:r.review?.status}});
  const visits=rows=>rows.map(v=>({...v,record:record(v.record)}));

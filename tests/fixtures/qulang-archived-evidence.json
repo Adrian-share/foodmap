@@ -1,0 +1,269 @@
+{
+  "scope": "Archived actual Bili/AMap adapter evidence; mutations in tests are offline only",
+  "sources": [
+    {
+      "id": "metadata",
+      "kind": "metadata",
+      "sha256": "842d44789443c54857b51056226c43eb26204015bf168b2098c3b78764eec1d7",
+      "source_url": "https://api.bilibili.com/x/web-interface/view?bvid=BV1f6RKBDEdK",
+      "checked_at": "2026-11-16T17:20:28.952Z",
+      "payload": {
+        "code": 0,
+        "message": "OK",
+        "ttl": 1,
+        "data": {
+          "bvid": "BV1f6RKBDEdK",
+          "aid": 116497162704645,
+          "videos": 1,
+          "tid": 76,
+          "tid_v2": 2150,
+          "tname": "",
+          "tname_v2": "",
+          "copyright": 1,
+          "pic": "http://i2.hdslb.com/bfs/archive/cccf67a461973975cbc610f5e0d4bbd2c4a53fd4.jpg",
+          "title": "探店｜北京胡同里的10年餐厅｜现代中餐魔法",
+          "pubdate": 1777605657,
+          "ctime": 1777605657,
+          "desc": "曲廊院把春天的鲜嫩都装进了盘子里——当季的花草枝桠，野菜野味——年轻的主厨团队谦逊低调，这一季的现代中餐菜单出品大道至简，返璞归真。是我喜欢的简单味道。\n\n在这个十年间获奖无数的东四十一条胡同明清院落里，品春味，看又一年竹影婆娑，是不负春光了。",
+          "desc_v2": [
+            {
+              "raw_text": "曲廊院把春天的鲜嫩都装进了盘子里——当季的花草枝桠，野菜野味——年轻的主厨团队谦逊低调，这一季的现代中餐菜单出品大道至简，返璞归真。是我喜欢的简单味道。\n\n在这个十年间获奖无数的东四十一条胡同明清院落里，品春味，看又一年竹影婆娑，是不负春光了。",
+              "type": 1,
+              "biz_id": 0
+            }
+          ],
+          "state": 0,
+          "duration": 426,
+          "mission_id": 4064351,
+          "rights": {
+            "bp": 0,
+            "elec": 0,
+            "download": 1,
+            "movie": 0,
+            "pay": 0,
+            "hd5": 0,
+            "no_reprint": 1,
+            "autoplay": 1,
+            "ugc_pay": 0,
+            "is_cooperation": 0,
+            "ugc_pay_preview": 0,
+            "no_background": 0,
+            "clean_mode": 0,
+            "is_stein_gate": 0,
+            "is_360": 0,
+            "no_share": 0,
+            "arc_pay": 0,
+            "free_watch": 0
+          },
+          "owner": {
+            "mid": 3325087,
+            "name": "任芸丽",
+            "face": "https://i1.hdslb.com/bfs/face/0fa3aca32f6edc029435100314cda77fba190347.jpg"
+          },
+          "stat": {
+            "aid": 116497162704645,
+            "view": 3600,
+            "danmaku": 23,
+            "reply": 5,
+            "favorite": 71,
+            "coin": 8,
+            "share": 11,
+            "now_rank": 0,
+            "his_rank": 0,
+            "like": 147,
+            "dislike": 0,
+            "evaluation": "",
+            "vt": 0
+          },
+          "argue_info": {
+            "argue_msg": "",
+            "argue_type": 0,
+            "argue_link": ""
+          },
+          "dynamic": "",
+          "cid": 37971886855,
+          "dimension": {
+            "width": 1920,
+            "height": 1080,
+            "rotate": 0
+          },
+          "premiere": null,
+          "teenage_mode": 1,
+          "is_chargeable_season": false,
+          "is_story": false,
+          "is_upower_exclusive": false,
+          "is_upower_play": false,
+          "is_upower_preview": false,
+          "enable_vt": 0,
+          "vt_display": "",
+          "is_upower_exclusive_with_qa": false,
+          "is_hua_sheng": false,
+          "no_cache": false,
+          "pages": [
+            {
+              "cid": 37971886855,
+              "page": 1,
+              "from": "vupload",
+              "part": "探店｜北京胡同里的10年餐厅｜现代中餐魔法",
+              "duration": 426,
+              "vid": "",
+              "weblink": "",
+              "dimension": {
+                "width": 1920,
+                "height": 1080,
+                "rotate": 0
+              },
+              "first_frame": "http://i1.hdslb.com/bfs/storyff/_000038l30mmrczxxq2m6do1j5l1cffb_firsti.jpg",
+              "ctime": 1777605657,
+              "asr_language": "cmn"
+            }
+          ],
+          "subtitle": {
+            "allow_submit": false,
+            "list": []
+          },
+          "is_season_display": false,
+          "user_garb": {
+            "url_image_ani_cut": ""
+          },
+          "honor_reply": {},
+          "like_icon": "",
+          "need_jump_bv": false,
+          "disable_show_up_info": false,
+          "is_story_play": 1,
+          "is_view_self": false
+        }
+      }
+    },
+    {
+      "id": "frame:2000",
+      "kind": "frame",
+      "sha256": "46e80cb584929d6cc0d79ad00a79255faae155e63a57797e7ed8c4a856dc5690",
+      "source_url": "https://www.bilibili.com/video/BV1f6RKBDEdK/",
+      "checked_at": "2026-11-16T17:20:25.509Z",
+      "payload": {
+        "bvid": "BV1f6RKBDEdK",
+        "part": 1,
+        "cid": 37971886855,
+        "timestamp_ms": 2000,
+        "actual_timestamp_ms": 2000,
+        "sha256": "77b8ba0678ee3f938bb21463ebf5f80d7a65695a389a50ffa1a9bb11a651fc78",
+        "capture_method": "official-stream-pipe",
+        "mime_type": "image/png",
+        "bytes": 965346,
+        "width": 1280,
+        "height": 720,
+        "mean": 107,
+        "stddev": 50.8,
+        "downloaded_bytes": 1621521,
+        "requested_quality": 64,
+        "actual_quality": 64
+      }
+    },
+    {
+      "id": "ocr:2000",
+      "kind": "branch",
+      "sha256": "23a8e5e80a882bf3eca687bc4d94b322197d18826a8b9918398b7024b722525a",
+      "source_url": "https://www.bilibili.com/video/BV1f6RKBDEdK/",
+      "checked_at": "2026-11-16T17:20:25.928Z",
+      "payload": {
+        "bvid": "BV1f6RKBDEdK",
+        "part": 1,
+        "cid": 37971886855,
+        "timestamp_ms": 2000,
+        "image_sha256": "77b8ba0678ee3f938bb21463ebf5f80d7a65695a389a50ffa1a9bb11a651fc78",
+        "engine": "apple-vision-v1",
+        "lines": [
+          {
+            "confidence": 0.5,
+            "text": "任芸丽"
+          },
+          {
+            "confidence": 0.5,
+            "text": "MICHELIN"
+          },
+          {
+            "confidence": 1,
+            "text": "偶遇"
+          },
+          {
+            "confidence": 0.30000001192092896,
+            "text": "MICHELIN"
+          },
+          {
+            "confidence": 0.30000001192092896,
+            "text": "2023"
+          },
+          {
+            "confidence": 0.5,
+            "text": "MICHELIN"
+          },
+          {
+            "confidence": 1,
+            "text": "2024"
+          },
+          {
+            "confidence": 0.5,
+            "text": "MICHELIN"
+          },
+          {
+            "confidence": 0.30000001192092896,
+            "text": "2025."
+          },
+          {
+            "confidence": 0.5,
+            "text": "老板 聊两句"
+          },
+          {
+            "confidence": 0.30000001192092896,
+            "text": "QU"
+          },
+          {
+            "confidence": 0.5,
+            "text": "LANG"
+          },
+          {
+            "confidence": 0.5,
+            "text": "YUAN"
+          }
+        ]
+      }
+    },
+    {
+      "id": "poi",
+      "kind": "poi",
+      "payload": {
+        "status": "1",
+        "pois": [
+          {
+            "id": "B0FFIPM93S",
+            "name": "曲廊院(东四十一条店)",
+            "cityname": "北京市",
+            "adname": "东城区",
+            "address": "东四十一条25号",
+            "location": "116.424337,39.934460"
+          },
+          {
+            "id": "B0K6MSBN7U",
+            "name": "曲廊院·茶食(3·3大厦店)",
+            "cityname": "北京市",
+            "adname": "朝阳区",
+            "address": "三里屯街道三里屯路3·3大厦3层3019",
+            "location": "116.455039,39.937070"
+          },
+          {
+            "id": "B0MAKLNKCH",
+            "name": "北京曲廊餐饮服务有限公司",
+            "cityname": "北京市",
+            "adname": "朝阳区",
+            "address": "三里屯北街南路43号同里大厦",
+            "location": "116.454225,39.936425"
+          }
+        ]
+      },
+      "sha256": "c6300377e15e52b8bfa6b7302064180b7ce8eebd47b82041a5292fed1659351f",
+      "source_url": "https://restapi.amap.com/v5/place/text",
+      "checked_at": "2026-11-16T17:21:00Z"
+    }
+  ]
+}

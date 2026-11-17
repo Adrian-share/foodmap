@@ -8,6 +8,31 @@ from foodmap_agent.service import Service
 
 ROOT=Path(__file__).resolve().parents[2]
 class ServiceHealth(unittest.TestCase):
+    def test_heartbeat_error_clears_only_after_both_real_transport_steps_succeed(self):
+        from types import SimpleNamespace
+        with tempfile.TemporaryDirectory() as tmp:
+            q=Store(tmp);self.addCleanup(q.close)
+            s=Service(q,ROOT);s.last_error='heartbeat_upload_failed';s.source_commit='a'*40
+            s.heartbeat();q.set('watchlist',{'watchlist':{'sources':[]}})
+            calls=[]
+            def fail_snapshot(body):
+                calls.append(body)
+                if 'operation' not in body:raise RuntimeError('snapshot transport failed')
+                return {'status':'committed'}
+            class Operator:
+                config=True
+                def __call__(self, body):return fail_snapshot(body)
+            s.operator=Operator();s.upload_heartbeat()
+            self.assertEqual(s.last_error,'heartbeat_upload_failed')
+            self.assertEqual(s.last_status_upload,0)
+            s.operator=SimpleNamespace(config=True)
+            class Healthy:
+                config=True
+                def __call__(self,body):return {'status':'committed'}
+            s.operator=Healthy();s.upload_heartbeat()
+            self.assertIsNone(s.last_error)
+            self.assertGreater(s.last_status_upload,0)
+
     def test_restart_failures_back_off_without_queue_or_model_activity(self):
         with tempfile.TemporaryDirectory(dir=ROOT/'tests/agent') as tmp:
             q=Store(tmp);self.addCleanup(q.close)

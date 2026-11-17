@@ -3,6 +3,24 @@ from foodmap_agent.pipeline import Pipeline
 from foodmap_agent.publisher import Publisher
 
 class PipelineAcceptance(unittest.TestCase):
+    def test_C2_v2_manifest_declares_highest_verified_rule_without_rewriting_v1_records(self):
+        from tempfile import TemporaryDirectory
+        from foodmap_agent.queue import Store
+        with TemporaryDirectory() as tmp:
+            store=Store(tmp);self.addCleanup(store.close)
+            old=dict(video={'bvid':'old','part':1},visit={'id':'old','screenshots':[]},review={'verification_id':'a'*64,'rules_version':'v1'})
+            new=dict(video={'bvid':'new','part':1},visit={'id':'new','screenshots':[]},review={'verification_id':'b'*64,'rules_version':'v2'})
+            store.set('publication_manifests',{'parent':dict(records=[old],images=[])})
+            def operator(body):
+                if body is None:return {'current_publication':{'data_version':'parent','pointer_etag':'etag'}}
+                raise RuntimeError('offline stop before upload')
+            with self.assertRaisesRegex(RuntimeError,'offline stop'):
+                Publisher(store,operator).publish([new],[],[],source_commit='c'*40,registry_revision=2,baseline_version='baseline')
+            plan=next(iter(store.get('publication_plans').values()))
+            self.assertEqual(plan['manifest']['rules_version'],'v2')
+            self.assertEqual(plan['manifest']['records'][0],old)
+            self.assertEqual(plan['manifest']['records'][1],new)
+
     def test_R1_unknown_receipt_is_reconciled_before_retry(self):
         from foodmap_agent.queue import Store
         from tempfile import TemporaryDirectory
@@ -110,4 +128,8 @@ class PipelineAcceptance(unittest.TestCase):
             self.assertEqual(len(images),1)
             self.assertEqual(images[0]['sha256'],verified['records'][0]['visit']['screenshots'][0]['sha256'])
             self.assertTrue(all((evidence/i['file']).is_file() for i in context['frame_files'].values()))
+            selected=evidence/context['frame_files'][images[0]['sha256']]['file']
+            selected.write_bytes(b'corrupt original image')
+            with self.assertRaisesRegex(ValueError,'evidence_hash_mismatch'):
+                pipeline.verify({},pi_result,context,{'provider':'ark-coding-plan-cn','model':'doubao-seed-2.1-turbo'})
             store.close()

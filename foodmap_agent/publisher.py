@@ -78,7 +78,10 @@ class Publisher:
             if references-set(image_map):
                 raise ValueError('missing_image_reference')
             image_map={path:image for path,image in image_map.items() if path in references}
-            manifest = dict(schema_version=1, baseline_version=baseline_version, source_commit=source_commit, rules_version='v1',
+            versions = {r['review']['rules_version'] for r in merged.values()}
+            if versions - {'v1', 'v2'}:
+                raise ValueError('unsupported_rules_version')
+            manifest = dict(schema_version=1, baseline_version=baseline_version, source_commit=source_commit, rules_version='v2' if 'v2' in versions else 'v1',
                             parent_version=parent, watchlist_revision=registry_revision,
                             records=list(merged.values()), images=list(image_map.values()),
                             verification_ids=list(dict.fromkeys([r['review']['verification_id'] for r in merged.values()])))

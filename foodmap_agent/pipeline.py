@@ -14,6 +14,12 @@ class Pipeline:
         self.publisher = Publisher(store, operator)
         self.source_commit = source_commit
 
+    def event(self, job, stage, **fields):
+        key='pipeline_events:'+job['id']
+        events=self.store.get(key, [])
+        events.append(dict(stage=stage,checked_at=now_iso(),**fields))
+        self.store.set(key,events[-20:])
+
     def _read(self, root, item, limit=512*1024):
         base = root.resolve(strict=True)
         relative = Path(item['file'])
@@ -72,16 +78,22 @@ class Pipeline:
     def advance(self, job, result, context, model, publish=True):
         verified, images=self.verify(job,result,context,model)
         missing=verified['missing']
-        self.store.set('verification:'+job['id'],dict(status=verified['status'],missing=missing,checked_at=now_iso()))
+        documents=verified['documents']
+        proof=documents[0]['document']['verification'] if documents else {}
+        self.store.set('verification:'+job['id'],dict(status=verified['status'],missing=missing,checked_at=now_iso(),
+                       rules_version=proof.get('rules_version'),provenance=proof.get('provenance',[])))
         if verified['status'] != 'approved':
             stage='blocked_capture' if 'frame' in missing or 'frame_bytes' in missing or 'frame' in result['proposal']['missing'] else 'pending'
             self.store.db.execute('UPDATE jobs SET stage=?,error_code=?,next_retry_at=? WHERE id=?',(stage,','.join(missing)[:100],1e15 if verified['status']=='excluded' else time.time()+21600,job['id']))
+            self.event(job,stage,missing=missing)
             return None
+        self.event(job,'verified',rules_version=proof.get('rules_version'))
         # Save the exact plan/evidence before transport; retries must not regenerate timestamps.
         prepared = dict(records=verified['records'],documents=[dict(sha256=d['sha256'],bytes_base64=base64.b64encode(d['bytes']).decode()) for d in verified['documents']],
                         images=[{k:v for k,v in i.items() if k!='data'} for i in images],context=context)
         self.store.set('publish:'+job['id'],prepared)
         self.store.db.execute("UPDATE jobs SET stage='staged' WHERE id=?",(job['id'],))
+        self.event(job,'staged')
         return self.resume(job, prepared) if publish else None
 
     def resume(self, job, prepared=None):
@@ -101,4 +113,5 @@ class Pipeline:
                                        registry_revision=registry,baseline_version=baseline)
         self.store.set('publication:'+job['id'],receipt)
         self.store.db.execute("UPDATE jobs SET stage='published',error_code=NULL WHERE id=?",(job['id'],))
+        self.event(job,'published',data_version=receipt['data_version'])
         return receipt

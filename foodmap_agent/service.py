@@ -237,6 +237,8 @@ class Service:
             if self.store.get('watchlist'):
                 self.operator(snapshot(self.store))
             self.last_status_upload=time.time()
+            if self.last_error=='heartbeat_upload_failed':
+                self.last_error=None
         except Exception:
             self.last_error='heartbeat_upload_failed'
 
@@ -271,7 +273,7 @@ class Service:
             (evidence_root / 'discovery.json').write_bytes(raw)
             context = dict(task_id=job['id'], creator_uid=job['uid'], bvid=job['bvid'], part=job['part'], root=str(evidence_root),
                            evidence={'discovery': dict(file='discovery.json', sha256=hashlib.sha256(raw).hexdigest())},
-                           prompt={'instruction': 'Read registered evidence, fetch official metadata with subtitles, capture original frames, search POIs for each exact Beijing branch. Description must be an exact quote within the visit segment from registered official subtitles or registered original-frame apple-vision-v1 OCR, citing the actual evidence and timestamp. If neither is available mark description missing; never invent subtitles, evaluations or prices. Propose extraction with registered evidence IDs. poi_candidates must contain actual payload.pois[].id values; evidence_ids contain registered source artifact IDs. Description must be one exact quote, not a narrative paraphrase. Submit via content_submit_extraction. Missing facts stay uncertain. Never approve or publish.',
+                           prompt={'instruction': 'Read registered evidence, fetch official metadata with subtitles, capture original frames, search POIs for each exact Beijing branch. Description must be an exact quote from registered official subtitles or original-frame apple-vision-v1 OCR within the visit segment. C2 v2 also allows a single-venue official Bili description that explicitly binds the store to a disambiguating street, with an original frame and exactly one matching Beijing AMap branch. For that case quote the official description, use AMap for house number/GCJ-02 coordinates, and never attribute its address to speech or OCR. Ambiguous or multi-store descriptions remain missing. Cite actual evidence; never invent quotes, evaluations or prices. Propose extraction with registered evidence IDs. poi_candidates must contain actual payload.pois[].id values; evidence_ids contain registered source artifact IDs. Description must be one exact quote, not a narrative paraphrase. Submit via content_submit_extraction. Missing facts stay uncertain. Never approve or publish.',
                                    'task_id': job['id'], 'bvid': job['bvid'], 'part': job['part'], 'creator_uid': job['uid'], 'evidence_ids': ['discovery']})
             def bound(state):
                 self.store.save_session(job['id'], state.get('sessionFile'), state['sessionId'])

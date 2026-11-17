@@ -54,7 +54,9 @@ def snapshot(store):
         verification=store.get('verification:'+job['id'],{})
         publication=store.get('publication:'+job['id'],{})
         status=dict(schema_version=1,kind='pipeline_status',stage=job['stage'],result=verification.get('status'),
-                    missing=verification.get('missing',[]),data_version=publication.get('data_version'),error_code=job['error_code'])
+                    missing=verification.get('missing',[]),data_version=publication.get('data_version'),error_code=job['error_code'],
+                    rules_version=verification.get('rules_version'),provenance=verification.get('provenance',[]),
+                    history=store.get('pipeline_events:'+job['id'],[])[-6:])
         videos.append(dict(bvid=job['bvid'],owner_uid=job['uid'],owner_verified=True,url=metadata['source_url'],checked_at=now,code=0,title=data['title'],
                            error=json.dumps(status,separators=(',',':'))))
     value=dict(schema=1,updated_at=now,discoveries=discoveries,accounts=accounts,seasons=[],videos=videos)

@@ -14,7 +14,8 @@ function assess(r,options=config){
   if(!BV.test(v.bvid)||v.url!==videoSource(v.bvid)||!Number.isInteger(v.part)||v.part<1||!v.published_at)reasons.push('原视频信息不完整');
   if(s.city!=='北京市'||!s.branch_name||!s.district||!s.address||!s.store_id||!s.amap_poi_id||s.amap_url!==`https://ditu.amap.com/place/${s.amap_poi_id}`)reasons.push('北京具体分店未核准');
   if(!s.gcj02||!Number.isFinite(s.gcj02.lng)||!Number.isFinite(s.gcj02.lat)||s.gcj02.lng<115.4||s.gcj02.lng>117.6||s.gcj02.lat<39.4||s.gcj02.lat>41.1)reasons.push('GCJ-02 点位未核准');
-  if(!s.evidence?.some(e=>e.type==='branch'&&e.status==='verified'&&e.url===v.url&&Number.isFinite(e.seconds))||!s.evidence?.some(e=>e.type==='amap'&&e.status==='verified'&&e.url===s.amap_url))reasons.push('缺少原视频分店及高德对应证据');
+  const officialDescription=r.review?.rules_version==='v2'&&s.opinions?.some(o=>o.source_kind==='official_description');
+  if(!s.evidence?.some(e=>e.type==='branch'&&e.status==='verified'&&(e.url===v.url||officialDescription&&e.url==='https://api.bilibili.com/x/web-interface/view?bvid='+v.bvid)&&Number.isFinite(e.seconds))||!s.evidence?.some(e=>e.type==='amap'&&e.status==='verified'&&e.url===s.amap_url))reasons.push('缺少原视频分店及高德对应证据');
   if(['closed','moved'].includes(s.business_status))reasons.push('门店已关闭或迁移');
   if(!Number.isFinite(v.duration_seconds)||!Number.isFinite(s.start_seconds)||!Number.isFinite(s.end_seconds)||s.start_seconds<0||s.end_seconds<=s.start_seconds||s.end_seconds>v.duration_seconds)reasons.push('到访片段时间未核准');
   if([...(s.opinions||[]),...(s.dishes||[])].some(x=>!x.text?.trim()||x.source_video!==v.url||!Number.isFinite(x.seconds)||x.seconds<s.start_seconds||x.seconds>s.end_seconds))reasons.push('观点或菜品缺少对应时间点证据');
