@@ -2,7 +2,7 @@
 
 生产当前43b2eb0676dfd2a797fc7d0a9b6e3cb440370794，唯一 `com.adrian.foodmap-agent`，Python32674/Pi32682；217BV/202jobs/revision3，名单feebf495715a843dc1d3f9c5285adf67313fa077。今天10次业务尝试和model_requests74未重置。本候选的公开观测接入尚未安装；保持43b直到root复核。Sites不变。
 
-## R1：已完成只读预检，公开CAS未执行
+## R1：root已完成公开回退与恢复，不再执行本轮CAS
 
 `scripts/release-roundtrip.py preflight --journal evidence/FACT-33/r1-roundtrip-20261118` 已真实读取同一运行库的manifest历史并复算两版SHA，检查固定公开接口的JSON/目录和16/15店版本的16/15张图片。root独立对16张去重图复核200/哈希。此步骤不读取上传配置，不POST，不改运行库、pointer或blobs。
 
@@ -11,14 +11,9 @@
 - 当前16店：`v1-cb050932cc0417bdfdcd4c7d3b908f0c3e47949223414c3f2e9b7fe2fb669452`，generation2，ETag `065dfbac235edcd7b98ffc912b0b1904`。
 - 旧15店：`v1-c8579269161c0ed32733da46f9c59929656ef9ac5669ac9e16390c5a194ea602`。
 
-**root复核本计划和精确候选后才运行：**
+root于2026-11-18实际完成16→15→16，generation2→3→4，JSON/图片检查passed，重复请求没有新增generation，未写生产SQLite。证据为 `evidence/FACT-33/r1-roundtrip-20261118/root-actual-roundtrip.json`。恢复回执 `bb9fbc6f-3d01-5928-ba2a-0f918980076f`，该场景结束ETag `196822893b84466013aeb4186568aebe`。以上表格是执行前冻结值；后续root实际投递组件子case可能继续推进generation，须独立读回，不把这个ETag当永久当前。不要再次发送原两次CAS。
 
-```sh
-tools/venv/bin/python scripts/release-roundtrip.py rollback --journal evidence/FACT-33/r1-roundtrip-20261118 --execute-reviewed-plan
-tools/venv/bin/python scripts/release-roundtrip.py restore --journal evidence/FACT-33/r1-roundtrip-20261118 --execute-reviewed-plan
-```
-
-两个方向都使用现有固定SSH的 `release.rollback`。第一次以当前16店/ETag作CAS预期；恢复时冻结第一次committed回执和真实current读回的15店/新ETag，不套用旧manifest的parent去release.commit。无并发时generation将2→3→4。所有请求ID由plan_id+步骤确定，第一次和重试都经Publisher.canonical边界；同时保存精确规范化wire字节、fingerprint与只读审阅JSON。prepared断线后只在原parent/ETag未变时用同ID/同body继续；rejected/版本变化拒绝。committed重放只查回执，不再POST。
+两个方向使用现有固定SSH的 `release.rollback`。第一次以原16店/ETag作CAS预期；恢复冻结第一次committed回执和真实current读回的15店/新ETag，不套用旧manifest的parent去release.commit。请求ID由plan_id+步骤确定，第一次和重试经Publisher.canonical边界；同时保存规范化wire字节、fingerprint与只读审阅JSON。prepared断线只在原parent/ETag未变时用同ID/同body继续；rejected/版本变化拒绝。committed重放只查回执，不再POST。
 
 回执在任何公开读回/图片验证前落journal；若回执确认而公开读回失败，重跑rollback只reconcile该请求，再restore。验证失败不丢恢复CAS需要的父版本和ETag。按原指令保留完整旧/新JSON、图片与目录验证；任何缺口不能记作R1完成。不删除blobs、不修改生产publication history、不以旧SQLite覆盖217BV。执行保护：无租约/处理中/暂存/未确认写回执，且当天自然业务预算已耗尽，避免竞争发布；其他窗口先由root审阅排空方案。
 
@@ -26,7 +21,7 @@ tools/venv/bin/python scripts/release-roundtrip.py restore --journal evidence/FA
 
 候选通过生产CLI显式注入PublicationAudit；直接构造Service/Publisher的fixture默认没有正式站读者，测试注入固定响应。发布器在release.commit前保存旧公开snapshot/visit集合、目标和本地时间；committed后立即按固定公开域连续查询current、未固定版本的content与nearby。记录每次请求区间、错误状态、首次新版本可搜响应、服务回执和pointer时间，以二者较早时间保守计算60秒门槛。
 
-保存公开响应、图像200/SHA、同域详情和对应BV/P。403/404保留为错误，不能当空目录。图片/详情错误仍保持pending。已有版本重放、空初始化或rollback_restore不满足“新visit”条件；R1恢复16店即使可见也不算新内容R4。探测失败不能撤回或阻断已committed发布/回执恢复，异常单独保存。指标不会直接改验收台账；真正浏览器播放器时间推进仍须root同版复核。旧63.482秒晚读的R4保持pending。
+保存公开响应、图像200/SHA、同域详情和对应BV/P。403/404保留为错误，不能当空目录。图片/详情错误仍保持pending。已有版本重放、空初始化或rollback_restore不满足“新visit”条件；旧回执时间早于probe准备时间、transition_id不属于本次回执也不能算新内容R4。探测失败不能撤回或阻断已committed发布/回执恢复，异常单独保存。当前实现只覆盖正常回执返回后连续读回，未跨越丢回执/进程硬退出的观测缺口，不声称覆盖该区间。指标不会直接改验收台账；真实新内容及浏览器播放器时间推进仍须root同版复核。旧63.482秒晚读的R4保持pending。
 
 ## P3：已有任务、原预算内、一次条件故障
 
