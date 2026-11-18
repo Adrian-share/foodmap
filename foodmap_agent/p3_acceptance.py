@@ -94,14 +94,15 @@ class P3Acceptance:
         self.legacy_stopped()
         self.owned(python,'python');self.owned(pi,'pi',python)
         fresh=self.snapshot();current=next((x for x in fresh['jobs'] if x['id']==job['id']),None)
-        if fresh['prepared'] or not fault_ready(current,fresh['service'],fresh['used'],bool(self.registered(current,fresh)) if current else False,time.time(),second):return False
+        fresh_registration=self.registered(current,fresh) if current else None
+        if fresh['prepared'] or not fault_ready(current,fresh['service'],fresh['used'],bool(fresh_registration),time.time(),second):return False
         if fresh['service']['pid']!=python or fresh['service']['pi']['pid']!=pi:raise RuntimeError('process_changed_before_signal')
         if second:
             if current['session_id']!=self.value['session_id']:raise RuntimeError('retry_session_changed')
-            self.save('before_python_sigkill',phase='waiting_restart',second_python_pid=python,second_pi_pid=pi,python_killed_at=time.time(),second_attempt=current,second_snapshot=fresh)
+            self.save('before_python_sigkill',phase='waiting_restart',second_python_pid=python,second_pi_pid=pi,python_killed_at=time.time(),second_attempt=current,second_snapshot=fresh,second_registration=fresh_registration)
             os.kill(python,signal.SIGKILL)
         else:
-            self.save('before_first_pi_sigterm',phase='waiting_retry',task_id=job['id'],bvid=job['bvid'],uid=job['uid'],part=job['part'],session_id=job['session_id'],session_path=job['session_path'],first_python_pid=python,first_pi_pid=pi,baseline=fresh,first_registration=registration,selected_day=fresh['day'])
+            self.save('before_first_pi_sigterm',phase='waiting_retry',task_id=job['id'],bvid=job['bvid'],uid=job['uid'],part=job['part'],session_id=job['session_id'],session_path=job['session_path'],first_python_pid=python,first_pi_pid=pi,baseline=fresh,first_registration=fresh_registration,selected_day=fresh['day'])
             os.killpg(pi,signal.SIGTERM)
         return True
     @staticmethod
@@ -140,16 +141,26 @@ class P3Acceptance:
             self.save('cursor_values_after_final_task',final_snapshot=s,cursor_final_comparison=self.cursor_comparison(self.value['baseline'],s))
             if not result or result.get('settled',{}).get('aborted') is not False:raise RuntimeError('final_task_has_no_successful_settled')
             baseline=self.value['baseline'];registration=self.registered_final(job)
+            prefix_checks=self.registration_checks(registration)
             checks=dict(attempt_three=job['attempt']==3,one_business_job=sum(x['bvid']==job['bvid'] and x['part']==job['part'] and x['rules_version']==job['rules_version'] for x in s['jobs'])==1,
                         same_session=job['session_id']==self.value['session_id'],same_session_path=job['session_path']==self.value['session_path'],budget_within_ten=s['used']<=10,
                         one_terminal_business_event=sum(e['stage'] in ('published','pending','blocked_capture') for e in s['events'])==1,
                         model_counter_not_reset=s['model_audit_count']['provider_requests']>=baseline['model_audit_count']['provider_requests'],
                         previous_attempts_preserved=all(x in s['attempts'] for x in baseline['attempts']),receipts_preserved=all(s['receipts'].get(k)==v for k,v in baseline['receipts'].items()),
                         manifests_preserved=all(s['histories'].get(k)==v for k,v in baseline['histories'].items()),cursor_keys_preserved=set(baseline['cursors'])<=set(s['cursors']),
-                        original_frames_preserved=all(registration['frame_files'].get(k)==v for k,v in self.value['first_registration']['registered']['frame_files'].items()),
-                        metadata_preserved=registration['evidence'].get('metadata')==self.value['first_registration']['registered']['evidence']['metadata'])
+                        original_frames_preserved=all(prefix_checks[k] for k in ('first_original_frames_preserved','second_original_frames_preserved')),
+                        metadata_preserved=all(prefix_checks[k] for k in ('first_metadata_preserved','second_metadata_preserved')),**prefix_checks)
+            self.save('both_registration_prefixes_checked',final_registration=registration,checks=checks)
             if not all(checks.values()):raise RuntimeError('recovery_invariant_failed:'+','.join(k for k,v in checks.items() if not v))
             self.save('one_real_task_settled_after_both_faults',phase='completed_pending_root_review',checks=checks,final_job=job,final_extraction=result,final_snapshot=s)
+    def registration_checks(self,registration):
+        final=registration or {};checks={}
+        for prefix in ('first','second'):
+            original=self.value.get(prefix+'_registration',{}).get('registered',{})
+            frames=original.get('frame_files',{});metadata=original.get('evidence',{}).get('metadata')
+            checks[prefix+'_original_frames_preserved']=bool(frames) and all(final.get('frame_files',{}).get(k)==v for k,v in frames.items())
+            checks[prefix+'_metadata_preserved']=metadata is not None and final.get('evidence',{}).get('metadata')==metadata
+        return checks
     def registered_final(self,job):
         return recover_registered(dict(task_id=job['id'],creator_uid=job['uid'],bvid=job['bvid'],part=job['part'],root=str(self.state/'evidence'/job['id'])))
     def run(self):

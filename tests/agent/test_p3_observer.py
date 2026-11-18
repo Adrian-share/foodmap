@@ -84,3 +84,30 @@ class P3CursorEvidence(unittest.TestCase):
   saved=json.loads(self.observer.file.read_text())
   self.assertEqual(saved['final_snapshot']['cursor_values'],final['cursor_values'])
   self.assertEqual(saved['cursor_final_comparison']['status'],'pending_source_progress_review')
+ def test_each_fault_saves_actual_fresh_registration_before_mocked_signal(self):
+  for second in (False,True):
+   with self.subTest(second=second):
+    self.observer.value.update(session_id='session')
+    job=dict(id='task',bvid='BV1NG6kYTEXG',uid='123',part=1,stage='cleaning',attempt=2 if second else 1,
+             lease_owner='owner',lease_until=10**12,session_id='session',session_path='session.jsonl')
+    service=dict(instance_id='owner',scheduler_owner='python',mode='production',pid=12345,pi=dict(pid=12346))
+    snap={**self.observer.snapshot(),'jobs':[job],'service':service}
+    stale=dict(registered=dict(evidence={'metadata':'metadata'},frame_files={'old':'old'}))
+    fresh=dict(identity=dict(task_id='task'),registered=dict(evidence={'metadata':'metadata'},frame_files={'old':'old','new':'new'}))
+    def sent(*_):
+     saved=json.loads(self.observer.file.read_text())
+     self.assertEqual(saved['second_registration' if second else 'first_registration'],fresh)
+    with patch.object(self.observer,'legacy_stopped'),patch.object(self.observer,'owned'),patch.object(self.observer,'registered',return_value=fresh),patch.object(self.observer,'snapshot',return_value=snap),patch('foodmap_agent.p3_acceptance.os.killpg',side_effect=sent),patch('foodmap_agent.p3_acceptance.os.kill',side_effect=sent):
+     self.assertTrue(self.observer.interrupt(snap,job,stale,second))
+ def test_final_recovery_checks_both_prefixes_and_rejects_new_second_frame_loss(self):
+  first=dict(evidence={'metadata':{'sha256':'metadata'}},frame_files={'first':'sha-first'})
+  second=dict(evidence=first['evidence'],frame_files={**first['frame_files'],'second':'sha-second'})
+  self.observer.value.update(first_registration=dict(registered=first),second_registration=dict(registered=second))
+  good=self.observer.registration_checks(second)
+  self.assertTrue(all(good.values()))
+  lost=self.observer.registration_checks(first)
+  self.assertTrue(lost['first_original_frames_preserved']);self.assertFalse(lost['second_original_frames_preserved'])
+  corrupt=self.observer.registration_checks({**second,'evidence':{'metadata':{'sha256':'changed'}}})
+  self.assertFalse(corrupt['first_metadata_preserved']);self.assertFalse(corrupt['second_metadata_preserved'])
+  del self.observer.value['second_registration']
+  self.assertFalse(all(self.observer.registration_checks(second).values()))
