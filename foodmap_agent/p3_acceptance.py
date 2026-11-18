@@ -26,17 +26,31 @@ class P3Acceptance:
         write_json(self.file,self.value)
     def snapshot(self):
         c=sqlite3.connect('file:'+str(self.state/'queue.sqlite3')+'?mode=ro',uri=True);c.row_factory=sqlite3.Row
+        c.execute('BEGIN')
         get=lambda k,default=None:json.loads(r[0]) if (r:=c.execute('select value from service_state where key=?',(k,)).fetchone()) else default
         day=datetime.now(ZoneInfo('Asia/Shanghai')).date().isoformat()
         jobs=[dict(r) for r in c.execute('select id,bvid,uid,part,rules_version,stage,attempt,lease_owner,lease_until,session_id,session_path from jobs order by rowid')]
         attempts=[dict(r) for r in c.execute('select * from attempts order by rowid')]
         receipts={r['request_id']:hashlib.sha256((r['body']+(r['receipt'] or '')).encode()).hexdigest() for r in c.execute("select * from receipts where status in ('committed','complete')")}
         histories={k:hashlib.sha256(json.dumps(v,sort_keys=True).encode()).hexdigest() for k,v in get('publication_manifests',{}).items()}
-        s=dict(service=get('service'),jobs=jobs,day=day,used=sum(x['day']==day for x in attempts),attempts=attempts,receipts=receipts,histories=histories,
-               cursors=[r[0] for r in c.execute('select key from source_cursors')],prepared=c.execute("select count(*) from receipts where status='prepared'").fetchone()[0],model_audit_count=json.loads((self.state/'pi/model-audit.jsonl.count.json').read_text()))
+        cursor_values={r['key']:json.loads(r['value']) for r in c.execute('select key,value from source_cursors order by key')}
+        s=dict(checked_at=utc(),service=get('service'),jobs=jobs,day=day,used=sum(x['day']==day for x in attempts),attempts=attempts,receipts=receipts,histories=histories,
+               cursors=list(cursor_values),cursor_values=cursor_values,last_scan=get('last_scan'),prepared=c.execute("select count(*) from receipts where status='prepared'").fetchone()[0],model_audit_count=json.loads((self.state/'pi/model-audit.jsonl.count.json').read_text()))
         selected=self.value.get('task_id')
         if selected:s.update(extraction=get('extraction:'+selected),events=get('pipeline_events:'+selected,[]))
         c.close();return s
+    @staticmethod
+    def cursor_comparison(before,after):
+        # Changed values need source-scan evidence and root review, not a guessed
+        # pass/fail: both legitimate progress and accidental resets change them.
+        result=dict(before_checked_at=before.get('checked_at'),after_checked_at=after.get('checked_at'))
+        if 'cursor_values' not in before or 'cursor_values' not in after:
+            return dict(result,status='missing_cursor_snapshot')
+        a,b=before['cursor_values'],after['cursor_values'];shared=sorted(a.keys()&b.keys())
+        changed={k:dict(before=a[k],after=b[k]) for k in shared if json.dumps(a[k],sort_keys=True)!=json.dumps(b[k],sort_keys=True)}
+        missing=sorted(a.keys()-b.keys());added=sorted(b.keys()-a.keys())
+        return dict(result,status='missing_cursor_values' if missing else 'pending_source_progress_review' if changed or added else 'unchanged',
+                    unchanged=[k for k in shared if k not in changed],changed=changed,missing=missing,added=added)
     def registered(self,job,snapshot):
         try:
             identity=dict(task_id=job['id'],creator_uid=job['uid'],bvid=job['bvid'],part=job['part'],root=str(self.state/'evidence'/job['id']))
@@ -84,10 +98,10 @@ class P3Acceptance:
         if fresh['service']['pid']!=python or fresh['service']['pi']['pid']!=pi:raise RuntimeError('process_changed_before_signal')
         if second:
             if current['session_id']!=self.value['session_id']:raise RuntimeError('retry_session_changed')
-            self.save('before_python_sigkill',phase='waiting_restart',second_python_pid=python,second_pi_pid=pi,python_killed_at=time.time(),second_attempt=current)
+            self.save('before_python_sigkill',phase='waiting_restart',second_python_pid=python,second_pi_pid=pi,python_killed_at=time.time(),second_attempt=current,second_snapshot=fresh)
             os.kill(python,signal.SIGKILL)
         else:
-            self.save('before_first_pi_sigterm',phase='waiting_retry',task_id=job['id'],bvid=job['bvid'],uid=job['uid'],part=job['part'],session_id=job['session_id'],session_path=job['session_path'],first_python_pid=python,first_pi_pid=pi,baseline=snapshot,first_registration=registration,selected_day=snapshot['day'])
+            self.save('before_first_pi_sigterm',phase='waiting_retry',task_id=job['id'],bvid=job['bvid'],uid=job['uid'],part=job['part'],session_id=job['session_id'],session_path=job['session_path'],first_python_pid=python,first_pi_pid=pi,baseline=fresh,first_registration=registration,selected_day=fresh['day'])
             os.killpg(pi,signal.SIGTERM)
         return True
     @staticmethod
@@ -118,10 +132,12 @@ class P3Acceptance:
                 return
             if s['service']['pid']==self.value['second_python_pid']:return
             self.owned(s['service']['pid'],'python')
-            self.save('launchd_restarted_and_old_pi_eof_closed',phase='waiting_final',stdin_eof_closed=True,new_python_pid=s['service']['pid'],new_pi_pid=s['service']['pi']['pid'])
+            self.save('launchd_restarted_and_old_pi_eof_closed',phase='waiting_final',stdin_eof_closed=True,new_python_pid=s['service']['pid'],new_pi_pid=s['service']['pi']['pid'],
+                      recovery_snapshot=s,cursor_recovery_comparison=self.cursor_comparison(self.value['baseline'],s))
         elif phase=='waiting_final':
             job=next(x for x in s['jobs'] if x['id']==self.value['task_id']);result=s.get('extraction',{}).get('result',{}) if s.get('extraction') else {}
             if job['stage'] in ('cleaning','discovered','deferred_budget','verifying'):return
+            self.save('cursor_values_after_final_task',final_snapshot=s,cursor_final_comparison=self.cursor_comparison(self.value['baseline'],s))
             if not result or result.get('settled',{}).get('aborted') is not False:raise RuntimeError('final_task_has_no_successful_settled')
             baseline=self.value['baseline'];registration=self.registered_final(job)
             checks=dict(attempt_three=job['attempt']==3,one_business_job=sum(x['bvid']==job['bvid'] and x['part']==job['part'] and x['rules_version']==job['rules_version'] for x in s['jobs'])==1,
