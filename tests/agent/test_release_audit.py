@@ -115,14 +115,15 @@ class ReleaseAudit(unittest.TestCase):
     if path=='/api/content/current':
      n=calls.count(path)
      if n==1:return dict(data_version=OLD)
-     if n==2:raise PublicHTTPError(403)
-     return dict(data_version=NEW,committed_at=stamp)
+     if n==2 and age==0:raise PublicHTTPError(403)
+     return dict(data_version=NEW,committed_at=stamp,transition_id='11111111-1111-4111-8111-111111111111')
     if path.startswith('/api/content/snapshot'):return dict(records=[dict(visit_id='old')])
     if path=='/api/content':return dict(data_version=NEW,records=[dict(visit_id='old'),dict(visit_id=target_id)])
     return dict(data_version=NEW,status='ok',results=[dict(id='amap:POI1')])
    a=PublicationAudit(Path(tmp),read=read,resource=lambda path:(image if '/images/' in path else b'<html>',{'Content-Type':'image/png' if '/images/' in path else 'text/html'}))
-   value=a.begin(NEW,[target],OLD);result=a.complete(value,dict(checked_at=stamp),timeout=.5,interval=0)
-   self.assertEqual(result['probes'][0]['http_status'],403);self.assertEqual(result['status'],'observed')
+   value=a.begin(NEW,[target],OLD);stamp=(datetime.now(timezone.utc)-timedelta(seconds=age)).isoformat();result=a.complete(value,dict(checked_at=stamp,request_id='11111111-1111-4111-8111-111111111111'),timeout=.5,interval=0)
+   if age==0:self.assertEqual(result['probes'][0]['http_status'],403)
+   self.assertEqual(result['status'],'observed')
    self.assertEqual(result['full_R4_status'],'pending_root_browser_review');self.assertFalse(result['details'][0]['browser_playback_advance_proven'])
    self.assertTrue(any(p.startswith('/api/nearby?') and 'data_version=' not in p for p in calls))
    return result
@@ -130,3 +131,5 @@ class ReleaseAudit(unittest.TestCase):
   self.assertTrue(self.exercise_probe(0)['within_sixty_seconds'])
  def test_real_probe_path_rejects_late_receipt_even_when_search_now_succeeds(self):
   self.assertFalse(self.exercise_probe(63.482174)['within_sixty_seconds'])
+ def test_receipt_recovery_before_probe_is_not_a_new_content_timing_pass(self):
+  self.assertFalse(self.exercise_probe(5)['within_sixty_seconds'])

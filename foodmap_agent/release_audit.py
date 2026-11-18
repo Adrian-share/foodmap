@@ -126,12 +126,14 @@ class PublicationAudit:
         folder=Path(value['folder']);value.update(receipt=receipt,commit_response_received_at=utc(),status='observing');deadline=time.monotonic()+timeout
         expected={x['visit_id'] for x in value['targets']};seen=None;valid_images=False;details=[]
         # Recovery of an old receipt is recorded, never relabeled as a fresh publish.
-        eligible=value['before_current']['data_version']==value['parent_version'] and self.qualifies(value['intent'],set(value['before_visit_ids']),expected|set(value['before_visit_ids']))
+        value['prepared_before_commit']=epoch(receipt['checked_at'])>=epoch(value['begin_at'])
+        eligible=value['prepared_before_commit'] and value['before_current']['data_version']==value['parent_version'] and self.qualifies(value['intent'],set(value['before_visit_ids']),expected|set(value['before_visit_ids']))
         while time.monotonic()<deadline:
             probe=dict(request_started_at=utc())
             try:
                 pointer=self.read('/api/content/current');probe['current']=pointer
                 if pointer.get('data_version')==value['data_version']:
+                    if pointer.get('transition_id')!=receipt['request_id']:raise RuntimeError('publication_transition_mismatch')
                     content=self.read('/api/content');nearby=self.read('/api/nearby?'+urlencode(dict(location='北京王府井地铁站',city='北京',limit=50)))
                     available=visit_ids(content);pois={x['id'].removeprefix('amap:') for x in nearby.get('results',[])}
                     search_ok=nearby.get('status')=='ok' and nearby.get('data_version')==value['data_version'] and {x['poi'] for x in value['targets']}<=pois
