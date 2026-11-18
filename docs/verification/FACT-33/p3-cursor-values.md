@@ -21,4 +21,4 @@
 
 后续候选在 interrupt 的 fresh 检查时取得实际 `fresh_registration`，保存为第一／第二次 `first_registration`、`second_registration`，均在对应 mock/实际 signal 前写入 journal。首份不再使用调用者较早的登记表。最终分别核对两份 metadata descriptor 与各自全部 frame_files；第二次故障前新增原帧必须保留。缺任一登记表不能通过；最终实际登记表与四个分项检查也先持久化，失败仍可审查。原保护和 expected-release 校验实际生产 badb 的语义不变。
 
-本轮 RED 为首份仍旧、第二份缺失以及双份最终核对未实现；随后专项 10 项／完整 Python 63 项通过。均为隔离测试，不是生产故障。观察器候选可独立审阅，无需为记录字段重启采集服务；固定候选目录与夜间实际命令仍待 root 复核，不自动改 wakeup 或安装。
+本轮 RED 为首份仍旧、第二份缺失以及双份最终核对未实现；补充最终 tick 的第二份原帧丢失必须失败场景后，专项 11 项／完整 Python 64 项通过。均为隔离测试，不是生产故障。观察器候选可独立审阅，无需为记录字段重启采集服务；固定候选目录与夜间实际命令仍待 root 复核，不自动改 wakeup 或安装。

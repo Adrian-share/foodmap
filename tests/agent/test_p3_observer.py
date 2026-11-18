@@ -111,3 +111,15 @@ class P3CursorEvidence(unittest.TestCase):
   self.assertFalse(corrupt['first_metadata_preserved']);self.assertFalse(corrupt['second_metadata_preserved'])
   del self.observer.value['second_registration']
   self.assertFalse(all(self.observer.registration_checks(second).values()))
+ def test_final_tick_cannot_complete_when_only_second_prefix_frame_is_lost(self):
+  first=dict(evidence={'metadata':{'sha256':'metadata'}},frame_files={'first':'sha-first'})
+  second=dict(evidence=first['evidence'],frame_files={**first['frame_files'],'second':'sha-second'})
+  baseline=self.observer.snapshot()
+  job=dict(id='task',bvid='BV1NG6kYTEXG',part=1,rules_version='v1',stage='pending',attempt=3,session_id='session',session_path='session.jsonl')
+  final={**baseline,'jobs':[job],'extraction':{'result':{'settled':{'aborted':False}}},'events':[{'stage':'pending'}]}
+  self.observer.value.update(phase='waiting_final',task_id='task',baseline=baseline,session_id='session',session_path='session.jsonl',first_registration={'registered':first},second_registration={'registered':second})
+  with patch.object(self.observer,'snapshot',return_value=final),patch.object(self.observer,'registered_final',return_value=first),self.assertRaisesRegex(RuntimeError,'second_original_frames_preserved'):
+   self.observer.tick()
+  saved=json.loads(self.observer.file.read_text())
+  self.assertTrue(saved['checks']['first_original_frames_preserved']);self.assertFalse(saved['checks']['second_original_frames_preserved'])
+  self.assertEqual(saved['final_registration'],first);self.assertEqual(saved['phase'],'waiting_final')
