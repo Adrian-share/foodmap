@@ -23,6 +23,9 @@ const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const error=code=>{throw Error(code);};
 async function artifact(context,id){
  const item=context.evidence[id];if(!item)error('unknown_evidence');
+ return artifactItem(context,item);
+}
+async function artifactItem(context,item,limit=512*1024){
  if((await fs.lstat(context.root)).isSymbolicLink())error('symlink_evidence_root');
  const base=await fs.realpath(context.root);const file=path.resolve(base,item.file);
  if(!file.startsWith(base+path.sep))error('outside_evidence_root');
@@ -31,12 +34,13 @@ async function artifact(context,id){
  for(const part of path.relative(base,file).split(path.sep)){current=path.join(current,part);if((await fs.lstat(current)).isSymbolicLink())error('symlink_evidence');}
  if(await fs.realpath(file)!==file)error('aliased_evidence');
  const handle=await fs.open(file,constants.O_RDONLY|constants.O_NOFOLLOW);
- try{const stat=await handle.stat();if(!stat.isFile()||stat.size>512*1024)error('evidence_too_large');const bytes=await handle.readFile();if(bytes.length>512*1024||sha(bytes)!==item.sha256)error('evidence_hash_mismatch');return bytes;}finally{await handle.close();}
+ try{const stat=await handle.stat();if(!stat.isFile()||stat.size>limit)error('evidence_too_large');const bytes=await handle.readFile();if(bytes.length>limit||sha(bytes)!==item.sha256)error('evidence_hash_mismatch');return bytes;}finally{await handle.close();}
 }
 export async function executeTool(name,args,context,signal,adapters={}){
  if(!check({name,arguments:args}))error('invalid_tool_arguments');
  if(args.task_id!==context.task_id)error('wrong_task');
  if(args.bvid&&(args.bvid!==context.bvid||args.part!==context.part))error('wrong_video');
+ if(context.proposal_submitted)return {status:'proposal_already_submitted'};
  if(name==='content_read_evidence')return {text:(await artifact(context,args.evidence_id)).toString('utf8'),sha256:context.evidence[args.evidence_id].sha256};
  if(name==='content_submit_extraction'){
   const proposal=args.extraction;
@@ -45,10 +49,16 @@ export async function executeTool(name,args,context,signal,adapters={}){
   const bytes=JSON.stringify(proposal);
   if(Buffer.byteLength(bytes)>512*1024)error('proposal_too_large');
   if(context.proposal_file){const temp=context.proposal_file+'.tmp';await fs.writeFile(temp,bytes,{mode:0o600});await fs.rename(temp,context.proposal_file);}
+  context.proposal_submitted=true;
   return {status:'proposed',sha256:sha(bytes)};
  }
  if(name==='content_fetch_metadata')return metadata(context,args,signal);
- if(name==='content_capture_frame')return captureFrame(context,args,signal);
+ if(name==='content_capture_frame'){
+  const cached=!!context.evidence['frame:'+args.timestamp_ms];
+  if(!cached&&(context.frame_capture_count||0)>=3)return {status:'pending_budget',reason:'frame_sampling_budget_exhausted',evidence_ids:Object.keys(context.evidence)};
+  if(!cached&&adapters.captureFrame)context.frame_capture_count=(context.frame_capture_count||0)+1;
+  return (adapters.captureFrame||captureFrame)(context,args,signal);
+ }
  if(name==='content_search_poi')return searchPoi(context,args,signal,adapters);
  error('unknown_tool');
 }

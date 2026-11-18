@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import {previewImageBlock} from './model-preview.mjs';
 import {executeTask,tools} from './tool-core.mjs';
+import {modelToolResult} from './model-view.mjs';
 
 export default function(pi:any){
  let providerRequests=0;
@@ -31,7 +32,7 @@ export default function(pi:any){
    const file=process.env.FOODMAP_TASK_FILE!;
    if(!file||!fs.existsSync(file))throw Error('no_bound_task');
    const {result,context}=await executeTask(file,process.env.FOODMAP_PROPOSAL_FILE,tool.name,args,signal);
-   const content:any[]=[{type:'text',text:JSON.stringify(result)}];
+   const content:any[]=[{type:'text',text:JSON.stringify(modelToolResult(tool.name,args,result,context))}];
    if(tool.name==='content_capture_frame'&&result.status==='captured'){
     const block=await previewImageBlock(result,context);if(block)content.push(block);
    }

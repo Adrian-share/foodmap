@@ -76,6 +76,11 @@ class Service:
         self.scanner = Scanner(store, NodeCollector(self.root, self.node), on_progress=self.progress)
         self.next_source_at = next_daily()
         self.next_watchlist_at = 0
+        previous=store.get('service',{})
+        if mode=='production' and previous.get('mode')=='production':
+            for key in ('next_source_at','next_watchlist_at'):
+                value=previous.get(key)
+                if isinstance(value,(int,float)) and value>0:setattr(self,key,value)
         self.last_model_probe = 0
         self.current_job = None
         self.last_heartbeat = 0
@@ -264,6 +269,8 @@ class Service:
         if not job:
             return
         self.current_job = job['id']
+        context=None
+        context_valid=False
         try:
             self.start_pi()
             evidence_root = self.store.root / 'evidence' / job['id']
@@ -275,6 +282,18 @@ class Service:
                            evidence={'discovery': dict(file='discovery.json', sha256=hashlib.sha256(raw).hexdigest())},
                            prompt={'instruction': 'Read registered evidence, fetch official metadata with subtitles, capture original frames, search POIs for each exact Beijing branch. Description must be an exact quote from registered official subtitles or original-frame apple-vision-v1 OCR within the visit segment. C2 v2 also allows a single-venue official Bili description that explicitly binds the store to a disambiguating street, with an original frame and exactly one matching Beijing AMap branch. For that case quote the official description, use AMap for house number/GCJ-02 coordinates, and never attribute its address to speech or OCR. Ambiguous or multi-store descriptions remain missing. Cite actual evidence; never invent quotes, evaluations or prices. Propose extraction with registered evidence IDs. poi_candidates must contain actual payload.pois[].id values; evidence_ids contain registered source artifact IDs. Description must be one exact quote, not a narrative paraphrase. Submit via content_submit_extraction. Missing facts stay uncertain. Never approve or publish.',
                                    'task_id': job['id'], 'bvid': job['bvid'], 'part': job['part'], 'creator_uid': job['uid'], 'evidence_ids': ['discovery']})
+            saved=self.store.get('task_context:'+job['id'])
+            if saved:
+                if any(saved.get(k)!=context[k] for k in ('task_id','creator_uid','bvid','part','root')):
+                    raise RuntimeError('cached_task_identity_mismatch')
+                discovery=context['evidence']['discovery']
+                for key in ('evidence','frame_files','model_preview_bytes'):
+                    if key in saved:context[key]=saved[key]
+                context['evidence']['discovery']=discovery
+            context.update(frame_capture_count=0,proposal_submitted=False,subtitles_checked=False)
+            context['prompt']['evidence_ids']=list(context['evidence'])
+            context['prompt']['instruction']+=' Reuse registered artifacts already present. Capture at most THREE new frames in this attempt; avoid blind sequential scans and black/outro frames. After frame or preview budget exhaustion, submit missing facts. Submit exactly one proposal, then end; never keep sampling after a successful submission.'
+            context_valid=True
             def bound(state):
                 self.store.save_session(job['id'], state.get('sessionFile'), state['sessionId'])
             result = self.pi.run(job, context, on_bound=bound)
@@ -289,6 +308,7 @@ class Service:
                 self.store.release(job['id'], self.instance_id, stage, 'blocked_model' if stage == 'blocked_model' else type(error).__name__, time.time() + 60)
                 self.last_error = type(error).__name__
         finally:
+            if context_valid:self.store.set('task_context:'+job['id'],context)
             self.current_job = None
 
     def serve(self, *, offline=False, duration=None):

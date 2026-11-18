@@ -30,10 +30,11 @@ async function sourcePage({source,page},fetchImpl=resolveFetch()){
   const episodes=season.sections.flatMap(s=>s.episodes);
   if(!Number.isSafeInteger(season.ep_count)||season.ep_count<1||season.ep_count!==episodes.length||episodes.length>10000)throw sourceError('incomplete_collection_list',result);
   if(episodes.some(e=>!/^BV[1-9A-HJ-NP-Za-km-z]{10}$/.test(e.bvid)||String(e.arc?.author?.mid)!==source.uid))throw sourceError('official_collection_identity_conflict',result);
+  if(new Set(episodes.map(e=>e.bvid)).size!==episodes.length)throw sourceError("duplicate_collection_entries",result);
   const pageSize=100,offset=(page-1)*pageSize;if(offset>=episodes.length)throw sourceError('invalid_collection_page',result);
   return {url,http_status:result.http_status,business_code:result.code,reached_end:offset+pageSize>=episodes.length,
    items:episodes.slice(offset,offset+pageSize).map(e=>({bvid:e.bvid,uid:String(e.arc.author.mid),title:e.arc.title})),
-   collection:{id:source.id,uid:source.uid,anchor_bvid:source.anchor_bvid,reported_total:season.ep_count,read_count:episodes.length,page,page_size:pageSize,payload_sha256:digest(result.data)}};
+   collection:{id:source.id,uid:source.uid,anchor_bvid:source.anchor_bvid,reported_total:season.ep_count,read_count:episodes.length,page,page_size:pageSize,payload_sha256:digest(result.data),list_sha256:digest(episodes.map(e=>({bvid:e.bvid,uid:String(e.arc.author.mid),title:e.arc.title})))}};
  }
  if(source.type==='view')return {url,reached_end:true,items:[{bvid:data.bvid,uid:String(data.owner?.mid),title:data.title}]};
  const list=source.type==='posts'?data.list?.vlist:data.archives;

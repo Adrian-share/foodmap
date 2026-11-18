@@ -228,6 +228,13 @@ class PiRPC:
         self.events.clear()
         return self.state_info()
 
+    def sync_context(self, context):
+        registered=json.loads(self.task_file.read_text())
+        if any(registered.get(k)!=context[k] for k in ('task_id','creator_uid','bvid','part','root')):
+            raise ProtocolError('tool_context_identity_mismatch')
+        for key in ('evidence','frame_files','model_preview_bytes','frame_capture_count','subtitles_checked','subtitles_status','proposal_submitted'):
+            if key in registered:context[key]=registered[key]
+
     def run(self, job, context, timeout=180, on_bound=None):
         if not self.provider or not self.model:
             raise ProtocolError('blocked_model')
@@ -256,11 +263,7 @@ class PiRPC:
             proposal = validate('extraction', json.loads(self.proposal_file.read_text()))
             if any(proposal[k] != context[k] for k in ('task_id', 'creator_uid', 'bvid', 'part')):
                 raise ProtocolError('proposal_identity_mismatch')
-            registered = json.loads(self.task_file.read_text())
-            if any(registered[k] != context[k] for k in ('task_id', 'creator_uid', 'bvid', 'part', 'root')):
-                raise ProtocolError('tool_context_identity_mismatch')
-            context['evidence'] = registered['evidence']
-            context['frame_files'] = registered.get('frame_files', {})
+            self.sync_context(context)
             if any(e not in context['evidence'] for e in proposal['evidence_ids']):
                 raise ProtocolError('unknown_evidence')
             return dict(proposal=proposal, settled=tracker.settled, session_id=state['sessionId'], generation=self.generation)
@@ -269,6 +272,10 @@ class PiRPC:
                 cancel_rpc(self.request)
             except Exception:
                 self.close()
+            # A timeout is not approval, but completed adapter artifacts must
+            # survive it. The next attempt reuses registered IDs, not Pi prose.
+            try:self.sync_context(context)
+            except (OSError,ValueError,ProtocolError):pass
             raise
 
     def close(self):

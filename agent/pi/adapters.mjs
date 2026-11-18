@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import {constants} from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {execFile} from 'node:child_process';
@@ -27,6 +28,18 @@ export async function fetchBounded(url,kind,{signal,max=512*1024,request=fetch}=
  return Buffer.concat(chunks);
 }
 async function safeRoot(context){const actual=await fs.realpath(context.root);if((await fs.lstat(context.root)).isSymbolicLink()||actual!==path.resolve(context.root))throw Error('outside_evidence_root');return actual;}
+async function cachedBytes(file,hash,max){
+ const handle=await fs.open(file,constants.O_RDONLY|constants.O_NOFOLLOW);
+ try{const stat=await handle.stat();if(!stat.isFile()||stat.size>max)throw Error('evidence_too_large');const raw=await handle.readFile();if(raw.length>max||sha(raw)!==hash)throw Error('evidence_hash_mismatch');return raw;}finally{await handle.close();}
+}
+async function registered(context,id){
+ const e=context.evidence[id];if(!e)return null;
+ if(!/^source-[a-f0-9]{64}\.json$/.test(e.file))throw Error('invalid_cached_source');
+ const base=await safeRoot(context),file=path.join(base,e.file);
+ if((await fs.lstat(file)).isSymbolicLink())throw Error('symlink_evidence');
+ const raw=await cachedBytes(file,e.sha256,512*1024);
+ return {evidence_id:id,kind:e.kind,sha256:e.sha256,payload:JSON.parse(raw),source_url:e.source_url};
+}
 export async function register(context,id,kind,payload,source_url){
  await safeRoot(context);
  const bytes=Buffer.from(JSON.stringify(payload));if(bytes.length>512*1024)throw Error('evidence_too_large');
@@ -38,11 +51,22 @@ export async function register(context,id,kind,payload,source_url){
 }
 export async function metadata(context,args,signal){
  const url='https://api.bilibili.com/x/web-interface/view?'+new URLSearchParams({bvid:context.bvid});
- const data=JSON.parse(await fetchBounded(url,'metadata',{signal}));
+ const cached=await registered(context,'metadata');
+ const fresh=cached&&cached.kind==='metadata'&&cached.source_url===url&&Date.now()-Date.parse(context.evidence.metadata.checked_at)<24*3600*1000&&Date.now()>=Date.parse(context.evidence.metadata.checked_at);
+ const data=fresh?cached.payload:JSON.parse(await fetchBounded(url,'metadata',{signal}));
  const page=data.data?.pages?.find(p=>p.page===context.part);
  if(data.code!==0||data.data?.bvid!==context.bvid||String(data.data?.owner?.mid)!==context.creator_uid||!page)throw Error('wrong_official_owner');
- const result=await register(context,'metadata','metadata',data,url);
+ const result=fresh?cached:await register(context,'metadata','metadata',data,url);
  result.subtitles_status='not_requested';
+ if(args.include_subtitles&&context.subtitles_checked){
+  result.subtitles_status=context.subtitles_status||'source_unavailable';
+  if(result.subtitles_status==='available'){
+   const s=await registered(context,'subtitle');
+   if(!s||s.kind!=='subtitle'||s.payload.bvid!==context.bvid||s.payload.part!==context.part||s.payload.cid!==page.cid)throw Error('cached_subtitle_identity_mismatch');
+   result.subtitle=s;
+  }
+  return result;
+ }
  if(args.include_subtitles){
   try{
    const playerUrl='https://api.bilibili.com/x/player/wbi/v2?'+new URLSearchParams({bvid:context.bvid,cid:page.cid});
@@ -55,6 +79,7 @@ export async function metadata(context,args,signal){
    const subtitle=await register(context,'subtitle','subtitle',{bvid:context.bvid,part:context.part,cid:page.cid,body:body.body},subtitleUrl);
    result.subtitles_status='available';result.subtitle=subtitle;
   }catch{result.subtitles_status='source_unavailable';}
+  context.subtitles_checked=true;context.subtitles_status=result.subtitles_status;
  }
  return result;
 }
@@ -68,6 +93,19 @@ export async function captureFrame(context,args,signal){
   // Inputs are BV/P/timestamp only. The signed stream URL comes from the official API.
   const meta=await metadata(context,{include_subtitles:false},signal),page=meta.payload.data.pages.find(p=>p.page===context.part);
   if(args.timestamp_ms<0||args.timestamp_ms>page.duration*1000)throw Error('timestamp_outside_video');
+  const cached=await registered(context,'frame:'+args.timestamp_ms);
+  if(cached&&cached.kind==='frame'&&cached.source_url===video(context)&&cached.payload.bvid===context.bvid&&cached.payload.part===context.part&&cached.payload.cid===page.cid&&cached.payload.timestamp_ms===args.timestamp_ms){
+   const frame=cached.payload,entry=context.frame_files?.[frame.sha256];
+   if(!entry||!/^frame-[a-f0-9]{64}\.png$/.test(entry.file))throw Error('cached_frame_missing');
+   const file=path.join(await safeRoot(context),entry.file);if((await fs.lstat(file)).isSymbolicLink())throw Error('symlink_evidence');
+   const bytes=await cachedBytes(file,frame.sha256,8*1024*1024);if(bytes.length!==frame.bytes||entry.sha256!==frame.sha256)throw Error('frame_hash_mismatch');
+   const ocr=await registered(context,'ocr:'+args.timestamp_ms);
+   if(ocr&&(ocr.kind!=='branch'||ocr.payload.bvid!==context.bvid||ocr.payload.part!==context.part||ocr.payload.cid!==page.cid||ocr.payload.image_sha256!==frame.sha256))throw Error('cached_ocr_identity_mismatch');
+   return {...cached,status:'captured',artifact_id:cached.evidence_id,ocr,cache_hit:true,preview:null};
+  }
+  if((context.frame_capture_count||0)>=3)return {status:'pending_budget',reason:'frame_sampling_budget_exhausted'};
+  context.frame_capture_count=(context.frame_capture_count||0)+1;
+  if((context.model_preview_bytes||0)>=96*1024)return {status:'pending_budget',reason:'model_preview_budget_exhausted'};
   const requested_quality=context.adapters?.quality??64;
   const endpoint=playbackURL(context.bvid,page.cid,requested_quality);
   const playable=JSON.parse(await fetchBounded(endpoint,'metadata',{signal}));
