@@ -8,7 +8,9 @@
       "profile_url": "https://space.bilibili.com/3546888255048212",
       "enabled": true,
       "collection_scope": "beijing",
-      "season_ids": []
+      "season_ids": [
+        "5622142"
+      ]
     },
     {
       "uid": "3546728118618546",
@@ -74,7 +76,9 @@
       "profile_url": "https://space.bilibili.com/1781681364",
       "enabled": true,
       "collection_scope": "beijing",
-      "season_ids": []
+      "season_ids": [
+        "956796"
+      ]
     },
     {
       "uid": "3493080560830654",
