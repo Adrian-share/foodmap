@@ -10,8 +10,8 @@ def canonical(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode()
 
 class Publisher:
-    def __init__(self, store, operator):
-        self.store, self.operator = store, operator
+    def __init__(self, store, operator, observer=None):
+        self.store, self.operator, self.observer = store, operator, observer
 
     def operation(self, name, **fields):
         body = dict(schema_version=1, operation=name, **fields)
@@ -107,6 +107,10 @@ class Publisher:
         staged = self.send(self.operation('release.stage', manifest_sha256=digest))
         if staged['status'] != 'complete':
             raise RuntimeError('release_not_staged')
+        observation=None
+        if self.observer:
+            try:observation=self.observer.begin(plan['version'],records,plan['parent'])
+            except Exception as error:self.store.set('publication_observation_error',dict(data_version=plan['version'],stage='before_commit',error_code=type(error).__name__))
         receipt = self.send(self.operation('release.commit', data_version=plan['version'],
                             expected_parent_version=plan['parent'], expected_pointer_etag=plan['etag']))
         if receipt['status'] != 'committed':
@@ -115,4 +119,10 @@ class Publisher:
         history[plan['version']] = plan['manifest']
         self.store.set('publication_manifests', history)
         self.store.set('last_publication', receipt)
+        if observation is not None:
+            try:
+                result=self.observer.complete(observation,receipt)
+                self.store.set('last_publication_observation',{k:result[k] for k in ('data_version','status','within_sixty_seconds','full_R4_status','folder')})
+                self.store.set('publication_observation_error',None)
+            except Exception as error:self.store.set('publication_observation_error',dict(data_version=plan['version'],stage='after_commit',error_code=type(error).__name__))
         return receipt

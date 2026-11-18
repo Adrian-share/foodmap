@@ -24,8 +24,12 @@ def main():
     root = Path(__file__).resolve().parents[1]
     try:
         if args.command == 'serve':
+            observer=None
+            if args.mode=='production' and args.upload_config and not args.offline:
+                from .release_audit import PublicationAudit
+                observer=PublicationAudit(store.root/'publication-observations')
             Service(store, root, args.node, args.model_config, args.upload_config,
-                    os.environ.get('FOODMAP_GITHUB_TOKEN'),mode=args.mode).serve(offline=args.offline, duration=args.duration)
+                    os.environ.get('FOODMAP_GITHUB_TOKEN'),mode=args.mode,publication_observer=observer).serve(offline=args.offline, duration=args.duration)
         elif args.command == 'run-once':
             store.set('run_once_requested', True)
             print(json.dumps({'state': 'enqueued', 'scheduler_started': False}))

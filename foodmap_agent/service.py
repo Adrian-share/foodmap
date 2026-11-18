@@ -58,7 +58,7 @@ class OperationClient:
         return self(dict(schema_version=1, operation='receipt.get', request_id=str(uuid.uuid4()), target_request_id=request_id))
 
 class Service:
-    def __init__(self, store, root, node=None, model_config=None, upload_config=None, github_token=None, mode='preview'):
+    def __init__(self, store, root, node=None, model_config=None, upload_config=None, github_token=None, mode='preview', publication_observer=None):
         self.store, self.root = store, Path(root).resolve()
         if mode not in ('preview','production','draining'):
             raise ValueError('invalid_service_mode')
@@ -92,6 +92,7 @@ class Service:
         commit = subprocess.run(['git','rev-parse','HEAD'],cwd=self.root,capture_output=True,text=True,timeout=5)
         self.source_commit = commit.stdout.strip() if commit.returncode == 0 else None
         self.pipeline = Pipeline(store,self.root,self.node,self.operator,self.source_commit)
+        self.pipeline.publisher.observer=publication_observer
         self.last_status_upload = 0
 
     def load_model(self):
