@@ -12,6 +12,7 @@ import {createModelPreview} from './model-preview.mjs';
 import {readPublicPoi} from './public-http.mjs';
 import httpIdentity from '../../content/http-identity.cjs';
 import {imageInfo} from '../../content/publication.cjs';
+import {checkpointContext} from './context-checkpoint.mjs';
 const sha=b=>crypto.createHash('sha256').update(b).digest('hex');
 const video=c=>'https://www.bilibili.com/video/'+c.bvid+'/';
 function allowed(url,kind){const u=new URL(url);if(u.protocol!=='https:'||u.username||u.password||u.port)throw Error('invalid_source');const host=u.hostname;const valid=kind==='metadata'?host==='api.bilibili.com':kind==='subtitle'?/(^|\.)hdslb\.com$/.test(host):kind==='stream'?/(^|\.)bilivideo\.(com|cn)$/.test(host):kind==='poi'?u.origin==='https://foodmap.shareworld.fun'&&u.pathname==='/api/content/poi':false;if(!valid)throw Error('invalid_source');return u;}
@@ -47,6 +48,7 @@ export async function register(context,id,kind,payload,source_url){
  await fs.writeFile(path.join(context.root,filename),bytes,{mode:0o600,flag:'wx'}).catch(e=>{if(e.code!=='EEXIST')throw e;});
  if((await fs.lstat(path.join(context.root,filename))).isSymbolicLink()||sha(await fs.readFile(path.join(context.root,filename)))!==sha(bytes))throw Error('evidence_hash_mismatch');
  context.evidence[id]={file:filename,sha256:sha(bytes),kind,source_url,checked_at:new Date().toISOString()};
+ await checkpointContext(context);
  return {evidence_id:id,kind,sha256:sha(bytes),payload,source_url};
 }
 export async function metadata(context,args,signal){
@@ -125,8 +127,8 @@ export async function captureFrame(context,args,signal){
   const hash=sha(image),file='frame-'+hash+'.png';await fs.writeFile(path.join(context.root,file),image,{mode:0o600,flag:'wx'}).catch(e=>{if(e.code!=='EEXIST')throw e;});
   if((await fs.lstat(path.join(context.root,file))).isSymbolicLink()||sha(await fs.readFile(path.join(context.root,file)))!==hash)throw Error('frame_hash_mismatch');
   const payload={bvid:context.bvid,part:context.part,cid:page.cid,timestamp_ms:args.timestamp_ms,actual_timestamp_ms:Math.round(actual),sha256:hash,capture_method:'official-stream-pipe',mime_type:'image/png',bytes:image.length,...info,mean,stddev,downloaded_bytes,requested_quality,actual_quality:playable.data.quality};
-  const result=await register(context,'frame:'+args.timestamp_ms,'frame',payload,video(context));
   context.frame_files||={};context.frame_files[hash]={file,sha256:hash};
+  const result=await register(context,'frame:'+args.timestamp_ms,'frame',payload,video(context));
   let ocr=null;
   try{
    const native=await runFile(path.join(projectRoot,'tools/frame-ocr'),[path.join(context.root,file)],{timeout:15000,maxBuffer:128*1024,env:{PATH:'/usr/bin:/bin'},signal});

@@ -18,7 +18,7 @@ test('frame sampling stops after three new captures and one proposal ends sampli
 test('registered original frame cache reuses exact bytes without another media request',async()=>{
  const {register,captureFrame}=await import('../agent/pi/adapters.mjs');const {png,sha}=require('./fixtures/publication.cjs');
  const dir=await fs.mkdtemp(path.resolve('tests/agent/cache-')),original=global.fetch;
- try{const c={root:dir,bvid:'BV1NG6kYTEXG',creator_uid:'3546728118618546',part:1,evidence:{},metadata_cached:true};
+ try{const c={root:dir,task_id:crypto.randomUUID(),bvid:'BV1NG6kYTEXG',creator_uid:'3546728118618546',part:1,evidence:{},metadata_cached:true};
  await register(c,'metadata','metadata',{code:0,data:{bvid:c.bvid,owner:{mid:c.creator_uid},pages:[{page:1,cid:123,duration:60}]}},'https://api.bilibili.com/x/web-interface/view?bvid='+c.bvid);
  const bytes=png(),hash=sha(bytes),file='frame-'+hash+'.png';await fs.writeFile(path.join(dir,file),bytes);c.frame_files={[hash]:{file,sha256:hash}};
  await register(c,'frame:2000','frame',{bvid:c.bvid,part:1,cid:123,timestamp_ms:2000,actual_timestamp_ms:2000,sha256:hash,bytes:bytes.length,mime_type:'image/png',width:64,height:64,mean:120,stddev:40,capture_method:'official-stream-pipe'},'https://www.bilibili.com/video/'+c.bvid+'/');
@@ -30,7 +30,7 @@ test('registered original frame cache reuses exact bytes without another media r
 test('metadata cache keeps evidence identity stable and still checks owner and part',async()=>{
  const {register,metadata}=await import('../agent/pi/adapters.mjs');const dir=await fs.mkdtemp(path.resolve('tests/agent/cache-')),original=global.fetch;
  try{
-  const c={root:dir,bvid:'BV1NG6kYTEXG',creator_uid:'123',part:1,evidence:{}};
+  const c={root:dir,task_id:crypto.randomUUID(),bvid:'BV1NG6kYTEXG',creator_uid:'123',part:1,evidence:{}};
   const payload={code:0,data:{bvid:c.bvid,owner:{mid:123},pages:[{page:1,cid:123,duration:60}]}};
   const first=await register(c,'metadata','metadata',payload,'https://api.bilibili.com/x/web-interface/view?bvid='+c.bvid),entry=structuredClone(c.evidence.metadata);
   global.fetch=async()=>{throw Error('must not refetch');};

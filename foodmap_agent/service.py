@@ -14,6 +14,7 @@ from .scheduler import Scanner, NodeCollector, next_daily
 from .pi_rpc import PiRPC, cancel_rpc
 from .pipeline import Pipeline
 from .publisher import Publisher
+from .evidence_cache import recover_registered
 
 class Singleton:
     def __init__(self, state):
@@ -290,6 +291,11 @@ class Service:
                 for key in ('evidence','frame_files','model_preview_bytes'):
                     if key in saved:context[key]=saved[key]
                 context['evidence']['discovery']=discovery
+            durable=recover_registered(context)
+            if durable:
+                context['evidence'].update(durable['evidence'])
+                context.setdefault('frame_files',{}).update(durable['frame_files'])
+                context['model_preview_bytes']=max(context.get('model_preview_bytes',0),durable['model_preview_bytes'])
             context.update(frame_capture_count=0,proposal_submitted=False,subtitles_checked=False)
             context['prompt']['evidence_ids']=list(context['evidence'])
             context['prompt']['instruction']+=' Reuse registered artifacts already present. Capture at most THREE new frames in this attempt; avoid blind sequential scans and black/outro frames. After frame or preview budget exhaustion, submit missing facts. Submit exactly one proposal, then end; never keep sampling after a successful submission.'

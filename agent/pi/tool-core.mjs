@@ -6,6 +6,7 @@ import {fileURLToPath} from 'node:url';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import {metadata,captureFrame,searchPoi} from './adapters.mjs';
+import {checkpointContext} from './context-checkpoint.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 export const schema=JSON.parse(await fs.readFile(path.join(root,'docs/architecture/FACT-31/schemas.json'),'utf8'));
 const ajv=new Ajv2020({strict:false,allErrors:false});addFormats(ajv);
@@ -72,6 +73,7 @@ export async function executeTask(file,proposal_file,name,args,signal,adapters={
   const context=JSON.parse(await fs.readFile(file,'utf8'));context.proposal_file=proposal_file;
   const result=await executeTool(name,args,context,signal,adapters);
   const {proposal_file:unused,...persisted}=context;
+  await checkpointContext(persisted);
   await fs.writeFile(file+'.tmp',JSON.stringify(persisted),{mode:0o600});await fs.rename(file+'.tmp',file);
   return {result,context};
  });
