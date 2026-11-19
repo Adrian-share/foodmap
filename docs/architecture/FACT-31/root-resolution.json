@@ -1,0 +1,25 @@
+{
+  "managed_checkout_common_dir": "/Users/adrian/multica_workspaces/.repos/b62b9f6c-4716-4b8a-a24c-1564e6a84c5b/github.com+Adrian-share+foodmap.git",
+  "managed_checkout_layout": "bare cache + linked task worktrees; no primary working tree",
+  "delivery_clone": "/Users/adrian/foodmap-agent-runtime/foodmap",
+  "delivery_common_dir": "/Users/adrian/foodmap-agent-runtime/foodmap/.git",
+  "main_root_method": "resolve .git parent from dedicated existing non-bare clone",
+  "diagram_files": [
+    {
+      "path": "diagrams/opik-FACT-31-diagram.svg",
+      "sha256": "fc905ea1d143232ece331e0a952adea4c6ba1216c28acc4fefad2b81f1253584"
+    },
+    {
+      "path": "diagrams/opik-FACT-31-diagram.html",
+      "sha256": "d5872d57b78fd30ec6133815ce26fc69f028010e0d6c5cf52d680705606f5638"
+    },
+    {
+      "path": "diagrams/opik-FACT-31-1280.png",
+      "sha256": "d0938ee0d88084b818d66bd1a64a4688d7e28e60ed40b4f445528cf990b4c938"
+    },
+    {
+      "path": "diagrams/opik-FACT-31-1440.png",
+      "sha256": "3e8dcd54a91822d6fb07d7f8c2c9eee002b3f91fb6b9de77274631ddbe73e790"
+    }
+  ]
+}
