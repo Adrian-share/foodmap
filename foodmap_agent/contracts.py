@@ -21,6 +21,10 @@ def watchlist(raw):
         uid = source['uid']
         if uid in uids or source['profile_url'] != 'https://space.bilibili.com/' + uid:
             raise ValueError('invalid_uid_profile')
+        anchors=source.get('collection_anchors',[])
+        ids=[a['season_id'] for a in anchors]
+        if len(set(ids))!=len(ids) or any(sid not in source['season_ids'] for sid in ids):
+            raise ValueError('invalid_collection_binding')
         uids.add(uid)
     if any(link['uid'] not in uids for link in value.get('video_links', [])):
         raise ValueError('unregistered_link_owner')

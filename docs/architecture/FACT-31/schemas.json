@@ -40,6 +40,31 @@
           "minItems": 0,
           "maxItems": 100,
           "uniqueItems": true
+        },
+        "collection_anchors": {
+          "type": "array",
+          "maxItems": 100,
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "properties": {
+              "season_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 20,
+                "pattern": "^[1-9][0-9]{0,19}$"
+              },
+              "bvid": {
+                "type": "string",
+                "pattern": "^BV[1-9A-HJ-NP-Za-km-z]{10}$"
+              }
+            },
+            "required": [
+              "season_id",
+              "bvid"
+            ],
+            "additionalProperties": false
+          }
         }
       },
       "required": [

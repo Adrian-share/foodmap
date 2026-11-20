@@ -1,7 +1,6 @@
 'use strict';
 // A structured stdin adapter. Source values can never become argv or executable code.
 const {resolveFetch,fetchJson}=require('./refresh-creator-inventory-incremental.cjs');
-const approvedAnchors=require('../content/source-anchors.json');
 const digest=value=>require('node:crypto').createHash('sha256').update(JSON.stringify(value)).digest('hex');
 function sourceError(code,result){return Object.assign(Error(code),{error_code:code,...(result?{http_status:result.http_status,business_code:result.code,url:result.url}:{})});}
 async function sourcePage({source,page},fetchImpl=resolveFetch()){
@@ -12,7 +11,10 @@ async function sourcePage({source,page},fetchImpl=resolveFetch()){
   if(!/^[1-9][0-9]{0,19}$/.test(source.id))throw Error('invalid_season');
   url='https://api.bilibili.com/x/polymer/web-space/seasons_archives_list?'+new URLSearchParams({mid:source.uid,season_id:source.id,sort_reverse:false,page_num:page,page_size:size});
   if(source.anchor_bvid){
-   if(!approvedAnchors.some(a=>a.uid===source.uid&&a.season_id===source.id&&a.bvid===source.anchor_bvid))throw sourceError('unapproved_collection_anchor');
+   // The activated, registered GitHub watchlist supplies bindings. The
+   // adapter grants only a fixed public view request; every returned author,
+   // BV and collection is independently checked before any item is exposed.
+   if(!/^BV[1-9A-HJ-NP-Za-km-z]{10}$/.test(source.anchor_bvid))throw sourceError('invalid_collection_anchor');
    url='https://api.bilibili.com/x/web-interface/view?'+new URLSearchParams({bvid:source.anchor_bvid});
   }
  }

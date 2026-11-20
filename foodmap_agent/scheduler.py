@@ -51,7 +51,8 @@ class Scanner:
             uid = source['uid']
             sources.append(dict(uid=uid, type='posts', id=uid))
             for sid in source['season_ids']:
-                anchor=next((a['bvid'] for a in self.anchors if a['uid']==uid and a['season_id']==sid),None)
+                anchor=next((a['bvid'] for a in source.get('collection_anchors',[]) if a['season_id']==sid),None)
+                if not anchor:anchor=next((a['bvid'] for a in self.anchors if a['uid']==uid and a['season_id']==sid),None)
                 sources.append(dict(uid=uid,type='season',id=sid,**({'anchor_bvid':anchor} if anchor else {})))
         for link in active.get('watchlist', {}).get('video_links', []):
             if link['uid'] in enabled:
