@@ -34,7 +34,7 @@ def main():
     encoded_body = body.encode('utf-8') if body is not None else None
     connection = http.client.HTTPSConnection('foodmap.shareworld.fun', timeout=25)
     connection.request(request['method'], '/api/admin/content-ingest', body=encoded_body,
-                       headers={'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json; charset=utf-8'})
+                       headers={'User-Agent':'FoodmapContentAgent/1.0 (+https://github.com/Adrian-share/foodmap)', 'Accept':'application/json', 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json; charset=utf-8'})
     response = connection.getresponse()
     content = response.read(MAX_BYTES + 1)
     if len(content) > MAX_BYTES:

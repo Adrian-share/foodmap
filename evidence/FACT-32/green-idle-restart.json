@@ -1,0 +1,147 @@
+{
+  "scope": "isolated real configured Pi idle crash; no jobs or model prompts",
+  "before": {
+    "service": {
+      "instance_id": "3aa73095-92c2-4fe4-aa8a-44e3ec238b45",
+      "pid": 52023,
+      "heartbeat_at": "2026-11-16T15:17:15.127725Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "pi_restart_at": 0,
+      "pi_restart_failures": 0,
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": null,
+      "model_requests": 0,
+      "model_jobs_started": 0,
+      "pi": {
+        "state": "idle",
+        "pid": 52028,
+        "version": "1.5.2",
+        "session_id": "bef30d7c-475b-4660-886a-c4e405475390",
+        "provider": "ark-coding-plan-cn",
+        "model": "doubao-seed-2.1-turbo"
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    "jobs": [],
+    "cursors": [],
+    "videos": 92
+  },
+  "after": {
+    "service": {
+      "instance_id": "3aa73095-92c2-4fe4-aa8a-44e3ec238b45",
+      "pid": 52023,
+      "heartbeat_at": "2026-11-16T15:17:25.471126Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "pi_restart_at": 0,
+      "pi_restart_failures": 0,
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": null,
+      "model_requests": 0,
+      "model_jobs_started": 0,
+      "pi": {
+        "state": "idle",
+        "pid": 52071,
+        "version": "1.5.2",
+        "session_id": "324a0acf-5ff8-4f55-bbbf-39485447a352",
+        "provider": "ark-coding-plan-cn",
+        "model": "doubao-seed-2.1-turbo"
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    "jobs": [],
+    "cursors": [],
+    "videos": 92
+  },
+  "recovery_seconds": 10.363262875005603,
+  "passed": true,
+  "audit": {
+    "active": [
+      "content_read_evidence",
+      "content_fetch_metadata",
+      "content_capture_frame",
+      "content_search_poi",
+      "content_submit_extraction"
+    ],
+    "all": [
+      {
+        "name": "content_read_evidence",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_fetch_metadata",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_capture_frame",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_search_poi",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_submit_extraction",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      }
+    ],
+    "valid": true,
+    "pi_version": "1.5.2",
+    "checked_at": "2026-11-16T15:17:25.469Z"
+  }
+}

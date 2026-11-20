@@ -27,8 +27,10 @@ function createServer(options = {}) {
   const {createMcpHandler,decorate}=require('./mcp-server.cjs');
   const {imageForPath}=require('./images.cjs');
   const state=options.contentState||require('./content/runtime.cjs');
+  const remote=options.contentOrigin?require('./content/read-model.cjs').createRemoteReadModel({origin:options.contentOrigin,request:options.snapshotRequest||fetch}):null;
   const service=createNearbyService({contentCatalog:state.catalog,...options,audit:options.audit||(()=>{})});
-  const mcp=createMcpHandler({...options,service});
+  const dynamicService=remote?{async queryWithState(input){const selected=await remote.state();const data=await createNearbyService({...options,contentCatalog:selected.catalog}).query(input);return {data,assets:selected.images};}}:service;
+  const mcp=createMcpHandler({...options,service:dynamicService,contentState:state});
   const content=require('./content/http.cjs').createContentHandler({state,readAsset:file=>readFile(join(__dirname,file))});
   async function upstream(path, params, key, host = 'https://restapi.amap.com') {
     const url = new URL(path, host);
@@ -55,8 +57,8 @@ function createServer(options = {}) {
         return res.end(req.method==='HEAD'?undefined:image.bytes);
       }
       if(url.pathname==='/api/nearby'){
-        const data=await service.query(Object.fromEntries(url.searchParams));
-        return json(res,decorate(data,options.publicBaseUrl||`http://${req.headers.host}`,state.images));
+        const captured=remote?await dynamicService.queryWithState(Object.fromEntries(url.searchParams)):{data:await service.query(Object.fromEntries(url.searchParams)),assets:state.images};
+        return json(res,decorate(captured.data,options.publicBaseUrl||`http://${req.headers.host}`,captured.assets));
       }
       const asset = Object.hasOwn(assets, url.pathname) && assets[url.pathname];
       if (asset) {
@@ -102,14 +104,16 @@ function createServer(options = {}) {
         return res.end(image);
       }
       return json(res, {error:'未找到请求地址'}, 404);
-    } catch {
+    } catch (error) {
+      if(error.status)return json(res,{error:error.message},error.status);
       return json(res, {error:'高德请求超时或服务暂不可用'}, 502);
     }
   });
 }
 if (require.main === module) {
   const port = Number(process.env.PORT || 8767), host = process.env.HOST || '127.0.0.1';
-  createServer({mode:process.env.LOCATION_MODE || 'fixture', dataset:process.env.DATASET || 'fixture',
+  createServer({mode:process.env.LOCATION_MODE || 'live', dataset:process.env.DATASET || 'verified',
+    contentOrigin:process.env.FOODMAP_CONTENT_ORIGIN||'https://foodmap.shareworld.fun',
     publicBaseUrl:process.env.PUBLIC_BASE_URL, serviceKey: process.env.AMAP_WEB_SERVICE_KEY, jsKey: process.env.AMAP_JS_KEY,
     securityCode: process.env.AMAP_JS_SECURITY_CODE}).listen(port, host, () => {
     console.log('探店地图 http://' + host + ':' + port + '/');

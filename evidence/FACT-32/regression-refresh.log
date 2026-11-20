@@ -1,0 +1,331 @@
+
+> dual-city-food-map@1.0.0 test:refresh
+> node --test tests/incremental-refresh.test.cjs tests/content-ingestion.test.cjs tests/content-upload.test.cjs tests/ssh-upload.test.cjs tests/collector-cancellation.test.cjs && python3 -B tests/test_ssh_upload.py
+
+TAP version 13
+# Subtest: 真实CLI收到SIGTERM后合作式释放本轮锁再退出
+ok 1 - 真实CLI收到SIGTERM后合作式释放本轮锁再退出
+  ---
+  duration_ms: 108.812542
+  type: 'test'
+  ...
+# Subtest: 未配置导入令牌或R2时返回503，错误令牌及登录身份不能授权采集
+ok 2 - 未配置导入令牌或R2时返回503，错误令牌及登录身份不能授权采集
+  ---
+  duration_ms: 658.290833
+  type: 'test'
+  ...
+# Subtest: 只接受官方证据字段、当前UID与合法BV，拒绝公开批准或门店载荷
+ok 3 - 只接受官方证据字段、当前UID与合法BV，拒绝公开批准或门店载荷
+  ---
+  duration_ms: 10.79075
+  type: 'test'
+  ...
+# Subtest: 实际流式body限2MiB，伪造Content-Length不能绕过上限
+ok 4 - 实际流式body限2MiB，伪造Content-Length不能绕过上限
+  ---
+  duration_ms: 11.928708
+  type: 'test'
+  ...
+# Subtest: 导入去重保存最早发现及最新有效元数据，旧上传不倒退且失败保留成功范围
+ok 5 - 导入去重保存最早发现及最新有效元数据，旧上传不倒退且失败保留成功范围
+  ---
+  duration_ms: 3.003417
+  type: 'test'
+  ...
+# Subtest: 并发条件写重试合并，不丢失同时上传的不同候选
+ok 6 - 并发条件写重试合并，不丢失同时上传的不同候选
+  ---
+  duration_ms: 1.07625
+  type: 'test'
+  ...
+# Subtest: 连续CAS冲突返回409且不会声称导入成功
+ok 7 - 连续CAS冲突返回409且不会声称导入成功
+  ---
+  duration_ms: 0.784458
+  type: 'test'
+  ...
+# Subtest: 后台下一次请求读取R2，新实例继续可见候选；公开地图和合集无新增
+ok 8 - 后台下一次请求读取R2，新实例继续可见候选；公开地图和合集无新增
+  ---
+  duration_ms: 45.542042
+  type: 'test'
+  ...
+# Subtest: R2配置存在但读取失败或损坏时后台503；无绑定兼容冻结台账
+ok 9 - R2配置存在但读取失败或损坏时后台503；无绑定兼容冻结台账
+  ---
+  duration_ms: 1.356583
+  type: 'test'
+  ...
+# Subtest: 当前发布批次先注册新creator，再合并其发现，不影响发布状态
+ok 10 - 当前发布批次先注册新creator，再合并其发现，不影响发布状态
+  ---
+  duration_ms: 0.724667
+  type: 'test'
+  ...
+# Subtest: hosting manifest requests the logical R2 binding without storing secrets
+ok 11 - hosting manifest requests the logical R2 binding without storing secrets
+  ---
+  duration_ms: 3.288083
+  type: 'test'
+  ...
+# Subtest: 不同官方来源也保留BV最早发现；后台用新元数据重排已公开历史，公开接口冻结
+ok 12 - 不同官方来源也保留BV最早发现；后台用新元数据重排已公开历史，公开接口冻结
+  ---
+  duration_ms: 4.954167
+  type: 'test'
+  ...
+# Subtest: 已知BV不能转给其他已登记UID；失败的视频元数据不会覆盖成功版本
+ok 13 - 已知BV不能转给其他已登记UID；失败的视频元数据不会覆盖成功版本
+  ---
+  duration_ms: 0.842209
+  type: 'test'
+  ...
+# Subtest: 后台账号覆盖展示最后成功范围和最新受限检查，失败不清空覆盖
+ok 14 - 后台账号覆盖展示最后成功范围和最新受限检查，失败不清空覆盖
+  ---
+  duration_ms: 3.825083
+  type: 'test'
+  ...
+# Subtest: S4 上传丢弃本机失败状态和未验证元数据，保留核实的官方候选
+ok 15 - S4 上传丢弃本机失败状态和未验证元数据，保留核实的官方候选
+  ---
+  duration_ms: 1.744916
+  type: 'test'
+  ...
+# Subtest: S4 候选上传必须真实200，并用同一认证读取持久回执
+ok 16 - S4 候选上传必须真实200，并用同一认证读取持久回执
+  ---
+  duration_ms: 2.594292
+  type: 'test'
+  ...
+# Subtest: S4 读取旧版本或缺失回执不能报告上传完成
+ok 17 - S4 读取旧版本或缺失回执不能报告上传完成
+  ---
+  duration_ms: 1.135791
+  type: 'test'
+  ...
+# Subtest: S1 增量幂等：同输入不重复，新增只追加一条
+ok 18 - S1 增量幂等：同输入不重复，新增只追加一条
+  ---
+  duration_ms: 24.513459
+  type: 'test'
+  ...
+# Subtest: S2 部分失败：失败进入 failures，历史成功范围保留
+ok 19 - S2 部分失败：失败进入 failures，历史成功范围保留
+  ---
+  duration_ms: 7.44975
+  type: 'test'
+  ...
+# Subtest: S2 退避：未来重试时间前跳过该源
+ok 20 - S2 退避：未来重试时间前跳过该源
+  ---
+  duration_ms: 4.471209
+  type: 'test'
+  ...
+# Subtest: 互斥锁：已存在锁时返回 locked 且不改状态
+ok 21 - 互斥锁：已存在锁时返回 locked 且不改状态
+  ---
+  duration_ms: 1.51575
+  type: 'test'
+  ...
+# Subtest: S3 候选队列：owner_verified 增量发现进入待核且不增加公开数
+ok 22 - S3 候选队列：owner_verified 增量发现进入待核且不增加公开数
+  ---
+  duration_ms: 0.962792
+  type: 'test'
+  ...
+# Subtest: 辅助函数：已知集、合并与结果分类
+ok 23 - 辅助函数：已知集、合并与结果分类
+  ---
+  duration_ms: 0.183083
+  type: 'test'
+  ...
+# Subtest: 取消中止正在等待的来源，释放自己的锁且保持原状态，可立即重跑
+ok 24 - 取消中止正在等待的来源，释放自己的锁且保持原状态，可立即重跑
+  ---
+  duration_ms: 7.125417
+  type: 'test'
+  ...
+# Subtest: 每轮上传快照独立，下一轮采集不能覆盖上一轮证据
+ok 25 - 每轮上传快照独立，下一轮采集不能覆盖上一轮证据
+  ---
+  duration_ms: 8.994167
+  type: 'test'
+  ...
+# Subtest: 受限 HTTP 412/code -403 保留成功范围，并对最新失败退避
+ok 26 - 受限 HTTP 412/code -403 保留成功范围，并对最新失败退避
+  ---
+  duration_ms: 4.071625
+  type: 'test'
+  ...
+# Subtest: 受限 HTTP 200/code -403 保留成功范围，并对最新失败退避
+ok 27 - 受限 HTTP 200/code -403 保留成功范围，并对最新失败退避
+  ---
+  duration_ms: 4.069792
+  type: 'test'
+  ...
+# Subtest: 资源上限不足时标记 partial，零预算报告 incomplete
+ok 28 - 资源上限不足时标记 partial，零预算报告 incomplete
+  ---
+  duration_ms: 2.915667
+  type: 'test'
+  ...
+# Subtest: 状态在获取锁后读取，保留获取锁之前刚写入的进度
+ok 29 - 状态在获取锁后读取，保留获取锁之前刚写入的进度
+  ---
+  duration_ms: 3.055791
+  type: 'test'
+  ...
+# Subtest: fetch 初始化异常时释放已获取的锁
+ok 30 - fetch 初始化异常时释放已获取的锁
+  ---
+  duration_ms: 0.80475
+  type: 'test'
+  ...
+# Subtest: 父目录不存在时初始化状态与快照，不写运行原始文件进仓库
+ok 31 - 父目录不存在时初始化状态与快照，不写运行原始文件进仓库
+  ---
+  duration_ms: 3.619458
+  type: 'test'
+  ...
+# Subtest: FOODMAP_AGENT_STATE_DIR 跨 checkout 持久化，快照只含可构建证据
+ok 32 - FOODMAP_AGENT_STATE_DIR 跨 checkout 持久化，快照只含可构建证据
+  ---
+  duration_ms: 6.908208
+  type: 'test'
+  ...
+# Subtest: 无官方合集的 view 成功后登记已核实作者的视频，下一轮不重复请求
+ok 33 - 无官方合集的 view 成功后登记已核实作者的视频，下一轮不重复请求
+  ---
+  duration_ms: 4.294417
+  type: 'test'
+  ...
+# Subtest: view 作者不匹配时保留未核实标志，不计入新增待核
+ok 34 - view 作者不匹配时保留未核实标志，不计入新增待核
+  ---
+  duration_ms: 1.686042
+  type: 'test'
+  ...
+# Subtest: 受限 view 写入退避记录
+ok 35 - 受限 view 写入退避记录
+  ---
+  duration_ms: 2.927791
+  type: 'test'
+  ...
+# Subtest: 已发现全部候选后，每轮优先检查固定王波合集入口并登记新分集
+ok 36 - 已发现全部候选后，每轮优先检查固定王波合集入口并登记新分集
+  ---
+  duration_ms: 2.825292
+  type: 'test'
+  ...
+# Subtest: 损坏状态应报错并保留原文件：{broken
+ok 37 - 损坏状态应报错并保留原文件：{broken
+  ---
+  duration_ms: 0.888584
+  type: 'test'
+  ...
+# Subtest: 损坏状态应报错并保留原文件：null
+ok 38 - 损坏状态应报错并保留原文件：null
+  ---
+  duration_ms: 1.200666
+  type: 'test'
+  ...
+# Subtest: 损坏状态应报错并保留原文件：{"schema":1,"updat
+ok 39 - 损坏状态应报错并保留原文件：{"schema":1,"updat
+  ---
+  duration_ms: 2.206375
+  type: 'test'
+  ...
+# Subtest: 执行超过陈旧窗口但 PID 仍存活的锁不能被抢占
+ok 40 - 执行超过陈旧窗口但 PID 仍存活的锁不能被抢占
+  ---
+  duration_ms: 1.932209
+  type: 'test'
+  ...
+# Subtest: 成功 view 元数据跨轮持久化，后续受限不覆盖最后成功数据
+ok 41 - 成功 view 元数据跨轮持久化，后续受限不覆盖最后成功数据
+  ---
+  duration_ms: 5.565333
+  type: 'test'
+  ...
+# Subtest: 构建合并增量 view 元数据到同一后台台账，待核不公开
+ok 42 - 构建合并增量 view 元数据到同一后台台账，待核不公开
+  ---
+  duration_ms: 12.894041
+  type: 'test'
+  ...
+# Subtest: 默认状态目录在用户 home；dry-run 不初始化目录或快照
+ok 43 - 默认状态目录在用户 home；dry-run 不初始化目录或快照
+  ---
+  duration_ms: 2.203167
+  type: 'test'
+  ...
+# Subtest: 投稿接口缺少列表不能当成成功的零视频
+ok 44 - 投稿接口缺少列表不能当成成功的零视频
+  ---
+  duration_ms: 1.8845
+  type: 'test'
+  ...
+# Subtest: 非成功 HTTP 即使返回 code 0 也不能覆盖最后成功范围
+ok 45 - 非成功 HTTP 即使返回 code 0 也不能覆盖最后成功范围
+  ---
+  duration_ms: 2.148042
+  type: 'test'
+  ...
+# Subtest: refresh CLI 的帮助入口不读取凭据或触发采集
+ok 46 - refresh CLI 的帮助入口不读取凭据或触发采集
+  ---
+  duration_ms: 98.533958
+  type: 'test'
+  ...
+# Subtest: 上传读取本轮固定快照，即使共享构建快照已被下一轮覆盖
+ok 47 - 上传读取本轮固定快照，即使共享构建快照已被下一轮覆盖
+  ---
+  duration_ms: 22.134208
+  type: 'test'
+  ...
+# Subtest: SSH 上传使用 stdin 传凭据，GET显式null，完成POST与持久读回
+ok 48 - SSH 上传使用 stdin 传凭据，GET显式null，完成POST与持久读回
+  ---
+  duration_ms: 500.060958
+  type: 'test'
+  ...
+# Subtest: SSH 目标拒绝命令参数注入
+ok 49 - SSH 目标拒绝命令参数注入
+  ---
+  duration_ms: 0.914125
+  type: 'test'
+  ...
+# Subtest: SSH 失败消息保留退出状态并隐藏stderr凭据
+ok 50 - SSH 失败消息保留退出状态并隐藏stderr凭据
+  ---
+  duration_ms: 722.615792
+  type: 'test'
+  ...
+# Subtest: 取消SSH上传后等待SSH进程退出再返回失败
+ok 51 - 取消SSH上传后等待SSH进程退出再返回失败
+  ---
+  duration_ms: 513.137458
+  type: 'test'
+  ...
+# Subtest: 远程CLI能读取带真实换行的配置，然后核对持久状态
+ok 52 - 远程CLI能读取带真实换行的配置，然后核对持久状态
+  ---
+  duration_ms: 91.897834
+  type: 'test'
+  ...
+1..52
+# tests 52
+# suites 0
+# pass 52
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2315.3375
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.043s
+
+OK

@@ -15,6 +15,9 @@ const outputSchema = z.object({
   origin:z.object({name:z.string(),city:z.string(),district:z.string(),lng:z.number(),lat:z.number(),
     source:z.url(),coordinate_source:z.enum(['sample_fixture','amap_live'])}).passthrough().optional(),
   candidates:z.array(z.object({id:z.string(),name:z.string(),city:z.string(),district:z.string()}).passthrough()).optional(),
+  creators:z.array(z.object({id:z.string(),name:z.string()})).optional(),
+  total:z.number().int().nonnegative().optional(),
+  next_offset:z.number().int().nonnegative().nullable().optional(),
   cards_markdown:z.string().optional()
 });
 function createMcpServer(audit, baseUrl, service, assets) {
@@ -23,13 +26,14 @@ function createMcpServer(audit, baseUrl, service, assets) {
     title:'双城附近探店',
     description:'按用户明确提供的北京或上海地点查询附近探店。无位置先追问，不能猜测。歧义先展示城市与行政区候选，再传 origin_id。结果与网页共用门店、地点解析和直线距离排序，包含准确分店、地址和原视频；明确候选与固定样本限制。',
     inputSchema:z.object({location:z.string().max(80).describe('用户明确提供的地点名；缺少位置先追问'),
-      city:z.enum(['北京','上海']).optional(), origin_id:z.string().max(120).optional()}),
+      city:z.enum(['北京','上海']).optional(), origin_id:z.string().max(120).optional(), creator:z.string().max(120).optional().describe('博主UID或姓名；同店多到访时仅返回该博主自己的视频、截图和描述')}),
     outputSchema,
     annotations:{readOnlyHint:true, destructiveHint:false, idempotentHint:true, openWorldHint:true}
   }, async input => {
-    const data = decorate(await service.query(input), baseUrl, assets);
+    const captured=service.queryWithState?await service.queryWithState(input):{data:await service.query(input),assets};
+    const data = decorate(captured.data, baseUrl, captured.assets);
     audit({event:'tool_result', tool:'find_nearby_food', ...input, result:data});
-    return {content:[{type:'text', text:JSON.stringify(data)}, ...imageContent(data.results,assets)], structuredContent:data};
+    return {content:[{type:'text', text:JSON.stringify(data)}, ...imageContent(data.results,captured.assets)], structuredContent:data};
   });
   return server;
 }
@@ -66,7 +70,8 @@ function createMcpHandler({audit=()=>{},publicBaseUrl,service,contentState}) {
 function createFoodServer(options={}){return require('./amap-server.cjs').createServer(options);}
 if(require.main===module){
   const port=Number(process.env.PORT||8767);
-  const server=createFoodServer({mode:process.env.LOCATION_MODE||'fixture',dataset:process.env.DATASET||'fixture',
+  const server=createFoodServer({mode:process.env.LOCATION_MODE||'live',dataset:process.env.DATASET||'verified',
+    contentOrigin:process.env.FOODMAP_CONTENT_ORIGIN||'https://foodmap.shareworld.fun',
     serviceKey:process.env.AMAP_WEB_SERVICE_KEY,jsKey:process.env.AMAP_JS_KEY,securityCode:process.env.AMAP_JS_SECURITY_CODE,
     publicBaseUrl:process.env.PUBLIC_BASE_URL});
   server.listen(port,'127.0.0.1',()=>console.log(`双城探店 http://127.0.0.1:${port}/ (MCP /mcp)`));

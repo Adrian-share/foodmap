@@ -18,6 +18,8 @@ async function connect(t) {
     await new Promise(resolve => server.close(resolve));
   });
   await client.connect(new StreamableHTTPClientTransport(url));
+  // Real clients discover tools before invoking them; the SDK caches output schemas here.
+  await client.listTools();
   return {client, url, events};
 }
 

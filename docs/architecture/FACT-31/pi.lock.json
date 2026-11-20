@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-11-16",
+  "pi": {
+    "name": "@earendil-works/pi-coding-agent",
+    "version": "1.5.2",
+    "engines": {
+      "node": ">=22.19.0"
+    },
+    "entrypoint": "node_modules/@earendil-works/pi-coding-agent/dist/bundle/cli.js",
+    "tarball": "https://registry.npmjs.org/@earendil-works/pi-coding-agent/-/pi-coding-agent-1.5.2.tgz",
+    "integrity": "sha512-mUWI04rqF1Vd/m1q+Ps1XeWsTXEVvRUnsmRa83I3Dzua0Tx5bYS93imeqtIfrXf7PkkaR6ERz+AuQhIJlom5yA==",
+    "tarball_integrity_verified": true
+  },
+  "node": {
+    "version": "22.19.0",
+    "platform": "darwin-arm64",
+    "source": "https://nodejs.org/dist/v22.19.0/SHASUMS256.txt",
+    "sha256": "c59006db713c770d6ec63ae16cb3edc11f49ee093b5c415d667bb4f436c6526d"
+  },
+  "tools": [
+    "content_read_evidence",
+    "content_fetch_metadata",
+    "content_capture_frame",
+    "content_search_poi",
+    "content_submit_extraction"
+  ],
+  "status": "verified package source, not installed or model-tested in this stage"
+}

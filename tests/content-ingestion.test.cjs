@@ -22,6 +22,7 @@ const env=bucket=>({FOODMAP_INGEST_TOKEN:TOKEN,CONTENT_UPDATES:bucket});
 class MemoryR2 {
   constructor(){this.value=null;this.etag=null;this.writes=0;this.conflicts=0;this.reads=0;this.fail=false;}
   async get(key){
+    if(key!=='private/content-incremental-v1.json')return null;
     this.reads++;if(this.fail)throw Error('private storage unavailable');
     const value=this.value,etag=this.etag;
     return value===null?null:{key,etag,json:async()=>JSON.parse(value)};

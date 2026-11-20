@@ -45,8 +45,10 @@ function caption(shop) {
 }
 
 function imageContent(shops, assets=contentAssets) {
-  return shops.filter(shop=>shop.image).flatMap(shop => [{type:'text', text:caption(shop)},
-    {type:'image', data:shop.image.kind==='video_screenshot'?assets[new URL(shop.image.url).pathname].base64:images.get(shop.name).bytes.toString('base64'), mimeType:shop.image.mime_type||'image/jpeg'}]);
+  return shops.filter(shop=>shop.image).flatMap(shop => {
+    const data=shop.image.kind==='video_screenshot'?assets[new URL(shop.image.url).pathname]?.base64:images.get(shop.name)?.bytes.toString('base64');
+    return [{type:'text',text:caption(shop)},...(data?[{type:'image',data,mimeType:shop.image.mime_type||'image/jpeg'}]:[])];
+  });
 }
 
 module.exports = {withImage, imageForPath, caption, imageContent};

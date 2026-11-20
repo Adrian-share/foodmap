@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-11-16",
+  "pi": {
+    "name": "@earendil-works/pi-coding-agent",
+    "version": "1.5.2",
+    "engines": {
+      "node": ">=22.19.0"
+    },
+    "entrypoint": "node_modules/@earendil-works/pi-coding-agent/dist/bundle/cli.js",
+    "tarball": "https://registry.npmjs.org/@earendil-works/pi-coding-agent/-/pi-coding-agent-1.5.2.tgz",
+    "integrity": "sha512-mUWI04rqF1Vd/m1q+Ps1XeWsTXEVvRUnsmRa83I3Dzua0Tx5bYS93imeqtIfrXf7PkkaR6ERz+AuQhIJlom5yA==",
+    "tarball_integrity_verified": true
+  },
+  "node": {
+    "version": "22.23.5",
+    "platform": "darwin-arm64",
+    "source": "https://nodejs.org/dist/v22.23.5/SHASUMS256.txt",
+    "sha256": "e7131995759b61a0170b646010d2ad35a5d37b4cb0d471f3e8317eac6f742f3d"
+  },
+  "tools": [
+    "content_read_evidence",
+    "content_fetch_metadata",
+    "content_capture_frame",
+    "content_search_poi",
+    "content_submit_extraction"
+  ],
+  "status": "FACT-32 project-local install; model validation recorded separately"
+}

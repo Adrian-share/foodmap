@@ -1,0 +1,107 @@
+{
+  "scope": "isolated actual Pi/model timeout and cancellation, no upload or publication",
+  "task_id": "32e12118-9ff9-4720-92ab-27d2abbbbd1a",
+  "timed_out": true,
+  "after_cancel": {
+    "model": {
+      "id": "doubao-seed-2.1-turbo",
+      "name": "Doubao Seed 2.1 Turbo (Coding Plan)",
+      "api": "anthropic-messages",
+      "provider": "ark-coding-plan-cn",
+      "baseUrl": "https://ark.cn-beijing.volces.com/api/coding",
+      "reasoning": false,
+      "input": [
+        "text",
+        "image"
+      ],
+      "cost": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheWrite": 0
+      },
+      "contextWindow": 256000,
+      "maxTokens": 8192
+    },
+    "thinkingLevel": "off",
+    "isStreaming": false,
+    "isCompacting": false,
+    "steeringMode": "one-at-a-time",
+    "followUpMode": "one-at-a-time",
+    "sessionFile": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/.agent-state/cancel-probe/pi/sessions/2026-11-16T15-09-56-908Z_01a1e4e8-612c-7450-8b22-925edb305cbd.jsonl",
+    "sessionId": "01a1e4e8-612c-7450-8b22-925edb305cbd",
+    "autoCompactionEnabled": true,
+    "messageCount": 3,
+    "pendingMessageCount": 0
+  },
+  "audit": {
+    "active": [
+      "content_read_evidence",
+      "content_fetch_metadata",
+      "content_capture_frame",
+      "content_search_poi",
+      "content_submit_extraction"
+    ],
+    "all": [
+      {
+        "name": "content_read_evidence",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_fetch_metadata",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_capture_frame",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_search_poi",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_submit_extraction",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-32-802cdc43893c/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      }
+    ],
+    "valid": true,
+    "pi_version": "1.5.2",
+    "checked_at": "2026-11-16T15:09:56.935Z"
+  },
+  "retry_settled": {
+    "type": "agent_settled",
+    "aborted": false
+  },
+  "lease_released": true,
+  "passed": true
+}

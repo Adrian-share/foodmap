@@ -1,0 +1,627 @@
+{
+  "scope": "real Pi control plane only; model unavailable; P1 after-task acceptance pending",
+  "samples": [
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:00:09.936826Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:00:40.133662Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:01:10.362787Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:01:40.570302Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:02:10.746402Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:02:40.952081Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:03:11.154105Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:03:41.365481Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:04:11.524820Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:04:41.717101Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:05:11.889984Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:05:42.045471Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:06:12.283147Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:06:42.466442Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:07:12.719292Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:07:42.950315Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:08:13.169657Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:08:43.409369Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:09:13.594397Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    },
+    {
+      "instance_id": "7d470609-9f75-453a-b5ce-0c15c3125c53",
+      "pid": 45714,
+      "heartbeat_at": "2026-11-16T15:09:43.833071Z",
+      "scheduler_owner": "legacy",
+      "mode": "preview",
+      "next_watchlist_at": 0,
+      "next_source_at": 1794877200.0,
+      "last_error_code": "blocked_model",
+      "model_requests": 0,
+      "pi": {
+        "state": "blocked_model",
+        "pid": 45716,
+        "version": "1.5.2",
+        "session_id": "56be9038-aa71-4ff1-8518-b1b56dde9786",
+        "provider": null,
+        "model": null
+      },
+      "queue": {
+        "discovered": 0,
+        "cleaning": 0,
+        "verifying": 0,
+        "pending": 0,
+        "staged": 0,
+        "published": 0,
+        "blocked_model": 0,
+        "blocked_capture": 0,
+        "deferred_budget": 0,
+        "failed": 0
+      }
+    }
+  ],
+  "service_exit_code": 0,
+  "finished_at": 1794841800.122015
+}

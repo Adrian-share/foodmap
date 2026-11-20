@@ -1,7 +1,7 @@
 const {test,expect}=require('@playwright/test');
 const fs=require('node:fs');
 const frozen=require('./fixtures/desktop-catalog.json');
-const expectedIds=new Set([...frozen.shops.map(s=>s.id),'amap:B0FFLI74FK','amap:B0G1PUL2XB']);
+const expectedIds=new Set(frozen.shops.map(s=>s.id));
 async function setup(page){
   await page.route('**/api/amap/config',r=>r.fulfill({json:{jsKey:'fixture',serviceHost:'/_AMapService',mapEnabled:true,searchEnabled:false}}));
   await page.route('https://webapi.amap.com/maps?**',r=>r.fulfill({contentType:'text/javascript',body:fs.readFileSync('tests/mock-sdk.js','utf8')}));
@@ -31,9 +31,9 @@ test('U3: append, filter and clear retain origin; Dongba updates results',async(
   await expect(page.locator('#results>li')).toHaveCount(expectedIds.size);
   const all=await page.locator('#results>li').evaluateAll(xs=>xs.map(x=>x.dataset.storeId));expect(new Set(all).size).toBe(all.length);expect(all.slice(0,6)).toEqual(first);
   await page.getByLabel('博主',{exact:true}).selectOption({label:'厨者王波'});await expect(page.locator('#results>li')).toHaveCount(2);await expect(page.locator('#current-origin')).toHaveText('王府井地铁站');
-  await expect(page.locator('#results')).toContainText('厨者王波');await expect(page.locator('#map .map-pin')).toHaveCount(3);
+  expect(new Set(await page.locator('#results>li').evaluateAll(xs=>xs.map(x=>x.dataset.storeId)))).toEqual(new Set(frozen.expectations.chef_wangbo_store_ids));await expect(page.locator('#results')).toContainText('厨者王波');await expect(page.locator('#map .map-pin')).toHaveCount(3);
   await page.getByRole('button',{name:'清除筛选',exact:true}).click();await expect(page.locator('#results>li')).toHaveCount(6);
-  await page.getByRole('button',{name:'东坝',exact:true}).click();await expect(page.locator('#current-origin')).toHaveText('东坝地铁站');await expect(page.locator('#results>li').first()).toContainText('寂川');
+  await page.getByRole('button',{name:'东坝',exact:true}).click();await expect(page.locator('#current-origin')).toHaveText('东坝地铁站');await expect(page.locator('#results>li').first()).toHaveAttribute('data-store-id',frozen.expectations.dongba_first_store_id);
 });
 test('U4: exact visit opens in-site Bilibili player; empty state and image failure',async({page})=>{
   await setup(page);const card=page.locator('#results>li').first();const href=await card.locator('.detail-action').getAttribute('href');

@@ -31,9 +31,13 @@ function resolveFetch(customFetch){
 async function fetchJson(fetchImpl,url,signal){
   signal?.throwIfAborted();
   const timeout=AbortSignal.timeout(REQUEST_TIMEOUT_MS);
-  const r=await fetchImpl(url,{signal:signal?AbortSignal.any([signal,timeout]):timeout});
+  const r=await fetchImpl(url,{headers:require('../content/http-identity.cjs'),redirect:'error',signal:signal?AbortSignal.any([signal,timeout]):timeout});
   let body;
-  if(typeof r.text==='function')body=await r.text();
+  if(r.body?.getReader){
+    const reader=r.body.getReader(),chunks=[];let size=0;
+    try{while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>2*1024*1024){await reader.cancel();throw Error('official response too large');}chunks.push(value);}}finally{reader.releaseLock();}
+    body=Buffer.concat(chunks).toString('utf8');
+  }else if(typeof r.text==='function')body=await r.text();
   else if(typeof r.json==='function')body=JSON.stringify(await r.json());
   else body='';
   let data;try{data=JSON.parse(body);}catch{data=undefined;}
@@ -562,4 +566,4 @@ if(require.main===module){
   }).catch(e=>{console.error(e.stack||e.message);process.exitCode=1;});
 }
 
-module.exports={acquireLock,releaseLock,loadState,saveState,buildKnownBvids,planSources,runIncremental,mergeDiscovery,mergeAccounts,mergeVideoMetadata,classifyOutcome};
+module.exports={resolveFetch,fetchJson,acquireLock,releaseLock,loadState,saveState,buildKnownBvids,planSources,runIncremental,mergeDiscovery,mergeAccounts,mergeVideoMetadata,classifyOutcome};

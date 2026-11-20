@@ -1,0 +1,155 @@
+TAP version 13
+# Subtest: 真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema
+ok 1 - 真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema
+  ---
+  duration_ms: 86.056375
+  type: 'test'
+  ...
+# Subtest: 王府井返回正确样本起点、最近三家、米制直线距离及完整出处
+ok 2 - 王府井返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 29.892917
+  type: 'test'
+  ...
+# Subtest: 东坝返回正确样本起点、最近三家、米制直线距离及完整出处
+ok 3 - 东坝返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 15.564542
+  type: 'test'
+  ...
+# Subtest: 大钟寺返回正确样本起点、最近三家、米制直线距离及完整出处
+ok 4 - 大钟寺返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 10.942041
+  type: 'test'
+  ...
+# Subtest: 望府井别名及北京前缀、地铁站后缀复用正确起点
+ok 5 - 望府井别名及北京前缀、地铁站后缀复用正确起点
+  ---
+  duration_ms: 13.526417
+  type: 'test'
+  ...
+# Subtest: 缺位置 ""：needs_location，无结果、无地点解析
+ok 6 - 缺位置 ""：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 6.609042
+  type: 'test'
+  ...
+# Subtest: 缺位置 "  "：needs_location，无结果、无地点解析
+ok 7 - 缺位置 "  "：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 6.195208
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我附近"：needs_location，无结果、无地点解析
+ok 8 - 缺位置 "我附近"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 9.322417
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我附近有什么？"：needs_location，无结果、无地点解析
+ok 9 - 缺位置 "我附近有什么？"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 8.721416
+  type: 'test'
+  ...
+# Subtest: 缺位置 "附近"：needs_location，无结果、无地点解析
+ok 10 - 缺位置 "附近"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 8.727792
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我在这里"：needs_location，无结果、无地点解析
+ok 11 - 缺位置 "我在这里"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 5.335125
+  type: 'test'
+  ...
+# Subtest: 缺位置 "当前位置"：needs_location，无结果、无地点解析
+ok 12 - 缺位置 "当前位置"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 5.34275
+  type: 'test'
+  ...
+# Subtest: 未知地点不复用同客户端上次起点，缺位置后补东坝才解析
+ok 13 - 未知地点不复用同客户端上次起点，缺位置后补东坝才解析
+  ---
+  duration_ms: 10.9635
+  type: 'test'
+  ...
+# Subtest: 非字符串参数拒绝；并发不同地点互不串用
+ok 14 - 非字符串参数拒绝；并发不同地点互不串用
+  ---
+  duration_ms: 10.686917
+  type: 'test'
+  ...
+# Subtest: HTTP 路径、非法 JSON、方法及跨源请求边界
+ok 15 - HTTP 路径、非法 JSON、方法及跨源请求边界
+  ---
+  duration_ms: 5.605458
+  type: 'test'
+  ...
+# Subtest: R3 baseline has one explicit version and preserves 15 Beijing shops / 92 BV
+ok 16 - R3 baseline has one explicit version and preserves 15 Beijing shops / 92 BV
+  ---
+  duration_ms: 1.781916
+  type: 'test'
+  ...
+# Subtest: R3 pagination rejects a missing/mismatched version instead of mixing snapshots
+ok 17 - R3 pagination rejects a missing/mismatched version instead of mixing snapshots
+  ---
+  duration_ms: 0.435208
+  type: 'test'
+  ...
+# Subtest: R3 MCP reader pins the current pointer then requests only that snapshot
+ok 18 - R3 MCP reader pins the current pointer then requests only that snapshot
+  ---
+  duration_ms: 8.305708
+  type: 'test'
+  ...
+# Subtest: R3 actual MCP HTTP transport reads the pinned public snapshot with the same version
+    # Subtest: discovery then needs_location
+    ok 1 - discovery then needs_location
+      ---
+      duration_ms: 15.893959
+      type: 'test'
+      ...
+    # Subtest: discovery then 王府井
+    ok 2 - discovery then 王府井
+      ---
+      duration_ms: 10.947917
+      type: 'test'
+      ...
+    # Subtest: discovery then 东坝
+    ok 3 - discovery then 东坝
+      ---
+      duration_ms: 5.313875
+      type: 'test'
+      ...
+    # Subtest: discovery then 大钟寺
+    ok 4 - discovery then 大钟寺
+      ---
+      duration_ms: 4.464
+      type: 'test'
+      ...
+    1..4
+ok 19 - R3 actual MCP HTTP transport reads the pinned public snapshot with the same version
+  ---
+  duration_ms: 131.384667
+  type: 'test'
+  ...
+# Subtest: R3 public reader identifies itself and treats 403/404 as errors, not an empty catalog
+ok 20 - R3 public reader identifies itself and treats 403/404 as errors, not an empty catalog
+  ---
+  duration_ms: 0.379708
+  type: 'test'
+  ...
+1..20
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 332.482667

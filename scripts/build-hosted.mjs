@@ -14,13 +14,14 @@ const tracked = execFileSync('git', ['ls-files', '--cached', '--others', '--excl
   .trim().split('\n').filter(path => /^(beijing-food-map\/|deployment\/|scripts\/|content\/|data\/|nearby\.cjs$|samples\.js$|package(-lock)?\.json$)/.test(path)&&!/^content\/(sources|reference-images|review-frames)\//.test(path));
 const hash = createHash('sha256');
 for (const path of tracked.sort()) hash.update(path).update(await readFile(path));
+const sourceCommit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
 const release = hash.digest('hex').slice(0, 16);
 await mkdir('dist/server', {recursive: true});
 await mkdir('dist/.openai', {recursive: true});
 await build({
   entryPoints: ['deployment/worker.mjs'], outfile: 'dist/server/index.js', bundle: true,
   platform: 'browser', format: 'esm', target: 'es2022',
-  define: {FOODMAP_RELEASE: JSON.stringify(release)},
+  define: {FOODMAP_RELEASE: JSON.stringify(release),FOODMAP_SOURCE_COMMIT:JSON.stringify(sourceCommit)},
   loader: {'.html': 'text'},
   plugins: [{name: 'raw-assets', setup(builder) {
     builder.onResolve({filter: /\?raw$/}, args => ({path: resolve(args.resolveDir, args.path.replace(/\?raw$/, '')), namespace: 'raw-assets'}));

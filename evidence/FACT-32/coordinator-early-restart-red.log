@@ -1,0 +1,28 @@
+test_serve_reclaims_after_expiry_without_second_restart (test_early_restart.EarlyRestart.test_serve_reclaims_after_expiry_without_second_restart) ... FAIL
+test_unconfirmed_write_is_reconciled_before_reclaim (test_early_restart.EarlyRestart.test_unconfirmed_write_is_reconciled_before_reclaim) ... FAIL
+
+======================================================================
+FAIL: test_serve_reclaims_after_expiry_without_second_restart (test_early_restart.EarlyRestart.test_serve_reclaims_after_expiry_without_second_restart)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/agent/test_early_restart.py", line 57, in test_serve_reclaims_after_expiry_without_second_restart
+    self.assertEqual(len(recovered), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_unconfirmed_write_is_reconciled_before_reclaim (test_early_restart.EarlyRestart.test_unconfirmed_write_is_reconciled_before_reclaim)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/agent/test_early_restart.py", line 76, in test_unconfirmed_write_is_reconciled_before_reclaim
+    claim.assert_not_called()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/Cellar/python@3.13/3.13.3_1/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/mock.py", line 940, in assert_not_called
+    raise AssertionError(msg)
+AssertionError: Expected 'claim' to not have been called. Called 1 times.
+Calls: [call('b63693b6-70bc-47a4-8be8-92aa6aac161f')].
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.021s
+
+FAILED (failures=2)

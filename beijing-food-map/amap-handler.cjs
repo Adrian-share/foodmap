@@ -64,6 +64,15 @@ function createHandler(options = {}) {
         const response = await upstream(path, params, jsKey, host);
         return new Response(response.body, {headers: {'Content-Type': response.headers.get('content-type') || 'application/octet-stream', 'Cache-Control': 'no-store'}});
       }
+      if (url.pathname === '/api/content/poi') {
+        const q=url.searchParams.get('q');
+        if(!q||q.length>80)return json({error:'invalid_query'},400);
+        if(!serviceKey)return json({error:'poi_unavailable'},503);
+        const response=await upstream('/v5/place/text',{keywords:q,region:'110000',city_limit:'true',page_size:'20'},serviceKey);
+        const data=await response.json();
+        if(data.status!=='1'||!Array.isArray(data.pois))return json({error:'poi_unavailable'},502);
+        return json({status:'1',pois:data.pois.map(p=>({id:p.id,name:p.name,cityname:p.cityname,adname:p.adname,address:p.address,location:p.location}))});
+      }
       if (url.pathname === '/api/amap/search') {
         const input = normalize(url.searchParams.get('q') || '');
         if (!input || input.length > 80) return json({error:'请输入北京地点名称'}, 400);
@@ -96,7 +105,8 @@ function createHandler(options = {}) {
         return new Response(response.body, {headers: {'Content-Type':'image/png', 'Cache-Control':'no-store'}});
       }
       return json({error:'未找到请求地址'}, 404);
-    } catch {
+    } catch (error) {
+      if(error.status)return json({error:error.message},error.status);
       return json({error:'高德请求超时或服务暂不可用'}, 502);
     }
   };

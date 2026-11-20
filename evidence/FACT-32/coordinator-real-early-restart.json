@@ -1,0 +1,216 @@
+{
+  "scope": "real configured Pi and actual service loop; crashed lease timing only; business retry intentionally deferred so no model call",
+  "initial_worker": {
+    "pid": 56525,
+    "job": {
+      "id": "2a3f2338-31dc-4a11-82ce-9140a96d3c7b",
+      "bvid": "BV11RWqePEcr",
+      "part": 1,
+      "rules_version": "v1",
+      "uid": "3546728118618546",
+      "stage": "cleaning",
+      "registry_revision": 1,
+      "attempt": 1,
+      "lease_owner": "crashed-test-worker",
+      "lease_until": 1794842921.8721359,
+      "next_retry_at": 0.0,
+      "error_code": null,
+      "session_path": null,
+      "session_id": null,
+      "proposal": null
+    }
+  },
+  "service_pid": 56522,
+  "samples": [
+    {
+      "at": 1794842917.247243,
+      "service": {
+        "instance_id": "92d81b34-9574-49ff-a91f-885a86eb84c5",
+        "pid": 56522,
+        "heartbeat_at": "2026-11-16T15:28:37.246555Z",
+        "scheduler_owner": "legacy",
+        "mode": "preview",
+        "pi_restart_at": 0,
+        "pi_restart_failures": 0,
+        "next_watchlist_at": Infinity,
+        "next_source_at": Infinity,
+        "last_error_code": null,
+        "model_requests": 0,
+        "model_jobs_started": 0,
+        "pi": {
+          "state": "idle",
+          "pid": 56527,
+          "version": "1.5.2",
+          "session_id": "6abfe75e-712b-43bd-b271-deabd5742862",
+          "provider": "ark-coding-plan-cn",
+          "model": "doubao-seed-2.1-turbo"
+        },
+        "queue": {
+          "discovered": 0,
+          "cleaning": 1,
+          "verifying": 0,
+          "pending": 0,
+          "staged": 0,
+          "published": 0,
+          "blocked_model": 0,
+          "blocked_capture": 0,
+          "deferred_budget": 0,
+          "failed": 0
+        }
+      },
+      "job": {
+        "id": "2a3f2338-31dc-4a11-82ce-9140a96d3c7b",
+        "bvid": "BV11RWqePEcr",
+        "part": 1,
+        "rules_version": "v1",
+        "uid": "3546728118618546",
+        "stage": "cleaning",
+        "registry_revision": 1,
+        "attempt": 1,
+        "lease_owner": "crashed-test-worker",
+        "lease_until": 1794842921.8721359,
+        "next_retry_at": 1794846516.872737,
+        "error_code": null,
+        "session_path": null,
+        "session_id": null,
+        "proposal": null
+      }
+    },
+    {
+      "at": 1794842927.321001,
+      "service": {
+        "instance_id": "92d81b34-9574-49ff-a91f-885a86eb84c5",
+        "pid": 56522,
+        "heartbeat_at": "2026-11-16T15:28:47.320228Z",
+        "scheduler_owner": "legacy",
+        "mode": "preview",
+        "pi_restart_at": 0,
+        "pi_restart_failures": 0,
+        "next_watchlist_at": Infinity,
+        "next_source_at": Infinity,
+        "last_error_code": null,
+        "model_requests": 0,
+        "model_jobs_started": 0,
+        "pi": {
+          "state": "idle",
+          "pid": 56527,
+          "version": "1.5.2",
+          "session_id": "6abfe75e-712b-43bd-b271-deabd5742862",
+          "provider": "ark-coding-plan-cn",
+          "model": "doubao-seed-2.1-turbo"
+        },
+        "queue": {
+          "discovered": 1,
+          "cleaning": 0,
+          "verifying": 0,
+          "pending": 0,
+          "staged": 0,
+          "published": 0,
+          "blocked_model": 0,
+          "blocked_capture": 0,
+          "deferred_budget": 0,
+          "failed": 0
+        }
+      },
+      "job": {
+        "id": "2a3f2338-31dc-4a11-82ce-9140a96d3c7b",
+        "bvid": "BV11RWqePEcr",
+        "part": 1,
+        "rules_version": "v1",
+        "uid": "3546728118618546",
+        "stage": "discovered",
+        "registry_revision": 1,
+        "attempt": 1,
+        "lease_owner": null,
+        "lease_until": null,
+        "next_retry_at": 1794846516.872737,
+        "error_code": null,
+        "session_path": null,
+        "session_id": null,
+        "proposal": null
+      }
+    }
+  ],
+  "after": {
+    "id": "2a3f2338-31dc-4a11-82ce-9140a96d3c7b",
+    "bvid": "BV11RWqePEcr",
+    "part": 1,
+    "rules_version": "v1",
+    "uid": "3546728118618546",
+    "stage": "discovered",
+    "registry_revision": 1,
+    "attempt": 1,
+    "lease_owner": null,
+    "lease_until": null,
+    "next_retry_at": 1794846516.872737,
+    "error_code": null,
+    "session_path": null,
+    "session_id": null,
+    "proposal": null
+  },
+  "audit": {
+    "active": [
+      "content_read_evidence",
+      "content_fetch_metadata",
+      "content_capture_frame",
+      "content_search_poi",
+      "content_submit_extraction"
+    ],
+    "all": [
+      {
+        "name": "content_read_evidence",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_fetch_metadata",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_capture_frame",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_search_poi",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      },
+      {
+        "name": "content_submit_extraction",
+        "exposure": "direct",
+        "sourceInfo": {
+          "path": "/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/agent/pi/content-tools.ts",
+          "source": "cli",
+          "scope": "temporary",
+          "origin": "top-level"
+        }
+      }
+    ],
+    "valid": true,
+    "pi_version": "1.5.2",
+    "checked_at": "2026-11-16T15:28:37.244Z"
+  },
+  "passed": true
+}

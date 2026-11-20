@@ -1,0 +1,21 @@
+{
+  "base_commit": "b972242fc944706d4ae225be494988d618240deb",
+  "problem": "real Client discovers tools then rejects successful output with creators/total/next_offset as additional properties",
+  "client_version": "2.4.0",
+  "change": "three explicit optional fields in the output schema; creators typed, total/next_offset nonnegative integers, nullable terminal cursor; client validation remains enabled",
+  "regression_workflow": "real HTTP Client connect -> listTools -> needs_location and Wangfujing/Dongba/Dazhongsi calls",
+  "red": {
+    "passed": 14,
+    "failed": 10,
+    "successful_location_calls_reproduce_three_additional_properties": true
+  },
+  "green": {
+    "passed": 24,
+    "failed": 0,
+    "needs_location_no_result_or_image": true,
+    "three_station_version_origin_distance_original_frames_preserved": true
+  },
+  "scope": "local transport with labeled snapshot fixtures; formal MacBook v11/AMap replay belongs to root",
+  "worker_source_modified": false,
+  "formal_acceptance": "pending root actual-client replay"
+}

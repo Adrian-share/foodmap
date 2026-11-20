@@ -1,0 +1,271 @@
+TAP version 13
+# Subtest: 真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema
+ok 1 - 真实 Streamable HTTP 初始化、发现一个只读工具及输出 schema
+  ---
+  duration_ms: 83.939042
+  type: 'test'
+  ...
+# Subtest: 王府井返回正确样本起点、最近三家、米制直线距离及完整出处
+not ok 2 - 王府井返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 32.385958
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:54:3'
+  failureType: 'testCodeFailure'
+  error: "Structured content does not match the tool's output schema: data must NOT have additional properties, data must NOT have additional properties, data must NOT have additional properties"
+  code: -32602
+  name: 'ProtocolError'
+  stack: |-
+    Client.callTool (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/node_modules/@modelcontextprotocol/client/dist/public-C-9H-ftO.cjs:3925:40)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async call (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:27:18)
+    async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:56:18)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 东坝返回正确样本起点、最近三家、米制直线距离及完整出处
+not ok 3 - 东坝返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 14.606584
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:54:3'
+  failureType: 'testCodeFailure'
+  error: "Structured content does not match the tool's output schema: data must NOT have additional properties, data must NOT have additional properties, data must NOT have additional properties"
+  code: -32602
+  name: 'ProtocolError'
+  stack: |-
+    Client.callTool (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/node_modules/@modelcontextprotocol/client/dist/public-C-9H-ftO.cjs:3925:40)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async call (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:27:18)
+    async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:56:18)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 大钟寺返回正确样本起点、最近三家、米制直线距离及完整出处
+not ok 4 - 大钟寺返回正确样本起点、最近三家、米制直线距离及完整出处
+  ---
+  duration_ms: 9.478709
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:54:3'
+  failureType: 'testCodeFailure'
+  error: "Structured content does not match the tool's output schema: data must NOT have additional properties, data must NOT have additional properties, data must NOT have additional properties"
+  code: -32602
+  name: 'ProtocolError'
+  stack: |-
+    Client.callTool (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/node_modules/@modelcontextprotocol/client/dist/public-C-9H-ftO.cjs:3925:40)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async call (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:27:18)
+    async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:56:18)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 望府井别名及北京前缀、地铁站后缀复用正确起点
+not ok 5 - 望府井别名及北京前缀、地铁站后缀复用正确起点
+  ---
+  duration_ms: 7.945458
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:80:1'
+  failureType: 'testCodeFailure'
+  error: "Structured content does not match the tool's output schema: data must NOT have additional properties, data must NOT have additional properties, data must NOT have additional properties"
+  code: -32602
+  name: 'ProtocolError'
+  stack: |-
+    Client.callTool (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/node_modules/@modelcontextprotocol/client/dist/public-C-9H-ftO.cjs:3925:40)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async call (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:27:18)
+    async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:83:19)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 缺位置 ""：needs_location，无结果、无地点解析
+ok 6 - 缺位置 ""：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 7.791958
+  type: 'test'
+  ...
+# Subtest: 缺位置 "  "：needs_location，无结果、无地点解析
+ok 7 - 缺位置 "  "：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 6.511667
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我附近"：needs_location，无结果、无地点解析
+ok 8 - 缺位置 "我附近"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 6.954458
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我附近有什么？"：needs_location，无结果、无地点解析
+ok 9 - 缺位置 "我附近有什么？"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 6.339125
+  type: 'test'
+  ...
+# Subtest: 缺位置 "附近"：needs_location，无结果、无地点解析
+ok 10 - 缺位置 "附近"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 6.06975
+  type: 'test'
+  ...
+# Subtest: 缺位置 "我在这里"：needs_location，无结果、无地点解析
+ok 11 - 缺位置 "我在这里"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 6.406791
+  type: 'test'
+  ...
+# Subtest: 缺位置 "当前位置"：needs_location，无结果、无地点解析
+ok 12 - 缺位置 "当前位置"：needs_location，无结果、无地点解析
+  ---
+  duration_ms: 5.435667
+  type: 'test'
+  ...
+# Subtest: 未知地点不复用同客户端上次起点，缺位置后补东坝才解析
+not ok 13 - 未知地点不复用同客户端上次起点，缺位置后补东坝才解析
+  ---
+  duration_ms: 6.01675
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:99:1'
+  failureType: 'testCodeFailure'
+  error: "Structured content does not match the tool's output schema: data must NOT have additional properties, data must NOT have additional properties, data must NOT have additional properties"
+  code: -32602
+  name: 'ProtocolError'
+  stack: |-
+    Client.callTool (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/node_modules/@modelcontextprotocol/client/dist/public-C-9H-ftO.cjs:3925:40)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async call (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:27:18)
+    async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:101:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 非字符串参数拒绝；并发不同地点互不串用
+not ok 14 - 非字符串参数拒绝；并发不同地点互不串用
+  ---
+  duration_ms: 10.60775
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:112:1'
+  failureType: 'testCodeFailure'
+  error: "Structured content does not match the tool's output schema: data must NOT have additional properties, data must NOT have additional properties, data must NOT have additional properties"
+  code: -32602
+  name: 'ProtocolError'
+  stack: |-
+    Client.callTool (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/node_modules/@modelcontextprotocol/client/dist/public-C-9H-ftO.cjs:3925:40)
+    process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    async call (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:27:18)
+    async Promise.all (index 0)
+    async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/mcp.acceptance.test.cjs:116:16)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: HTTP 路径、非法 JSON、方法及跨源请求边界
+ok 15 - HTTP 路径、非法 JSON、方法及跨源请求边界
+  ---
+  duration_ms: 3.688792
+  type: 'test'
+  ...
+# Subtest: R3 baseline has one explicit version and preserves 15 Beijing shops / 92 BV
+ok 16 - R3 baseline has one explicit version and preserves 15 Beijing shops / 92 BV
+  ---
+  duration_ms: 3.601125
+  type: 'test'
+  ...
+# Subtest: R3 pagination rejects a missing/mismatched version instead of mixing snapshots
+ok 17 - R3 pagination rejects a missing/mismatched version instead of mixing snapshots
+  ---
+  duration_ms: 0.47325
+  type: 'test'
+  ...
+# Subtest: R3 MCP reader pins the current pointer then requests only that snapshot
+ok 18 - R3 MCP reader pins the current pointer then requests only that snapshot
+  ---
+  duration_ms: 13.899375
+  type: 'test'
+  ...
+# Subtest: R3 actual MCP HTTP transport reads the pinned public snapshot with the same version
+    # Subtest: discovery then needs_location
+    ok 1 - discovery then needs_location
+      ---
+      duration_ms: 17.297708
+      type: 'test'
+      ...
+    # Subtest: discovery then 王府井
+    not ok 2 - discovery then 王府井
+      ---
+      duration_ms: 8.187625
+      type: 'test'
+      location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/content-version.test.cjs:15:57'
+      failureType: 'testCodeFailure'
+      error: "Structured content does not match the tool's output schema: data must NOT have additional properties, data must NOT have additional properties, data must NOT have additional properties"
+      code: -32602
+      name: 'ProtocolError'
+      stack: |-
+        Client.callTool (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/node_modules/@modelcontextprotocol/client/dist/public-C-9H-ftO.cjs:3925:40)
+        process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+        async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/content-version.test.cjs:16:18)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/content-version.test.cjs:15:49)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+      ...
+    # Subtest: discovery then 东坝
+    not ok 3 - discovery then 东坝
+      ---
+      duration_ms: 4.421917
+      type: 'test'
+      location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/content-version.test.cjs:15:57'
+      failureType: 'testCodeFailure'
+      error: "Structured content does not match the tool's output schema: data must NOT have additional properties, data must NOT have additional properties, data must NOT have additional properties"
+      code: -32602
+      name: 'ProtocolError'
+      stack: |-
+        Client.callTool (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/node_modules/@modelcontextprotocol/client/dist/public-C-9H-ftO.cjs:3925:40)
+        process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+        async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/content-version.test.cjs:16:18)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/content-version.test.cjs:15:49)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+      ...
+    # Subtest: discovery then 大钟寺
+    not ok 4 - discovery then 大钟寺
+      ---
+      duration_ms: 3.586208
+      type: 'test'
+      location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/content-version.test.cjs:15:57'
+      failureType: 'testCodeFailure'
+      error: "Structured content does not match the tool's output schema: data must NOT have additional properties, data must NOT have additional properties, data must NOT have additional properties"
+      code: -32602
+      name: 'ProtocolError'
+      stack: |-
+        Client.callTool (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/node_modules/@modelcontextprotocol/client/dist/public-C-9H-ftO.cjs:3925:40)
+        process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+        async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/content-version.test.cjs:16:18)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async TestContext.<anonymous> (/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/content-version.test.cjs:15:49)
+        async Test.run (node:internal/test_runner/test:1054:7)
+        async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+      ...
+    1..4
+not ok 19 - R3 actual MCP HTTP transport reads the pinned public snapshot with the same version
+  ---
+  duration_ms: 130.0005
+  type: 'test'
+  location: '/Users/adrian/multica_workspaces/adrian-fact-1564e6a84c5b/fact-30-e09ee9df1425/workdir/foodmap/tests/content-version.test.cjs:7:1'
+  failureType: 'subtestsFailed'
+  error: '3 subtests failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: R3 public reader identifies itself and treats 403/404 as errors, not an empty catalog
+ok 20 - R3 public reader identifies itself and treats 403/404 as errors, not an empty catalog
+  ---
+  duration_ms: 0.364792
+  type: 'test'
+  ...
+1..20
+# tests 24
+# suites 0
+# pass 14
+# fail 10
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 324.276583

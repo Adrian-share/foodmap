@@ -38,7 +38,8 @@
       const body=el('div',null,'card-body');body.append(el('span',r.published?'已收录':'待核分店 · 待补截图','tag'),el('p',r.creator.name,'creator'),el('h2',r.visit.store_name),el('p',r.video.title,'title'),el('p',r.visit.branch_name?`${r.visit.district} · ${r.visit.address}`:'具体分店与地址待核实'),el('p',r.video.bvid+' · P'+r.video.part+' · '+(r.video.published_at||'日期待核').slice(0,10),'bvid'));
       if(r.published&&r.visit.screenshots.length){const i=r.visit.screenshots[0];body.append(el('p','画面：'+i.alt+' · '+(i.timestamp_ms/1000)+' 秒 · 来源 '+r.video.bvid));}
       if(r.published){
-        for(const o of (r.visit.opinions||[]).slice(0,2))body.append(el('p','UP 主观点：'+o.text+'（'+o.seconds+' 秒）'));
+        for(const o of (r.visit.opinions||[]).slice(0,2))body.append(el('p',o.source_kind==='official_description'?'B站官方简介：'+o.text:'UP 主观点：'+o.text+'（'+o.seconds+' 秒）'));
+        if(r.visit.address_source==='amap')body.append(el('p','门牌地址与GCJ-02坐标来源：高德地图'));
         for(const d of r.visit.dishes||[])body.append(el('p','菜品：'+d.text+'（'+d.seconds+' 秒）'));
       }
       const btn=el('button',r.published?'在本站查看视频':'核对原视频');btn.type='button';btn.onclick=()=>open(r,btn);body.append(btn);card.append(body);$('cards').append(card);
@@ -48,7 +49,8 @@
   $('content-query').oninput=render;
   (async()=>{
     try{
-      const response=await fetch('/api/content'+(review?'?review=1':''));if(!response.ok)throw Error();const data=await response.json();records=data.records;
+      const query=new URLSearchParams();if(review)query.set('review','1');if(params.get('data_version'))query.set('data_version',params.get('data_version'));
+      const response=await fetch('/api/content'+(query.size?'?'+query:''));if(!response.ok)throw Error();const data=await response.json();records=data.records;
       $(review?'review-tab':'published-tab').setAttribute('aria-current','page');$('review-note').hidden=!review;
       $('summary').textContent=review?`${data.batches?.length||1} 个批次 · ${records.length} 条记录 · 已收录 ${data.published_count} 条 · ${new Set(records.map(r=>r.creator.uid)).size} 位 UP 主`:`已收录 ${data.published_count} 条 · 画面附原视频与时间点`;
       render();

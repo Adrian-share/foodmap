@@ -186,6 +186,8 @@
     try {
       const focusStore=new URLSearchParams(location.search).get('store_id');
       const params = new URLSearchParams({location: name, city: '北京', limit: focusStore ? '50' : '6', offset: String(offset)});
+      const pinnedVersion = new URLSearchParams(location.search).get('data_version') || (append ? list.dataset.version : '');
+      if (pinnedVersion) params.set('data_version', pinnedVersion);
       if (originId) params.set('origin_id', originId);
       if (creator.value) params.set('creator', creator.value);
       const response = await fetch('/api/nearby?' + params, {signal: AbortSignal.any([controller.signal, AbortSignal.timeout(12000)])});
@@ -197,6 +199,7 @@
         // A changed catalog cannot safely be appended to an older ordering.
         if (append && result.data_version !== list.dataset.version) {more.disabled = false; return search(input, originId);}
         render(result, version, append);
+        byId('creator-collection').href = '/creators/?' + new URLSearchParams({... (creator.value ? {uid:creator.value} : {}), data_version:result.data_version});
         if(focusStore){const target=list.querySelector('[data-store-id="'+CSS.escape(focusStore)+'"] .shop-select');target?.click();}
         return;
       }

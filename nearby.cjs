@@ -14,6 +14,7 @@ function missingLocation(location) {
   return !text || /^(?:我)?(?:的)?(?:附近|这里|这儿|周围|周边|在这里|在这儿|所在位置|当前位置|现在的位置)(?:有(?:什么|啥)|有什么好吃的|有什么餐厅|有什么探店餐厅)?$/.test(text);
 }
 function catalogData(dataset='verified',contentCatalog=publishedContent){
+  if(dataset==='verified'&&contentCatalog.complete===true)return {shops:contentCatalog.shops,visits:[...(contentCatalog.baseline_visits||[]),...contentCatalog.visits]};
   const shops=new Map(catalog.shops.map(s=>[s.id,s]));
   const shopIds=new Map();
   if(dataset==='verified')for(const shop of contentCatalog.shops){
@@ -27,7 +28,7 @@ function catalogData(dataset='verified',contentCatalog=publishedContent){
 }
 function createNearbyService({mode='fixture',dataset='fixture',serviceKey,request=fetch,audit=()=>{},contentCatalog=publishedContent}={}) {
   if(!['fixture','live'].includes(mode)||!['fixture','verified'].includes(dataset))throw Error('无效数据或地点模式');
-  const base={coordinate_system:'GCJ-02',distance_type:'straight_line',dataset,data_version:catalog.version+(dataset==='verified'?'+'+contentCatalog.version:''),mode,
+  const base={coordinate_system:'GCJ-02',distance_type:'straight_line',dataset,data_version:contentCatalog.data_version||catalog.version+(dataset==='verified'?'+'+contentCatalog.version:''),mode,
     sample_count:10,scope:dataset==='fixture'?'排名仅限当前城市的固定验收样本；上海候选未完成分店和营业状态核对，和平饭店采用酒店点位。':'排名仅限当前城市已核实收录门店。',results:[]};
   async function resolve({location,city,origin_id}={}) {
     if(typeof location!=='string'||location.length>80)return {status:'needs_location',message:'请提供你所在的酒店、地铁站或地标名称。',matches:[]};
@@ -67,6 +68,8 @@ function createNearbyService({mode='fixture',dataset='fixture',serviceKey,reques
       message:matches.length>1?'请选择城市、行政区和准确起点。':matches.length?'已确认起点。':'未找到可确认的起点，请补充准确城市与地点。'};
   }
   async function query(input={}) {
+    if(input.data_version&&input.data_version!==base.data_version)throw Object.assign(Error('version_expired'),{status:409});
+    if(Number(input.offset)>0&&contentCatalog.data_version&&!input.data_version)throw Object.assign(Error('pagination_version_required'),{status:409});
     const resolved=await resolve(input);
     if(resolved.status!=='ok')return {...base,status:resolved.status,message:resolved.message,...(resolved.matches.length?{candidates:resolved.matches}:{})};
     const origin=resolved.matches[0];
