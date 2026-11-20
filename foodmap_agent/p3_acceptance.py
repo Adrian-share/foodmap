@@ -6,6 +6,16 @@ from zoneinfo import ZoneInfo
 from .evidence_cache import recover_registered
 from .release_audit import write_json,utc,epoch
 
+def acceptance_window(start,end):
+    try:
+        a,b=(datetime.fromisoformat(x.replace('Z','+00:00')) for x in (start,end))
+        if a.tzinfo is None or b.tzinfo is None or not 0<b.timestamp()-a.timestamp()<=7200:
+            raise ValueError('invalid_acceptance_window')
+    except (ValueError,TypeError,AttributeError):
+        raise ValueError('invalid_acceptance_window') from None
+    return dict(start=a.astimezone(timezone.utc).isoformat(),end=b.astimezone(timezone.utc).isoformat(),
+                date=a.astimezone(ZoneInfo('Asia/Shanghai')).date().isoformat())
+
 def fault_ready(job,service,used,registered,now,second):
     return bool(job and job['stage']=='cleaning' and job['attempt']==(2 if second else 1)
                 and job['lease_owner']==service['instance_id'] and job['lease_until']>now
@@ -13,13 +23,15 @@ def fault_ready(job,service,used,registered,now,second):
                 and used<=(8 if second else 7) and registered)
 
 class P3Acceptance:
-    def __init__(self,state,journal,expected_release,multica_cli):
+    def __init__(self,state,journal,expected_release,multica_cli,*,window_start=None,window_end=None):
+        self.window=acceptance_window(window_start,window_end) if window_start is not None or window_end is not None else None
         self.state=Path(state).resolve();self.journal=Path(journal).resolve();self.release=expected_release;self.cli=multica_cli
         if not re.fullmatch(r'[a-f0-9]{40}',expected_release):raise ValueError('invalid_expected_release')
         if not self.journal.is_relative_to(self.state/'acceptance'):raise ValueError('observer_journal_outside_state')
         self.journal.mkdir(parents=True,exist_ok=True,mode=0o700);self.file=self.journal/'status.json';self.stopping=False
-        self.value=json.loads(self.file.read_text()) if self.file.exists() else dict(fixture=False,phase='waiting_window',expected_release=expected_release,armed_at=utc(),events=[])
+        self.value=json.loads(self.file.read_text()) if self.file.exists() else dict(fixture=False,phase='waiting_window',expected_release=expected_release,armed_at=utc(),events=[],window=self.window)
         if self.value['expected_release']!=expected_release:raise ValueError('armed_release_changed')
+        if self.value.get('window')!=self.window:raise ValueError('armed_window_changed')
     def save(self,event=None,**fields):
         self.value.update(fields,observer_pid=os.getpid(),heartbeat_at=utc())
         if event:self.value['events'].append(dict(at=utc(),event=event))
@@ -88,7 +100,11 @@ class P3Acceptance:
         a=json.loads(subprocess.check_output([self.cli,'autopilot','get','9d7d3391-9e85-4a55-baae-8294bc33e15e','--output','json'],text=True,timeout=20))
         tasks=json.loads(subprocess.check_output([self.cli,'agent','tasks','2783a44b-d346-4c71-a393-bb017407b73e','--output','json'],text=True,timeout=20))
         if a['autopilot']['status']!='paused' or any(t['status'] not in ('completed','failed','cancelled') for t in tasks):raise RuntimeError('legacy_owner_not_drained')
+    def window_open(self):
+        if not self.window:raise ValueError('explicit_acceptance_window_required')
+        return epoch(self.window['start'])<=time.time()<epoch(self.window['end'])
     def interrupt(self,snapshot,job,registration,second):
+        if not self.window_open():return False
         if snapshot['prepared']:raise RuntimeError('unconfirmed_write_protects_fault_window')
         service=snapshot['service'];python=service['pid'];pi=service['pi']['pid']
         self.legacy_stopped()
@@ -97,6 +113,7 @@ class P3Acceptance:
         fresh_registration=self.registered(current,fresh) if current else None
         if fresh['prepared'] or not fault_ready(current,fresh['service'],fresh['used'],bool(fresh_registration),time.time(),second):return False
         if fresh['service']['pid']!=python or fresh['service']['pi']['pid']!=pi:raise RuntimeError('process_changed_before_signal')
+        if not self.window_open():return False
         if second:
             if current['session_id']!=self.value['session_id']:raise RuntimeError('retry_session_changed')
             self.save('before_python_sigkill',phase='waiting_restart',second_python_pid=python,second_pi_pid=pi,python_killed_at=time.time(),second_attempt=current,second_snapshot=fresh,second_registration=fresh_registration)
@@ -110,9 +127,13 @@ class P3Acceptance:
         result=subprocess.run(['/bin/ps','-p',str(pid),'-o','stat='],capture_output=True,text=True)
         return result.returncode==0 and result.stdout.strip() and not result.stdout.strip().startswith('Z')
     def tick(self):
-        s=self.snapshot();phase=self.value['phase'];now=time.time()
+        phase=self.value['phase'];now=time.time()
+        if self.window:
+            if now>=epoch(self.window['end']):self.save('window_expired',phase='expired_pending');return
+            if now<epoch(self.window['start']):return
+        elif phase=='waiting_window':raise ValueError('explicit_acceptance_window_required')
+        s=self.snapshot()
         if phase=='waiting_window':
-            if now<epoch('2026-11-19T00:00:00+08:00'):return
             if s['used']>=10:self.save('natural_budget_already_exhausted_no_fault_sent',phase='budget_exhausted_pending');return
             for job in s['jobs']:
                 registration=self.registered(job,s) if job['stage']=='cleaning' and job['attempt']==1 else None
@@ -164,13 +185,14 @@ class P3Acceptance:
     def registered_final(self,job):
         return recover_registered(dict(task_id=job['id'],creator_uid=job['uid'],bvid=job['bvid'],part=job['part'],root=str(self.state/'evidence'/job['id'])))
     def run(self):
+        if not self.window:raise ValueError('explicit_acceptance_window_required')
         with (self.journal/'observer.lock').open('a+') as lock:
             fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
             signal.signal(signal.SIGTERM,lambda *_:setattr(self,'stopping',True))
             self.save('observer_armed_no_collection_or_model_calls')
             try:
                 while not self.stopping and self.value['phase'] in ('waiting_window','waiting_retry','waiting_restart','waiting_final'):
-                    if time.time()>=epoch('2026-11-19T02:00:00+08:00'):self.save('window_expired',phase='expired_pending');break
-                    self.tick();self.save();time.sleep(30 if self.value['phase']=='waiting_window' and time.time()<epoch('2026-11-19T00:00:00+08:00') else 2)
+                    if time.time()>=epoch(self.window['end']):self.save('window_expired',phase='expired_pending');break
+                    self.tick();self.save();time.sleep(30 if self.value['phase']=='waiting_window' and time.time()<epoch(self.window['start']) else 2)
                 if self.stopping:self.save('observer_stopped_by_operator',phase='stopped_pending')
             except Exception as error:self.save('observer_aborted_guard_or_recovery_failure',phase='failed_pending',error_code=str(error));raise

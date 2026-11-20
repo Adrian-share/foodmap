@@ -1,6 +1,6 @@
 """Guard tests only; never send signals or claim a production P3 pass."""
 import json,tempfile,unittest
-from datetime import datetime
+from datetime import datetime,timedelta,timezone
 from pathlib import Path
 from unittest.mock import patch
 from foodmap_agent.p3_acceptance import P3Acceptance,fault_ready
@@ -20,7 +20,8 @@ class P3CursorEvidence(unittest.TestCase):
   tmp=tempfile.TemporaryDirectory();self.addCleanup(tmp.cleanup);self.state=Path(tmp.name)
   self.store=Store(self.state);self.addCleanup(self.store.close)
   (self.state/'pi').mkdir();(self.state/'pi/model-audit.jsonl.count.json').write_text('{"provider_requests":74}')
-  self.observer=P3Acceptance(self.state,self.state/'acceptance/test','a'*40,'unused-cli')
+  now=datetime.now(timezone.utc)
+  self.observer=P3Acceptance(self.state,self.state/'acceptance/test','a'*40,'unused-cli',window_start=(now-timedelta(minutes=1)).isoformat(),window_end=(now+timedelta(minutes=59)).isoformat())
   self.key='123:collection:456:1:anchor:BV1NG6kYTEXG'
   self.cursor=dict(page=2,source=dict(uid='123',type='collection',id='456',anchor_bvid='BV1NG6kYTEXG'),
                    last_success=dict(at='2026-11-18T05:00:00Z',page=1,obtained=100),
