@@ -207,13 +207,19 @@ class Service:
 
     def advance_pipeline(self):
         for job in self.store.jobs():
-            if job['stage'] not in ('verifying','staged') or job['next_retry_at'] > time.time():
+            identity_wait=job['stage']=='pending' and job['error_code']=='store_identity_unresolved'
+            if job['next_retry_at']>time.time():continue
+            if identity_wait:
+                pending=self.store.get('identity_pending:'+job['id'],{})
+                current=self.store.get('last_publication',{}).get('data_version')
+                if not current or current==pending.get('data_version'):continue
+            elif job['stage'] not in ('verifying','staged'):
                 continue
             try:
-                if job['stage'] == 'staged':
-                    if self.mode!='production':
-                        continue
-                    self.pipeline.resume(job)
+                if identity_wait or job['stage']=='staged':
+                    if self.mode!='production':continue
+                    receipt=self.pipeline.resume(job)  # Same saved C2 bytes; no Pi claim/budget charge.
+                    if receipt and self.last_error=='publication_or_verification_failed':self.last_error=None
                 else:
                     saved=self.store.get('extraction:'+job['id'])
                     if not saved:
@@ -222,7 +228,8 @@ class Service:
                     self.pipeline.advance(job,saved['result'],saved['context'],saved['model'],publish=self.mode=='production')
             except Exception:
                 self.last_error='publication_or_verification_failed'
-                self.store.db.execute('UPDATE jobs SET error_code=?,next_retry_at=? WHERE id=?',('publication_or_verification_failed',time.time()+60,job['id']))
+                code='store_identity_unresolved' if identity_wait else 'publication_or_verification_failed'
+                self.store.db.execute('UPDATE jobs SET error_code=?,next_retry_at=? WHERE id=?',(code,time.time()+60,job['id']))
             return True
         return False
 

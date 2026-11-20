@@ -14,6 +14,7 @@ function missingLocation(location) {
   return !text || /^(?:我)?(?:的)?(?:附近|这里|这儿|周围|周边|在这里|在这儿|所在位置|当前位置|现在的位置)(?:有(?:什么|啥)|有什么好吃的|有什么餐厅|有什么探店餐厅)?$/.test(text);
 }
 function catalogData(dataset='verified',contentCatalog=publishedContent){
+  if(dataset==='verified'&&contentCatalog.complete===true)return {shops:contentCatalog.shops,visits:[...(contentCatalog.baseline_visits||[]),...contentCatalog.visits]};
   const shops=new Map(catalog.shops.map(s=>[s.id,s]));
   const shopIds=new Map();
   if(dataset==='verified')for(const shop of contentCatalog.shops){

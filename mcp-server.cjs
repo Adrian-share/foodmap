@@ -26,7 +26,7 @@ function createMcpServer(audit, baseUrl, service, assets) {
     title:'双城附近探店',
     description:'按用户明确提供的北京或上海地点查询附近探店。无位置先追问，不能猜测。歧义先展示城市与行政区候选，再传 origin_id。结果与网页共用门店、地点解析和直线距离排序，包含准确分店、地址和原视频；明确候选与固定样本限制。',
     inputSchema:z.object({location:z.string().max(80).describe('用户明确提供的地点名；缺少位置先追问'),
-      city:z.enum(['北京','上海']).optional(), origin_id:z.string().max(120).optional()}),
+      city:z.enum(['北京','上海']).optional(), origin_id:z.string().max(120).optional(), creator:z.string().max(120).optional().describe('博主UID或姓名；同店多到访时仅返回该博主自己的视频、截图和描述')}),
     outputSchema,
     annotations:{readOnlyHint:true, destructiveHint:false, idempotentHint:true, openWorldHint:true}
   }, async input => {

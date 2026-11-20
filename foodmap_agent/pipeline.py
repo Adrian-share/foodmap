@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import subprocess
 import time
-from .publisher import Publisher
+from .publisher import Publisher, IdentityPending
 from .watchlist import now_iso
 from .retry_policy import review_policy
 
@@ -113,8 +113,14 @@ class Pipeline:
         if not registry:
             raise RuntimeError('registry_not_active')
         baseline=self.store.get('baseline')['version']
-        receipt=self.publisher.publish(prepared['records'],documents,images,source_commit=self.source_commit,
-                                       registry_revision=registry,baseline_version=baseline)
+        try:
+            receipt=self.publisher.publish(prepared['records'],documents,images,source_commit=self.source_commit,
+                                           registry_revision=registry,baseline_version=baseline)
+        except IdentityPending as error:
+            self.store.set('identity_pending:'+job['id'],dict(data_version=error.data_version,pending=error.pending,checked_at=now_iso()))
+            self.store.db.execute("UPDATE jobs SET stage='pending',error_code='store_identity_unresolved',next_retry_at=0 WHERE id=?",(job['id'],))
+            self.event(job,'pending',missing=['store_identity_unresolved'])
+            return None
         self.store.set('publication:'+job['id'],receipt)
         self.store.db.execute("UPDATE jobs SET stage='published',error_code=NULL WHERE id=?",(job['id'],))
         self.event(job,'published',data_version=receipt['data_version'])

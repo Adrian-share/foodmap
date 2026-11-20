@@ -4,6 +4,8 @@ const {createContentState}=require('./state.cjs');
 const {createPublicationService,VERSION,readBytes}=require('./publication.cjs');
 const {sha}=require('./protocol.cjs');
 const {buildLedger}=require('./ledger.cjs');
+const {resolveStoreIdentity,copy}=require('./store-identity.cjs');
+const legacyAliases=copy(frozen.config.store_aliases||{});
 const cleanRecord=r=>({...r,review:{status:'approved',...(r.review.rules_version?{rules_version:r.review.rules_version}:{})}});
 function sanitize(state){
  const record=r=>({...r,review:{status:r.review?.status}});
@@ -22,12 +24,15 @@ function createReadModel({bucket,baseline=require('./runtime.cjs')}={}){
   const manifest=JSON.parse(new TextDecoder().decode(bytes));require('./protocol.cjs').validate('manifest',manifest);if(manifest.baseline_version!==frozen.version)throw Object.assign(Error('baseline_version_conflict'),{status:503});
   for(const image of manifest.images){const obj=await (bucket.head?bucket.head('public/images/'+image.path.split('/').pop()):bucket.get('public/images/'+image.path.split('/').pop()));if(!obj||obj.size!==image.bytes)throw Object.assign(Error('image_unavailable'),{status:503});}
   const images={...assets};for(const image of manifest.images)images['/'+image.path]={sha256:image.sha256,type:image.mime_type};
-  const config={...frozen.config,creator_uids:[...new Set([...frozen.config.creator_uids,...manifest.records.map(r=>r.creator.uid)])]};
-  const data=createContentState({...frozen,config,version:selected,batches:[...frozen.batches,{batch_id:'dynamic-v1',version:selected,enabled:true,records:manifest.records.map(cleanRecord)}]},images);
+  const identity=await resolveStoreIdentity(manifest,async version=>{const obj=await bucket.get('public/releases/'+version+'.json');if(!obj)return null;const bytes=await readBytes(obj);if(await sha(bytes)!==version.slice(3))throw Error('store_identity_hash_mismatch');const parent=JSON.parse(new TextDecoder().decode(bytes));require('./protocol.cjs').validate('manifest',parent);if(parent.baseline_version!==manifest.baseline_version)throw Error('baseline_version_conflict');return parent;},legacyAliases);
+  const config={...frozen.config,store_aliases:identity.aliases,creator_uids:[...new Set([...frozen.config.creator_uids,...manifest.records.map(r=>r.creator.uid)])]};
+  const data=createContentState({...frozen,config,version:selected,store_aliases:identity.aliases,identity_projection:identity.enabled,batches:[...frozen.batches,{batch_id:'dynamic-v1',version:selected,enabled:true,records:manifest.records.map(cleanRecord)}]},images);
   for(const visit of [...data.catalog.visits,...data.catalog.baseline_visits])visit.detail_url+='&data_version='+encodeURIComponent(selected);
   for(const record of data.records)record.detail_url+='&data_version='+encodeURIComponent(selected);
   // Reuse the same ledger builder, preserving all 92 historical identities.
   data.ledger=buildLedger({snapshot:require('./inventory/video-inventory-2026-11-12.json'),historical:require('./inventory/creators-2026-11-11.json'),access:require('./inventory/access-2026-11-15.json'),accounts:baseline.ledger.creators,records:data.records});
+  if(identity.enabled)data.store_aliases=identity.aliases;
+  if(identity.enabled)for(const v of data.ledger.videos)for(const visit of v.visits)visit.map_url+='&data_version='+encodeURIComponent(selected);
   data.data_version=selected;data.catalog.data_version=selected;
   return data;
  }

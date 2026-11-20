@@ -1,0 +1,10 @@
+{
+  "fixture": true,
+  "scope": "genuine public 16-store snapshot reused for isolated read-model tests only",
+  "data_version": "v1-cb050932cc0417bdfdcd4c7d3b908f0c3e47949223414c3f2e9b7fe2fb669452",
+  "snapshot_sha256": "c2540b3de3fe9003fa08f29ff1f15eb37ebe203e609486077bcab452484be500",
+  "frame_sha256": "77b8ba0678ee3f938bb21463ebf5f80d7a65695a389a50ffa1a9bb11a651fc78",
+  "frame_source_video": "https://www.bilibili.com/video/BV1f6RKBDEdK/",
+  "production_writes": 0,
+  "offline_added_pois_are_not_real_bindings": true
+}

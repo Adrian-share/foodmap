@@ -50,7 +50,7 @@ function buildCatalog(batches,assetAvailable,options=config){
     versions.set(batch.batch_id,batch.version);
     for(const r of publicRecords(batch.records,assetAvailable,options)){
       creators.set(r.creator.uid,r.creator);videos.set(r.video.bvid,r.video);
-      const s=r.visit,shopId=options.store_aliases?.[s.amap_poi_id]||'amap:'+s.amap_poi_id;
+      const s=r.visit,shopId=(Object.hasOwn(options.store_aliases||{},s.amap_poi_id)?options.store_aliases[s.amap_poi_id]:null)||'amap:'+s.amap_poi_id;
       const previous=shops.get(shopId);
       if(previous&&(previous.amap_poi_id!==s.amap_poi_id||previous.lng!==s.gcj02.lng||previous.lat!==s.gcj02.lat||previous.address!==s.address))throw Error('分店资料冲突：'+shopId);
       shops.set(shopId,{id:shopId,name:s.store_name+'（'+s.branch_name+'）',city:'北京',district:s.district,address:s.address,...s.gcj02,verification:'verified',source:r.video.url,amap_poi_id:s.amap_poi_id});

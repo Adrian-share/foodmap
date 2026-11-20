@@ -1397,6 +1397,80 @@
           },
           "minItems": 0,
           "maxItems": 1000
+        },
+        "store_aliases": {
+          "type": "object",
+          "maxProperties": 10,
+          "propertyNames": {
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^beijing-[1-9][0-9]*$"
+          }
+        },
+        "store_alias_evidence": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "properties": {
+              "poi_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "store_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "baseline_sha256": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "checked_at": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "format": "date-time"
+              },
+              "source_url": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "retrieved_via": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "response_sha256": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500,
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "response_base64": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 700000
+              }
+            },
+            "required": [
+              "poi_id",
+              "store_id",
+              "baseline_sha256",
+              "checked_at",
+              "source_url",
+              "retrieved_via",
+              "response_sha256",
+              "response_base64"
+            ],
+            "additionalProperties": false
+          }
         }
       },
       "required": [
