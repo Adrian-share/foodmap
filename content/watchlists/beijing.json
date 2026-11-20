@@ -10,6 +10,12 @@
       "collection_scope": "beijing",
       "season_ids": [
         "5622142"
+      ],
+      "collection_anchors": [
+        {
+          "season_id": "5622142",
+          "bvid": "BV1fzhM6iE5k"
+        }
       ]
     },
     {
@@ -20,6 +26,12 @@
       "collection_scope": "beijing",
       "season_ids": [
         "5780378"
+      ],
+      "collection_anchors": [
+        {
+          "season_id": "5780378",
+          "bvid": "BV1NG6kYTEXG"
+        }
       ]
     },
     {
@@ -44,7 +56,15 @@
       "profile_url": "https://space.bilibili.com/613814196",
       "enabled": true,
       "collection_scope": "beijing",
-      "season_ids": []
+      "season_ids": [
+        "4350986"
+      ],
+      "collection_anchors": [
+        {
+          "season_id": "4350986",
+          "bvid": "BV1ytEE6rE2s"
+        }
+      ]
     },
     {
       "uid": "124458240",
@@ -78,6 +98,12 @@
       "collection_scope": "beijing",
       "season_ids": [
         "956796"
+      ],
+      "collection_anchors": [
+        {
+          "season_id": "956796",
+          "bvid": "BV1d94y1j7Ag"
+        }
       ]
     },
     {
@@ -102,7 +128,15 @@
       "profile_url": "https://space.bilibili.com/12613385",
       "enabled": true,
       "collection_scope": "beijing",
-      "season_ids": []
+      "season_ids": [
+        "92362"
+      ],
+      "collection_anchors": [
+        {
+          "season_id": "92362",
+          "bvid": "BV1ZF411x7Wo"
+        }
+      ]
     },
     {
       "uid": "36688806",
