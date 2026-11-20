@@ -35,3 +35,12 @@ test('explicit numeric components normalize supported Chinese digits; invalid nu
  assert.equal(compareAddresses(at('前门西大街123号'),at('前门西大街一二三号')).relation,'same_address');
  assert.equal(compareAddresses(at('前门西大街2号'),at('前门西大街十十号')).relation,'unknown');
 });
+test('supported floor and unit syntax compose without being mistaken for a street-door range',()=>{
+ for(const unit of ['B1-118号铺','B1-118室','负一层118号铺'])assert.equal(compareAddresses(at('三里屯SOHO1号商场B1-117'),at('三里屯SOHO1号商场'+unit)).reason,'different_unit');
+ assert.equal(compareAddresses(at('前门西大街2号'),at('前门西大街2-4号')).relation,'unknown');
+});
+
+test('named address parents are parsed as names, not global range keywords; unexplained tails stay unknown',()=>{
+ assert.equal(compareAddresses(at('滨河路52号1号楼至诚中心3层301室'),at('滨河路52号1号楼至诚中心4层401室')).reason,'different_floor');
+ assert.equal(compareAddresses(at('前门西大街2号'),at('前门西大街4号不详')).relation,'unknown');
+});

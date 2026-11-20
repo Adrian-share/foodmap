@@ -18,7 +18,7 @@ function parseAddress(value){
  let core=raw.split(/[·•]/).filter(Boolean).pop()||'';
  if(district&&core.startsWith(district))core=core.slice(district.length);
  const out={district,street:null,house:null,courtyard:false,site:null,building:null,floor:null,unit:null,invalid:null};
- if(!core||/或|至|到|附近|待定|不详|\d+-\d+号/.test(core)){out.invalid='ambiguous_or_missing_address';return out;}
+ if(!core){out.invalid='ambiguous_or_missing_address';return out;}
  const street=streetOf({address:core,adname:''});
  if(street){out.street=text(street);core=core.slice(out.street.length);if(core.startsWith('胡同'))core=core.slice(2);const h=core.match(new RegExp('^([甲乙丙丁]?'+N+')号(院)?'));if(h){out.house=ordinal(h[1]);out.courtyard=!!h[2];core=core.slice(h[0].length);if(core.startsWith('楼')){out.building=out.house;core=core.slice(1);}}}
  const sitePattern=/^([\p{Script=Han}A-Z]+?(?:SOHO|购物中心|大厦|中心|广场|酒店|宾馆|招待所|商场))/u;
@@ -31,7 +31,7 @@ function parseAddress(value){
  if(explicit){out.unit=explicit[1]||explicit[2];core=core.replace(explicit[0],'');}
  else if(out.floor){const unit=core.match(/^-?([A-Z]?\d+[A-Z]?)$/);if(unit){out.unit=unit[1];core='';}}
  if([out.house,out.building,out.floor,out.unit].some(x=>x?.includes('?')))out.invalid='unsupported_numeric_component';
- if(/[楼栋座层铺室号]|\d|[BF]/.test(core))out.invalid='unsupported_or_ambiguous_component';
+ if(core.replace(/[-()]/g,''))out.invalid='unsupported_or_ambiguous_component';
  return out;
 }
 function compareAddresses(oldValue,newValue){
