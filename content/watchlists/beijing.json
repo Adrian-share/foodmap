@@ -112,7 +112,15 @@
       "profile_url": "https://space.bilibili.com/3493080560830654",
       "enabled": true,
       "collection_scope": "beijing",
-      "season_ids": []
+      "season_ids": [
+        "1267261"
+      ],
+      "collection_anchors": [
+        {
+          "season_id": "1267261",
+          "bvid": "BV1aj411A7Bg"
+        }
+      ]
     },
     {
       "uid": "3325087",
@@ -176,7 +184,15 @@
       "profile_url": "https://space.bilibili.com/1462401621",
       "enabled": true,
       "collection_scope": "beijing",
-      "season_ids": []
+      "season_ids": [
+        "1636738"
+      ],
+      "collection_anchors": [
+        {
+          "season_id": "1636738",
+          "bvid": "BV1ma411v7V1"
+        }
+      ]
     },
     {
       "uid": "24159340",
