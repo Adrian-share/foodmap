@@ -30,7 +30,8 @@ test('RED unresolved legacy relationship and mall/hotel parent cannot masquerade
  await assert.rejects(()=>validateStoreIdentity({store_aliases:{OFFLINE_TAIFENG:'beijing-1'},store_alias_evidence:[p]}),/identity/);
 });
 test('same brand different confirmed POIs remain two branches; per-creator card uses its own video and image',async()=>{
- const f=await visit(),g=await visit({poi:'OFFLINE_OTHER',bvid:'BV1abcde2346',uid:'3546728118618546',description:'第二条视频自己的原文'});const aliases={OFFLINE_TAIFENG:'beijing-1'};
+ const f=await visit(),g=await visit({poi:'OFFLINE_OTHER',bvid:'BV1abcde2346',uid:'3546728118618546',description:'第二条视频自己的原文',branchName:'通州店',address:'滨河路52号',district:'通州区',gcj02:{lng:116.65,lat:39.91},officialDescription:true});const aliases={OFFLINE_TAIFENG:'beijing-1'};
+ assert.notEqual(f.result.records[0].visit.branch_name,g.result.records[0].visit.branch_name);assert.notEqual(f.result.records[0].visit.address,g.result.records[0].visit.address);assert.notDeepEqual(f.result.records[0].visit.gcj02,g.result.records[0].visit.gcj02);
  const images={...f.images,...g.images};const config={...frozen.config,store_aliases:aliases};const state=createContentState({...frozen,identity_projection:true,store_aliases:aliases,config,batches:[...frozen.batches,{batch_id:'offline',version:'one',records:[...f.result.records,...g.result.records]}]},images);
  const joined=catalogData('verified',state.catalog);assert(joined.shops.some(s=>s.id==='beijing-1'));assert(joined.shops.some(s=>s.id==='amap:OFFLINE_OTHER'));
  const {decorate}=require('../mcp-server.cjs'),nearby=createNearbyService({mode:'fixture',dataset:'verified',contentCatalog:state.catalog});

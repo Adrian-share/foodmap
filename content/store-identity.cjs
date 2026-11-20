@@ -7,13 +7,29 @@ const norm=x=>String(x||'').normalize('NFKC').replace(/北京城区|北京市/g,
 const brand=x=>norm(String(x||'').split(/[（(]/)[0]);
 const ID=/^[A-Za-z0-9_-]{1,64}$/;
 function distance(a,p){const [lng,lat]=String(p.location).split(',').map(Number),rad=Math.PI/180;return Math.hypot((lng-a.lng)*Math.cos(a.lat*rad),(lat-a.lat))*rad*6371000;}
+function venueName(value){
+ const m=String(value||'').normalize('NFKC').trim().match(/^([^()]+?)(?:\(([^()]+)\))?$/);
+ return m?{core:norm(m[1]),branch:norm(m[2])}:null;
+}
+function parentOrNonRestaurant(poi){
+ if(poi.typecode&&!/^05/.test(poi.typecode)||poi.type&&!/^餐饮服务(?:[;；]|$)/.test(poi.type))return true;
+ const core=venueName(poi.name)?.core||norm(poi.name);
+ return /停车|出入口|文化中心|文化馆|博物馆|纪念馆|景区|酒店|宾馆|招待所|商场|购物中心/.test(core)&&!/(餐厅|餐饮|饭庄|酒家|咖啡|酒楼|茶馆)/.test(core);
+}
+function namesAgree(shop,poi){
+ const old=venueName(shop.name),current=venueName(poi.name);
+ if(!old||!current||old.core!==current.core)return false;
+ if(old.branch)return old.branch===current.branch;
+ if(!current.branch)return true;
+ // A bare legacy name cannot authorize an arbitrary suffix/sub-brand. An
+ // optional branch label must explicitly agree with the old concrete address.
+ const place=current.branch.replace(/(?:分店|店)$/,'');
+ return place.length>=2&&place!==old.core&&!/文化|博物|景区|酒店|宾馆|商场|购物中心/.test(place)&&norm(shop.address).includes(place);
+}
 function sameVenue(shop,poi){
- if(typeof poi.adname!=='string'||!poi.adname||typeof poi.name!=='string'||typeof poi.address!=='string'||poi.cityname!=='北京市'||!String(poi.name||'').normalize('NFKC').replace(/[\s·]/g,'').startsWith(brand(shop.name)))return false;
+ if(typeof poi.adname!=='string'||!poi.adname||typeof poi.name!=='string'||typeof poi.address!=='string'||poi.cityname!=='北京市'||parentOrNonRestaurant(poi)||!namesAgree(shop,poi))return false;
  const address=norm(poi.address),old=norm(shop.address);
  if(!address||!old.includes(address)||!/[0-9一二三四五六七八九十甲乙丙]+号/.test(address)||!old.includes(norm(poi.adname)))return false;
- const venue=poi.name.normalize('NFKC').split('(')[0];
- if(/酒店|宾馆|商场|购物中心/.test(venue)&&!/(餐厅|餐饮|饭庄|酒家|咖啡|酒楼|茶馆)/.test(venue))return false;
- if(/停车|出入口/.test(poi.name)||poi.typecode&&!/^05/.test(poi.typecode))return false;
  return distance(shop,poi)<=100;
 }
 async function validateStoreIdentity(value){
@@ -49,12 +65,29 @@ async function resolveStoreIdentity(manifest,readParent,legacyAliases={}){
  }
  fail('store_identity_chain_too_long');
 }
-function identityPending(record,aliases){
- const v=record.visit,poi=v.amap_poi_id;if(!poi||Object.hasOwn(aliases,poi))return [];
+function registeredPois(input,record){
+ return (Array.isArray(input?.sources)?input.sources:[]).filter(s=>s.kind==='poi').flatMap(s=>Array.isArray(s.payload?.pois)?s.payload.pois:[]).filter(p=>p.id===record.visit.amap_poi_id);
+}
+function distinctBranch(shop,visit){
+ let address=norm(visit.address);const district=norm(visit.district);
+ if(district&&address.startsWith(district))address=address.slice(district.length);
+ const street=address.match(/^([\p{Script=Han}A-Za-z0-9]{2,30}?(?:胡同|街道|大街|大道|路|街|巷|条))(?=\d|\p{Script=Han}|$)/u)?.[1];
+ const branch=norm(visit.branch_name),place=branch.replace(/(?:分店|店)$/,'');
+ // Only records independently accepted by C2 reach stage. Clear separation of
+ // branch, street/house and location removes a false legacy-overlap warning;
+ // it never creates an alias or approves a visit.
+ return !!street&&/[0-9一二三四五六七八九十甲乙丙]+号/.test(address)&&place.length>=2&&branch!==norm(visit.store_name)&&!norm(shop.name).includes(place)&&!norm(shop.address).includes(place)&&!norm(shop.address).includes(norm(street))&&distance(shop,{location:visit.gcj02.lng+','+visit.gcj02.lat})>100;
+}
+function identityPending(record,aliases,pois=[]){
+ const v=record.visit,poi=v.amap_poi_id;
+ if(pois.some(parentOrNonRestaurant))return ['store_identity_unresolved'];
+ if(!poi||Object.hasOwn(aliases,poi))return [];
  const unresolved=baseline.filter(s=>!s.amap_poi_id&&!Object.values(aliases).includes(s.id));
- // These are review signals, never matching rules. A confirmed different POI
- // stays a different branch; proximity/name cannot create a binding.
- const risk=unresolved.some(s=>norm(v.store_name).includes(brand(s.name))||brand(s.name).includes(norm(v.store_name))||distance(s,{location:v.gcj02.lng+','+v.gcj02.lat})<100&&norm(s.address).includes(norm(v.address)));
+ const risk=unresolved.some(s=>{
+  const name=norm(v.store_name),branded=name.includes(brand(s.name))||brand(s.name).includes(name);
+  const near=distance(s,{location:v.gcj02.lng+','+v.gcj02.lat})<100&&norm(s.address).includes(norm(v.address));
+  return near||branded&&!distinctBranch(s,v);
+ });
  return risk?['store_identity_unresolved']:[];
 }
 function projectRecord(record,aliases){
@@ -62,4 +95,4 @@ function projectRecord(record,aliases){
  const id=poi?(Object.hasOwn(aliases,poi)?aliases[poi]:'amap:'+poi):v.store_id;
  return {...record,visit:{...v,store_id:id,...(poi&&!v.amap_poi_id?{amap_poi_id:poi,amap_url:'https://ditu.amap.com/place/'+poi}:{})}};
 }
-module.exports={validateStoreIdentity,resolveStoreIdentity,identityPending,projectRecord,sameVenue,baseline,copy};
+module.exports={validateStoreIdentity,resolveStoreIdentity,identityPending,registeredPois,projectRecord,sameVenue,baseline,copy};

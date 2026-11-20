@@ -63,10 +63,11 @@ class Publisher:
             raise RuntimeError('blob_incomplete')
         return digest
 
-    def check_identity(self, records, aliases, evidence, parent):
+    def check_identity(self, records, aliases, evidence, parent, documents):
         root=Path(__file__).resolve().parents[1]
         process=subprocess.run([str(root/'tools/node-v22.23.5-darwin-arm64/bin/node'),str(root/'scripts/agent-store-identity.cjs')],
-                  input=json.dumps(dict(records=records,store_aliases=aliases,store_alias_evidence=evidence)),text=True,capture_output=True,
+                  input=json.dumps(dict(records=records,store_aliases=aliases,store_alias_evidence=evidence,
+                         documents=[dict(sha256=d["sha256"],document=json.loads(d["bytes"])) for d in documents])),text=True,capture_output=True,
                   cwd=root,env={'PATH':'/usr/bin:/bin'},timeout=20)
         if len(process.stdout)>32*1024*1024:raise ValueError('invalid_store_identity_result')
         result=json.loads(process.stdout)
@@ -112,7 +113,7 @@ class Publisher:
                             parent_version=parent, watchlist_revision=registry_revision,
                             records=list(merged.values()), images=list(image_map.values()),
                             verification_ids=list(dict.fromkeys([r['review']['verification_id'] for r in merged.values()])))
-            self.check_identity(list(merged.values()),aliases,alias_evidence,parent)
+            self.check_identity(list(merged.values()),aliases,alias_evidence,parent,documents)
             manifest.update(store_aliases=aliases,store_alias_evidence=alias_evidence)
             raw = canonical(manifest)
             plan = dict(manifest=manifest, raw_base64=base64.b64encode(raw).decode(),

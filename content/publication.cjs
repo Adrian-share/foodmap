@@ -1,7 +1,7 @@
 'use strict';
 const {validate,fail,encode,sha,equal}=require('./protocol.cjs');
 const {verifyExtraction}=require('./verification.cjs');
-const {resolveStoreIdentity,identityPending}=require('./store-identity.cjs');
+const {resolveStoreIdentity,identityPending,registeredPois}=require('./store-identity.cjs');
 const SITE='https://foodmap.shareworld.fun',CURRENT='public/current.json',CHUNK=524288;
 const VERSION=/^v1-[a-f0-9]{64}$/;
 const meta={httpMetadata:{contentType:'application/json',cacheControl:'private, no-store'}};
@@ -76,15 +76,15 @@ function createPublicationService({bucket,probe,baselineVersion=require('./compi
   const registry=(await json('private/watchlist-v1.json'))?.value;
   if(!registry||m.watchlist_revision>registry.registry_revision)fail('registry_revision_conflict',409);
   const ids=new Set(m.verification_ids);if(ids.size!==m.verification_ids.length||new Set(m.images.map(i=>i.path)).size!==m.images.length)fail('duplicate_resource');
-  const verified=new Map();
-  for(const id of ids){const raw=await readBytes(await bucket.get(blobKey('evidence',id)));if(await sha(raw)!==id)fail('hash_mismatch');const doc=JSON.parse(new TextDecoder().decode(raw));const result=await verifyExtraction(doc.input);if(result.status!=='approved'||result.records.length!==1||JSON.stringify(result.documents[0].document.verification)!==JSON.stringify(doc.verification)||result.documents[0].sha256!==id)fail('verification_failed');const record=result.records[0];verified.set(id,record);}
+  const verified=new Map(),inputs=new Map();
+  for(const id of ids){const raw=await readBytes(await bucket.get(blobKey('evidence',id)));if(await sha(raw)!==id)fail('hash_mismatch');const doc=JSON.parse(new TextDecoder().decode(raw));const result=await verifyExtraction(doc.input);if(result.status!=='approved'||result.records.length!==1||JSON.stringify(result.documents[0].document.verification)!==JSON.stringify(doc.verification)||result.documents[0].sha256!==id)fail('verification_failed');const record=result.records[0];verified.set(id,record);inputs.set(id,doc.input);}
   const frozen=require('./compiled.json');
   const identity=await resolveStoreIdentity(m,async version=>{const found=await json('public/releases/'+version+'.json');if(!found)return null;const bytes=await readBytes(found.object);if(await sha(bytes)!==version.slice(3))fail('store_identity_hash_mismatch');validate('manifest',found.value);if(found.value.baseline_version!==m.baseline_version)fail('baseline_version_conflict');return found.value;},frozen.config.store_aliases||{});
   const owners=new Map(frozen.ledger.videos.map(v=>[v.bvid,v.creator_uid]));
   const keys=new Set();
   for(const record of m.records){if(owners.has(record.video.bvid)&&owners.get(record.video.bvid)!==record.creator.uid)fail('wrong_owner');const id=record.review.verification_id;if(!ids.has(id)||!equal(record,verified.get(id))||!(m.rules_version==='v1'?record.review.rules_version==='v1':m.rules_version==='v2'&&['v1','v2'].includes(record.review.rules_version))||!registry.accepted_sources?.some(s=>s.uid===record.creator.uid))fail('verification_failed');const key=record.video.bvid+':'+record.video.part+':'+record.visit.id;if(keys.has(key))fail('duplicate_visit');keys.add(key);for(const s of record.visit.screenshots){const image=m.images.find(i=>i.path===s.path&&i.sha256===s.sha256);const evidence=JSON.parse(new TextDecoder().decode(await readBytes(await bucket.get(blobKey('evidence',id)))));const f=evidence.input.sources.find(s=>s.kind==='frame'&&s.payload.sha256===image?.sha256)?.payload;if(!image||!f||image.bytes!==f.bytes||image.width!==f.width||image.height!==f.height||image.mime_type!==f.mime_type)fail('missing_blob');}}
   if(ids.size!==m.records.length||m.images.some(i=>!m.records.some(r=>r.visit.screenshots.some(s=>s.path===i.path))))fail('unreferenced_resource');
-  if(m.records.some(r=>identityPending(r,identity.aliases).length))fail('store_identity_pending',409);
+  if(m.records.some(r=>identityPending(r,identity.aliases,registeredPois(inputs.get(r.review.verification_id),r)).length))fail('store_identity_pending',409);
   require('./state.cjs').createContentState({...frozen,store_aliases:identity.aliases,identity_projection:identity.enabled,config:{...frozen.config,store_aliases:identity.aliases,creator_uids:[...new Set([...frozen.config.creator_uids,...m.records.map(r=>r.creator.uid)])]},batches:[...frozen.batches,{batch_id:'dynamic-v1',version:'v1-'+op.manifest_sha256,records:m.records}]},{...require('./public-assets.json'),...Object.fromEntries(m.images.map(i=>['/'+i.path,{sha256:i.sha256,type:i.mime_type}]))});
   await checkImages(m,true);
   const version='v1-'+op.manifest_sha256;

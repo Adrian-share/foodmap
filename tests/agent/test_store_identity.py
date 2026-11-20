@@ -57,3 +57,22 @@ class StoreIdentity(unittest.TestCase):
    identity=pipeline.publisher.publish([],[],[],store_aliases=self.aliases,store_alias_evidence=self.proofs,**self.args)
    self.assertTrue(service.advance_pipeline());self.assertEqual(self.q.jobs()[0]['stage'],'published')
   self.assertEqual(self.q.jobs()[0]['attempt'],1);self.assertEqual(self.q.db.execute('select count(*) from attempts').fetchone()[0],1)
+
+ def branch_fixture(self, **overrides):
+  options=dict(poi='OFFLINE_TONGZHOU',branchName='通州店',address='滨河路52号',district='通州区',gcj02=dict(lng=116.65,lat=39.91),officialDescription=True)
+  options.update(overrides);f=self.request(dict(fixture=True,options=options));f.pop('aliases');f.pop('proofs')
+  for d in f['documents']:d['bytes']=base64.b64decode(d.pop('data'))
+  for i in f['images']:i['data']=base64.b64decode(i['data'])
+  return f
+ def test_distinct_approved_branch_publishes_without_waiting_for_legacy_mapping(self):
+  f=self.branch_fixture();self.assertEqual(f['records'][0]['review']['rules_version'],'v2')
+  receipt=Publisher(self.q,self.operator).publish(**f,**self.args)
+  self.assertEqual(receipt['status'],'committed');manifest=self.q.get('publication_manifests')[receipt['data_version']]
+  self.assertEqual(manifest['store_aliases'],{});self.assertEqual(manifest['records'][0]['visit']['store_id'],'amap:OFFLINE_TONGZHOU')
+  self.assertEqual(self.q.db.execute('select count(*) from attempts').fetchone()[0],0)
+ def test_original_poi_parent_category_stays_pending_before_plan_or_upload(self):
+  from foodmap_agent.publisher import IdentityPending
+  f=self.branch_fixture(poiType='140000',poiName='泰丰楼文化中心(通州店)')
+  with self.assertRaises(IdentityPending):Publisher(self.q,self.operator).publish(**f,**self.args)
+  self.assertEqual(self.q.get('publication_plans',{}),{});self.assertEqual(self.calls,['GET'])
+  self.assertEqual(self.q.db.execute('select count(*) from attempts').fetchone()[0],0)
