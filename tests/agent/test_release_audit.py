@@ -73,7 +73,10 @@ class ReleaseAudit(unittest.TestCase):
     return dict(request_id=body['request_id'],status='committed' if body['operation']=='release.commit' else 'complete',data_version=body.get('data_version'))
    p=Publisher(q,operator,Probe());p.blob=lambda kind,raw,mime:hashlib.sha256(raw).hexdigest()
    r=dict(video={'bvid':'fixture','part':1},visit={'id':'fixture','screenshots':[]},review={'verification_id':'a'*64,'rules_version':'v2'})
-   receipt=p.publish([r],[],[],source_commit='a'*40,registry_revision=3,baseline_version='fixture')
+   # Minimal transport fixture; independent C2/identity is covered by real document fixtures.
+   from unittest.mock import patch
+   with patch.object(p,'check_identity'):
+    receipt=p.publish([r],[],[],source_commit='a'*40,registry_revision=3,baseline_version='fixture')
    self.assertEqual(events,['before','commit','after']);self.assertEqual(receipt['status'],'committed');self.assertEqual(q.get('publication_observation_error')['stage'],'after_commit')
  def test_frozen_legacy_store_ids_do_not_require_dynamic_amap_fields(self):
   self.assertEqual(store_ids({'records':[{'visit':{'store_id':'legacy:1'}},{'visit':{'store_id':'amap:POI1','amap_poi_id':'POI1'}}]}),{'legacy:1','amap:POI1'})

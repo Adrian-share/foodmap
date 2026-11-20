@@ -1,5 +1,5 @@
 {
-  "version": "beijing-pilot-001:beijing-pilot-001.2026-11-11.2@f893d0c3b5aa11b6",
+  "version": "beijing-admin-002:beijing-admin-002.2026-11-15.1,beijing-content-003:beijing-content-003.2026-11-16.2,beijing-pilot-001:beijing-pilot-001.2026-11-11.2@5745ae75c3c192fd",
   "baseline_version": "dual-city-2026-11-10.1",
   "shops": [
     {
@@ -1552,6 +1552,64 @@
         }
       },
       "note_seconds": 30
+    },
+    {
+      "id": "amap:B0FFLI74FK",
+      "name": "聚首堂（什刹海德胜门店）",
+      "city": "北京",
+      "district": "西城区",
+      "address": "北京 · 西城区 · 德胜门内大街38号40号44号",
+      "lng": 116.380064,
+      "lat": 39.947007,
+      "verification": "verified",
+      "source": "https://www.bilibili.com/video/BV1ytEE6rE2s/",
+      "amap_poi_id": "B0FFLI74FK"
+    },
+    {
+      "id": "amap:B0G1PUL2XB",
+      "name": "缘赵记（珠市口店（高德现名：珍贝大厦店））",
+      "city": "北京",
+      "district": "东城区",
+      "address": "北京 · 东城区 · 珠市口东大街6号珍贝大厦F1层",
+      "lng": 116.411348,
+      "lat": 39.892465,
+      "verification": "verified",
+      "source": "https://www.bilibili.com/video/BV1ZF411x7Wo/",
+      "amap_poi_id": "B0G1PUL2XB"
+    },
+    {
+      "id": "amap:B0MAY526GQ",
+      "name": "四川饭店（东坝万达广场店）",
+      "city": "北京",
+      "district": "朝阳区",
+      "address": "北京 · 朝阳区 · 东坝中路25号万达广场4层",
+      "lng": 116.547793,
+      "lat": 39.962509,
+      "verification": "verified",
+      "source": "https://www.bilibili.com/video/BV1k94y1H7fc/",
+      "amap_poi_id": "B0MAY526GQ"
+    },
+    {
+      "id": "amap:B000A84BGQ",
+      "name": "玉勇餐厅（计一厂宿舍店）",
+      "city": "北京",
+      "district": "海淀区",
+      "address": "北京 · 海淀区 · 花园北路丙28号",
+      "lng": 116.372686,
+      "lat": 39.979966,
+      "verification": "verified",
+      "source": "https://www.bilibili.com/video/BV1aLW9zLEup/",
+      "amap_poi_id": "B000A84BGQ"
     }
-  ]
+  ],
+  "fixture": true,
+  "scope": "冻结15店基准：原10店+5已核准店；不含仅在正式动态版本中的曲廊院；不是实时门店总数",
+  "expectations": {
+    "beijing_count": 15,
+    "dongba_first_store_id": "amap:B0MAY526GQ",
+    "chef_wangbo_store_ids": [
+      "beijing-2",
+      "amap:B0FFGCY5QP"
+    ]
+  }
 }

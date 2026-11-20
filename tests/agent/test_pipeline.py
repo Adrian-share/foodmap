@@ -14,7 +14,9 @@ class PipelineAcceptance(unittest.TestCase):
             def operator(body):
                 if body is None:return {'current_publication':{'data_version':'parent','pointer_etag':'etag'}}
                 raise RuntimeError('offline stop before upload')
-            with self.assertRaisesRegex(RuntimeError,'offline stop'):
+            # This unit checks manifest rule selection, not C2/identity. Stage tests use full evidence.
+            from unittest.mock import patch
+            with patch.object(Publisher,'check_identity'), self.assertRaisesRegex(RuntimeError,'offline stop'):
                 Publisher(store,operator).publish([new],[],[],source_commit='c'*40,registry_revision=2,baseline_version='baseline')
             plan=next(iter(store.get('publication_plans').values()))
             self.assertEqual(plan['manifest']['rules_version'],'v2')

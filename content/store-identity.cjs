@@ -3,9 +3,12 @@
 const copy=value=>JSON.parse(JSON.stringify(value));
 const baseline=copy(require('../data/catalog.json').shops.filter(s=>s.city==='北京'));
 const {sha,encode,canonical,fail}=require('./protocol.cjs');
+const {compareAddresses}=require('./store-address.cjs');
+const frozen=require('./compiled.json');
 const norm=x=>String(x||'').normalize('NFKC').replace(/北京城区|北京市/g,'').replace(/[\s·，,。()（）]/g,'');
 const brand=x=>norm(String(x||'').split(/[（(]/)[0]);
 const ID=/^[A-Za-z0-9_-]{1,64}$/;
+const MAX_SAME_ID_POINT_DRIFT_METRES=100; // Conflict check only; never a different-branch minimum.
 function distance(a,p){const [lng,lat]=String(p.location).split(',').map(Number),rad=Math.PI/180;return Math.hypot((lng-a.lng)*Math.cos(a.lat*rad),(lat-a.lat))*rad*6371000;}
 function venueName(value){
  const m=String(value||'').normalize('NFKC').trim().match(/^([^()]+?)(?:\(([^()]+)\))?$/);
@@ -28,9 +31,8 @@ function namesAgree(shop,poi){
 }
 function sameVenue(shop,poi){
  if(typeof poi.adname!=='string'||!poi.adname||typeof poi.name!=='string'||typeof poi.address!=='string'||poi.cityname!=='北京市'||parentOrNonRestaurant(poi)||!namesAgree(shop,poi))return false;
- const address=norm(poi.address),old=norm(shop.address);
- if(!address||!old.includes(address)||!/[0-9一二三四五六七八九十甲乙丙]+号/.test(address)||!old.includes(norm(poi.adname)))return false;
- return distance(shop,poi)<=100;
+ if(compareAddresses(shop,{address:poi.address,district:poi.adname}).relation!=='same_address')return false;
+ return distance(shop,poi)<=MAX_SAME_ID_POINT_DRIFT_METRES;
 }
 async function validateStoreIdentity(value){
  const aliases=value.store_aliases,proofs=value.store_alias_evidence;
@@ -68,31 +70,35 @@ async function resolveStoreIdentity(manifest,readParent,legacyAliases={}){
 function registeredPois(input,record){
  return (Array.isArray(input?.sources)?input.sources:[]).filter(s=>s.kind==='poi').flatMap(s=>Array.isArray(s.payload?.pois)?s.payload.pois:[]).filter(p=>p.id===record.visit.amap_poi_id);
 }
-function distinctBranch(shop,visit){
- let address=norm(visit.address);const district=norm(visit.district);
- if(district&&address.startsWith(district))address=address.slice(district.length);
- const street=address.match(/^([\p{Script=Han}A-Za-z0-9]{2,30}?(?:胡同|街道|大街|大道|路|街|巷|条))(?=\d|\p{Script=Han}|$)/u)?.[1];
- const branch=norm(visit.branch_name),place=branch.replace(/(?:分店|店)$/,'');
- // Only records independently accepted by C2 reach stage. Clear separation of
- // branch, street/house and location removes a false legacy-overlap warning;
- // it never creates an alias or approves a visit.
- return !!street&&/[0-9一二三四五六七八九十甲乙丙]+号/.test(address)&&place.length>=2&&branch!==norm(visit.store_name)&&!norm(shop.name).includes(place)&&!norm(shop.address).includes(place)&&!norm(shop.address).includes(norm(street))&&distance(shop,{location:visit.gcj02.lng+','+visit.gcj02.lat})>100;
+function reference(value){
+ const v=value.visit||value;
+ return {id:v.store_id||v.id,poi:v.amap_poi_id,name:v.store_name||v.name,address:v.address,district:v.district,point:v.gcj02||{lng:v.lng,lat:v.lat},key:value.video?value.video.bvid+':'+value.video.part+':'+v.id:null};
 }
-function identityPending(record,aliases,pois=[]){
- const v=record.visit,poi=v.amap_poi_id;
- if(pois.some(parentOrNonRestaurant))return ['store_identity_unresolved'];
- if(!poi||Object.hasOwn(aliases,poi))return [];
- const unresolved=baseline.filter(s=>!s.amap_poi_id&&!Object.values(aliases).includes(s.id));
- const risk=unresolved.some(s=>{
-  const name=norm(v.store_name),branded=name.includes(brand(s.name))||brand(s.name).includes(name);
-  const near=distance(s,{location:v.gcj02.lng+','+v.gcj02.lat})<100&&norm(s.address).includes(norm(v.address));
-  return near||branded&&!distinctBranch(s,v);
- });
- return risk?['store_identity_unresolved']:[];
+function storeRelations(record,aliases,pois=[],others=[]){
+ const current=reference(record),canonicalStoreId=(poi,id)=>poi?(Object.hasOwn(aliases,poi)?aliases[poi]:'amap:'+poi):id;
+ if(pois.some(parentOrNonRestaurant))return [{relation:'unknown',reason:'parent_or_non_restaurant_poi'}];
+ const refs=[...baseline,...frozen.batches.flatMap(b=>b.enabled===false?[]:b.records.filter(r=>r.review.status==='approved')),...others].map(reference);
+ const outcomes=[],seen=new Set();
+ for(const old of refs){
+  if(old.key&&old.key===current.key)continue;
+  const key=JSON.stringify([old.id,old.poi,old.address]);if(seen.has(key))continue;seen.add(key);
+  const address=compareAddresses(old,current),same=canonicalStoreId(old.poi,old.id)===canonicalStoreId(current.poi,current.id);
+  const related=brand(current.name).includes(brand(old.name))||brand(old.name).includes(brand(current.name));
+  if(same){
+   const conflict=address.relation==='different'||distance(old.point,{location:current.point.lng+','+current.point.lat})>MAX_SAME_ID_POINT_DRIFT_METRES;
+   outcomes.push({store_id:old.id,relation:conflict?'unknown':'same',reason:conflict?'confirmed_poi_source_conflict':'confirmed_poi_or_versioned_alias',address});
+  }else if(related||address.sharedParent){
+   outcomes.push({store_id:old.id,relation:address.relation==='different'?'different':'unknown',reason:address.relation==='same_address'?'same_address_without_confirmed_identity':address.reason,address});
+  }
+ }
+ return outcomes;
+}
+function identityPending(record,aliases,pois=[],others=[]){
+ return storeRelations(record,aliases,pois,others).some(r=>r.relation==='unknown')?['store_identity_unresolved']:[];
 }
 function projectRecord(record,aliases){
  const v=record.visit,poi=v.amap_poi_id||Object.keys(aliases).find(k=>aliases[k]===v.store_id);
  const id=poi?(Object.hasOwn(aliases,poi)?aliases[poi]:'amap:'+poi):v.store_id;
  return {...record,visit:{...v,store_id:id,...(poi&&!v.amap_poi_id?{amap_poi_id:poi,amap_url:'https://ditu.amap.com/place/'+poi}:{})}};
 }
-module.exports={validateStoreIdentity,resolveStoreIdentity,identityPending,registeredPois,projectRecord,sameVenue,baseline,copy};
+module.exports={validateStoreIdentity,resolveStoreIdentity,identityPending,storeRelations,registeredPois,projectRecord,sameVenue,baseline,copy};

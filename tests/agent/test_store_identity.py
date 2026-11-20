@@ -24,7 +24,8 @@ class StoreIdentity(unittest.TestCase):
  def test_unknown_mapping_does_not_freeze_a_permanently_unpublishable_plan(self):
   p=Publisher(self.q,self.operator)
   from foodmap_agent.publisher import IdentityPending
-  with self.assertRaises(IdentityPending):p.publish(**self.f,**self.args)
+  with self.assertRaises(IdentityPending) as caught:p.publish(**self.f,**self.args)
+  self.assertTrue(any(r['reason']=='same_address_without_confirmed_identity' for r in caught.exception.pending[0]['relations']))
   self.assertEqual(self.q.get('publication_plans',{}),{});self.assertEqual(self.calls,['GET'])
   # Publish a real content-version identity change through the SAME publisher,
   # then admit the saved C2 result without another model attempt or second path.

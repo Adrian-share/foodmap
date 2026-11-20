@@ -50,3 +50,13 @@
 保留现有全部正负回归，增加地址解析/不可比场景及明确原因，保留相同BV幂等、坏C2/截图SHA、待核后原材料复用、日10/总3不重置。旧桌面U3依据实际冻结15店fixture修正完整ID集合及作者过滤口径，再验证全流程，不再留旧13店断言。
 
 代码组织：地址解析/比较独立纯模块，身份关系函数返回三态及原因；现有identityPending保持兼容错误码，原Node预检把具体关系原因保存入已有pending材料。stage与Python仍共用固定检查器/原C2；现有版本化store_aliases和快照契约不新增发布路径或调度器。实际P3/R4/新内容发布均不因fixture通过。
+
+## 实现与验证口径
+
+`content/store-address.cjs`只做明确地址成分解析及父子层级比较，返回same_address/different/unknown和原/新成分；same_address仍不授予same实体。`storeRelations`对同POI或本版本对应返回same，对可能相关分店按可比地址返回different/unknown；比对原十店、原五店和同manifest其他记录，不按近坐标建立关系。未知原因通过原固定Node检查器进入已有identity_pending材料，不增加队列、权限、HTTP或调度。100米只保留为“同一已确认ID／对应”的坐标来源冲突复核，不是different的门槛。
+
+矩阵基准直接装入原16店的immutable manifest、C2 verification及原帧，SHA分别cb050932…9452、25c8c146…5ec6、77b8ba06…fc78；空父版也原样保留。各例新建内存bucket，从原15→原16初始化后独立执行，新增fixture走未改的C2 v1/v2，再走stage/读模型/实际loopback MCP HTTP，绝不写生产。RED在26bbbcb实现上14例为9pass/5fail，5fail正是50号/4号和同商场不同铺号/楼层/楼栋。初次测试装配把上海候选也计入数、对象未JSON序列化的错误日志单列，不当规则RED。
+
+旧负例中“branch_name等于品牌即待核”和“坐标近旧店即待核”是被本次规则明确替代的启发式，不保留为额外否决门槛：资料不足负例改用真实缺门牌；来源冲突负例使用已确认对应与原C2地址明确冲突。两个仅测manifest选最高规则版本、发布观察器回执时序的最小fake record单元测试不具备C2字段，因此只mock身份预检；原C2+stage跨层正负用例仍使用完整证据并真实重跑，不把这两个unit算独立身份通过。
+
+桌面U3按冻结15店更新完整ID集合，作者厨者王波仍为宜宾餐厅+蓉亭两家；东坝实际最近为四川饭店B0MAY526GQ约0.36km，旧“寂川最近”断言亦保留RED并修正。该fixture是本地冻结15店，不冒充正式动态16店。所有实际网页/MCP新身份版本、P3/R4、北京内容真实公开仍待root部署/验收；沿用前轮正式Node读取403的事实，本轮不重复探测。

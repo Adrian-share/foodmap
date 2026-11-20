@@ -23,9 +23,12 @@ test('RED cross-C2 stage independently rejects prefix-only identity proof even a
  await assert.rejects(()=>staged(f),/store_identity_pending/);
 });
 test('missing street or unresolved branch stays pending despite an otherwise valid original C2 result',async()=>{
- for(const override of [{address:'通州购物中心2号楼',officialDescription:false},{branchName:'泰丰楼',officialDescription:true},{branchName:'前门店',address:'滨河路52号',gcj02:{lng:old.lng,lat:old.lat}}]){
+ for(const override of [{address:'通州购物中心2号楼',officialDescription:false},{branchName:'泰丰楼',address:'滨河路',officialDescription:true}]){
   const f=await visit({...distinct,...override});assert.deepEqual(identityPending(f.result.records[0],{}),['store_identity_unresolved']);await assert.rejects(()=>staged(f),/store_identity_pending/);
  }
+});
+test('explicit alias and C2 disagree on address: conflict stays pending even with an approved visit',async()=>{
+ const f=await visit({...distinct,branchName:'前门店',gcj02:{lng:old.lng,lat:old.lat}});await assert.rejects(()=>staged(f,{OFFLINE_TONGZHOU:'beijing-1'},[proof('OFFLINE_TONGZHOU')]),/store_identity_pending/);
 });
 test('culture/hotel/mall mother POI cannot stage as a distinct restaurant or supply a legacy identity',async()=>{
  for(const [type,name] of [['140000','泰丰楼文化中心'],['100000','泰丰楼酒店'],['060000','泰丰楼商场']]){
