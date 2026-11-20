@@ -3,7 +3,11 @@ const config=require('./config.json');
 const BV=/^BV[1-9A-HJ-NP-Za-km-z]{10}$/;
 const IMAGE=/^content\/images\/[A-Za-z0-9_-]+\.(jpg|jpeg|png|webp)$/;
 const videoSource=bvid=>`https://www.bilibili.com/video/${bvid}/`;
+function registeredConfig(options=config,registry=options.registry){
+  return {...options,creator_uids:[...new Set([...(options.creator_uids||[]),...(registry?.accepted_sources||[]).map(s=>s.uid)])]};
+}
 function assess(r,options=config){
+  options=registeredConfig(options);
   const reasons=[],v=r.video||{},s=r.visit||{};
   if(!options.creator_uids.includes(r.creator?.uid)||v.owner_uid!==r.creator?.uid||v.metadata_status!=='verified'||!r.creator?.name?.trim())reasons.push('作者归属未核准');
   if(!/^[A-Za-z0-9_:-]{1,200}$/.test(s.id||''))reasons.push('缺少稳定的到访 ID');
@@ -56,4 +60,4 @@ function buildCatalog(batches,assetAvailable,options=config){
   }
   return {version:[...versions].sort().map(([k,v])=>k+':'+v).join(','),creators:[...creators.values()],videos:[...videos.values()],shops:[...shops.values()],visits:[...visits.values()]};
 }
-module.exports={assess,publicRecords,validScreenshot,buildCatalog,playerUrl,videoSource,visitKey,detailUrl,IMAGE};
+module.exports={registeredConfig,assess,publicRecords,validScreenshot,buildCatalog,playerUrl,videoSource,visitKey,detailUrl,IMAGE};

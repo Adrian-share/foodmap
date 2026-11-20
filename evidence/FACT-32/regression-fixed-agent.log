@@ -1,0 +1,146 @@
+
+> dual-city-food-map@1.0.0 test:agent
+> node --test tests/multica-fixed-runtime.test.cjs
+
+TAP version 13
+# Subtest: 固定执行器接收execute后只调用固定采集能力一次并回报
+ok 1 - 固定执行器接收execute后只调用固定采集能力一次并回报
+  ---
+  duration_ms: 5.780917
+  type: 'test'
+  ...
+# Subtest: CLI单次模式在result后退出，即使平台保持stdin打开
+ok 2 - CLI单次模式在result后退出，即使平台保持stdin打开
+  ---
+  duration_ms: 0.639875
+  type: 'test'
+  ...
+# Subtest: 单次模式一次输入多个缓存execute也只采集和回报一轮
+ok 3 - 单次模式一次输入多个缓存execute也只采集和回报一轮
+  ---
+  duration_ms: 1.031959
+  type: 'test'
+  ...
+# Subtest: 非法版本和MCP扩权配置不启动任何采集
+ok 4 - 非法版本和MCP扩权配置不启动任何采集
+  ---
+  duration_ms: 2.802625
+  type: 'test'
+  ...
+# Subtest: 采集上传失败不能产生成功result或平台成功回报
+ok 5 - 采集上传失败不能产生成功result或平台成功回报
+  ---
+  duration_ms: 1.735417
+  type: 'test'
+  ...
+# Subtest: 平台回报失败如实标记，已经上传的结果留在输出中
+ok 6 - 平台回报失败如实标记，已经上传的结果留在输出中
+  ---
+  duration_ms: 0.984875
+  type: 'test'
+  ...
+# Subtest: 收到cancel仅中止本轮，并返回cancelled
+ok 7 - 收到cancel仅中止本轮，并返回cancelled
+  ---
+  duration_ms: 1.215708
+  type: 'test'
+  ...
+# Subtest: report阶段收到cancel，不返回completed且回报能力收到同一signal
+ok 8 - report阶段收到cancel，不返回completed且回报能力收到同一signal
+  ---
+  duration_ms: 11.39675
+  type: 'test'
+  ...
+# Subtest: 父进程停止信号会取消活动任务并等到清理完成
+ok 9 - 父进程停止信号会取消活动任务并等到清理完成
+  ---
+  duration_ms: 2.485084
+  type: 'test'
+  ...
+# Subtest: 发现与帮助入口无凭据也可运行，不启动采集
+ok 10 - 发现与帮助入口无凭据也可运行，不启动采集
+  ---
+  duration_ms: 304.590291
+  type: 'test'
+  ...
+# Subtest: 取消等待整个collector与忽略SIGTERM的上传孙进程退出
+ok 11 - 取消等待整个collector与忽略SIGTERM的上传孙进程退出
+  ---
+  duration_ms: 277.751584
+  type: 'test'
+  ...
+# Subtest: 强制取消后只清理由已退出collector持有的新锁，可立即重新取得
+ok 12 - 强制取消后只清理由已退出collector持有的新锁，可立即重新取得
+  ---
+  duration_ms: 95.541125
+  type: 'test'
+  ...
+# Subtest: 取消不能删除其他PID持有的锁
+ok 13 - 取消不能删除其他PID持有的锁
+  ---
+  duration_ms: 94.68675
+  type: 'test'
+  ...
+# Subtest: 超时终止即使子进程以0退出也不能报告成功
+ok 14 - 超时终止即使子进程以0退出也不能报告成功
+  ---
+  duration_ms: 256.565125
+  type: 'test'
+  ...
+# Subtest: 输出超过上限即使collector退出0也必须失败
+ok 15 - 输出超过上限即使collector退出0也必须失败
+  ---
+  duration_ms: 98.444583
+  type: 'test'
+  ...
+# Subtest: 终止期间同PID锁被替换为新文件，也不能删除替换锁
+ok 16 - 终止期间同PID锁被替换为新文件，也不能删除替换锁
+  ---
+  duration_ms: 74.501625
+  type: 'test'
+  ...
+# Subtest: 超出陈旧窗口的死PID锁交给已有规则回收，固定执行器不删
+ok 17 - 超出陈旧窗口的死PID锁交给已有规则回收，固定执行器不删
+  ---
+  duration_ms: 72.700458
+  type: 'test'
+  ...
+# Subtest: 临近10分钟陈旧窗口的自有锁留安全余量，不进行强制清理
+ok 18 - 临近10分钟陈旧窗口的自有锁留安全余量，不进行强制清理
+  ---
+  duration_ms: 74.019084
+  type: 'test'
+  ...
+# Subtest: ownedLock为符号链接时不删除链接或目标
+ok 19 - ownedLock为符号链接时不删除链接或目标
+  ---
+  duration_ms: 71.982083
+  type: 'test'
+  ...
+# Subtest: 取消发生前已aborted时不启动collector；正常进程及启动失败均可退出
+ok 20 - 取消发生前已aborted时不启动collector；正常进程及启动失败均可退出
+  ---
+  duration_ms: 73.559292
+  type: 'test'
+  ...
+# Subtest: 取消时不合格的旧锁被collector替换为自有新锁，也不进行补抓后删除
+ok 21 - 取消时不合格的旧锁被collector替换为自有新锁，也不进行补抓后删除
+  ---
+  duration_ms: 72.797916
+  type: 'test'
+  ...
+# Subtest: 直接collector正常退出但留下孙进程时，失败并清完整组
+ok 22 - 直接collector正常退出但留下孙进程时，失败并清完整组
+  ---
+  duration_ms: 231.3755
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1929.459166

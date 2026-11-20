@@ -1,0 +1,81 @@
+{
+  "phase": "FACT-32 foundation only; production switch and public content remain FACT-33",
+  "offline": {
+    "python_tests": 19,
+    "node_new_tests": 4,
+    "refresh_node": 52,
+    "refresh_python": 5,
+    "legacy_fixed_runtime": 22,
+    "site_regression": {
+      "passed": 96,
+      "failed": 0
+    }
+  },
+  "baseline": {
+    "uids": 18,
+    "bvids": 92,
+    "shops": 15,
+    "compiled_json_changed": false
+  },
+  "pi": {
+    "version": "1.5.2",
+    "node": "22.23.5 darwin-arm64",
+    "provider": "ark-coding-plan-cn",
+    "api": "anthropic-messages",
+    "requested_model": "doubao-seed-2.1-turbo",
+    "response_model": "doubao-seed-2-1-pro",
+    "price_verified": false
+  },
+  "github": {
+    "scope": "actual default GitHub repo/ref/path; no upload/production mutation",
+    "http_status": 200,
+    "github": {
+      "repo": "Adrian-share/foodmap",
+      "ref": "fact-18/beijing-content-003",
+      "path": "content/watchlists/beijing.json",
+      "commit_sha": "593cfc7fde12520f1f5ba35ed92b765bb5d9d59f",
+      "sha256": "0536b860b001660f555fce9b201740c73a8b72738c87a56331a4fb514a57a3c8",
+      "observed_at": "2026-11-16T15:09:02.995151Z"
+    },
+    "etag": "\"a57f0f62d23b1dd20a8d66b8851654003ce3101d\"",
+    "sources": 18,
+    "enabled": 18,
+    "second_read_status": 304,
+    "hash_matches_frozen_initial": true
+  },
+  "p3": {
+    "actual_kill_pi_and_python": true,
+    "same_task_same_session_recovered": true,
+    "only_one_business_job": true,
+    "production_state_used": false,
+    "idle_pi_restart_seconds": 10.363262875005603
+  },
+  "p4": {
+    "actual_active_all_tool_inventory": "exactly five project tools",
+    "no_inherited_upload_multica_ssh_credentials": true,
+    "tool_negative_tests": "wrong task/BV/UID, extra fields, arbitrary path, symlink, shell tool, approved injection"
+  },
+  "p5": {
+    "actual_timeout_cancel_retry": true,
+    "owned_child_group_cleanup": true,
+    "unrelated_daemon_cli_failure_timeout_nonjson_cleanup": true,
+    "budgets": "10 business attempts/day, 8192 output tokens, 180 seconds/task, 3 attempts"
+  },
+  "limits": [
+    "watchlist.sync/receipt.get server and catalog registration tested in local storage; hosted Worker protocol not deployed in this phase",
+    "W2 new-account enable is a fixture integration test; canonical real read and 304 are recorded separately",
+    "capture/POI implementations and independent content verification/publication belong to FACT-33",
+    "real official season endpoint currently restricted; successful view metadata probe does not prove full history coverage",
+    "no new launchd loaded, no existing Autopilot switched; diagnostic processes are stopped before delivery"
+  ],
+  "p1": {
+    "real_task_then_idle_seconds": 600.5372596671805,
+    "same_python_and_pi_alive": true,
+    "provider_requests_during_idle": 0
+  },
+  "installation": {
+    "tested_interpreter": "/usr/local/bin/python3 3.13.3",
+    "minimum_python": "3.12",
+    "system_3_9_guard_verified": true
+  }
+}
