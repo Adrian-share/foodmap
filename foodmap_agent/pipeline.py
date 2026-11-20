@@ -7,6 +7,7 @@ import subprocess
 import time
 from .publisher import Publisher
 from .watchlist import now_iso
+from .retry_policy import review_policy
 
 class Pipeline:
     def __init__(self, store, root, node, operator, source_commit):
@@ -80,11 +81,14 @@ class Pipeline:
         missing=verified['missing']
         documents=verified['documents']
         proof=documents[0]['document']['verification'] if documents else {}
+        policy=review_policy(job,result,context,verified,self._read) if verified['status']!='approved' else None
         self.store.set('verification:'+job['id'],dict(status=verified['status'],missing=missing,checked_at=now_iso(),
-                       rules_version=proof.get('rules_version'),provenance=proof.get('provenance',[])))
+                       rules_version=proof.get('rules_version'),provenance=proof.get('provenance',[]),retry_policy=policy))
         if verified['status'] != 'approved':
             stage='blocked_capture' if 'frame' in missing or 'frame_bytes' in missing or 'frame' in result['proposal']['missing'] else 'pending'
-            self.store.db.execute('UPDATE jobs SET stage=?,error_code=?,next_retry_at=? WHERE id=?',(stage,','.join(missing)[:100],1e15 if verified['status']=='excluded' else time.time()+21600,job['id']))
+            held=policy['action']=='await_new_evidence'
+            if held:stage='pending'
+            self.store.db.execute('UPDATE jobs SET stage=?,error_code=?,next_retry_at=? WHERE id=?',(stage,','.join(missing)[:100],0 if held else 1e15 if verified['status']=='excluded' else time.time()+21600,job['id']))
             self.event(job,stage,missing=missing)
             return None
         self.event(job,'verified',rules_version=proof.get('rules_version'))

@@ -251,11 +251,16 @@ class PiRPC:
         tracker.accept(accepted)
         self.model_requests += 1
         deadline = time.monotonic() + timeout
+        tool_errors=[]
         try:
             while not tracker.done:
                 value = self.events.popleft() if self.events else self._next(deadline)
                 if value.get('type') == 'response':
                     raise ProtocolError('unexpected_run_response')
+                if value.get('type')=='tool_execution_end':
+                    from .retry_policy import tool_error
+                    error=tool_error(value)
+                    if error:tool_errors.append(error)
                 tracker.event(value)
             from .contracts import validate
             if not self.proposal_file.is_file():
@@ -266,7 +271,7 @@ class PiRPC:
             self.sync_context(context)
             if any(e not in context['evidence'] for e in proposal['evidence_ids']):
                 raise ProtocolError('unknown_evidence')
-            return dict(proposal=proposal, settled=tracker.settled, session_id=state['sessionId'], generation=self.generation)
+            return dict(proposal=proposal, settled=tracker.settled, session_id=state['sessionId'], generation=self.generation,tool_errors=tool_errors)
         except Exception:
             try:
                 cancel_rpc(self.request)

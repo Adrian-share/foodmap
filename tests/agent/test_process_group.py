@@ -12,7 +12,7 @@ class ProcessGroup(unittest.TestCase):
     def test_close_reaps_own_adapter_group_even_if_child_ignores_term(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).parent) as tmp:
             marker = Path(tmp) / 'child.json'
-            script = 'import subprocess,sys,time,json;from pathlib import Path;p=subprocess.Popen([sys.executable,"-c","import signal,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(60)"]);Path(sys.argv[1]).write_text(json.dumps({"pid":p.pid}));time.sleep(60)'
+            script = 'import subprocess,sys,time,json;from pathlib import Path;p=subprocess.Popen([sys.executable,"-c","import signal,time;signal.signal(signal.SIGTERM,signal.SIG_IGN);time.sleep(60)"]);m=Path(sys.argv[1]);m.with_suffix(".tmp").write_text(json.dumps({"pid":p.pid}));m.with_suffix(".tmp").replace(m);time.sleep(60)'
             proc = subprocess.Popen([sys.executable,'-c',script,str(marker)],start_new_session=True,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
             deadline = time.monotonic()+5
             while not marker.exists() and time.monotonic()<deadline:
